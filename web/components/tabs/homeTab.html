@@ -13,12 +13,20 @@
           </div>
 
           <!-- Hero Universal Fast Dropzone -->
-          <div class="hero-quick-dropzone" id="homeHeroDropzone">
-            <i class="fa-solid fa-cloud-arrow-up hero-drop-icon"></i>
-            <div class="hero-drop-title" data-i18n="home.heroDropTitle"></div>
-            <div class="hero-drop-sub" data-i18n="home.heroDropSub"></div>
-            <div class="hero-drop-badge" data-i18n="home.heroDropBadge"></div>
-            <input type="file" id="inputHomeHeroFile"
+          <div class="dropzone hero-quick-dropzone" id="homeHeroDropzone">
+            <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+            <div class="dropzone-title" data-i18n="home.heroDropTitle"></div>
+            <div class="dropzone-desc" data-i18n="home.heroDropSub"></div>
+            <div class="dropzone-tags">
+              <span class="dropzone-tag-pill">RW5 / RAW</span>
+              <span class="dropzone-tag-pill">RINEX (.RNX/.OBS)</span>
+              <span class="dropzone-tag-pill">NCZ / DXF</span>
+              <span class="dropzone-tag-pill">KML / KMZ</span>
+              <span class="dropzone-tag-pill">GeoJSON</span>
+              <span class="dropzone-tag-pill">Netcad .DNS</span>
+              <span class="dropzone-tag-pill">TXT / CSV</span>
+            </div>
+            <input type="file" id="inputHomeHeroFile" class="file-drop-input"
               accept=".rw5,.raw,.csv,.txt,.jxl,.dat,.o,.rnx,.crx,.obs,.ncn,.dns,.kml,.kmz,.geojson,.json" />
           </div>
         </div>

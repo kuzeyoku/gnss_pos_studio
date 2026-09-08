@@ -36,21 +36,21 @@
                   <i class="fa-solid fa-cloud-arrow-up text-cyan"></i> <span data-i18n="converter.step1Title"></span>
                 </div>
 
-                <div class="converter-dropzone" id="converterDropzone">
-                  <i class="fa-solid fa-file-arrow-up converter-drop-icon"></i>
-                  <div class="converter-drop-title" data-i18n="converter.dropzoneLabel"></div>
-                  <div class="converter-drop-tags">
-                    <span class="converter-tag-pill">NCZ</span>
-                    <span class="converter-tag-pill">DXF</span>
-                    <span class="converter-tag-pill">KML</span>
-                    <span class="converter-tag-pill">KMZ</span>
-                    <span class="converter-tag-pill">GPX</span>
-                    <span class="converter-tag-pill">NCN</span>
-                    <span class="converter-tag-pill">GeoJSON</span>
-                    <span class="converter-tag-pill">TXT / CSV</span>
-                    <span class="converter-tag-pill">CHC / SHARE POS</span>
+                <div class="dropzone converter-dropzone" id="converterDropzone">
+                  <i class="fa-solid fa-file-arrow-up dropzone-icon converter-drop-icon"></i>
+                  <div class="dropzone-title converter-drop-title" data-i18n="converter.dropzoneLabel"></div>
+                  <div class="dropzone-tags converter-drop-tags">
+                    <span class="dropzone-tag-pill converter-tag-pill">NCZ</span>
+                    <span class="dropzone-tag-pill converter-tag-pill">DXF</span>
+                    <span class="dropzone-tag-pill converter-tag-pill">KML</span>
+                    <span class="dropzone-tag-pill converter-tag-pill">KMZ</span>
+                    <span class="dropzone-tag-pill converter-tag-pill">GPX</span>
+                    <span class="dropzone-tag-pill converter-tag-pill">NCN</span>
+                    <span class="dropzone-tag-pill converter-tag-pill">GeoJSON</span>
+                    <span class="dropzone-tag-pill converter-tag-pill">TXT / CSV</span>
+                    <span class="dropzone-tag-pill converter-tag-pill">CHC / SHARE POS</span>
                   </div>
-                  <input type="file" id="inputConverterFile" accept=".ncz,.dxf,.kml,.kmz,.gpx,.ncn,.kos,.txt,.csv,.xyz,.dat,.geojson,.json,.pos" />
+                  <input type="file" id="inputConverterFile" class="file-drop-input" accept=".ncz,.dxf,.kml,.kmz,.gpx,.ncn,.kos,.txt,.csv,.xyz,.dat,.geojson,.json,.pos" />
                 </div>
 
                 <!-- Active File Info Chip (Hidden initially) -->
@@ -149,36 +149,36 @@
             <div class="converter-right-pane">
 
               <!-- Telemetry & KPI Cards -->
-              <div class="converter-kpi-grid">
-                <div class="converter-kpi-card">
-                  <div class="converter-kpi-icon bento-icon-cyan"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="kpi-grid">
+                <div class="kpi-card">
+                  <div class="kpi-icon bento-icon-cyan"><i class="fa-solid fa-location-dot"></i></div>
                   <div>
-                    <div class="converter-kpi-val text-cyan" id="kpiConverterPoints">0</div>
-                    <div class="converter-kpi-lbl" data-i18n="ui.noktaSayisi"></div>
+                    <div class="kpi-val text-cyan" id="kpiConverterPoints">0</div>
+                    <div class="kpi-label" data-i18n="ui.noktaSayisi"></div>
                   </div>
                 </div>
 
-                <div class="converter-kpi-card">
-                  <div class="converter-kpi-icon bento-icon-purple"><i class="fa-solid fa-font"></i></div>
+                <div class="kpi-card">
+                  <div class="kpi-icon bento-icon-purple"><i class="fa-solid fa-font"></i></div>
                   <div>
-                    <div class="converter-kpi-val text-purple" id="kpiConverterTexts">0</div>
-                    <div class="converter-kpi-lbl" data-i18n="ui.yaziCadMetni"></div>
+                    <div class="kpi-val text-purple" id="kpiConverterTexts">0</div>
+                    <div class="kpi-label" data-i18n="ui.yaziCadMetni"></div>
                   </div>
                 </div>
 
-                <div class="converter-kpi-card">
-                  <div class="converter-kpi-icon bento-icon-blue"><i class="fa-solid fa-route"></i></div>
+                <div class="kpi-card">
+                  <div class="kpi-icon bento-icon-blue"><i class="fa-solid fa-route"></i></div>
                   <div>
-                    <div class="converter-kpi-val text-blue" id="kpiConverterLines">0</div>
-                    <div class="converter-kpi-lbl" data-i18n="converter.kpiLines"></div>
+                    <div class="kpi-val text-blue" id="kpiConverterLines">0</div>
+                    <div class="kpi-label" data-i18n="converter.kpiLines"></div>
                   </div>
                 </div>
 
-                <div class="converter-kpi-card">
-                  <div class="converter-kpi-icon bento-icon-emerald"><i class="fa-solid fa-draw-polygon"></i></div>
+                <div class="kpi-card">
+                  <div class="kpi-icon bento-icon-emerald"><i class="fa-solid fa-draw-polygon"></i></div>
                   <div>
-                    <div class="converter-kpi-val text-emerald" id="kpiConverterPolygons">0</div>
-                    <div class="converter-kpi-lbl" data-i18n="geomatics.closedArea"></div>
+                    <div class="kpi-val text-emerald" id="kpiConverterPolygons">0</div>
+                    <div class="kpi-label" data-i18n="geomatics.closedArea"></div>
                   </div>
                 </div>
               </div>

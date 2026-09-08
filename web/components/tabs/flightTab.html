@@ -110,7 +110,7 @@
                 <span class="text-xs font-bold text-white"><i class="fa-solid fa-screwdriver-wrench text-cyan mr-4"></i> <span data-i18n="common.tools"></span></span>
               </div>
 
-              <div class="map-toolbar-actions-group">
+              <div class="d-flex items-center gap-4">
                 <button class="map-btn-compact" id="btnFlightFitBounds" type="button" title="" data-i18n-title="flight.titleFitBounds">
                   <i class="fa-solid fa-expand text-cyan"></i> <span data-i18n="ui.alanaSigdir"></span>
                 </button>
@@ -143,7 +143,7 @@
 
               <!-- Minimalist Layer Toggles -->
               <div class="map-layer-toggles-container">
-                <div class="map-layer-toggles-row">
+                <div class="d-flex items-center gap-4">
                   <button class="map-toggle-btn active" id="btnToggleRoadNetwork" type="button"
                     title="" data-i18n-title="flight.titleToggleRoad">
                     <i class="fa-solid fa-road text-indigo"></i>
@@ -182,7 +182,7 @@
           <div id="widgetSolarWindCompass" class="flight-solar-compass-widget">
 
             <!-- 1. Solar & Shadow Dial -->
-            <div class="solar-wind-chip">
+            <div class="solar-wind-chip chip-row">
               <div class="solar-dial-circle">
                 <span class="pos-abs top-1 text-2xs font-extrabold text-dim">K</span>
                 <span class="pos-abs right-2 text-2xs font-extrabold text-dim">D</span>
@@ -215,7 +215,7 @@
             <div class="solar-wind-divider"></div>
 
             <!-- 2. Altitude-Aware Wind Dial -->
-            <div class="solar-wind-chip">
+            <div class="solar-wind-chip chip-row">
               <div class="wind-dial-circle">
                 <span class="pos-abs top-1 text-2xs font-extrabold text-dim">K</span>
                 <span class="pos-abs right-2 text-2xs font-extrabold text-dim">D</span>
@@ -249,7 +249,7 @@
             <div class="solar-wind-divider"></div>
 
             <!-- 3. Real-Time Cloud Cover & Lighting Quality -->
-            <div class="solar-wind-chip">
+            <div class="solar-wind-chip chip-row">
               <div class="cloud-indicator-circle">
                 <i class="fa-solid fa-cloud-sun text-sky cloud-indicator-icon" id="iconWidgetCloud"></i>
               </div>

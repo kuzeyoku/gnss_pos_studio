@@ -1,3 +1,826 @@
+/* --- light.css --- */
+/* ==========================================================================
+   GNSS POS STUDIO & HARİTA TOOLS - LIGHT THEME ENGINE (AYDINLIK TEMA)
+   Enterprise Geomatics & Modern Bento Glassmorphism Design System
+   ========================================================================== */
+
+[data-theme="light"] {
+  /* Surface Layers & Depth Hierarchy */
+  --surface-void: #f8fafc;
+  --surface-base: #f1f5f9;
+  --surface-sidebar: #ffffff;
+  --surface-card: #ffffff;
+  --surface-card-elevated: #ffffff;
+  --surface-hover: #e2e8f0;
+  --surface-active: #e0f2fe;
+
+  /* Specular Borders & Separation */
+  --border-glass: #e2e8f0;
+  --border-glass-hover: #cbd5e1;
+  --border-subtle: rgba(148, 163, 184, 0.25);
+  --border-cyan-glow: rgba(2, 132, 199, 0.35);
+  --border-purple-glow: rgba(124, 58, 237, 0.30);
+  --border-emerald-glow: rgba(16, 185, 129, 0.35);
+  --border-amber-glow: rgba(217, 119, 6, 0.35);
+
+  /* High-Contrast Crisp Typography */
+  --text-pure: #0f172a;
+  --text-main: #1e293b;
+  --text-muted: #334155;
+  --text-dim: #475569;
+  --text-cyan: #0284c7;
+  --text-sky: #0369a1;
+  --text-emerald: #059669;
+  --text-amber: #b45309;
+  --text-purple: #6d28d9;
+  --text-rose: #e11d48;
+
+  /* Semantic Highlights for Surveying Dashboards */
+  --cyan-400: #0284c7;
+  --sky-400: #0369a1;
+  --emerald-400: #059669;
+  --amber-400: #d97706;
+  --purple-400: #7c3aed;
+  --rose-400: #e11d48;
+  --indigo-400: #4f46e5;
+
+  /* Soft Ambient & Specular Elevation Shadows */
+  --glow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 12px 36px -4px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-floating: 0 16px 45px -8px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* 1. Global Body & App Shell */
+[data-theme="light"] body {
+  background-color: #f8fafc !important;
+  background-image: 
+    radial-gradient(circle at 10% 10%, rgba(2, 132, 199, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 90% 85%, rgba(99, 102, 241, 0.04) 0%, transparent 45%),
+    linear-gradient(to right, rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.025) 1px, transparent 1px) !important;
+  color: #1e293b !important;
+}
+
+/* 2. Sidebar & Navigation */
+[data-theme="light"] .sidebar {
+  background: #ffffff !important;
+  box-shadow: 2px 0 18px rgba(0, 0, 0, 0.04) !important;
+  border-right: 1px solid #e2e8f0 !important;
+}
+
+[data-theme="light"] .brand-info h2,
+
+[data-theme="light"] .brand-subtitle {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .brand-icon {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #4f46e5 100%) !important;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid rgba(2, 132, 199, 0.3) !important;
+}
+
+[data-theme="light"] .brand-signal-pulse {
+  border-color: #ffffff !important;
+}
+
+[data-theme="light"] .nav-section-title {
+  color: #94a3b8 !important;
+}
+
+[data-theme="light"] .nav-item {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .nav-item:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .nav-item.active {
+  background: rgba(2, 132, 199, 0.08) !important;
+  color: #0284c7 !important;
+  border-color: rgba(2, 132, 199, 0.3) !important;
+  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.08) !important;
+}
+
+[data-theme="light"] .sidebar-footer {
+  background: #f8fafc !important;
+  border-top: 1px solid #e2e8f0 !important;
+}
+
+[data-theme="light"] .sidebar-geo-card {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .sidebar-geo-header {
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+[data-theme="light"] .sidebar-geo-val.text-white {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .sidebar-shortcuts-card {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+[data-theme="light"] .sidebar-shortcut-row {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .sidebar-shortcut-row:hover {
+  color: #0f172a !important;
+  background: #f1f5f9 !important;
+}
+
+[data-theme="light"] .sidebar-bottom-dock {
+  border-top: 1px solid #e2e8f0 !important;
+}
+
+[data-theme="light"] .sidebar-kbd,
+
+/* 3. Top Header & Buttons */
+[data-theme="light"] .top-header {
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-theme="light"] .header-title h1 {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+[data-theme="light"] #btnThemeToggle {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #b45309 !important;
+}
+
+[data-theme="light"] #btnThemeToggle:hover {
+  background: #e2e8f0 !important;
+  border-color: #f59e0b !important;
+  color: #92400e !important;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.25) !important;
+}
+
+[data-theme="light"] .status-pill,
+[data-theme="light"] .mobile-menu-btn {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0284c7 !important;
+}
+
+/* 4. Cards & Panels */
+[data-theme="light"] .card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: var(--glow-card) !important;
+}
+
+[data-theme="light"] .card-header {
+  border-bottom-color: #f1f5f9 !important;
+}
+
+[data-theme="light"] .card-title {
+  color: #0f172a !important;
+}
+
+/* 5. Data Tables */
+[data-theme="light"] .table-container,
+[data-theme="light"] .data-table-wrap,
+[data-theme="light"] .converter-table-wrap {
+  border: 1px solid #e2e8f0 !important;
+  background: #ffffff !important;
+}
+
+[data-theme="light"] table th,
+[data-theme="light"] .converter-table th {
+  background: #f8fafc !important;
+  color: #475569 !important;
+  border-bottom: 1px solid #cbd5e1 !important;
+}
+
+[data-theme="light"] table td,
+[data-theme="light"] .converter-table td {
+  border-bottom: 1px solid #f1f5f9 !important;
+  color: #1e293b !important;
+}
+
+[data-theme="light"] table tbody tr:hover,
+[data-theme="light"] .converter-table tbody tr:hover {
+  background: #f0f9ff !important;
+}
+
+/* 6. Form Inputs & Selects */
+[data-theme="light"] .form-input,
+[data-theme="light"] .form-select,
+[data-theme="light"] .select-glass,
+[data-theme="light"] .time-input-glass,
+[data-theme="light"] .geo-coord-input,
+[data-theme="light"] .batch-textarea,
+[data-theme="light"] .dns-textarea,
+[data-theme="light"] .code-editor-textarea,
+[data-theme="light"] .pafta-search-input,
+
+[data-theme="light"] .form-input:focus,
+[data-theme="light"] .form-select:focus,
+[data-theme="light"] .select-glass:focus,
+[data-theme="light"] .geo-coord-input:focus {
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2) !important;
+}
+
+[data-theme="light"] .form-select option {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .form-label {
+  color: #475569 !important;
+}
+
+/* 7. Buttons */
+[data-theme="light"] .btn-secondary {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
+}
+
+[data-theme="light"] .btn-secondary:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+}
+
+[data-theme="light"] .sub-tab-btn,
+[data-theme="light"] .guide-filter-chip,
+[data-theme="light"] .about-close-btn {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+[data-theme="light"] .sub-tab-btn:hover,
+[data-theme="light"] .guide-filter-chip:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .sub-tab-btn.active,
+[data-theme="light"] .guide-filter-chip.active {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+}
+
+/* 8. KPI & Stat Chips */
+[data-theme="light"] .cadastre-kpi-card,
+[data-theme="light"] .converter-kpi-card,
+[data-theme="light"] .stat-card-glass,
+[data-theme="light"] .flight-geo-chip,
+[data-theme="light"] .flight-telemetry-chip {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .cadastre-kpi-val,
+[data-theme="light"] .converter-kpi-val,
+[data-theme="light"] .flight-geo-val,
+[data-theme="light"] .flight-telemetry-chip strong {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .cadastre-kpi-lbl,
+[data-theme="light"] .converter-kpi-lbl,
+[data-theme="light"] .flight-geo-label,
+[data-theme="light"] .flight-telemetry-chip span {
+  color: #475569 !important;
+}
+
+/* 9. Interactive Leaflet Maps, Floating Toolbars & Controls */
+[data-theme="light"] .studio-map-canvas,
+[data-theme="light"] #mapContainer,
+[data-theme="light"] #cadastreMapContainer,
+[data-theme="light"] #flightMapContainer,
+[data-theme="light"] #tg20MapContainer,
+[data-theme="light"] #converterMap,
+[data-theme="light"] .converter-leaflet-map,
+[data-theme="light"] .cadastre-map-canvas,
+[data-theme="light"] .tg20-map-canvas,
+[data-theme="light"] .flight-map-canvas {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .map-floating-toolbar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .map-btn-compact,
+[data-theme="light"] .map-toggle-btn {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .map-btn-compact:hover,
+[data-theme="light"] .map-toggle-btn:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .map-toggle-btn.active {
+  background: #e0f2fe !important;
+  border-color: #38bdf8 !important;
+  color: #0284c7 !important;
+}
+
+[data-theme="light"] .leaflet-control-layers {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.12) !important;
+}
+
+[data-theme="light"] .leaflet-control-layers label {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .leaflet-control-zoom {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1) !important;
+}
+
+[data-theme="light"] .leaflet-control-zoom a {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+[data-theme="light"] .leaflet-control-zoom a:hover {
+  background: #f1f5f9 !important;
+  color: #0284c7 !important;
+}
+
+[data-theme="light"] .leaflet-popup-content-wrapper,
+[data-theme="light"] .custom-leaflet-popup .leaflet-popup-content-wrapper {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15) !important;
+}
+
+[data-theme="light"] .leaflet-popup-tip,
+[data-theme="light"] .custom-leaflet-popup .leaflet-popup-tip {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* 10. Floating Overlays & Pafta Cards */
+[data-theme="light"] .floating-pafta-card,
+[data-theme="light"] #cardActivePafta,
+[data-theme="light"] .floating-intersect-card,
+[data-theme="light"] #cardIntersectingPaftas {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08) !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .pafta-toolbar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1) !important;
+}
+
+
+[data-theme="light"] #btnPafta100k,
+[data-theme="light"] #btnPafta50k,
+[data-theme="light"] #btnPafta25k,
+[data-theme="light"] #btnPafta5k,
+[data-theme="light"] #btnPafta2k,
+[data-theme="light"] #btnPafta1k,
+[data-theme="light"] #btnPaftaOff,
+[data-theme="light"] #btnToggleDom,
+
+[data-theme="light"] .btn-pafta-active,
+[data-theme="light"] .btn-pafta-active-50k,
+[data-theme="light"] .btn-pafta-active-25k,
+[data-theme="light"] .btn-pafta-active-5k,
+[data-theme="light"] .btn-pafta-active-2k,
+[data-theme="light"] .btn-pafta-active-1k {
+  background: rgba(2, 132, 199, 0.12) !important;
+  border-color: #0284c7 !important;
+  color: #0284c7 !important;
+}
+
+[data-theme="light"] .pafta-label-100k,
+[data-theme="light"] .pafta-label-50k,
+[data-theme="light"] .pafta-label-25k,
+[data-theme="light"] .pafta-label-5k,
+[data-theme="light"] .pafta-label-2k,
+[data-theme="light"] .pafta-label-1k {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid #0284c7 !important;
+  color: #0f172a !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .dom-label-badge {
+  background: #f59e0b !important;
+  color: #ffffff !important;
+  border: 1px solid #d97706 !important;
+}
+
+/* 11. Flight Planner Studio */
+[data-theme="light"] .flight-workflow-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 6px 24px -4px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] .flight-solar-compass-widget {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-top: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .flight-wind-heading-badge {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid #a7f3d0 !important;
+  color: #065f46 !important;
+}
+
+[data-theme="light"] .flight-summary-box,
+[data-theme="light"] .flight-slider-container,
+[data-theme="light"] .flight-heading-box {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+[data-theme="light"] .flight-export-menu {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 12. TG-20 Geoid Studio */
+[data-theme="light"] .tg20-stat-chip {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #1e293b !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .tg20-stat-chip-emerald {
+  background: linear-gradient(135deg, #ffffff 0%, #ecfdf5 100%) !important;
+  border: 1px solid #a7f3d0 !important;
+  color: #065f46 !important;
+}
+
+[data-theme="light"] .tg20-stat-chip-amber {
+  background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%) !important;
+  border: 1px solid #fde68a !important;
+  color: #92400e !important;
+}
+
+[data-theme="light"] .tg20-formula-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%) !important;
+  border: 1px solid #ccfbf1 !important;
+  color: #115e59 !important;
+}
+
+[data-theme="light"] .tg20-region-chip {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .tg20-action-toolbar {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+[data-theme="light"] .tg20-map-hud-badge {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(217, 119, 6, 0.4) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .tg20-subtab-nav {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .tg20-subtab-btn {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .tg20-subtab-btn.active {
+  color: #0369a1 !important;
+  background: #ffffff !important;
+  border-color: #38bdf8 !important;
+}
+
+/* 13. RINEX Studio & Canonical Dropzones */
+[data-theme="light"] .dropzone,
+[data-theme="light"] .converter-dropzone,
+[data-theme="light"] .hero-quick-dropzone {
+  background: #ffffff !important;
+  border: 2px dashed #38bdf8 !important;
+}
+
+[data-theme="light"] .dropzone:hover,
+[data-theme="light"] .dropzone.dragover,
+[data-theme="light"] .dropzone.drag-over,
+[data-theme="light"] .converter-dropzone:hover,
+[data-theme="light"] .converter-dropzone.dragover,
+[data-theme="light"] .hero-quick-dropzone:hover {
+  border-color: #0284c7 !important;
+  background: #f0f9ff !important;
+  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.15) !important;
+}
+
+[data-theme="light"] .dropzone-title,
+[data-theme="light"] .converter-drop-title,
+[data-theme="light"] .hero-drop-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .dropzone-desc,
+[data-theme="light"] .hero-drop-sub {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .dropzone-tag-pill,
+[data-theme="light"] .converter-tag-pill {
+  background: rgba(15, 23, 42, 0.05) !important;
+  color: #475569 !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+[data-theme="light"] .dropzone:hover .dropzone-tag-pill,
+[data-theme="light"] .converter-dropzone:hover .converter-tag-pill,
+[data-theme="light"] .hero-quick-dropzone:hover .dropzone-tag-pill {
+  background: rgba(2, 132, 199, 0.1) !important;
+  color: #0284c7 !important;
+  border-color: rgba(2, 132, 199, 0.3) !important;
+}
+
+[data-theme="light"] .ppk-station-card {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+[data-theme="light"] .ppk-upload-box {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .time-crop-panel {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+
+[data-theme="light"] .timeline-track-base {
+  background: rgba(2, 132, 199, 0.15) !important;
+  border-color: #0284c7 !important;
+}
+
+[data-theme="light"] .timeline-track-rover {
+  background: rgba(5, 150, 105, 0.15) !important;
+  border-color: #059669 !important;
+}
+
+/* 14. Converter Studio */
+
+[data-theme="light"] .converter-file-info-chip {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .converter-layer-item {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .btn-converter-export {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #1e293b !important;
+}
+
+[data-theme="light"] .btn-converter-export:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* 15. Guide & Documentation Tab */
+[data-theme="light"] .guide-hero-banner {
+  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%) !important;
+  border-color: #bae6fd !important;
+}
+
+[data-theme="light"] .guide-hero-inner {
+  border-bottom-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .guide-hero-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .guide-hero-lead {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .guide-hero-icon-box,
+
+
+
+[data-theme="light"] .guide-section-heading {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .guide-feature-row {
+  background: #f8fafc !important;
+  border-left-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .guide-card-body-text {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .guide-bento-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .dom-badge-card,
+[data-theme="light"] .formula-box {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .formula-math {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .guide-faq-item {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .guide-faq-question {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .guide-faq-answer {
+  background: #f8fafc !important;
+  color: #475569 !important;
+  border-top-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .guide-shortcut-card {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .guide-shortcut-card:hover {
+  background: #f1f5f9 !important;
+  border-color: #94a3b8 !important;
+}
+
+[data-theme="light"] .guide-shortcut-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .guide-shortcut-desc {
+  color: #64748b !important;
+}
+
+
+
+[data-theme="light"] .guide-launch-btn:hover {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+/* 16. Console Dock & Toasts */
+[data-theme="light"] .console-dock {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-top: 1px solid #cbd5e1 !important;
+  box-shadow: 0 -8px 30px rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .console-dock-btn {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .console-dock-btn:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #0284c7 !important;
+}
+
+[data-theme="light"] .console-box {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .progress-bar-bg {
+  background: #e2e8f0 !important;
+}
+
+[data-theme="light"] .toast {
+  background: rgba(255, 255, 255, 0.96) !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 12px 32px -4px rgba(15, 23, 42, 0.12) !important;
+}
+
+[data-theme="light"] .toast-message {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .toast-close {
+  color: #64748b !important;
+}
+
+/* 17. About Modal */
+[data-theme="light"] .about-modal-card {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.15) !important;
+  color: #0f172a !important;
+}
+
+
+
+[data-theme="light"] .about-spec-grid,
+[data-theme="light"] .about-standards-card {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+[data-theme="light"] .about-standard-row {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .about-privacy-box {
+  background: #ecfdf5 !important;
+  border: 1px solid #a7f3d0 !important;
+  color: #065f46 !important;
+}
+
+[data-theme="light"] .about-footer-wrap {
+  border-top: 1px solid #e2e8f0 !important;
+}
+
+/* 18. Scrollbars & Generic Utilities */
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+  border-radius: 4px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8 !important;
+}
+
+[data-theme="light"] pre,
+[data-theme="light"] code {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+
+/* --- mobile.css --- */
 /* ==========================================================================
    HARITA TOOLS - DEDICATED MOBILE & TABLET RESPONSIVE ENGINE (mobile.css)
    Zero-Server Client-Side Engineering Suite
@@ -156,12 +979,6 @@
     background: rgba(6, 182, 212, 0.2) !important;
   }
 
-  [data-theme="light"] .mobile-menu-btn {
-    background: #f1f5f9 !important;
-    border-color: #cbd5e1 !important;
-    color: #0284c7 !important;
-  }
-
   .header-title {
     min-width: 0 !important;
     flex: 1 !important;
@@ -311,12 +1128,8 @@
     padding: 4px 12px !important;
   }
 
-  .tg20-batch-actions {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 4px !important;
-    width: 100% !important;
-  }
+  .tg20-batch-actions,
+  .cadastre-table-panel .card-header .d-flex.flex-wrap.gap-6,
 
   .tg20-batch-actions .btn {
     width: auto !important;
@@ -714,12 +1527,6 @@
     font-size: 12.5px !important;
   }
 
-  .cadastre-table-panel .card-header .d-flex.flex-wrap.gap-6 {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 4px !important;
-    width: 100% !important;
-  }
 
   .cadastre-table-panel .card-header .d-flex.flex-wrap.gap-6 .btn {
     width: auto !important;
@@ -820,12 +1627,6 @@
     gap: 6px !important;
   }
 
-  .helmert-export-btns {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 4px !important;
-    width: 100% !important;
-  }
 
   .helmert-export-btns .btn {
     width: auto !important;

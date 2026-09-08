@@ -1,3 +1,119 @@
+/* --- components.css --- */
+/* ==========================================================================
+   CANONICAL SHARED DESIGN PATTERNS (KPI Cards, Panels, Leaflet Map & Grid)
+   ========================================================================== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 1300px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kpi-card {
+  background: rgba(13, 21, 38, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md, 10px);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.kpi-card:hover {
+  border-color: rgba(6, 182, 212, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 16px rgba(6, 182, 212, 0.12);
+}
+
+.kpi-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25);
+}
+
+.kpi-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-family: var(--font-mono, monospace);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.kpi-label,
+.kpi-lbl {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-dim, #94a3b8);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 3px;
+}
+
+.data-panel {
+  background: rgba(6, 11, 24, 0.4) !important;
+  border: 1px solid var(--border-glass) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 16px !important;
+}
+
+.chip-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+@media (max-width: 768px) {
+  .grid-3col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.app-map-container .leaflet-bottom.leaflet-left {
+  bottom: 74px !important;
+  left: 14px !important;
+  z-index: 999 !important;
+  pointer-events: none;
+}
+
+.app-map-container .leaflet-control-scale {
+  pointer-events: auto;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .app-map-container .leaflet-bottom.leaflet-left {
+    bottom: 118px !important;
+  }
+}
+
 /* ==========================================================================
    05. UNIVERSAL GLASS COMPONENTS & BUTTONS
    ========================================================================== */
@@ -128,7 +244,6 @@
   font-family: var(--font-display);
   font-size: 16px;
   font-weight: 800;
-  font-weight: 900;
   letter-spacing: 0.4px;
   line-height: 1.25;
   background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 70%, #93c5fd 100%);
@@ -139,80 +254,15 @@
 
 .hero-description {
   font-size: 11.5px;
-  color: var(--text-muted);
-  line-height: 1.4;
-  line-height: 1.6;
+  line-height: 1.5;
   color: var(--text-muted);
   margin: 0;
 }
 
 .hero-quick-dropzone {
-  position: relative;
+  min-width: 320px;
+  max-width: 520px;
   z-index: 2;
-  background: rgba(6, 11, 24, 0.85);
-  border: 2px dashed rgba(6, 182, 212, 0.4);
-  border-radius: var(--radius-md);
-  padding: 24px 20px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.hero-quick-dropzone:hover {
-  background: rgba(15, 23, 42, 0.95);
-  border-color: var(--cyan-400);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(6, 182, 212, 0.25);
-}
-
-.hero-drop-icon {
-  font-size: 32px;
-  color: var(--cyan-400);
-  margin-bottom: 2px;
-  animation: floatIcon 3s ease-in-out infinite;
-}
-
-@keyframes floatIcon {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-}
-
-.hero-drop-title {
-  font-size: 14px;
-  font-weight: 800;
-  color: #ffffff;
-}
-
-.hero-drop-sub {
-  font-size: 11.5px;
-  color: var(--text-dim);
-}
-
-.hero-drop-badge {
-  margin-top: 6px;
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--emerald-400);
-  background: rgba(16, 185, 129, 0.12);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  padding: 3px 10px;
-  border-radius: 20px;
-}
-
-.hero-quick-dropzone input[type="file"] {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-  z-index: 10;
 }
 
 /* Bento Grid System */
@@ -254,7 +304,10 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
-.bento-card-header {
+.bento-card-header,
+.card-header-row,
+.flight-summary-box > div,
+.dom-badge-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -301,6 +354,18 @@
   border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
+.bento-icon-sky {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--sky-400);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.bento-icon-rose {
+  background: rgba(244, 63, 94, 0.15);
+  color: var(--rose-400);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
 .bento-badge {
   font-size: 10px;
   font-weight: 700;
@@ -309,36 +374,6 @@
   text-transform: uppercase;
   letter-spacing: 0.3px;
   border: 1px solid transparent;
-}
-
-.badge-cyan {
-  background: rgba(6, 182, 212, 0.12);
-  color: var(--cyan-400);
-  border: 1px solid rgba(6, 182, 212, 0.3);
-}
-
-.badge-blue {
-  background: rgba(59, 130, 246, 0.12);
-  color: #60a5fa;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-}
-
-.badge-purple {
-  background: rgba(168, 85, 247, 0.12);
-  color: var(--purple-400);
-  border: 1px solid rgba(168, 85, 247, 0.3);
-}
-
-.badge-emerald {
-  background: rgba(16, 185, 129, 0.12);
-  color: var(--emerald-400);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-}
-
-.badge-amber {
-  background: rgba(245, 158, 11, 0.12);
-  color: var(--amber-400);
-  border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
 .bento-title {
@@ -680,34 +715,144 @@
 }
 
 /* ==========================================================================
-   06. FORMS, INPUT CONTROLS & FILE UPLOADS
+   06. CANONICAL STUDIO DROPZONE COMPONENT
    ========================================================================== */
-.dropzone {
+.dropzone,
+.converter-dropzone,
+.hero-quick-dropzone {
   position: relative;
-  border-radius: var(--radius-lg);
+  border: 2px dashed rgba(6, 182, 212, 0.38);
+  border-radius: var(--radius-md, 10px);
+  padding: 22px 18px;
+  text-align: center;
+  background: radial-gradient(ellipse at center, rgba(6, 182, 212, 0.08) 0%, rgba(10, 16, 30, 0.65) 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
 
-.dropzone:hover {
-  background: radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.14) 0%, transparent 75%) !important;
-  box-shadow: inset 0 0 30px rgba(6, 182, 212, 0.15);
+.dropzone:hover,
+.dropzone.dragover,
+.dropzone.drag-over,
+.converter-dropzone:hover,
+.converter-dropzone.dragover,
+.hero-quick-dropzone:hover {
+  border-color: var(--cyan-400);
+  background: radial-gradient(ellipse at center, rgba(6, 182, 212, 0.16) 0%, rgba(10, 16, 30, 0.85) 100%);
+  box-shadow: 0 0 24px rgba(6, 182, 212, 0.25), inset 0 0 15px rgba(6, 182, 212, 0.12);
+  transform: translateY(-2px);
 }
 
-.dropzone.dragover {
-  background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.22) 0%, transparent 75%) !important;
-  box-shadow: inset 0 0 40px rgba(139, 92, 246, 0.3);
-  border-color: var(--purple-500) !important;
-  transform: scale(1.01);
+/* Compact Dropzone Variant (Sidebars, sub-cards, PPK base/rover, Cadastre) */
+.dropzone-compact {
+  padding: 10px 12px;
+  gap: 3px;
+  border-radius: var(--radius-sm, 6px);
 }
 
-.dropzone input[type="file"] {
+.dropzone-compact .dropzone-icon {
+  font-size: 20px;
+  margin-bottom: 3px;
+}
+
+.dropzone-compact .dropzone-title {
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.dropzone-compact .dropzone-tag-pill {
+  font-size: 9px;
+  padding: 1px 5px;
+}
+
+.cadastre-dropzone {
+  min-height: 50px;
+  padding: 6px 10px;
+}
+
+/* Dropzone Icon */
+.dropzone-icon,
+.converter-drop-icon,
+.hero-drop-icon {
+  font-size: 30px;
+  color: var(--cyan-400);
+  margin-bottom: 8px;
+  display: inline-block;
+  filter: drop-shadow(0 2px 10px rgba(6, 182, 212, 0.5));
+  transition: transform 0.25s ease;
+}
+
+.dropzone:hover .dropzone-icon,
+.converter-dropzone:hover .converter-drop-icon,
+.hero-quick-dropzone:hover .hero-drop-icon {
+  transform: scale(1.08);
+}
+
+/* Dropzone Title & Description */
+.dropzone-title,
+.converter-drop-title,
+.hero-drop-title {
+  font-family: var(--font-display, inherit);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+  letter-spacing: 0.15px;
+}
+
+.dropzone-desc,
+.hero-drop-sub {
+  font-size: 11.5px;
+  color: var(--text-dim, #94a3b8);
+  margin-bottom: 8px;
+  max-width: 480px;
+  line-height: 1.45;
+}
+
+/* Format Tag Pills Container */
+.dropzone-tags,
+.converter-drop-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+/* Format Tag Pill Badges */
+.dropzone-tag-pill,
+.converter-tag-pill {
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.dropzone:hover .dropzone-tag-pill,
+.converter-dropzone:hover .converter-tag-pill,
+.hero-quick-dropzone:hover .dropzone-tag-pill {
+  border-color: rgba(6, 182, 212, 0.35);
+  color: #cbd5e1;
+  background: rgba(6, 182, 212, 0.08);
+}
+
+/* Hidden File Input Overlay */
+.dropzone input[type="file"],
+.hero-quick-dropzone input[type="file"],
+.converter-dropzone input[type="file"],
+.file-drop-input {
   position: absolute;
   top: 0;
   left: 0;
@@ -715,7 +860,7 @@
   height: 100%;
   opacity: 0;
   cursor: pointer;
-  z-index: 20;
+  z-index: 10;
 }
 
 /* Custom Glass File Upload Component */
@@ -738,16 +883,7 @@
   background: rgba(15, 23, 42, 0.8);
 }
 
-.file-upload-glass input[type="file"] {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-  z-index: 10;
-}
+
 
 .form-input,
 .form-select {
@@ -1014,5 +1150,774 @@
   background: rgba(6, 182, 212, 0.12) !important;
   border-color: rgba(6, 182, 212, 0.35) !important;
   transform: translateX(2px);
+}
+
+
+
+/* --- tables.css --- */
+/* ==========================================================================
+   07. GLASS DATA TABLES & STATUS BADGES
+   ========================================================================== */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-glass);
+  background: rgba(4, 9, 20, 0.55);
+  min-height: 180px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+}
+
+thead {
+  background: rgba(10, 16, 32, 0.95);
+  backdrop-filter: blur(14px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+th {
+  padding: 6px 10px;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-glass);
+  white-space: nowrap;
+}
+
+td {
+  padding: 4.5px 10px;
+  font-size: 11px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.035);
+  color: #e2e8f0;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+  font-family: var(--font-main);
+}
+
+td[style*="monospace"] {
+  font-family: var(--font-mono) !important;
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+tbody tr:hover {
+  background: rgba(6, 182, 212, 0.09) !important;
+}
+
+
+
+/* --- maps.css --- */
+/* ==========================================================================
+   08. INTERACTIVE MAPS & LEAFLET GEO ENHANCEMENTS (UNIFIED MAP SYSTEM)
+   Tüm Harita Alanları İçin Ortak Mimari & Geomatik Standartları
+   - #mapContainer (Pafta & GNSS Çözüm Haritası)
+   - #cadastreMapContainer (RTK / CORS Çift Okuma Haritası)
+   - #flightMapContainer (İHA Uçuş Planlama Haritası)
+   - #tg20MapContainer (HGM TG-20 Jeoit Haritası)
+   - #converterMap (Format Dönüştürücü Vektör Haritası)
+   ========================================================================== */
+
+/* 1. STANDART HARİTA KONTEYNERLERİ */
+.studio-map-canvas,
+#mapContainer,
+#cadastreMapContainer,
+#flightMapContainer,
+#tg20MapContainer,
+#converterMap,
+.converter-leaflet-map,
+.cadastre-map-canvas,
+.tg20-map-canvas,
+.flight-map-canvas {
+  width: 100%;
+  height: 490px;
+  min-height: 420px;
+  border-radius: var(--radius-sm, 6px);
+  border: 1px solid var(--border-glass);
+  background: var(--surface-void, #020617);
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.65), 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.studio-map-canvas:focus-within,
+#mapContainer:focus-within,
+#cadastreMapContainer:focus-within,
+#flightMapContainer:focus-within,
+#tg20MapContainer:focus-within,
+#converterMap:focus-within {
+  border-color: var(--border-cyan-glow);
+}
+
+/* 2. LEAFLET KATMAN SEÇİCİ (LAYER CONTROL) - CYBER DARK GLASS */
+/* Kapalıyken dış kutuyu kaldır, sadece şık modern buton görünsün */
+.leaflet-control-layers:not(.leaflet-control-layers-expanded) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Modern Vektör Katman Açma/Kapama Butonu */
+.leaflet-control-layers-toggle {
+  width: 38px !important;
+  height: 38px !important;
+  background-color: rgba(10, 16, 32, 0.88) !important;
+  backdrop-filter: blur(14px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(6, 182, 212, 0.25) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322d3ee' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='12 2 2 7 12 12 22 7 12 2'/%3E%3Cpolyline points='2 17 12 22 22 17'/%3E%3Cpolyline points='2 12 12 17 22 12'/%3E%3C/svg%3E") !important;
+  background-size: 20px 20px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer !important;
+}
+
+.leaflet-control-layers-toggle:hover {
+  background-color: rgba(15, 23, 42, 0.96) !important;
+  border-color: var(--cyan-400) !important;
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.8), 0 0 18px rgba(34, 211, 238, 0.5) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='12 2 2 7 12 12 22 7 12 2'/%3E%3Cpolyline points='2 17 12 22 22 17'/%3E%3Cpolyline points='2 12 12 17 22 12'/%3E%3C/svg%3E") !important;
+}
+
+/* Açılmış Katman Seçim Kartı */
+.leaflet-control-layers-expanded {
+  background: rgba(10, 16, 32, 0.94) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(6, 182, 212, 0.22) !important;
+  color: var(--text-main, #f1f5f9) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 11.5px !important;
+  padding: 10px 14px !important;
+  min-width: 230px !important;
+  animation: fadeInPanel 0.2s ease-out;
+}
+
+@keyframes fadeInPanel {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.leaflet-control-layers label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  margin-bottom: 5px !important;
+  color: #e2e8f0 !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: color 0.15s ease !important;
+}
+
+.leaflet-control-layers label:hover {
+  color: var(--cyan-400) !important;
+}
+
+.leaflet-control-layers input[type="radio"],
+.leaflet-control-layers input[type="checkbox"] {
+  accent-color: var(--cyan-400) !important;
+  cursor: pointer !important;
+}
+
+.leaflet-control-layers-separator {
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  margin: 6px 0 !important;
+}
+
+/* 3. LEAFLET ZOOM KONTROLÜ */
+.leaflet-control-zoom {
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  background: rgba(10, 16, 32, 0.9) !important;
+  backdrop-filter: blur(12px) !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6) !important;
+}
+
+.leaflet-control-zoom a {
+  background: transparent !important;
+  color: #f1f5f9 !important;
+  width: 28px !important;
+  height: 28px !important;
+  line-height: 28px !important;
+  font-size: 14px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.15s ease !important;
+}
+
+.leaflet-control-zoom a:last-child {
+  border-bottom: none !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: rgba(6, 182, 212, 0.2) !important;
+  color: var(--cyan-400) !important;
+}
+
+/* 4. LEAFLET ÖLÇEK ÇUBUĞU (SCALE BAR) */
+.leaflet-control-scale-line {
+  background: rgba(6, 12, 26, 0.94) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1.5px solid var(--cyan-400) !important;
+  border-top: none !important;
+  color: #ffffff !important;
+  text-shadow: none !important; /* Leaflet'in varsayılan beyaz gölgesini kaldırır */
+  font-family: var(--font-mono, 'JetBrains Mono', Consolas, monospace) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.4px !important;
+  line-height: 1.3 !important;
+  padding: 3px 8px !important;
+  border-radius: 0 0 4px 4px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.65) !important;
+  text-align: center !important;
+}
+
+/* 5. LEAFLET ETİKETLER (TOOLTIP & POPUP) */
+.map-point-label {
+  background: rgba(3, 7, 18, 0.94) !important;
+  border: 1px solid var(--cyan-400) !important;
+  color: #ffffff !important;
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 3px 8px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.85), 0 0 8px rgba(6, 182, 212, 0.3) !important;
+}
+
+.leaflet-tooltip-top:before {
+  border-top-color: var(--cyan-400) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(10, 16, 32, 0.95) !important;
+  backdrop-filter: blur(14px) !important;
+  border: 1px solid var(--border-cyan-glow) !important;
+  border-radius: 6px !important;
+  color: #f1f5f9 !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8) !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(10, 16, 32, 0.95) !important;
+  border: 1px solid var(--border-cyan-glow) !important;
+}
+
+/* 6. AYDINLIK TEMA ENTEGRASYONU (LIGHT THEME ADAPTATION) */
+[data-theme="light"] .studio-map-canvas,
+[data-theme="light"] #mapContainer,
+[data-theme="light"] #cadastreMapContainer,
+[data-theme="light"] #flightMapContainer,
+[data-theme="light"] #tg20MapContainer,
+[data-theme="light"] #converterMap {
+  border-color: #cbd5e1 !important;
+  background: #f8fafc !important;
+  box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.06), 0 4px 16px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .leaflet-control-layers:not(.leaflet-control-layers-expanded) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+[data-theme="light"] .leaflet-control-layers-toggle {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(2, 132, 199, 0.15) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230284c7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='12 2 2 7 12 12 22 7 12 2'/%3E%3Cpolyline points='2 17 12 22 22 17'/%3E%3Cpolyline points='2 12 12 17 22 12'/%3E%3C/svg%3E") !important;
+}
+
+[data-theme="light"] .leaflet-control-layers-toggle:hover {
+  background-color: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.25) !important;
+}
+
+[data-theme="light"] .leaflet-control-layers-expanded {
+  background: rgba(255, 255, 255, 0.97) !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(2, 132, 199, 0.2) !important;
+}
+
+[data-theme="light"] .leaflet-control-layers label {
+  color: #1e293b !important;
+}
+
+[data-theme="light"] .leaflet-control-layers label:hover {
+  color: #0284c7 !important;
+}
+
+[data-theme="light"] .leaflet-control-zoom {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .leaflet-control-zoom a {
+  color: #0f172a !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .leaflet-control-zoom a:hover {
+  background: #e0f2fe !important;
+  color: #0284c7 !important;
+}
+
+[data-theme="light"] .leaflet-control-scale-line {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-color: #0284c7 !important;
+  color: #0f172a !important;
+  text-shadow: none !important;
+}
+
+/* ==========================================================================
+   PAFTA İNDEKSİ & MAP LABELS (BASE LEAFLET MAP SHARED STYLES)
+   ========================================================================== */
+
+
+
+
+
+
+/* --- modals.css --- */
+/* ==========================================================================
+   09. MODALS, POPUPS & OVERLAYS (ABOUT MODAL & MENUS)
+   ========================================================================== */
+.modal-overlay,
+.modal-overlay-blur,
+#modalAbout {
+  display: none;
+  position: fixed;
+  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  background: rgba(3, 7, 18, 0.85);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.25s ease;
+}
+.modal-card,
+.about-modal-card {
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.96) 0%, rgba(3, 7, 18, 0.98) 100%);
+  border: 1px solid var(--border-cyan-glow);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(6, 182, 212, 0.25);
+  border-radius: 18px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  color: #ffffff;
+  padding: 24px 28px;
+  position: relative;
+  margin: auto;
+}
+.about-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.about-close-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+.about-header-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border-glass);
+  padding-bottom: 16px;
+}
+.about-brand-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #6366f1 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #fff;
+  box-shadow: 0 0 22px rgba(6, 182, 212, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+}
+.about-title-text {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 900;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.about-subtitle-text {
+  font-size: 12px;
+  color: var(--cyan-400);
+  margin: 2px 0 0 0;
+  font-weight: 600;
+}
+.about-spec-grid {
+  background: rgba(3, 7, 18, 0.65);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.about-spec-label {
+  font-size: 10.5px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  font-weight: 700;
+  display: block;
+}
+.about-spec-val-dev {
+  color: #ffffff;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+}
+.about-spec-val-owner {
+  color: #38bdf8;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+}
+.about-standards-card {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+}
+.about-standards-title {
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--cyan-400);
+  margin: 0 0 8px 0;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.about-standards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 11.5px;
+  color: #94a3b8;
+}
+.about-standard-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.about-privacy-box {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 11px;
+  color: #a7f3d0;
+  line-height: 1.5;
+}
+.about-privacy-head {
+  font-weight: 700;
+  color: var(--emerald-400);
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.about-footer-wrap {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-glass);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+/* ==========================================================================
+   10. CYBER LIVE CONSOLE DOCK & TOAST NOTIFICATION SYSTEM
+   ========================================================================== */
+.console-dock {
+  flex-shrink: 0;
+  background: rgba(4, 9, 24, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(6, 182, 212, 0.3);
+  box-shadow: 0 -8px 35px rgba(0, 0, 0, 0.7);
+  padding: 8px 24px 10px;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.console-dock.minimized {
+  padding: 6px 24px;
+}
+
+.console-dock.minimized .console-box,
+.console-dock.minimized .progress-container {
+  display: none !important;
+}
+
+.console-dock-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-glass);
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+}
+
+.console-dock-btn:hover {
+  background: rgba(6, 182, 212, 0.15);
+  color: var(--cyan-400);
+  border-color: var(--border-cyan-glow);
+  transform: translateY(-1px);
+}
+
+.console-dock-btn-danger:hover {
+  background: rgba(244, 63, 94, 0.2) !important;
+  color: #fb7185 !important;
+  border-color: rgba(244, 63, 94, 0.4) !important;
+}
+
+.console-box {
+  background: rgba(2, 6, 23, 0.85);
+  border: 1px solid var(--border-glass);
+  color: #38bdf8;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.45;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.15px;
+}
+
+#globalConsoleLog {
+  height: 85px;
+  max-height: 105px;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+  max-width: 440px;
+  width: calc(100% - 40px);
+}
+
+.toast {
+  pointer-events: auto;
+  position: relative;
+  min-width: 280px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  background: rgba(13, 20, 38, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #ffffff;
+  font-size: 13px;
+  font-family: var(--font-main);
+  animation: toastSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.toast.toast-hiding {
+  opacity: 0;
+  transform: translateX(110%) scale(0.92);
+}
+
+.toast-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.toast-message {
+  flex: 1;
+  line-height: 1.45;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.toast-close {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 13px;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.toast-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2.5px;
+  width: 100%;
+  animation: toastCountdown linear forwards;
+}
+
+@keyframes toastCountdown {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+/* Toast Themes */
+.toast-info {
+  border-left: 3.5px solid var(--cyan-400);
+}
+.toast-info .toast-icon-wrap {
+  background: rgba(6, 182, 212, 0.15);
+}
+.toast-info .toast-icon {
+  color: var(--cyan-400);
+}
+.toast-info .toast-progress {
+  background: var(--cyan-400);
+}
+
+.toast-success {
+  border-left: 3.5px solid var(--emerald-400);
+}
+.toast-success .toast-icon-wrap {
+  background: rgba(16, 185, 129, 0.15);
+}
+.toast-success .toast-icon {
+  color: var(--emerald-400);
+}
+.toast-success .toast-progress {
+  background: var(--emerald-400);
+}
+
+.toast-warning {
+  border-left: 3.5px solid var(--amber-400);
+}
+.toast-warning .toast-icon-wrap {
+  background: rgba(245, 158, 11, 0.15);
+}
+.toast-warning .toast-icon {
+  color: var(--amber-400);
+}
+.toast-warning .toast-progress {
+  background: var(--amber-400);
+}
+
+.toast-error {
+  border-left: 3.5px solid var(--rose-500);
+}
+.toast-error .toast-icon-wrap {
+  background: rgba(244, 63, 94, 0.15);
+}
+.toast-error .toast-icon {
+  color: var(--rose-400);
+}
+.toast-error .toast-progress {
+  background: var(--rose-500);
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(110%) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
 }
 

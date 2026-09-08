@@ -12,10 +12,13 @@ import tinycss2
 import glob
 import collections
 
-FILES = (
-    sorted(glob.glob("css/tabs/*.css"))
-    + ["css/components.css", "css/utilities.css", "css/layout.css", "css/maps.css", "css/modals.css"]
-)
+import os
+
+base_dir = "web/css" if os.path.isdir("web/css") else "css"
+FILES = [
+    os.path.join(base_dir, f).replace("\\", "/")
+    for f in ["foundation.css", "components.css", "layout.css", "responsive-theme.css"]
+]
 
 MIN_DECLARATIONS = 3  # bundan az deklarasyonlu kurallar gurultu sayilir, atlanir
 

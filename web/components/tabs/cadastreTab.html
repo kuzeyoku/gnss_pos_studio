@@ -20,12 +20,19 @@
             <div class="cadastre-controls-grid">
               <div>
                 <label class="label-form-section mb-4" data-i18n="cadastre.lblGnssFile"></label>
-                <div class="file-upload-glass h-32 d-flex items-center px-10 py-4" id="rw5UploadContainer">
-                  <span id="rw5FileNameLabel"
-                    class="text-sm text-main d-flex items-center gap-6 overflow-hidden text-ellipsis whitespace-nowrap">
-                    <i class="fa-solid fa-folder-open text-cyan"></i> <span id="rw5FileDisplayName" data-i18n="cadastre.fileSelectOrDrag"></span>
-                  </span>
-                  <input type="file" id="rw5FileInput" accept=".rw5,.raw,.csv,.txt,.ncn,.jxl,.dat" />
+                <div class="dropzone dropzone-compact cadastre-dropzone" id="rw5UploadContainer">
+                  <div class="d-flex items-center gap-6 w-100 justify-center" id="rw5FileNameLabel">
+                    <i class="fa-solid fa-satellite-dish dropzone-icon text-cyan m-0 text-sm"></i>
+                    <span id="rw5FileDisplayName" class="text-xs text-main font-bold truncate" data-i18n="cadastre.fileSelectOrDrag"></span>
+                  </div>
+                  <div class="dropzone-tags mt-2">
+                    <span class="dropzone-tag-pill">RW5</span>
+                    <span class="dropzone-tag-pill">RAW</span>
+                    <span class="dropzone-tag-pill">JXL</span>
+                    <span class="dropzone-tag-pill">CSV</span>
+                    <span class="dropzone-tag-pill">TXT / NCN</span>
+                  </div>
+                  <input type="file" id="rw5FileInput" class="file-drop-input" accept=".rw5,.raw,.csv,.txt,.ncn,.jxl,.dat" />
                 </div>
               </div>
 
@@ -125,53 +132,53 @@
           <!-- SUBTAB 1: RTK ÖLÇÜM TABLOSU (Unified RTK & Detail Master Table) -->
           <div id="subtab-rtk" class="subtab-content active">
             <!-- RTK Telemetry & Survey Statistics KPI Grid -->
-            <div class="cadastre-kpi-grid mb-12" id="cadastreKpiGrid">
-              <div class="cadastre-kpi-card">
-                <div class="cadastre-kpi-icon bento-icon-cyan">
+            <div class="kpi-grid mb-12" id="cadastreKpiGrid">
+              <div class="kpi-card">
+                <div class="kpi-icon bento-icon-cyan">
                   <i class="fa-solid fa-satellite-dish"></i>
                 </div>
                 <div>
-                  <div class="cadastre-kpi-val text-cyan" id="kpiRtkTotalCount">0</div>
-                  <div class="cadastre-kpi-lbl" data-i18n="cadastre.kpiTotalPoints">Toplam Nokta & Çift Okuma</div>
+                  <div class="kpi-val text-cyan" id="kpiRtkTotalCount">0</div>
+                  <div class="kpi-label" data-i18n="cadastre.kpiTotalPoints">Toplam Nokta & Çift Okuma</div>
                   <div class="text-3xs text-dim font-mono" id="kpiRtkDualSummary">0 Çift Okuma</div>
                 </div>
               </div>
 
-              <div class="cadastre-kpi-card">
-                <div class="cadastre-kpi-icon bento-icon-emerald">
+              <div class="kpi-card">
+                <div class="kpi-icon bento-icon-emerald">
                   <i class="fa-solid fa-bullseye"></i>
                 </div>
                 <div>
-                  <div class="cadastre-kpi-val text-emerald" id="kpiRtkAvgHrms">--</div>
-                  <div class="cadastre-kpi-lbl" data-i18n="cadastre.kpiAvgHrms">Ort. HRMS Hassasiyeti</div>
+                  <div class="kpi-val text-emerald" id="kpiRtkAvgHrms">--</div>
+                  <div class="kpi-label" data-i18n="cadastre.kpiAvgHrms">Ort. HRMS Hassasiyeti</div>
                   <div class="text-3xs text-dim font-mono" id="kpiRtkHrmsRange">Min: -- | Max: --</div>
                 </div>
               </div>
 
-              <div class="cadastre-kpi-card">
-                <div class="cadastre-kpi-icon bento-icon-purple">
+              <div class="kpi-card">
+                <div class="kpi-icon bento-icon-purple">
                   <i class="fa-solid fa-cubes"></i>
                 </div>
                 <div>
-                  <div class="cadastre-kpi-val text-purple" id="kpiRtkAvgPdop">--</div>
-                  <div class="cadastre-kpi-lbl" data-i18n="cadastre.kpiAvgPdop">Ortalama PDOP</div>
+                  <div class="kpi-val text-purple" id="kpiRtkAvgPdop">--</div>
+                  <div class="kpi-label" data-i18n="cadastre.kpiAvgPdop">Ortalama PDOP</div>
                   <div class="text-3xs text-dim font-mono" id="kpiRtkPdopRange">Min: -- | Max: --</div>
                 </div>
               </div>
 
-              <div class="cadastre-kpi-card">
-                <div class="cadastre-kpi-icon bento-icon-amber">
+              <div class="kpi-card">
+                <div class="kpi-icon bento-icon-amber">
                   <i class="fa-solid fa-clock-rotate-left"></i>
                 </div>
                 <div>
-                  <div class="cadastre-kpi-val text-amber" id="kpiRtkFixRate">--</div>
-                  <div class="cadastre-kpi-lbl" data-i18n="cadastre.kpiFixRate">Çözüm & Epoch Durumu</div>
+                  <div class="kpi-val text-amber" id="kpiRtkFixRate">--</div>
+                  <div class="kpi-label" data-i18n="cadastre.kpiFixRate">Çözüm & Epoch Durumu</div>
                   <div class="text-3xs text-dim font-mono" id="kpiRtkAvgEpochs">Ortalama -- Epoch</div>
                 </div>
               </div>
             </div>
 
-            <div class="cadastre-table-panel">
+            <div class="data-panel">
               <div class="card-header items-center flex-wrap gap-8 border-b pb-8 mb-10">
                 <div class="card-title m-0">
                   <i class="fa-solid fa-satellite text-cyan"></i>
@@ -235,7 +242,7 @@
 
           <!-- SUBTAB 2: GCP / ÇİFT OKUMA VE RESMİ ÖLÇÜ KARNESİ -->
           <div id="subtab-gcp" class="subtab-content">
-            <div class="cadastre-table-panel">
+            <div class="data-panel">
               <div class="card-header items-center flex-wrap gap-8 border-b pb-8 mb-10">
                 <div class="card-title m-0">
                   <i class="fa-solid fa-check-double text-emerald"></i>
@@ -372,7 +379,7 @@
 
           <!-- SUBTAB 3: COORDINATE -->
           <div id="subtab-coordinate" class="subtab-content">
-            <div class="cadastre-table-panel">
+            <div class="data-panel">
               <div class="card-header flex-wrap gap-8 border-b pb-8 mb-10">
                 <div class="card-title m-0"><i class="fa-solid fa-file-lines text-purple"></i><span data-i18n="cadastre.coordsExportTitle"></span></div>
                 <div class="d-flex gap-8 items-center flex-wrap">
@@ -425,7 +432,7 @@
 
               <!-- Full Height Panoramic Map Canvas (560px) + Floating Telemetry HUD -->
               <div class="pos-rel w-100">
-                <div id="cadastreMapContainer" class="cadastre-map-canvas"></div>
+                <div id="cadastreMapContainer" class="cadastre-map-canvas app-map-container"></div>
 
                 <!-- Floating Luxury GIS Telemetry Panel (Corner Docked) -->
                 <div id="cadastreMapLiveHud" class="cadastre-map-hud-badge">

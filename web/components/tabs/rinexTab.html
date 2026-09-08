@@ -21,17 +21,19 @@
             <!-- Dropzone Panel -->
             <div class="rinex-dropzone-panel">
               <div class="dropzone rinex-dropzone-inner" id="mergerDropzone">
-                <div class="dropzone-icon-badge">
-                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+                <div class="dropzone-title" data-i18n="rinex.dropzoneTitle"></div>
+                <div class="dropzone-desc" data-i18n="rinex.dropzoneDesc"></div>
+                <div class="dropzone-tags mt-12">
+                  <span class="dropzone-tag-pill">RINEX 2 / 3 / 4</span>
+                  <span class="dropzone-tag-pill">.OBS / .RNX</span>
+                  <span class="dropzone-tag-pill">.*O (Gözlem)</span>
+                  <span class="dropzone-tag-pill">.*N (Navigasyon)</span>
+                  <span class="dropzone-tag-pill">.CRX / .*D (Hatanaka)</span>
+                  <span class="dropzone-tag-pill">ZIP / GZ</span>
+                  <span class="dropzone-tag-pill">Çoklu Dosya</span>
                 </div>
-                <h3 class="dropzone-title" data-i18n="rinex.dropzoneTitle"></h3>
-                <p class="dropzone-desc" data-i18n="rinex.dropzoneDesc"></p>
-                <div class="d-inline-flex">
-                  <span class="btn btn-primary pointer-events-none py-8 px-18 text-sm font-bold">
-                    <i class="fa-solid fa-folder-open"></i> <span data-i18n="rinex.btnSelectFiles"></span>
-                  </span>
-                </div>
-                <input type="file" id="mergerFileInput" multiple />
+                <input type="file" id="mergerFileInput" class="file-drop-input" multiple accept=".o,.rnx,.obs,.*o,.*O,.crx,.zip,.gz,.*n,.*N,.*d,.*D" />
               </div>
             </div>
 
@@ -170,7 +172,7 @@
           </div>
 
           <!-- Bento Row 2: Discovered Groups Table & Action Station -->
-          <div class="rinex-sub-card d-none" id="mergerResultCard">
+          <div class="data-panel d-none" id="mergerResultCard">
             <div class="d-flex justify-between items-center flex-wrap gap-8 border-b pb-8 mb-10">
               <div class="card-title m-0">
                 <i class="fa-solid fa-circle-nodes text-cyan"></i>
@@ -203,7 +205,7 @@
           </div>
 
           <!-- Bento Row 3: Base - Rover PPK Pre-Flight Coverage & Overlap Inspector -->
-          <div class="rinex-sub-card">
+          <div class="data-panel">
             <div class="card-header items-center pb-10 mb-14 border-bottom-glass">
               <div class="card-title m-0">
                 <i class="fa-solid fa-tower-broadcast text-emerald"></i>
@@ -216,22 +218,36 @@
               <!-- Base Station RINEX -->
               <div class="ppk-station-card">
                 <label class="label-form-section text-cyan mb-6" data-i18n="rinex.lblBaseStation"></label>
-                <div class="file-upload-glass ppk-upload-box">
-                  <span id="txtPpkBaseFileName" class="text-sm text-main d-flex items-center justify-center gap-6">
-                    <i class="fa-solid fa-folder-open text-cyan"></i> <span data-i18n="rinex.lblBaseSelectOrDrag"></span>
-                  </span>
-                  <input type="file" id="inputPpkBaseFile" accept=".o,.rnx,.obs,.*o,.*O,.crx,.zip,.gz" />
+                <div class="dropzone dropzone-compact ppk-dropzone-base" id="ppkBaseDropzone">
+                  <i class="fa-solid fa-tower-broadcast dropzone-icon text-cyan"></i>
+                  <div id="txtPpkBaseFileName" class="dropzone-title text-sm m-0">
+                    <span data-i18n="rinex.lblBaseSelectOrDrag"></span>
+                  </div>
+                  <div class="dropzone-tags mt-2">
+                    <span class="dropzone-tag-pill">.O / .RNX</span>
+                    <span class="dropzone-tag-pill">.OBS</span>
+                    <span class="dropzone-tag-pill">.CRX</span>
+                    <span class="dropzone-tag-pill">ZIP / GZ</span>
+                  </div>
+                  <input type="file" id="inputPpkBaseFile" class="file-drop-input" accept=".o,.rnx,.obs,.*o,.*O,.crx,.zip,.gz" />
                 </div>
               </div>
 
               <!-- Rover Station RINEX -->
               <div class="ppk-station-card">
                 <label class="label-form-section text-emerald mb-6" data-i18n="rinex.lblRoverStation"></label>
-                <div class="file-upload-glass ppk-upload-box">
-                  <span id="txtPpkRoverFileName" class="text-sm text-main d-flex items-center justify-center gap-6">
-                    <i class="fa-solid fa-folder-open text-emerald"></i> <span data-i18n="rinex.lblRoverSelectOrDrag"></span>
-                  </span>
-                  <input type="file" id="inputPpkRoverFile" accept=".o,.rnx,.obs,.*o,.*O,.crx,.zip,.gz" />
+                <div class="dropzone dropzone-compact ppk-dropzone-rover" id="ppkRoverDropzone">
+                  <i class="fa-solid fa-satellite dropzone-icon text-emerald"></i>
+                  <div id="txtPpkRoverFileName" class="dropzone-title text-sm m-0">
+                    <span data-i18n="rinex.lblRoverSelectOrDrag"></span>
+                  </div>
+                  <div class="dropzone-tags mt-2">
+                    <span class="dropzone-tag-pill">.O / .RNX</span>
+                    <span class="dropzone-tag-pill">.OBS</span>
+                    <span class="dropzone-tag-pill">.CRX</span>
+                    <span class="dropzone-tag-pill">ZIP / GZ</span>
+                  </div>
+                  <input type="file" id="inputPpkRoverFile" class="file-drop-input" accept=".o,.rnx,.obs,.*o,.*O,.crx,.zip,.gz" />
                 </div>
               </div>
             </div>
@@ -299,7 +315,7 @@
           </div>
 
           <!-- Bento Row 4: RINEX Quality, Multi-Constellation Timeline & Satellites Chart -->
-          <div class="rinex-sub-card">
+          <div class="data-panel">
             <div class="card-header items-center pb-10 mb-14 border-bottom-glass">
               <div class="card-title m-0">
                 <i class="fa-solid fa-chart-line text-amber"></i>

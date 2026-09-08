@@ -1,27 +1,29 @@
 /**
- * Harita Tools - Auto Bundler & Component Cache Builder
- * 1. Caches modular HTML components into web/js/core/componentCache.js (preserving 69-line modular index.html)
- * 2. Consolidates modular JS source files into web/js/app.bundle.js
+ * Harita Tools - Auto Bundler & Component Cache Builder for WEB2
+ * 1. Caches modular HTML components into web2/js/core/componentCache.js
+ * 2. Consolidates modular JS source files into web2/js/app.bundle.js
+ * 3. Consolidates web2/css design system into web2/css/core.css
  * 
  * Usage:
- *   node scripts/bundle.js         (Build once)
- *   node scripts/bundle.js --watch (Live watch mode)
+ *   node scripts/bundle-web2.js         (Build once)
+ *   node scripts/bundle-web2.js --watch (Live watch mode)
  */
 
 const fs = require('fs');
 const path = require('path');
 
 const rootDir = path.resolve(__dirname, '..');
-const webDir = path.join(rootDir, 'web');
+const webDir = path.join(rootDir, 'web2');
 const bundleOutputFile = path.join(webDir, 'js', 'app.bundle.js');
 const componentCacheFile = path.join(webDir, 'js', 'core', 'componentCache.js');
 const cssOutputFile = path.join(webDir, 'css', 'core.css');
 
 const CSS_SOURCES = [
-  'css/foundation.css',
-  'css/components.css',
+  'css/tokens.css',
+  'css/base.css',
   'css/layout.css',
-  'css/responsive-theme.css'
+  'css/components.css',
+  'css/theme.css'
 ];
 
 const BUNDLE_SOURCES = [
@@ -68,11 +70,6 @@ const BUNDLE_SOURCES = [
   'js/app.js'
 ];
 
-/**
- * Derleme 1: Bileşen Önbelleği (web/components altındaki HTML dosyalarını önbelleğe alır)
- * Bu sayede index.html 69 satırlık tertemiz component yapısını korur,
- * aynı zamanda hem file:/// hem de localhost/cPanel ortamında anında çalışır.
- */
 function buildComponentCache() {
   const componentsDir = path.join(webDir, 'components');
   const reportsDir = path.join(webDir, 'reports');
@@ -95,7 +92,7 @@ function buildComponentCache() {
 
   const htmlFiles = [...getHtmlFiles(componentsDir), ...getHtmlFiles(reportsDir)];
   let cacheContent = '/* =========================================================================\n';
-  cacheContent += ' * GNSS POS STUDIO - COMPONENT CACHE (OFFLINE & FILE:/// COMPATIBLE)\n';
+  cacheContent += ' * GNSS POS STUDIO - WEB2 COMPONENT CACHE (OFFLINE & FILE:/// COMPATIBLE)\n';
   cacheContent += ' * components/ klasöründeki HTML bileşenlerini otomatik önbelleğe alır.\n';
   cacheContent += ' * ========================================================================= */\n\n';
   cacheContent += 'window.__COMPONENT_CACHE__ = window.__COMPONENT_CACHE__ || {};\n\n';
@@ -106,18 +103,14 @@ function buildComponentCache() {
   }
 
   fs.writeFileSync(componentCacheFile, cacheContent, 'utf8');
-  console.log(`📦 [COMPONENT CACHE] ${htmlFiles.length} bileşen önbelleklendi -> web/js/core/componentCache.js`);
+  console.log(`📦 [WEB2 COMPONENT CACHE] ${htmlFiles.length} bileşen önbelleklendi -> web2/js/core/componentCache.js`);
 }
 
-/**
- * Derleme 2: CSS Tasarım Sistemini ve Sekme Stillerini Paketle (core.css)
- */
 function buildCssBundle() {
   const startTime = Date.now();
   let cssContent = '/* =========================================================================\n';
-  cssContent += ' * GNSS POS STUDIO - CONSOLIDATED CORE DESIGN SYSTEM (core.css)\n';
+  cssContent += ' * GNSS POS STUDIO - WEB2 CLEAN CORE DESIGN SYSTEM (core.css)\n';
   cssContent += ` * Otomatik Derleme Tarihi: ${new Date().toLocaleString('tr-TR')}\n`;
-  cssContent += ' * Modüler CSS kaynaklarından otomatik derlenmiştir.\n';
   cssContent += ' * ========================================================================= */\n\n';
 
   let totalBytes = 0;
@@ -126,7 +119,6 @@ function buildCssBundle() {
   for (const relPath of CSS_SOURCES) {
     const fullPath = path.join(webDir, relPath);
     if (!fs.existsSync(fullPath)) {
-      console.warn(`⚠️ [UYARI] CSS dosyası bulunamadı: ${relPath}`);
       continue;
     }
 
@@ -142,25 +134,18 @@ function buildCssBundle() {
   fs.writeFileSync(cssOutputFile, cssContent, 'utf8');
   const elapsed = Date.now() - startTime;
   const kbSize = (fs.statSync(cssOutputFile).size / 1024).toFixed(1);
-  console.log(`🎨 [CSS BUNDLE] ${fileCount} stil modülü paketlendi -> web/css/core.css (${kbSize} KB) [${elapsed} ms]`);
+  console.log(`🎨 [WEB2 CSS BUNDLE] ${fileCount} stil modülü paketlendi -> web2/css/core.css (${kbSize} KB) [${elapsed} ms]`);
 }
 
-/**
- * Derleme 3: JavaScript Modüllerini Paketle
- */
 function buildBundle() {
   const startTime = Date.now();
   
-  // Önce bileşenleri önbelleğe al
   buildComponentCache();
-
-  // CSS Tasarım Sistemini birleştir
   buildCssBundle();
 
   let bundleContent = '/* =========================================================================\n';
-  bundleContent += ' * GNSS POS STUDIO - CONSOLIDATED APPLICATION BUNDLE (app.bundle.js)\n';
+  bundleContent += ' * GNSS POS STUDIO - WEB2 CONSOLIDATED APPLICATION BUNDLE (app.bundle.js)\n';
   bundleContent += ` * Otomatik Derleme Tarihi: ${new Date().toLocaleString('tr-TR')}\n`;
-  bundleContent += ' * Modüler kaynak kodlardan otomatik üretilmiştir.\n';
   bundleContent += ' * ========================================================================= */\n\n';
 
   let totalBytes = 0;
@@ -185,20 +170,15 @@ function buildBundle() {
   fs.writeFileSync(bundleOutputFile, bundleContent, 'utf8');
   const elapsed = Date.now() - startTime;
   const kbSize = (fs.statSync(bundleOutputFile).size / 1024).toFixed(1);
-  console.log(`⚡ [JS BUNDLE] ${fileCount} modül paketlendi -> web/js/app.bundle.js (${kbSize} KB) [${elapsed} ms]`);
+  console.log(`⚡ [WEB2 JS BUNDLE] ${fileCount} modül paketlendi -> web2/js/app.bundle.js (${kbSize} KB) [${elapsed} ms]`);
 }
 
-// Komut satırı parametreleri
 const isWatchMode = process.argv.includes('--watch') || process.argv.includes('-w');
-
-// İlk tam derlemeyi gerçekleştir
 buildBundle();
 
 if (isWatchMode) {
-  console.log('👀 [WATCH MODU AKTİF] HTML bileşenleri, JS modülleri, CSS stilleri ve çeviriler izleniyor...');
-
+  console.log('👀 [WEB2 WATCH MODU AKTİF] HTML, JS, CSS izleniyor...');
   let debounceTimer = null;
-
   const watchTargets = [
     path.join(webDir, 'components'),
     path.join(webDir, 'js'),
@@ -214,7 +194,7 @@ if (isWatchMode) {
         }
         if (debounceTimer) clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
-          console.log(`🔄 [DEĞİŞİKLİK] ${filename} güncellendi...`);
+          console.log(`🔄 [WEB2 DEĞİŞİKLİK] ${filename} güncellendi...`);
           buildBundle();
         }, 50);
       });

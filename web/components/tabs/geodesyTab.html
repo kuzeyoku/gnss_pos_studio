@@ -347,11 +347,16 @@
 
               <!-- Pane A: Netcad .DNS File Loader -->
               <div id="paneHelmertDns" class="d-flex flex-col gap-8">
-                <div class="file-upload-glass p-10 text-center">
-                  <span id="txtHelmertDnsFileName" class="text-sm text-main d-flex items-center justify-center gap-6">
-                    <i class="fa-solid fa-file-lines text-cyan"></i> <span data-i18n="ui.netcadDnsParametreDosyasi"></span>
+                <div class="dropzone dropzone-compact" id="helmertDnsDropzone">
+                  <i class="fa-solid fa-file-code dropzone-icon text-cyan m-0 mb-4 text-base"></i>
+                  <span id="txtHelmertDnsFileName" class="dropzone-title text-sm m-0">
+                    <span data-i18n="ui.netcadDnsParametreDosyasi"></span>
                   </span>
-                  <input type="file" id="inputHelmertDnsFile" accept=".dns,.txt" />
+                  <div class="dropzone-tags mt-2">
+                    <span class="dropzone-tag-pill">.DNS (Netcad 2D)</span>
+                    <span class="dropzone-tag-pill">.TXT</span>
+                  </div>
+                  <input type="file" id="inputHelmertDnsFile" class="file-drop-input" accept=".dns,.txt" />
                 </div>
                 <div class="text-xs text-dim" data-i18n="ui.veyaDnsDosyaIcerigini"></div>
                 <textarea id="txtHelmertDnsContent" rows="4"
