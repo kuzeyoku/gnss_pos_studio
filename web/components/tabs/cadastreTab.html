@@ -16,11 +16,11 @@
           </div>
 
           <!-- Section 1: Controls & Upload Bar Panel -->
-          <div class="cadastre-config-panel">
+          <div class="config-panel">
             <div class="cadastre-controls-grid">
               <div>
                 <label class="label-form-section mb-4" data-i18n="cadastre.lblGnssFile"></label>
-                <div class="dropzone dropzone-compact cadastre-dropzone" id="rw5UploadContainer">
+                <div class="dropzone dropzone-compact" id="rw5UploadContainer">
                   <div class="d-flex items-center gap-6 w-100 justify-center" id="rw5FileNameLabel">
                     <i class="fa-solid fa-satellite-dish dropzone-icon text-cyan m-0 text-sm"></i>
                     <span id="rw5FileDisplayName" class="text-xs text-main font-bold truncate" data-i18n="cadastre.fileSelectOrDrag"></span>
@@ -400,7 +400,7 @@
 
           <!-- SUBTAB 4: VIEW / HARİTA -->
           <div id="subtab-view" class="subtab-content">
-            <div class="card cadastre-interactive-map-card p-0 overflow-hidden">
+            <div class="card interactive-map-card p-0 overflow-hidden">
               <div class="card-header p-14 border-b border-white/10 d-flex items-center justify-between flex-wrap gap-8">
                 <div class="card-title m-0">
                   <i class="fa-solid fa-map-location-dot text-cyan"></i>
@@ -432,12 +432,12 @@
 
               <!-- Full Height Panoramic Map Canvas (560px) + Floating Telemetry HUD -->
               <div class="pos-rel w-100">
-                <div id="cadastreMapContainer" class="cadastre-map-canvas app-map-container"></div>
+                <div id="cadastreMapContainer" class="map-canvas app-map-container"></div>
 
                 <!-- Floating Luxury GIS Telemetry Panel (Corner Docked) -->
-                <div id="cadastreMapLiveHud" class="cadastre-map-hud-badge">
+                <div id="cadastreMapLiveHud" class="map-hud-badge">
                   <div class="d-flex items-center gap-10">
-                    <div class="cadastre-hud-icon-box">
+                    <div class="hud-icon-box">
                       <i class="fa-solid fa-crosshairs text-cyan text-lg"></i>
                     </div>
                     <div class="d-flex flex-col">
@@ -450,7 +450,7 @@
                     </div>
                   </div>
 
-                  <div class="cadastre-hud-divider"></div>
+                  <div class="hud-divider"></div>
 
                   <div class="d-flex flex-col gap-2 text-xs">
                     <div class="d-flex items-center gap-8">
@@ -463,7 +463,7 @@
                     </div>
                   </div>
 
-                  <div class="cadastre-hud-divider d-none-mobile"></div>
+                  <div class="hud-divider d-none-mobile"></div>
 
                   <div class="d-flex flex-col gap-2 text-xs d-none-mobile">
                     <div class="d-flex items-center gap-8">
@@ -476,7 +476,7 @@
                     </div>
                   </div>
 
-                  <div class="cadastre-hud-divider"></div>
+                  <div class="hud-divider"></div>
 
                   <div class="d-flex items-center gap-6">
                     <button type="button" id="btnCadastreHudCopy"
@@ -494,27 +494,27 @@
               </div>
 
               <!-- Quick Export Toolbar -->
-              <div class="card converter-export-card cadastre-map-export-card">
+              <div class="card export-bar">
                 <div class="d-flex justify-between items-center flex-wrap gap-8">
-                  <div class="converter-export-tag">
+                  <div class="export-tag">
                     <i class="fa-solid fa-file-export text-emerald"></i>
                     <span id="lblCadastreMapExport" data-i18n="cadastre.exportTitle"></span>
                   </div>
 
-                  <div class="converter-export-btns" id="cadastreMapExportButtons">
-                    <button type="button" class="btn-converter-export btn-soft-cyan" id="btnCadastreMapExportDxf" title="" data-i18n-title="cadastre.titleExportDxf">
+                  <div class="export-btns" id="cadastreMapExportButtons">
+                    <button type="button" class="btn-export btn-soft-cyan" id="btnCadastreMapExportDxf" title="" data-i18n-title="cadastre.titleExportDxf">
                       <i class="fa-solid fa-file-code text-cyan"></i> <span data-i18n="cadastre.btnExportDxf"></span>
                     </button>
-                    <button type="button" class="btn-converter-export" id="btnCadastreMapExportKml" title="" data-i18n-title="cadastre.titleExportKml">
+                    <button type="button" class="btn-export" id="btnCadastreMapExportKml" title="" data-i18n-title="cadastre.titleExportKml">
                       <i class="fa-solid fa-earth-americas text-emerald"></i> <span data-i18n="cadastre.btnExportKml"></span>
                     </button>
-                    <button type="button" class="btn-converter-export" id="btnCadastreMapExportNcn" title="" data-i18n-title="cadastre.titleExportNcn">
+                    <button type="button" class="btn-export" id="btnCadastreMapExportNcn" title="" data-i18n-title="cadastre.titleExportNcn">
                       <i class="fa-solid fa-hashtag text-cyan"></i> <span data-i18n="cadastre.btnExportNcn"></span>
                     </button>
-                    <button type="button" class="btn-converter-export" id="btnCadastreMapExportCsv" title="" data-i18n-title="cadastre.titleExportCsv">
+                    <button type="button" class="btn-export" id="btnCadastreMapExportCsv" title="" data-i18n-title="cadastre.titleExportCsv">
                       <i class="fa-solid fa-file-csv text-emerald"></i> <span data-i18n="cadastre.btnExportCsv"></span>
                     </button>
-                    <button type="button" class="btn-converter-export btn-soft-amber" id="btnCadastreMapExportPdf" title="" data-i18n-title="cadastre.titleExportPdf">
+                    <button type="button" class="btn-export btn-soft-amber" id="btnCadastreMapExportPdf" title="" data-i18n-title="cadastre.titleExportPdf">
                       <i class="fa-solid fa-file-pdf text-amber"></i> <span data-i18n="cadastre.btnExportPdf"></span>
                     </button>
                   </div>

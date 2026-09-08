@@ -106,6 +106,7 @@
 
 [data-theme="light"] .nav-item:hover,
 [data-theme="light"] .sidebar-shortcut-row:hover,
+[data-theme="light"] .btn-export:hover,
 [data-theme="light"] .btn-converter-export:hover {
   background: #f1f5f9;
   color: #0f172a;
@@ -206,6 +207,7 @@
 /* 5. Data Tables */
 [data-theme="light"] .table-container,
 [data-theme="light"] .data-table-wrap,
+[data-theme="light"] .table-wrap,
 [data-theme="light"] .converter-table-wrap {
   border: 1px solid #e2e8f0;
   background: #ffffff;
@@ -298,6 +300,7 @@
 }
 
 /* 8. KPI & Stat Chips */
+[data-theme="light"] .kpi-card,
 [data-theme="light"] .cadastre-kpi-card,
 [data-theme="light"] .converter-kpi-card,
 [data-theme="light"] .stat-card-glass,
@@ -308,6 +311,7 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
+[data-theme="light"] .kpi-val,
 [data-theme="light"] .cadastre-kpi-val,
 [data-theme="light"] .converter-kpi-val,
 [data-theme="light"] .flight-geo-val,
@@ -315,6 +319,8 @@
   color: #0f172a;
 }
 
+[data-theme="light"] .kpi-label,
+[data-theme="light"] .kpi-lbl,
 [data-theme="light"] .cadastre-kpi-lbl,
 [data-theme="light"] .converter-kpi-lbl,
 [data-theme="light"] .flight-geo-label,
@@ -322,8 +328,17 @@
   color: #475569;
 }
 
+[data-theme="light"] .data-panel,
+[data-theme="light"] .config-panel,
+[data-theme="light"] .interactive-map-card,
+[data-theme="light"] .export-bar {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
 /* 9. Interactive Leaflet Maps, Floating Toolbars & Controls */
 [data-theme="light"] .studio-map-canvas,
+[data-theme="light"] .map-canvas,
 [data-theme="light"] #mapContainer,
 [data-theme="light"] #cadastreMapContainer,
 [data-theme="light"] #flightMapContainer,
@@ -521,7 +536,9 @@
   border: 1px solid #cbd5e1;
 }
 
-[data-theme="light"] .tg20-map-hud-badge {
+[data-theme="light"] .map-hud-badge,
+[data-theme="light"] .tg20-map-hud-badge,
+[data-theme="light"] .cadastre-map-hud-badge {
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(217, 119, 6, 0.4);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -603,6 +620,7 @@
 }
 
 /* 14. Converter Studio */
+[data-theme="light"] .file-info-chip,
 [data-theme="light"] .converter-file-info-chip {
   background: #ffffff;
   border-color: #cbd5e1;
@@ -613,6 +631,7 @@
   border-color: #e2e8f0;
 }
 
+[data-theme="light"] .btn-export,
 [data-theme="light"] .btn-converter-export {
   background: #ffffff;
   border: 1px solid #cbd5e1;
@@ -1132,6 +1151,7 @@
   #flightMapContainer,
   .flight-map-canvas,
   #tg20MapContainer,
+  .map-canvas,
   .tg20-map-canvas,
   .converter-leaflet-map {
     height: 380px !important;
@@ -1325,6 +1345,7 @@
     justify-content: flex-start !important;
   }
 
+  .map-hud-badge,
   .tg20-map-hud-badge {
     position: static !important;
     width: 100% !important;
@@ -1570,6 +1591,8 @@
 
 
   .rinex-quality-stats-grid,
+  .kpi-grid,
+  .cadastre-kpi-grid,
   .converter-kpi-grid {
     grid-template-columns: 1fr 1fr !important;
     gap: 6px !important;

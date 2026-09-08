@@ -34,7 +34,7 @@
 
           <!-- SUBTAB 1: INVERSE GEODESY (MESAFE & AZİMUT) -->
           <div id="subtab-tools-inv" class="subtab-content tools-subtab-pane active">
-            <div class="cadastre-table-panel">
+            <div class="card">
               <div class="card-header items-center flex-wrap gap-8 border-b pb-8 mb-12">
                 <div class="card-title m-0">
                   <i class="fa-solid fa-arrows-left-right text-cyan"></i>
@@ -129,7 +129,7 @@
 
           <!-- SUBTAB 2: DIRECT GEODESY (1. TEMEL ÖDEV) -->
           <div id="subtab-tools-dir" class="subtab-content tools-subtab-pane">
-            <div class="cadastre-table-panel">
+            <div class="card">
               <div class="card-header items-center flex-wrap gap-8 border-b pb-8 mb-12">
                 <div class="card-title m-0">
                   <i class="fa-solid fa-location-arrow text-cyan"></i>
@@ -197,7 +197,7 @@
 
           <!-- SUBTAB 3: GAUSS AREA & PERIMETER (SHOELACE FORMULA) -->
           <div id="subtab-tools-area" class="subtab-content tools-subtab-pane">
-            <div class="cadastre-table-panel">
+            <div class="card">
               <div class="card-header items-center flex-wrap gap-8 border-b pb-8 mb-12">
                 <div class="card-title m-0">
                   <i class="fa-solid fa-draw-polygon text-emerald"></i>
@@ -229,21 +229,21 @@
                 <!-- Area Output Cards Grid -->
                 <div class="geodesy-panel-box d-flex flex-col justify-between p-12">
                   <div class="d-grid gap-8 grid-cols-2">
-                    <div class="area-kpi-card p-10 text-center">
-                      <span class="text-xs text-dim d-block mb-2">📐 Alan (Metrekare)</span>
-                      <strong id="toolsResAreaM2" class="text-emerald font-mono text-base d-block">0.000 m²</strong>
+                    <div class="kpi-card p-10 text-center">
+                      <span class="kpi-label d-block mb-2">📐 Alan (Metrekare)</span>
+                      <strong id="toolsResAreaM2" class="kpi-val text-emerald font-mono text-base d-block">0.000 m²</strong>
                     </div>
-                    <div class="area-kpi-card p-10 text-center">
-                      <span class="text-xs text-dim d-block mb-2">🌾 Alan (Dönüm - TR)</span>
-                      <strong id="toolsResAreaDonum" class="text-cyan font-mono text-base d-block">0.000 Dönüm</strong>
+                    <div class="kpi-card p-10 text-center">
+                      <span class="kpi-label d-block mb-2">🌾 Alan (Dönüm - TR)</span>
+                      <strong id="toolsResAreaDonum" class="kpi-val text-cyan font-mono text-base d-block">0.000 Dönüm</strong>
                     </div>
-                    <div class="area-kpi-card p-10 text-center">
-                      <span class="text-xs text-dim d-block mb-2">🗺️ Alan (Hektar)</span>
-                      <strong id="toolsResAreaHektar" class="text-purple font-mono text-base d-block">0.000 ha</strong>
+                    <div class="kpi-card p-10 text-center">
+                      <span class="kpi-label d-block mb-2">🗺️ Alan (Hektar)</span>
+                      <strong id="toolsResAreaHektar" class="kpi-val text-purple font-mono text-base d-block">0.000 ha</strong>
                     </div>
-                    <div class="area-kpi-card p-10 text-center">
-                      <span class="text-xs text-dim d-block mb-2">📏 Çevre Uzunluğu</span>
-                      <strong id="toolsResAreaPerimeter" class="text-amber font-mono text-base d-block">0.000 m</strong>
+                    <div class="kpi-card p-10 text-center">
+                      <span class="kpi-label d-block mb-2">📏 Çevre Uzunluğu</span>
+                      <strong id="toolsResAreaPerimeter" class="kpi-val text-amber font-mono text-base d-block">0.000 m</strong>
                     </div>
                   </div>
                   <div class="text-xs text-dim text-center mt-8 pt-8 border-t border-white/5">
@@ -260,7 +260,7 @@
             <div class="d-grid gap-14 grid-split-11-10">
 
               <!-- Left Card: Kutupsal Alım & Aplikasyon Hesabı -->
-              <div class="cadastre-table-panel p-14">
+              <div class="card p-14">
                 <div class="card-title m-0 border-b pb-8 mb-10">
                   <i class="fa-solid fa-compass text-purple"></i>
                   <span data-i18n="tools.polarTitle">Kutupsal Nokta Hesabı (Alım & Aplikasyon)</span>
@@ -333,7 +333,7 @@
               </div>
 
               <!-- Right Card: Hassas Açı Birimi Dönüştürücü -->
-              <div class="cadastre-table-panel p-14">
+              <div class="card p-14">
                 <div class="card-title m-0 border-b pb-8 mb-10">
                   <i class="fa-solid fa-arrows-rotate text-emerald"></i>
                   <span data-i18n="tools.angleConvTitle">Hassas Açı Birimi Dönüştürücü</span>

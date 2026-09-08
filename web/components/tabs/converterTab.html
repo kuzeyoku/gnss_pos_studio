@@ -6,7 +6,7 @@
           <div class="converter-top-bar card p-3 mb-2">
             <div class="d-flex justify-between items-center flex-wrap gap-8">
               <div class="d-flex items-center gap-10">
-                <div class="converter-icon-box">
+                <div class="icon-box">
                   <i class="fa-solid fa-arrows-rotate text-cyan"></i>
                 </div>
                 <div>
@@ -36,27 +36,27 @@
                   <i class="fa-solid fa-cloud-arrow-up text-cyan"></i> <span data-i18n="converter.step1Title"></span>
                 </div>
 
-                <div class="dropzone converter-dropzone" id="converterDropzone">
-                  <i class="fa-solid fa-file-arrow-up dropzone-icon converter-drop-icon"></i>
-                  <div class="dropzone-title converter-drop-title" data-i18n="converter.dropzoneLabel"></div>
-                  <div class="dropzone-tags converter-drop-tags">
-                    <span class="dropzone-tag-pill converter-tag-pill">NCZ</span>
-                    <span class="dropzone-tag-pill converter-tag-pill">DXF</span>
-                    <span class="dropzone-tag-pill converter-tag-pill">KML</span>
-                    <span class="dropzone-tag-pill converter-tag-pill">KMZ</span>
-                    <span class="dropzone-tag-pill converter-tag-pill">GPX</span>
-                    <span class="dropzone-tag-pill converter-tag-pill">NCN</span>
-                    <span class="dropzone-tag-pill converter-tag-pill">GeoJSON</span>
-                    <span class="dropzone-tag-pill converter-tag-pill">TXT / CSV</span>
-                    <span class="dropzone-tag-pill converter-tag-pill">CHC / SHARE POS</span>
+                <div class="dropzone" id="converterDropzone">
+                  <i class="fa-solid fa-file-arrow-up dropzone-icon"></i>
+                  <div class="dropzone-title" data-i18n="converter.dropzoneLabel"></div>
+                  <div class="dropzone-tags">
+                    <span class="dropzone-tag-pill">NCZ</span>
+                    <span class="dropzone-tag-pill">DXF</span>
+                    <span class="dropzone-tag-pill">KML</span>
+                    <span class="dropzone-tag-pill">KMZ</span>
+                    <span class="dropzone-tag-pill">GPX</span>
+                    <span class="dropzone-tag-pill">NCN</span>
+                    <span class="dropzone-tag-pill">GeoJSON</span>
+                    <span class="dropzone-tag-pill">TXT / CSV</span>
+                    <span class="dropzone-tag-pill">CHC / SHARE POS</span>
                   </div>
                   <input type="file" id="inputConverterFile" class="file-drop-input" accept=".ncz,.dxf,.kml,.kmz,.gpx,.ncn,.kos,.txt,.csv,.xyz,.dat,.geojson,.json,.pos" />
                 </div>
 
                 <!-- Active File Info Chip (Hidden initially) -->
-                <div class="converter-file-info-chip d-none mt-2" id="converterFileInfo">
+                <div class="file-info-chip d-none mt-2" id="converterFileInfo">
                   <div class="d-flex items-center gap-8">
-                    <div class="converter-file-icon-box" id="converterFileIcon">
+                    <div class="icon-box" id="converterFileIcon">
                       <i class="fa-solid fa-file-lines text-cyan"></i>
                     </div>
                     <div class="flex-1 min-w-0">
@@ -184,11 +184,11 @@
               </div>
 
               <!-- Interactive Map Viewport -->
-              <div class="converter-map-container card">
-                <div class="converter-map-header">
+              <div class="card interactive-map-card">
+                <div class="card-header">
                   <div class="d-flex items-center gap-6">
                     <span class="status-indicator-dot online"></span>
-                    <span class="converter-map-title" data-i18n="ui.iNteraktifVektorHarita"></span>
+                    <span class="card-title" data-i18n="ui.iNteraktifVektorHarita"></span>
                   </div>
                   <div class="d-flex items-center gap-6">
                     <button type="button" class="btn btn-xs btn-secondary" id="btnConverterFitBounds" title="" data-i18n-title="converter.titleFitMap">
@@ -202,37 +202,37 @@
                     </button>
                   </div>
                 </div>
-                <div id="converterMap" class="converter-leaflet-map"></div>
+                <div id="converterMap" class="map-canvas"></div>
               </div>
 
               <!-- Output & Export Toolbar -->
-              <div class="card converter-export-card">
+              <div class="card export-bar">
                 <div class="d-flex justify-between items-center flex-wrap gap-8">
-                  <div class="converter-export-tag">
+                  <div class="export-tag">
                     <i class="fa-solid fa-file-export text-emerald"></i>
                     <span data-i18n="ui.donusturDisaAktar"></span>
                   </div>
 
-                  <div class="converter-export-btns" id="converterExportButtons">
-                    <button type="button" class="btn-converter-export btn-soft-cyan" id="btnConverterExportDxf" title="" data-i18n-title="cadastre.titleExportDxf">
+                  <div class="export-btns" id="converterExportButtons">
+                    <button type="button" class="btn-export btn-soft-cyan" id="btnConverterExportDxf" title="" data-i18n-title="cadastre.titleExportDxf">
                       <i class="fa-solid fa-file-code text-cyan"></i> <span data-i18n="cadastre.btnExportDxf"></span>
                     </button>
-                    <button type="button" class="btn-converter-export" id="btnConverterExportKml" title="" data-i18n-title="cadastre.titleExportKml">
+                    <button type="button" class="btn-export" id="btnConverterExportKml" title="" data-i18n-title="cadastre.titleExportKml">
                       <i class="fa-solid fa-earth-americas text-emerald"></i> <span data-i18n="cadastre.btnExportKml"></span>
                     </button>
-                    <button type="button" class="btn-converter-export" id="btnConverterExportKmz" title="" data-i18n-title="converter.titleExportKmz">
+                    <button type="button" class="btn-export" id="btnConverterExportKmz" title="" data-i18n-title="converter.titleExportKmz">
                       <i class="fa-solid fa-file-zipper text-purple"></i> <span data-i18n="ui.kmzINdir"></span>
                     </button>
-                    <button type="button" class="btn-converter-export" id="btnConverterExportNcn" title="" data-i18n-title="cadastre.titleExportNcn">
+                    <button type="button" class="btn-export" id="btnConverterExportNcn" title="" data-i18n-title="cadastre.titleExportNcn">
                       <i class="fa-solid fa-hashtag text-cyan"></i> <span data-i18n="cadastre.btnExportNcn"></span>
                     </button>
-                    <button type="button" class="btn-converter-export" id="btnConverterExportGeoJson" title="" data-i18n-title="converter.titleExportGeoJson">
+                    <button type="button" class="btn-export" id="btnConverterExportGeoJson" title="" data-i18n-title="converter.titleExportGeoJson">
                       <i class="fa-solid fa-code text-amber"></i> <span>.GeoJSON</span>
                     </button>
-                    <button type="button" class="btn-converter-export" id="btnConverterExportGpx" title="GPS Exchange Format (.gpx)" data-i18n-title="converter.btnExportGpx">
+                    <button type="button" class="btn-export" id="btnConverterExportGpx" title="GPS Exchange Format (.gpx)" data-i18n-title="converter.btnExportGpx">
                       <i class="fa-solid fa-location-crosshairs text-orange"></i> <span>.GPX</span>
                     </button>
-                    <button type="button" class="btn-converter-export" id="btnConverterExportCsv" title="" data-i18n-title="cadastre.titleExportCsv">
+                    <button type="button" class="btn-export" id="btnConverterExportCsv" title="" data-i18n-title="cadastre.titleExportCsv">
                       <i class="fa-solid fa-table text-rose"></i> <span>.CSV</span>
                     </button>
                   </div>
@@ -241,7 +241,7 @@
 
               <!-- Geometry & Point Data Table Preview -->
               <div class="card p-3">
-                <div class="converter-table-toolbar">
+                <div class="table-toolbar">
                   <div class="d-flex items-center gap-8">
                     <div class="card-title text-xs font-bold text-white uppercase d-flex items-center gap-6 m-0">
                       <i class="fa-solid fa-table-list text-cyan"></i> <span data-i18n="ui.ayristirilanGeometriNoktaListesi"></span>
@@ -265,8 +265,8 @@
                   </div>
                 </div>
 
-                <div class="converter-table-wrap">
-                  <table class="table converter-table" id="tableConverterData">
+                <div class="table-wrap">
+                  <table class="table" id="tableConverterData">
                     <thead>
                       <tr>
                         <th class="th-w-45px">#</th>
