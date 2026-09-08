@@ -3,10 +3,14 @@
  * Offline-first static asset caching and network fallback
  */
 
-const CACHE_NAME = 'gnss-pos-studio-v1';
+const CACHE_NAME = 'gnss-pos-studio-v2';
 const PRECACHE_ASSETS = [
   './',
   'index.html',
+  'css/foundation.css',
+  'css/components.css',
+  'css/layout.css',
+  'css/responsive-theme.css',
   'css/core.css',
   'js/app.bundle.js',
   'data/epsg_registry.json',
