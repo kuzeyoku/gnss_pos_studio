@@ -1,0 +1,294 @@
+      <!-- ================= TAB: EVRENSEL DOSYA & FORMAT DÖNÜŞTÜRÜCÜ STUDIO ================= -->
+      <section id="tab-converter" class="tool-tab">
+        <div class="converter-workstation">
+
+          <!-- Top Action / Status Bar -->
+          <div class="converter-top-bar card p-3 mb-2">
+            <div class="d-flex justify-between items-center flex-wrap gap-8">
+              <div class="d-flex items-center gap-10">
+                <div class="converter-icon-box">
+                  <i class="fa-solid fa-arrows-rotate text-cyan"></i>
+                </div>
+                <div>
+                  <h3 class="m-0 text-sm font-bold text-white" data-i18n="converter.headerTitle"></h3>
+                  <span class="text-xs text-dim" data-i18n="converter.headerDesc"></span>
+                </div>
+              </div>
+
+              <!-- Top Status Badges -->
+              <div class="d-flex items-center gap-6">
+                <span class="badge badge-cyan font-mono"><i class="fa-solid fa-bolt"></i> <span data-i18n="converter.badgeOffline"></span></span>
+                <span class="badge badge-emerald font-mono"><i class="fa-solid fa-layer-group"></i> <span data-i18n="converter.badgeMultiLayer"></span></span>
+                <span class="badge badge-purple font-mono" id="badgeConverterCrs">TUREF TM 3° (DOM: 30°)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Layout: Split Grid -->
+          <div class="converter-workspace-grid">
+
+            <!-- Left Panel: Upload, Settings & Polygon Tools -->
+            <div class="converter-left-pane">
+
+              <!-- 1. Universal Dropzone -->
+              <div class="card p-3">
+                <div class="card-title text-xs font-bold text-dim mb-2 uppercase d-flex items-center gap-6">
+                  <i class="fa-solid fa-cloud-arrow-up text-cyan"></i> <span data-i18n="converter.step1Title"></span>
+                </div>
+
+                <div class="converter-dropzone" id="converterDropzone">
+                  <i class="fa-solid fa-file-arrow-up converter-drop-icon"></i>
+                  <div class="converter-drop-title" data-i18n="converter.dropzoneLabel"></div>
+                  <div class="converter-drop-tags">
+                    <span class="converter-tag-pill">NCZ</span>
+                    <span class="converter-tag-pill">DXF</span>
+                    <span class="converter-tag-pill">KML</span>
+                    <span class="converter-tag-pill">KMZ</span>
+                    <span class="converter-tag-pill">GPX</span>
+                    <span class="converter-tag-pill">NCN</span>
+                    <span class="converter-tag-pill">GeoJSON</span>
+                    <span class="converter-tag-pill">TXT / CSV</span>
+                  </div>
+                  <input type="file" id="inputConverterFile" accept=".ncz,.dxf,.kml,.kmz,.gpx,.ncn,.kos,.txt,.csv,.xyz,.dat,.geojson,.json" />
+                </div>
+
+                <!-- Active File Info Chip (Hidden initially) -->
+                <div class="converter-file-info-chip d-none mt-2" id="converterFileInfo">
+                  <div class="d-flex items-center gap-8">
+                    <div class="converter-file-icon-box" id="converterFileIcon">
+                      <i class="fa-solid fa-file-lines text-cyan"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-xs font-bold text-white truncate" id="txtConverterFileName" data-i18n="ui.dosyaDxf"></div>
+                      <div class="text-2xs text-dim" id="txtConverterFileDetails">AutoCAD DXF • 0 Geometri</div>
+                    </div>
+                    <button type="button" class="btn btn-xs btn-secondary" id="btnResetConverter" title="" data-i18n-title="common.clear">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. Reprojection & Coordinate Settings -->
+              <div class="card p-3">
+                <div class="card-title text-xs font-bold text-dim mb-2 uppercase d-flex items-center gap-6">
+                  <i class="fa-solid fa-globe text-purple"></i> <span data-i18n="converter.step2Title"></span>
+                </div>
+
+                <div class="form-grid grid-2 gap-8">
+                  <div class="form-group mb-0">
+                    <label class="form-label" data-i18n="common.sourceSystem"></label>
+                    <select id="selConverterSrcCrs" class="form-select form-select-sm">
+                      <option value="TUREF_TM" selected>ITRF-96 / TUREF TM 3° (Metre)</option>
+                      <option value="WGS84" data-i18n="ui.wgs84CografiEnlem"></option>
+                      <option value="ED50_TM" data-i18n="ui.ed50GaussKruger"></option>
+                    </select>
+                  </div>
+
+                  <div class="form-group mb-0">
+                    <label class="form-label" data-i18n="geodesy.domLabel"></label>
+                    <select id="selConverterDom" class="form-select form-select-sm">
+                      <option value="27">27° (Dilim 1 / 9)</option>
+                      <option value="30" selected>30° (Dilim 2 / 10)</option>
+                      <option value="33">33° (Dilim 3 / 11)</option>
+                      <option value="36">36° (Dilim 4 / 12)</option>
+                      <option value="39">39° (Dilim 5 / 13)</option>
+                      <option value="42">42° (Dilim 6 / 14)</option>
+                      <option value="45">45° (Dilim 7 / 15)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. Point-to-Polygon & Area Generation Engine -->
+              <div class="card p-3 d-flex flex-col gap-10">
+                <div class="d-flex justify-between items-center">
+                  <div class="card-title text-xs font-bold text-dim uppercase d-flex items-center gap-6 m-0">
+                    <i class="fa-solid fa-draw-polygon text-emerald"></i> <span data-i18n="converter.sectionAreaGen"></span>
+                  </div>
+                  <span class="badge badge-secondary font-mono text-3xs" data-i18n="ui.akilliAlan"></span>
+                </div>
+
+                <div class="text-2xs text-dim lh-145" data-i18n="converter.sectionAreaGenDesc"></div>
+
+                <div>
+                  <label class="form-label" data-i18n="converter.lblAreaMethod"></label>
+                  <div class="d-flex gap-6 w-100" id="converterPolygonModeGroup">
+                    <button type="button" class="btn btn-primary btn-sm flex-1 text-xs" data-mode="sequential" id="btnModeSequential">
+                      <i class="fa-solid fa-arrow-down-1-9"></i> <span data-i18n="converter.btnMethodSequential"></span>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm flex-1 text-xs" data-mode="convex_hull" id="btnModeConvexHull">
+                      <i class="fa-solid fa-shapes"></i> <span data-i18n="converter.btnMethodHull"></span>
+                    </button>
+                  </div>
+                </div>
+
+                <button type="button" class="btn btn-primary btn-sm w-100" id="btnGeneratePolygon">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="converter.btnCreateArea"></span>
+                </button>
+              </div>
+
+              <!-- 4. Layers & Visibility Control -->
+              <div class="card p-3">
+                <div class="d-flex justify-between items-center mb-2">
+                  <div class="card-title text-xs font-bold text-dim uppercase d-flex items-center gap-6">
+                    <i class="fa-solid fa-layer-group text-cyan"></i> <span data-i18n="converter.secLayers"></span>
+                  </div>
+                  <span class="text-3xs text-dim font-mono" id="lblLayerCount" data-i18n="converter.initialLayerCount"></span>
+                </div>
+
+                <div class="converter-layers-list" id="converterLayersList">
+                  <div class="text-center py-3 text-xs text-dim" data-i18n="converter.noLayersLoaded"></div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right Panel: Visualization, Map, KPI & Export -->
+            <div class="converter-right-pane">
+
+              <!-- Telemetry & KPI Cards -->
+              <div class="converter-kpi-grid">
+                <div class="converter-kpi-card">
+                  <div class="converter-kpi-icon bento-icon-cyan"><i class="fa-solid fa-location-dot"></i></div>
+                  <div>
+                    <div class="converter-kpi-val text-cyan" id="kpiConverterPoints">0</div>
+                    <div class="converter-kpi-lbl" data-i18n="ui.noktaSayisi"></div>
+                  </div>
+                </div>
+
+                <div class="converter-kpi-card">
+                  <div class="converter-kpi-icon bento-icon-purple"><i class="fa-solid fa-font"></i></div>
+                  <div>
+                    <div class="converter-kpi-val text-purple" id="kpiConverterTexts">0</div>
+                    <div class="converter-kpi-lbl" data-i18n="ui.yaziCadMetni"></div>
+                  </div>
+                </div>
+
+                <div class="converter-kpi-card">
+                  <div class="converter-kpi-icon bento-icon-blue"><i class="fa-solid fa-route"></i></div>
+                  <div>
+                    <div class="converter-kpi-val text-blue" id="kpiConverterLines">0</div>
+                    <div class="converter-kpi-lbl" data-i18n="converter.kpiLines"></div>
+                  </div>
+                </div>
+
+                <div class="converter-kpi-card">
+                  <div class="converter-kpi-icon bento-icon-emerald"><i class="fa-solid fa-draw-polygon"></i></div>
+                  <div>
+                    <div class="converter-kpi-val text-emerald" id="kpiConverterPolygons">0</div>
+                    <div class="converter-kpi-lbl" data-i18n="geomatics.closedArea"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Map Viewport -->
+              <div class="converter-map-container card">
+                <div class="converter-map-header">
+                  <div class="d-flex items-center gap-6">
+                    <span class="status-indicator-dot online"></span>
+                    <span class="converter-map-title" data-i18n="ui.iNteraktifVektorHarita"></span>
+                  </div>
+                  <div class="d-flex items-center gap-6">
+                    <button type="button" class="btn btn-xs btn-secondary" id="btnConverterFitBounds" title="" data-i18n-title="converter.titleFitMap">
+                      <i class="fa-solid fa-expand"></i> <span data-i18n="cadastre.btnFit"></span>
+                    </button>
+                    <button type="button" class="btn btn-xs btn-secondary active text-purple" id="btnConverterToggleTexts" title="" data-i18n-title="converter.titleToggleTexts">
+                      <i class="fa-solid fa-font"></i> <span data-i18n="converter.tabTextsOnly"></span>
+                    </button>
+                    <button type="button" class="btn btn-xs btn-secondary" id="btnConverterToggleLabels" title="" data-i18n-title="converter.titleToggleLabels">
+                      <i class="fa-solid fa-tag"></i> <span data-i18n="cadastre.btnLabels"></span>
+                    </button>
+                  </div>
+                </div>
+                <div id="converterMap" class="converter-leaflet-map"></div>
+              </div>
+
+              <!-- Output & Export Toolbar -->
+              <div class="card converter-export-card">
+                <div class="d-flex justify-between items-center flex-wrap gap-8">
+                  <div class="converter-export-tag">
+                    <i class="fa-solid fa-file-export text-emerald"></i>
+                    <span data-i18n="ui.donusturDisaAktar"></span>
+                  </div>
+
+                  <div class="converter-export-btns" id="converterExportButtons">
+                    <button type="button" class="btn-converter-export btn-soft-cyan" id="btnConverterExportDxf" title="" data-i18n-title="cadastre.titleExportDxf">
+                      <i class="fa-solid fa-file-code text-cyan"></i> <span data-i18n="cadastre.btnExportDxf"></span>
+                    </button>
+                    <button type="button" class="btn-converter-export" id="btnConverterExportKml" title="" data-i18n-title="cadastre.titleExportKml">
+                      <i class="fa-solid fa-earth-americas text-emerald"></i> <span data-i18n="cadastre.btnExportKml"></span>
+                    </button>
+                    <button type="button" class="btn-converter-export" id="btnConverterExportKmz" title="" data-i18n-title="converter.titleExportKmz">
+                      <i class="fa-solid fa-file-zipper text-purple"></i> <span data-i18n="ui.kmzINdir"></span>
+                    </button>
+                    <button type="button" class="btn-converter-export" id="btnConverterExportNcn" title="" data-i18n-title="cadastre.titleExportNcn">
+                      <i class="fa-solid fa-hashtag text-cyan"></i> <span data-i18n="cadastre.btnExportNcn"></span>
+                    </button>
+                    <button type="button" class="btn-converter-export" id="btnConverterExportGeoJson" title="" data-i18n-title="converter.titleExportGeoJson">
+                      <i class="fa-solid fa-code text-amber"></i> <span>.GeoJSON</span>
+                    </button>
+                    <button type="button" class="btn-converter-export" id="btnConverterExportGpx" title="GPS Exchange Format (.gpx)" data-i18n-title="converter.btnExportGpx">
+                      <i class="fa-solid fa-location-crosshairs text-orange"></i> <span>.GPX</span>
+                    </button>
+                    <button type="button" class="btn-converter-export" id="btnConverterExportCsv" title="" data-i18n-title="cadastre.titleExportCsv">
+                      <i class="fa-solid fa-table text-rose"></i> <span>.CSV</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Geometry & Point Data Table Preview -->
+              <div class="card p-3">
+                <div class="converter-table-toolbar">
+                  <div class="d-flex items-center gap-8">
+                    <div class="card-title text-xs font-bold text-white uppercase d-flex items-center gap-6 m-0">
+                      <i class="fa-solid fa-table-list text-cyan"></i> <span data-i18n="ui.ayristirilanGeometriNoktaListesi"></span>
+                    </div>
+                    <span class="badge badge-secondary font-mono text-2xs" id="lblConverterTableCount" data-i18n="ui.0Kayit"></span>
+                  </div>
+
+                  <div class="d-flex items-center flex-wrap gap-8">
+                    <!-- Filter Pills -->
+                    <div class="btn-group btn-group-xs" id="converterTypeFilters">
+                      <button type="button" class="btn btn-xs btn-secondary active" data-filter="ALL" data-i18n="common.all"></button>
+                      <button type="button" class="btn btn-xs btn-secondary" data-filter="Text"><i class="fa-solid fa-font text-purple mr-1"></i> <span data-i18n="converter.filterTexts"></span></button>
+                      <button type="button" class="btn btn-xs btn-secondary" data-filter="Point"><i class="fa-solid fa-location-dot text-cyan mr-1"></i> <span data-i18n="converter.filterPoints"></span></button>
+                      <button type="button" class="btn btn-xs btn-secondary" data-filter="LineString"><i class="fa-solid fa-route text-blue mr-1"></i> <span data-i18n="converter.filterLines"></span></button>
+                      <button type="button" class="btn btn-xs btn-secondary" data-filter="Polygon"><i class="fa-solid fa-draw-polygon text-emerald mr-1"></i> <span data-i18n="converter.filterPolygons"></span></button>
+                    </div>
+                    <!-- Live Search -->
+                    <div class="converter-search-box">
+                      <input type="text" id="inputConverterSearch" class="form-control form-control-xs text-xs w-190" placeholder="" data-i18n-placeholder="converter.searchPlaceholder" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="converter-table-wrap">
+                  <table class="table converter-table" id="tableConverterData">
+                    <thead>
+                      <tr>
+                        <th class="th-w-45px">#</th>
+                        <th data-i18n="ui.noktaGeometriAdi"></th>
+                        <th data-i18n="converter.popupLayer"></th>
+                        <th data-i18n="ui.tur"></th>
+                        <th data-i18n="ui.ySagaDegerLon"></th>
+                        <th data-i18n="ui.xYukariDegerLat"></th>
+                        <th data-i18n="ui.kotZ"></th>
+                        <th data-i18n="ui.metrajAlan"></th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbodyConverterData">
+                      <tr>
+                        <td colspan="8" class="text-center text-dim py-4" data-i18n="ui.veriYuklenmediLutfenSol"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>

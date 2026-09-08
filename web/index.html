@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harita Tools — Jeodezi, Fotogrametri & GNSS Web Stüdyosu</title>
+  <meta name="description" content="TUSAGA-Aktif RTK, HGM TG-20 Jeoidi, İHA Fotogrametri ve Evrensel GNSS Çözümleme Stüdyosu">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+
+  <!-- Offline Icons (Font Awesome) -->
+  <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+  <!-- Offline Leaflet Map Engine -->
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css" />
+  <!-- Core Design System -->
+  <link rel="stylesheet" href="css/core.css">
+
+  <!-- Offline JSZip Engine -->
+  <script src="vendor/jszip/jszip.min.js"></script>
+  <!-- Offline Leaflet JS -->
+  <script src="vendor/leaflet/leaflet.js"></script>
+</head>
+
+<body>
+
+  <!-- Mobile Backdrop Overlay -->
+  <div id="mobileNavOverlay" class="mobile-nav-overlay"></div>
+
+  <!-- Sidebar Component -->
+  <div data-component="components/sidebar.html"></div>
+
+  <!-- Main Application Wrapper -->
+  <main class="main-wrapper">
+
+    <!-- Top Header Component -->
+    <div data-component="components/header.html"></div>
+
+    <!-- Dynamic Content Body (All Tab Components) -->
+    <div class="content-body" id="tabContentBody">
+      <div data-component="components/tabs/homeTab.html"></div>
+      <div data-component="components/tabs/cadastreTab.html"></div>
+      <div data-component="components/tabs/rinexTab.html"></div>
+      <div data-component="components/tabs/mapTab.html"></div>
+      <div data-component="components/tabs/geodesyTab.html"></div>
+      <div data-component="components/tabs/toolsTab.html"></div>
+      <div data-component="components/tabs/tg20Tab.html"></div>
+      <div data-component="components/tabs/flightTab.html"></div>
+      <div data-component="components/tabs/converterTab.html"></div>
+      <div data-component="components/tabs/guideTab.html"></div>
+    </div>
+
+    <!-- Console Dock Component -->
+    <div data-component="components/consoleDock.html"></div>
+
+  </main>
+
+  <!-- About Project Modal Component -->
+  <div data-component="components/modals/aboutModal.html"></div>
+
+  <!-- Consolidated Application Engine & Shell Bundle -->
+  <script src="js/app.bundle.js"></script>
+
+</body>
+
+</html>

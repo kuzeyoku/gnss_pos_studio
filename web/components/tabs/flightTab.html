@@ -1,0 +1,651 @@
+      <section id="tab-flight" class="tool-tab">
+
+        <!-- Action Toolbar & Quick Ingest -->
+        <div class="card flight-header-card">
+          <div class="flight-toolbar-wrap d-flex items-center justify-between gap-12 text-nowrap">
+            <!-- Left: Ingest & Atmospheric Simulation Controls -->
+            <div class="d-flex items-center gap-8 flex-shrink-0 text-nowrap">
+              <label
+                class="btn btn-primary btn-sm m-0 cursor-pointer d-inline-flex items-center gap-6 py-6 px-12 text-sm text-nowrap">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span data-i18n="flight.btnUploadBoundaryShort"></span>
+                <input type="file" id="inputFlightFile" accept=".kml,.kmz,.geojson,.json" class="d-none" />
+              </label>
+
+              <button class="btn btn-secondary btn-sm py-6 px-10 text-sm text-nowrap" id="btnLoadDemoFlightKml"
+                type="button" data-tooltip="" data-i18n-tooltip="flight.demoTooltip">
+                <i class="fa-solid fa-wand-magic-sparkles text-amber"></i>
+                <span data-i18n="common.example"></span>
+              </button>
+
+              <div class="interactive-date-control" id="wrapperFlightDatePicker"
+                title="" data-i18n-title="flight.datePickerTitle">
+                <i class="fa-solid fa-calendar-days text-cyan text-xs"></i>
+                <span class="text-xs font-extrabold uppercase tracking-wide text-dim" data-i18n="common.date"></span>
+                <input type="date" id="flightDatePicker" class="custom-flight-date-input text-xs flight-date-input-w"
+                  title="" data-i18n-title="flight.dateInputTitle" />
+                <i class="fa-solid fa-chevron-down text-cyan pointer-events-none calendar-overlay-icon"></i>
+              </div>
+
+              <!-- Flight Time Slider -->
+              <div class="flight-time-slider-box">
+                <i class="fa-solid fa-clock text-amber text-xs"></i>
+                <span class="text-xs font-bold text-dim uppercase" data-i18n="common.time"></span>
+                <span id="txtToolbarFlightTime" class="text-sm font-extrabold font-mono text-amber flight-time-badge">11:00</span>
+                <input type="range" id="sliderToolbarFlightTime" min="360" max="1200" step="15" value="660"
+                  class="accent-amber cursor-pointer flight-time-slider" title="" data-i18n-title="flight.timeSliderTitle" />
+              </div>
+            </div>
+
+            <!-- Right: Single-Button Luxury Export Dropdown -->
+            <div class="dropdown-export-wrap pos-rel flex-shrink-0 flight-export-z">
+              <button class="btn btn-secondary btn-sm flight-export-btn" id="btnToggleExportMenu"
+                onclick="window.toggleExportDropdown(event)" type="button">
+                <i class="fa-solid fa-download text-cyan"></i>
+                <span class="font-bold" data-i18n="common.export"></span>
+                <i class="fa-solid fa-chevron-down text-cyan flight-chevron-sm"></i>
+              </button>
+
+              <!-- Dropdown Menu Popup -->
+              <div id="menuExportDropdown" class="flight-export-menu">
+                <button class="export-menu-item" id="btnExportFlightKml" onclick="window.exportFlightFile('dji_kml')"
+                  type="button" title="" data-i18n-title="flight.titleExportDjiKml">
+                  <i class="fa-solid fa-file-code text-cyan text-md text-center export-icon-w16"></i>
+                  <div class="d-flex flex-col">
+                    <span class="font-bold text-sm text-white" data-i18n="flight.btnExportDjiKml"></span>
+                    <span class="text-xs text-dim" data-i18n="flight.exportDescBoundary"></span>
+                  </div>
+                </button>
+                <button class="export-menu-item" id="btnExportGcpNcn" onclick="window.exportFlightFile('netcad_ncn')"
+                  type="button" title="" data-i18n-title="flight.titleExportNcn">
+                  <i class="fa-solid fa-map-pin text-emerald text-md text-center export-icon-w16"></i>
+                  <div class="d-flex flex-col">
+                    <span class="font-bold text-sm text-white">Netcad (.NCN)</span>
+                    <span class="text-xs text-dim" data-i18n="flight.exportDescNcn"></span>
+                  </div>
+                </button>
+                <button class="export-menu-item" id="btnExportGcpDxf" onclick="window.exportFlightFile('autocad_dxf')"
+                  type="button" title="" data-i18n-title="flight.titleExportDxf">
+                  <i class="fa-solid fa-vector-square text-indigo text-md text-center export-icon-w16"></i>
+                  <div class="d-flex flex-col">
+                    <span class="font-bold text-sm text-white">AutoCAD (.DXF)</span>
+                    <span class="text-xs text-dim" data-i18n="flight.exportDescDxf"></span>
+                  </div>
+                </button>
+                <button class="export-menu-item" id="btnExportGcpCsv" onclick="window.exportFlightFile('excel_csv')"
+                  type="button" title="" data-i18n-title="flight.titleExportCsv">
+                  <i class="fa-solid fa-file-csv text-emerald text-md text-center export-icon-w16"></i>
+                  <div class="d-flex flex-col">
+                    <span class="font-bold text-sm text-white">Excel (.CSV)</span>
+                    <span class="text-xs text-dim" data-i18n="flight.exportDescCsv"></span>
+                  </div>
+                </button>
+                <button class="export-menu-item" id="btnExportGcpKml" onclick="window.exportFlightFile('google_kml')"
+                  type="button" title="" data-i18n-title="flight.titleExportKml">
+                  <i class="fa-solid fa-earth-americas text-amber text-md text-center export-icon-w16"></i>
+                  <div class="d-flex flex-col">
+                    <span class="font-bold text-sm text-white">Google Earth (.KML)</span>
+                    <span class="text-xs text-dim" data-i18n="flight.exportDescKml"></span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1. FULL-WIDTH PANORAMIC FLIGHT MAP (TOP) -->
+        <div class="card flight-map-card p-0 overflow-hidden">
+          <div class="flight-map-wrapper pos-rel w-full">
+
+            <!-- Mobile Map Tools Trigger Button (Only visible on <= 900px) -->
+            <button type="button" id="btnFlightMapMenuToggle" class="map-mobile-menu-toggle d-none" aria-label="" data-i18n-aria="flight.mapToolsAria" title="" data-i18n-title="flight.mapToolsTitle">
+              <i class="fa-solid fa-layer-group text-cyan"></i>
+              <span data-i18n="common.tools"></span>
+              <i class="fa-solid fa-chevron-down text-xs text-cyan" id="iconFlightMapMenuChevron"></i>
+            </button>
+
+            <!-- Floating / Dropdown Map Toolbar -->
+            <div class="map-floating-toolbar" id="mapControlToolbar">
+              <div class="map-toolbar-mobile-header d-none">
+                <span class="text-xs font-bold text-white"><i class="fa-solid fa-screwdriver-wrench text-cyan mr-4"></i> <span data-i18n="common.tools"></span></span>
+              </div>
+
+              <div class="map-toolbar-actions-group">
+                <button class="map-btn-compact" id="btnFlightFitBounds" type="button" title="" data-i18n-title="flight.titleFitBounds">
+                  <i class="fa-solid fa-expand text-cyan"></i> <span data-i18n="ui.alanaSigdir"></span>
+                </button>
+
+                <button class="map-btn-compact" id="btnFetchRoadsNow" type="button" title="" data-i18n-title="flight.titleFetchRoads">
+                  <i class="fa-solid fa-cloud-arrow-down text-indigo"></i> <span id="txtRoadBtn" data-i18n="ui.yolINdir"></span>
+                </button>
+
+                <button class="map-btn-compact border-amber text-amber" id="btnDrawCustomRoad" type="button"
+                  title="" data-i18n-title="flight.titleDrawRoad">
+                  <i class="fa-solid fa-pen-nib"></i> <span id="txtDrawRoadBtn" data-i18n="flight.btnDrawRoad"></span>
+                </button>
+
+                <button class="map-btn-compact hidden d-none bg-emerald border-emerald text-white" id="btnFinishDrawRoad"
+                  type="button">
+                  <i class="fa-solid fa-check"></i> <span data-i18n="ui.cizimiBitir"></span>
+                </button>
+                <button class="map-btn-compact hidden d-none text-rose border-rose" id="btnCancelDrawRoad" type="button">
+                  <i class="fa-solid fa-xmark"></i> <span data-i18n="ui.iPtal"></span>
+                </button>
+
+                <button class="map-btn-compact" id="btnUploadRoadFile" type="button"
+                  title="" data-i18n-title="flight.titleUploadRoad">
+                  <i class="fa-solid fa-folder-plus text-cyan"></i> <span data-i18n="ui.kmlYukle"></span>
+                </button>
+                <input type="file" id="inputCustomRoadFile" accept=".kml,.kmz,.geojson,.json" class="d-none" />
+              </div>
+
+              <div class="map-toolbar-divider"></div>
+
+              <!-- Minimalist Layer Toggles -->
+              <div class="map-layer-toggles-container">
+                <div class="map-layer-toggles-row">
+                  <button class="map-toggle-btn active" id="btnToggleRoadNetwork" type="button"
+                    title="" data-i18n-title="flight.titleToggleRoad">
+                    <i class="fa-solid fa-road text-indigo"></i>
+                  </button>
+                  <button class="map-toggle-btn active" id="btnToggleGcpPins" type="button"
+                    title="" data-i18n-title="flight.titleTogglePins">
+                    <i class="fa-solid fa-map-pin text-emerald"></i>
+                  </button>
+                  <button class="map-toggle-btn active" id="btnToggleTriangles" type="button"
+                    title="" data-i18n-title="flight.titleToggleTriangles">
+                    <i class="fa-solid fa-shapes text-cyan"></i>
+                  </button>
+                  <button class="map-toggle-btn active" id="btnToggleFlightLines" type="button"
+                    title="" data-i18n-title="flight.titleToggleLines">
+                    <i class="fa-solid fa-plane text-sky"></i>
+                  </button>
+                  <button class="map-toggle-btn active" id="btnToggleWaypoints" type="button"
+                    title="" data-i18n-title="flight.titleToggleWaypoints">
+                    <i class="fa-solid fa-camera text-amber"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Compact Wind Heading Badge (Positioned safely left of Leaflet Layer Switcher) -->
+            <div id="overlayWindHeadingBadge" class="flight-wind-heading-badge">
+              <i class="fa-solid fa-compass text-emerald text-xs"></i>
+              <span><span data-i18n="flight.lblHat"></span> <strong id="txtOptimalHeadingVal" class="text-cyan font-mono">--</strong></span>
+            </div>
+
+            <!-- The Panoramic Map Canvas -->
+            <div id="flightMapContainer" class="flight-map-canvas w-full"></div>
+          </div>
+
+          <!-- Docked Solar, Altitude-Wind & Cloud Quality Indicator Bar -->
+          <div id="widgetSolarWindCompass" class="flight-solar-compass-widget">
+
+            <!-- 1. Solar & Shadow Dial -->
+            <div class="solar-wind-chip">
+              <div class="solar-dial-circle">
+                <span class="pos-abs top-1 text-2xs font-extrabold text-dim">K</span>
+                <span class="pos-abs right-2 text-2xs font-extrabold text-dim">D</span>
+                <span class="pos-abs bottom-1 text-2xs font-extrabold text-dim">G</span>
+                <span class="pos-abs left-2 text-2xs font-extrabold text-dim">B</span>
+
+                <div id="dialSunPointer" class="pos-abs w-full h-full top-0 left-0 d-flex items-center justify-center">
+                  <div class="pos-abs top-2 d-flex flex-col items-center">
+                    <i class="fa-solid fa-sun text-amber dial-sun-glow-icon"></i>
+                    <div class="dial-sun-needle"></div>
+                  </div>
+                </div>
+                <div class="rounded-full bg-white z-5 dial-center-dot-white"></div>
+              </div>
+
+              <div class="d-flex flex-col gap-1 text-xs">
+                <div class="d-flex items-center gap-4">
+                  <span class="text-dim text-xs font-bold uppercase" data-i18n="ui.gunes"></span>
+                  <strong id="lblWidgetSunAzimuth" class="text-amber font-mono text-sm">145° (GD)</strong>
+                  <span id="lblWidgetSunElev" class="text-xs text-dim font-mono">(54°)</span>
+                </div>
+                <div class="d-flex items-center gap-4">
+                  <span class="text-dim text-xs font-bold uppercase" data-i18n="ui.golge"></span>
+                  <strong id="lblWidgetShadowMult" class="text-purple font-mono text-sm" data-i18n="flight.initialShadowMult"></strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vertical Divider -->
+            <div class="solar-wind-divider"></div>
+
+            <!-- 2. Altitude-Aware Wind Dial -->
+            <div class="solar-wind-chip">
+              <div class="wind-dial-circle">
+                <span class="pos-abs top-1 text-2xs font-extrabold text-dim">K</span>
+                <span class="pos-abs right-2 text-2xs font-extrabold text-dim">D</span>
+                <span class="pos-abs bottom-1 text-2xs font-extrabold text-dim">G</span>
+                <span class="pos-abs left-2 text-2xs font-extrabold text-dim">B</span>
+
+                <div id="dialWindPointer" class="pos-abs w-full h-full top-0 left-0 d-flex items-center justify-center">
+                  <div class="pos-abs top-3 d-flex flex-col items-center">
+                    <i class="fa-solid fa-arrow-up text-cyan dial-wind-glow-icon"></i>
+                    <div class="dial-wind-needle"></div>
+                  </div>
+                </div>
+                <div class="rounded-full bg-sky z-5 dial-center-dot-white"></div>
+              </div>
+
+              <div class="d-flex flex-col gap-1 text-xs">
+                <div class="d-flex items-center gap-4">
+                  <span class="text-dim text-xs font-bold uppercase"><span data-i18n="flight.lblWind"></span> (<span id="lblWidgetFlightAlt"
+                      class="text-cyan">100m</span>):</span>
+                  <strong id="lblWidgetWindSpeed" class="text-cyan font-mono text-sm">2.4 m/s (8.6 km/sa)</strong>
+                </div>
+                <div class="d-flex items-center gap-4">
+                  <span class="text-dim text-xs font-bold uppercase" data-i18n="ui.yon"></span>
+                  <strong id="lblWidgetWindDir" class="text-white font-mono text-xs">45° (KD)</strong>
+                  <span id="lblWidgetWindSafety" class="text-xs text-emerald font-bold" data-i18n="ui.iDeal"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vertical Divider -->
+            <div class="solar-wind-divider"></div>
+
+            <!-- 3. Real-Time Cloud Cover & Lighting Quality -->
+            <div class="solar-wind-chip">
+              <div class="cloud-indicator-circle">
+                <i class="fa-solid fa-cloud-sun text-sky cloud-indicator-icon" id="iconWidgetCloud"></i>
+              </div>
+              <div class="d-flex flex-col gap-1 text-xs">
+                <div class="d-flex items-center gap-4">
+                  <span class="text-dim text-xs font-bold uppercase"><span data-i18n="flight.lblCloud"></span>:</span>
+                  <strong id="lblWidgetCloudCover" class="text-sky font-mono text-sm">%15</strong>
+                  <span id="lblWidgetCloudDesc" class="text-xs text-dim font-mono" data-i18n="flight.lblCloudClear"></span>
+                </div>
+                <div class="d-flex items-center gap-4">
+                  <span class="text-dim text-xs font-bold uppercase" data-i18n="ui.isik"></span>
+                  <span id="lblWidgetLightCondition" class="text-xs text-emerald font-bold" data-i18n="flight.lblLightSunny"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Weather Source Badge -->
+            <div class="d-none d-md-flex items-center gap-4 border-l border-white/10 pl-8" id="badgeWeatherLiveSource"
+              title="" data-i18n-title="flight.titleWeatherSource">
+              <span class="status-indicator-dot online weather-dot"></span>
+              <span class="text-2xs text-muted font-mono" id="txtWeatherDataSource" data-i18n="ui.canliEcmwf"></span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- 2. THREE WORKFLOW CARDS SIDE-BY-SIDE UNDER MAP (BALANCED EQUAL-HEIGHT BENTO GRID) -->
+        <div class="flight-bottom-cards-grid mb-16">
+
+          <!-- Panel 1: Uçuş Sahası & Sınır Sadeleştirme -->
+          <div class="card flight-workflow-card flight-workflow-card-cyan">
+            <div class="card-header py-10 px-14 border-b border-white/10 d-flex items-center justify-between">
+              <div class="card-title text-sm d-flex items-center gap-8">
+                <i class="fa-solid fa-draw-polygon text-cyan"></i>
+                <span data-i18n="flight.step1Title"></span>
+              </div>
+              <span class="text-xs py-2 px-8 rounded-sm bg-cyan-15 text-cyan font-bold border-cyan" data-i18n="ui.sinirSadelestirme"></span>
+            </div>
+            <div class="card-body p-14 d-flex flex-col gap-10">
+              <!-- Sadeleştirme Kaydıracı (Genişletilmiş & Şık Konteyner) -->
+              <div class="flight-slider-container">
+                <div class="flight-slider-header">
+                  <span class="text-dim font-semibold d-flex items-center gap-4">
+                    <i class="fa-solid fa-sliders text-cyan"></i> <span data-i18n="ui.sinirSadelestirme"></span>
+                  </span>
+                  <span id="txtSimplificationLevel" class="text-cyan font-bold font-mono" data-i18n="flight.balanced50"></span>
+                </div>
+                <input type="range" id="sliderSimplification" min="0" max="100" value="50" step="5"
+                  class="flight-slider" />
+                <div class="flight-slider-labels">
+                  <span data-i18n="ui.hamSinir"></span>
+                  <span data-i18n="flight.balanced"></span>
+                  <span data-i18n="flight.maxSimplified"></span>
+                </div>
+              </div>
+
+              <!-- Katman Görünürlük Butonları -->
+              <div class="d-flex gap-8">
+                <button class="btn btn-secondary btn-sm flex-1 text-xs py-6 px-10" id="btnToggleOriginalLayer"
+                  type="button">
+                  <i class="fa-solid fa-eye"></i> <span data-i18n="ui.hamSinir"></span>
+                </button>
+                <button class="btn btn-secondary btn-sm flex-1 text-xs py-6 px-10 border-cyan text-cyan"
+                  id="btnToggleSimplifiedLayer" type="button">
+                  <i class="fa-solid fa-eye"></i> <span data-i18n="ui.sadeSinir"></span>
+                </button>
+              </div>
+
+              <!-- Saha Geometrisi & Alan Özeti -->
+              <div class="flight-geo-matrix">
+                <div class="flight-geo-chip">
+                  <span class="flight-geo-label"><i class="fa-solid fa-vector-square text-cyan"></i> <span data-i18n="flight.vertices"></span></span>
+                  <span class="flight-geo-val text-cyan" id="statFlightVertices" data-i18n="ui.kose"></span>
+                </div>
+                <div class="flight-geo-chip">
+                  <span class="flight-geo-label"><i class="fa-solid fa-ruler-combined text-emerald"></i> <span data-i18n="flight.perimeter"></span></span>
+                  <span class="flight-geo-val text-emerald" id="statFlightPerimeter">-- m</span>
+                </div>
+                <div class="flight-geo-chip">
+                  <span class="flight-geo-label"><i class="fa-solid fa-chart-area text-amber"></i> <span data-i18n="flight.siteArea"></span></span>
+                  <span class="flight-geo-val text-amber" id="statFlightArea">-- ha</span>
+                </div>
+                <div class="flight-geo-chip">
+                  <span class="flight-geo-label"><i class="fa-solid fa-bolt text-purple"></i> <span data-i18n="flight.vertexReduction"></span></span>
+                  <span class="flight-geo-val text-purple" id="statFlightGain" data-i18n="flight.initialSaving"></span>
+                </div>
+              </div>
+
+              <!-- Geometri & Alan Emniyeti Özet Kutusu -->
+              <div class="flight-summary-box">
+                <div>
+                  <span class="text-muted" data-i18n="ui.alanFarki"></span>
+                  <strong class="text-emerald font-mono" id="kpiAreaDiff">(+%0.0)</strong>
+                </div>
+                <div>
+                  <span class="text-muted" data-i18n="ui.sinirDurumu"></span>
+                  <strong class="text-cyan font-mono" id="badgeFlightSimplification" data-i18n="ui.sadelestirilmisSinir"></strong>
+                </div>
+                <div>
+                  <span class="text-muted" data-i18n="ui.sahaKapsama"></span>
+                  <strong class="text-emerald font-mono" data-i18n="ui.100AlanKapsama"></strong>
+                </div>
+                <div>
+                  <span class="text-muted" data-i18n="ui.manevraAlani"></span>
+                  <strong class="text-white font-mono" data-i18n="ui.donusKoridoruDahil"></strong>
+                </div>
+                <div>
+                  <span class="text-muted" data-i18n="ui.ucusSahasi"></span>
+                  <strong class="text-cyan font-mono" id="kpiAreaDisplay" data-i18n="ui.hazir"></strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 2: YKN & Yol Ağına Bağlama Motoru -->
+          <div class="card flight-workflow-card flight-workflow-card-indigo">
+            <div class="card-header py-10 px-14 border-b border-white/10 d-flex items-center justify-between">
+              <div class="card-title text-sm d-flex items-center gap-8">
+                <i class="fa-solid fa-route text-indigo"></i>
+                <span data-i18n="ui.2YknDagitimiYol"></span>
+              </div>
+              <span class="text-xs py-2 px-8 rounded-sm bg-indigo-20 text-indigo font-bold border-indigo" data-i18n="ui.bohhbuyYolAgi"></span>
+            </div>
+            <div class="card-body p-14 d-flex flex-col gap-10">
+              <div class="flight-inputs-grid-2x2">
+                <div class="form-group m-0">
+                  <label class="text-xs font-semibold text-dim mb-2 d-flex items-center gap-4">
+                    <i class="fa-solid fa-ruler-horizontal text-dim"></i> <span data-i18n="ui.maksYknAraligi"></span>
+                  </label>
+                  <div class="input-unit-group">
+                    <input type="number" id="inputMaxGcpDistance" value="1000" min="200" max="5000" step="50"
+                      class="form-input flight-compact-input" />
+                    <span class="input-unit-suffix flight-unit-suffix">m</span>
+                  </div>
+                </div>
+                <div class="form-group m-0">
+                  <label class="text-xs font-semibold text-dim mb-2 d-flex items-center gap-4">
+                    <i class="fa-solid fa-chart-pie text-dim"></i> <span data-i18n="ui.yknDnOrani"></span>
+                  </label>
+                  <select id="selectGcpRatio" class="form-input form-select flight-compact-select">
+                    <option value="0.75" selected data-i18n="flight.ratio75"></option>
+                    <option value="0.80" data-i18n="flight.ratio80"></option>
+                    <option value="0.67" data-i18n="flight.ratio67"></option>
+                    <option value="1.00" data-i18n="flight.ratio100"></option>
+                  </select>
+                </div>
+                <div class="form-group m-0">
+                  <label class="text-xs font-semibold text-cyan mb-2 d-flex items-center gap-4">
+                    <i class="fa-solid fa-arrows-to-dot text-cyan"></i> <span data-i18n="ui.iCEmniyetMesafesi"></span>
+                  </label>
+                  <div class="input-unit-group">
+                    <input type="number" id="inputInwardOffset" value="100" min="20" max="500" step="10"
+                      class="form-input flight-compact-input" />
+                    <span class="input-unit-suffix flight-unit-suffix">m</span>
+                  </div>
+                </div>
+                <div class="form-group m-0">
+                  <div class="d-flex justify-between items-center mb-2 flight-label-row-h16">
+                    <label class="text-xs font-semibold text-dim m-0 d-flex items-center gap-4 cursor-pointer"
+                      for="chkSnapToRoads">
+                      <input type="checkbox" id="chkSnapToRoads" checked
+                        class="flight-checkbox-sm" />
+                      <i class="fa-solid fa-road text-indigo"></i> <span data-i18n="ui.yolBaglantisi"></span>
+                    </label>
+                  </div>
+                  <div class="input-unit-group">
+                    <input type="number" id="inputSnapMaxRadius" value="300" min="20" max="2000" step="25"
+                      class="form-input text-indigo border-indigo font-bold flight-compact-input" />
+                    <span class="input-unit-suffix text-indigo flight-unit-suffix">m</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- YKN Kalite & Standart Matrisi -->
+              <div class="flight-geo-matrix">
+                <div class="flight-geo-chip">
+                  <span class="flight-geo-label"><i class="fa-solid fa-map-pin text-emerald"></i> <span data-i18n="flight.gcpLabel"></span></span>
+                  <span class="flight-geo-val text-emerald" id="statTargetGcpCount">-- YKN</span>
+                </div>
+                <div class="flight-geo-chip">
+                  <span class="flight-geo-label"><i class="fa-solid fa-crosshairs text-amber"></i> <span data-i18n="flight.chkLabel"></span></span>
+                  <span class="flight-geo-val text-amber" id="statTargetChkCount">-- DN</span>
+                </div>
+                <div class="flight-geo-chip">
+                  <span class="flight-geo-label"><i class="fa-solid fa-shapes text-cyan"></i> <span data-i18n="flight.spacingLabel"></span></span>
+                  <span class="flight-geo-val text-cyan" id="statTriangleSpacing">~1000 m</span>
+                </div>
+                <div class="flight-geo-chip">
+                  <span class="flight-geo-label"><i class="fa-solid fa-road text-indigo"></i> <span data-i18n="flight.snapDistanceLabel"></span></span>
+                  <span class="flight-geo-val text-indigo" id="statSnapDistance" data-i18n="flight.initialSnapDistance"></span>
+                </div>
+              </div>
+
+              <button class="btn btn-primary btn-flight-generate-gcp" id="btnGenerateGCPs" type="button">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span data-i18n="ui.yknDnNoktalariniDagit"></span>
+              </button>
+
+              <!-- Jeodezi & GNSS Standart Kutusu -->
+              <div class="flight-summary-box">
+                <div>
+                  <span class="text-muted" data-i18n="sidebar.geoidModel"></span>
+                  <strong class="text-emerald font-mono">🇹🇷 TG-20 (HGM)</strong>
+                </div>
+                <div>
+                  <span class="text-muted" data-i18n="cadastre.barProjLabel"></span>
+                  <strong class="text-cyan font-mono">TUREF / ITRF-96 TM 3°</strong>
+                </div>
+                <div>
+                  <span class="text-muted" data-i18n="ui.noktaDagilimi"></span>
+                  <strong class="text-white font-mono" id="kpiGcpCount" data-i18n="flight.initialGcpCount"></strong>
+                </div>
+                <div>
+                  <span class="text-muted" data-i18n="ui.yolaBaglama"></span>
+                  <strong class="text-indigo font-mono" id="badgeGcpRoadSnap" data-i18n="ui.yolAgiAktif"></strong>
+                </div>
+                <div>
+                  <span class="text-muted" data-i18n="ui.konumDuzenleme"></span>
+                  <strong class="text-amber font-mono" data-i18n="ui.haritadaTasinabilir"></strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 3: İHA, GSD & Uçuş Planlayıcı -->
+          <div class="card flight-workflow-card flight-workflow-card-emerald">
+            <div class="card-header py-10 px-14 border-b border-white/10 d-flex items-center justify-between">
+              <div class="card-title text-sm d-flex items-center gap-8">
+                <i class="fa-solid fa-camera text-emerald"></i>
+                <span data-i18n="ui.3IHaGsd"></span>
+              </div>
+              <span class="text-xs py-2 px-8 rounded-sm bg-emerald-20 text-emerald font-bold border-emerald" data-i18n="ui.ucusBindirme"></span>
+            </div>
+            <div class="card-body p-14 d-flex flex-col gap-10">
+              <!-- İHA Modeli & Kamera (2 Sütun) -->
+              <div class="flight-inputs-grid-2x2">
+                <div class="form-group m-0">
+                  <label class="text-xs font-semibold text-dim mb-2 d-flex items-center gap-4">
+                    <i class="fa-solid fa-plane-up text-dim"></i> <span data-i18n="ui.iHaModeli"></span>
+                  </label>
+                  <select id="selectDroneModel" class="form-input form-select flight-compact-select">
+                  </select>
+                </div>
+                <div class="form-group m-0">
+                  <label class="text-xs font-semibold text-dim mb-2 d-flex items-center gap-4">
+                    <i class="fa-solid fa-camera text-dim"></i> <span data-i18n="ui.kameraSensor"></span>
+                  </label>
+                  <select id="selectDroneCamera" class="form-input form-select flight-compact-select">
+                  </select>
+                </div>
+                <div class="form-group m-0">
+                  <label class="text-xs font-semibold text-cyan mb-2 d-flex items-center gap-4">
+                    <i class="fa-solid fa-arrows-up-down text-cyan"></i> <span data-i18n="ui.ucusYuksekligiAgl"></span>
+                  </label>
+                  <div class="input-unit-group">
+                    <input type="number" id="inputFlightAltitude" value="100" min="5" max="2500" step="1"
+                      class="form-input text-cyan border-cyan font-bold flight-compact-input" />
+                    <span class="input-unit-suffix text-cyan flight-unit-suffix">m</span>
+                  </div>
+                </div>
+                <div class="form-group m-0">
+                  <label class="text-xs font-semibold text-cyan mb-2 d-flex items-center gap-4">
+                    <i class="fa-solid fa-bullseye text-cyan"></i> <span data-i18n="ui.yerOrneklemeGsd"></span>
+                  </label>
+                  <div class="input-unit-group">
+                    <input type="number" id="inputTargetGsd" value="2.73" min="0.1" max="50" step="0.05"
+                      class="form-input text-cyan border-cyan font-bold flight-compact-input" />
+                    <span class="input-unit-suffix text-cyan flight-unit-suffix">cm</span>
+                  </div>
+                </div>
+                <div class="form-group m-0">
+                  <label class="text-xs font-semibold text-dim mb-2 d-flex items-center gap-4">
+                    <i class="fa-solid fa-gauge-high text-dim"></i> <span data-i18n="ui.ucusHizi"></span>
+                  </label>
+                  <div class="input-unit-group">
+                    <input type="number" id="inputFlightSpeed" value="12" min="1" max="35" step="0.5" class="form-input flight-compact-input" />
+                    <span class="input-unit-suffix flight-unit-suffix">m/s</span>
+                  </div>
+                </div>
+                <div class="form-group m-0">
+                  <label class="text-xs font-semibold text-dim mb-2 d-flex items-center gap-4">
+                    <i class="fa-solid fa-battery-half text-dim"></i> <span data-i18n="ui.bataryaSuresi"></span>
+                  </label>
+                  <div class="input-unit-group">
+                    <input type="number" id="inputSafeBatteryDuration" value="32" min="5" max="120" step="1"
+                      class="form-input flight-compact-input" />
+                    <span class="input-unit-suffix flight-unit-suffix">dk</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Live Drone Speed & Wind Limit Telemetry Chips -->
+              <div class="flight-telemetry-badge-grid flight-overlap-row" id="lblDroneSpeedLimitBadge">
+                <div class="flight-telemetry-chip">
+                  <span data-i18n="ui.maksHiz"></span>
+                  <strong class="text-cyan" id="valBadgeMaxSpeed">15 m/s</strong>
+                </div>
+                <div class="flight-telemetry-chip">
+                  <span data-i18n="ui.onerilenHiz"></span>
+                  <strong class="text-emerald" id="valBadgeRecSpeed">12 m/s</strong>
+                </div>
+                <div class="flight-telemetry-chip">
+                  <span data-i18n="ui.maksRuzgar"></span>
+                  <strong class="text-amber" id="valBadgeMaxWind">12 m/s</strong>
+                </div>
+              </div>
+
+              <!-- Bindirmeler & Hat Açısı -->
+              <div class="flight-inputs-grid-2x2">
+                <div class="form-group m-0">
+                  <label class="text-xs font-semibold text-dim mb-2 d-flex items-center gap-4">
+                    <i class="fa-solid fa-arrows-up-down text-dim"></i> <span data-i18n="flight.forwardOverlap"></span>
+                  </label>
+                  <div class="input-unit-group">
+                    <input type="number" id="inputForwardOverlap" value="80" min="50" max="90" step="5"
+                      class="form-input flight-compact-input" />
+                    <span class="input-unit-suffix flight-unit-suffix-pct">%</span>
+                  </div>
+                </div>
+                <div class="form-group m-0">
+                  <label class="text-xs font-semibold text-dim mb-2 d-flex items-center gap-4">
+                    <i class="fa-solid fa-arrows-left-right text-dim"></i> <span data-i18n="flight.sideOverlap"></span>
+                  </label>
+                  <div class="input-unit-group">
+                    <input type="number" id="inputSideOverlap" value="70" min="40" max="85" step="5" class="form-input flight-compact-input" />
+                    <span class="input-unit-suffix flight-unit-suffix-pct">%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Hat Açısı (Doğrultu) & Optimal Eksen Seçici -->
+              <div class="flight-heading-box">
+                <div class="d-flex justify-between items-center">
+                  <label class="text-xs font-semibold text-cyan m-0 d-flex items-center gap-6">
+                    <i class="fa-solid fa-compass"></i> <span data-i18n="ui.ucusHatYonu"></span> <span id="txtFlightHeadingVal"
+                      class="font-mono text-white text-xs ml-2">--°</span>
+                  </label>
+                  <div class="d-flex items-center gap-4">
+                    <button class="btn btn-secondary btn-sm text-xs py-2 px-8 text-emerald border-emerald flight-heading-btn-sm"
+                      id="btnAutoOptimalHeading" type="button"
+                      title="" data-i18n-title="flight.titleAutoLongAxis">
+                      <i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="flight.longAxis"></span>
+                    </button>
+                    <button class="btn btn-secondary btn-sm text-xs py-2 px-8 text-cyan border-cyan flight-heading-btn-sm"
+                      id="btnWindAlignHeading" type="button"
+                      title="" data-i18n-title="flight.titleWindAlign">
+                      <i class="fa-solid fa-wind"></i> <span data-i18n="flight.windDir"></span>
+                    </button>
+                  </div>
+                </div>
+                <div class="d-flex items-center gap-8">
+                  <input type="range" id="sliderFlightHeading" min="0" max="359" value="0" step="1"
+                    class="flight-slider" />
+                  <div class="input-unit-group flight-heading-wrap">
+                    <input type="number" id="inputFlightHeading" value="0" min="0" max="359" step="1"
+                      class="form-input text-center text-xs flight-compact-heading-input" />
+                    <span class="input-unit-suffix flight-heading-suffix">°</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Hesaplanan Uçuş & Telemetri Çıktısı -->
+              <div class="flight-summary-box">
+                <div>
+                  <span class="text-muted" data-i18n="ui.ucusYuksekligi"></span>
+                  <strong id="resCalcAltitude" class="text-cyan font-mono">100 m AGL | GSD: 2.73 cm</strong>
+                </div>
+                <div>
+                  <span class="text-muted" data-i18n="ui.ucusHatlari"></span>
+                  <strong id="resCalcGridLines" class="text-white font-mono" data-i18n="ui.hatAralikM"></strong>
+                </div>
+                <div>
+                  <span class="text-muted" data-i18n="ui.toplamHatUzunlugu"></span>
+                  <strong id="resCalcPathLength" class="text-white font-mono">-- km</strong>
+                </div>
+                <div>
+                  <span class="text-muted" data-i18n="ui.kameraCekimi"></span>
+                  <strong id="resCalcPhotos" class="text-white font-mono" data-i18n="ui.fotograf"></strong>
+                </div>
+                <div>
+                  <span class="text-muted" data-i18n="ui.tahminiUcusSuresi"></span>
+                  <strong id="resCalcDuration" class="text-emerald font-mono" data-i18n="flight.initialDuration"></strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Full-Width Operational Field Note Below Cards -->
+        <div class="card p-12 mb-16 bg-black/50 border border-white/10 d-flex items-center gap-10">
+          <i class="fa-solid fa-circle-info text-cyan text-lg flex-shrink-0"></i>
+          <div class="text-xs text-muted leading-relaxed">
+            <strong class="text-cyan" data-i18n="flight.fieldNoticeTitle"></strong>
+            <span data-i18n="flight.fieldNoticeDesc"></span>
+          </div>
+        </div>
+
+      </section>

@@ -1,0 +1,31 @@
+    <!-- ================= PERMANENT STICKY CYBERNETIC LIVE CONSOLE DOCK ================= -->
+    <div id="cyberConsoleDock" class="console-dock">
+      <div class="d-flex justify-between items-center">
+        <div class="d-flex items-center gap-8 font-display text-base font-bold text-white">
+          <span class="dock-indicator-dot"></span>
+          <span data-i18n="ui.siStemISlem"></span>
+          <span id="dockSummaryText" class="text-sm font-semibold text-dim font-mono"></span>
+        </div>
+        <div class="d-flex items-center gap-6">
+          <button class="console-dock-btn" id="btnConsoleToggle" type="button" title="" data-i18n-title="console.toggle">
+            <i class="fa-solid fa-chevron-down text-xs" id="iconConsoleToggle"></i>
+          </button>
+          <button class="console-dock-btn console-dock-btn-danger" id="btnClearConsoleLog" type="button"
+            title="" data-i18n-title="console.clear">
+            <i class="fa-solid fa-trash-can text-xs"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="progress-container mb-2">
+        <div class="d-flex justify-between text-xs text-dim font-mono mb-2">
+          <span id="progressLabel" data-i18n="common.systemReady"></span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progressBarFill"></div>
+        </div>
+      </div>
+
+      <div class="console-box" id="globalConsoleLog" data-i18n="ui.siStemHaritaTools"></div>
+    </div>

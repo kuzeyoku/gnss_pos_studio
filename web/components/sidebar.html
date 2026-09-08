@@ -1,0 +1,139 @@
+  <!-- Sidebar -->
+  <aside class="sidebar" id="appSidebar">
+    <button id="btnMobileSidebarClose" class="mobile-sidebar-close-btn" aria-label="" data-i18n-aria="sidebar.closeAria" type="button">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="brand">
+      <div class="brand-icon">
+        <i class="fa-solid fa-satellite-dish"></i>
+        <span class="brand-signal-pulse"></span>
+      </div>
+      <div class="brand-info">
+        <div class="brand-title-wrap">
+          <h2 data-i18n="navigation.tabDashboard.title"></h2>
+          <span class="badge-beta">BETA</span>
+        </div>
+        <span class="brand-subtitle"><span class="brand-live-dot"></span> <span data-i18n="sidebar.subTitle"></span></span>
+      </div>
+    </div>
+
+    <div class="sidebar-nav-container">
+      <div class="nav-section-title" data-i18n="sidebar.secCore"></div>
+      <ul class="nav-menu">
+        <li class="nav-item active" data-tab="tab-home">
+          <i class="fa-solid fa-house"></i>
+          <span data-i18n="sidebar.tabHome"></span>
+        </li>
+        <li class="nav-item" data-tab="tab-cadastre">
+          <i class="fa-solid fa-table-cells"></i>
+          <span data-i18n="sidebar.tabRtk"></span>
+        </li>
+        <li class="nav-item" data-tab="tab-rinex-studio">
+          <i class="fa-solid fa-satellite"></i>
+          <span data-i18n="sidebar.tabRinex"></span>
+        </li>
+        <li class="nav-item" data-tab="tab-map">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span data-i18n="sidebar.tabMap"></span>
+        </li>
+        <li class="nav-item" data-tab="tab-converter">
+          <i class="fa-solid fa-arrows-rotate"></i>
+          <span data-i18n="sidebar.tabConverter"></span>
+          <span class="badge-beta ml-auto" data-i18n="sidebar.badgeNew"></span>
+        </li>
+      </ul>
+
+      <div class="nav-section-title mt-8" data-i18n="sidebar.secGeodesy"></div>
+      <ul class="nav-menu">
+        <li class="nav-item" data-tab="tab-geodesy">
+          <i class="fa-solid fa-compass-drafting"></i>
+          <span data-i18n="sidebar.tabGeodesy"></span>
+        </li>
+        <li class="nav-item" data-tab="tab-tools">
+          <i class="fa-solid fa-calculator"></i>
+          <span data-i18n="sidebar.tabTools"></span>
+        </li>
+        <li class="nav-item" data-tab="tab-flight">
+          <i class="fa-solid fa-plane-up"></i>
+          <span data-i18n="sidebar.tabFlight"></span>
+        </li>
+        <li class="nav-item" data-tab="tab-tg20">
+          <i class="fa-solid fa-mountain-sun"></i>
+          <span data-i18n="sidebar.tabTg20"></span>
+        </li>
+      </ul>
+
+      <div class="nav-section-title mt-8" data-i18n="sidebar.secLegal"></div>
+      <ul class="nav-menu">
+        <li class="nav-item" data-tab="tab-guide">
+          <i class="fa-solid fa-book-bookmark"></i>
+          <span data-i18n="sidebar.tabGuide"></span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Pinned Bottom Sidebar Dock -->
+    <div class="sidebar-bottom-dock">
+      <!-- Mini Geodetic HUD Card -->
+      <div class="sidebar-geo-card">
+        <div class="sidebar-geo-header">
+          <div class="d-flex items-center gap-6">
+            <i class="fa-solid fa-earth-europe text-cyan"></i>
+            <span class="sidebar-geo-title" data-i18n="sidebar.geoStandard"></span>
+          </div>
+          <span class="sidebar-geo-pulse" title="" data-i18n-title="sidebar.sysSync"></span>
+        </div>
+
+        <div class="sidebar-geo-body">
+          <div class="sidebar-geo-row">
+            <span class="sidebar-geo-label" data-i18n="sidebar.datumRef"></span>
+            <strong class="sidebar-geo-val text-white font-mono">ITRF-96 / GRS80</strong>
+          </div>
+          <div class="sidebar-geo-row">
+            <span class="sidebar-geo-label" data-i18n="sidebar.geoidModel"></span>
+            <strong class="sidebar-geo-val text-amber font-mono">HGM TG-20 (+N)</strong>
+          </div>
+          <div class="sidebar-geo-row">
+            <span class="sidebar-geo-label" data-i18n="sidebar.projection"></span>
+            <strong class="sidebar-geo-val text-cyan font-mono" data-i18n="ui.gaussKruger3"></strong>
+          </div>
+
+          <div class="sidebar-constellations">
+            <span class="sidebar-sat-pill badge-sat-gps" title="" data-i18n-title="sidebar.satGpsTitle">GPS</span>
+            <span class="sidebar-sat-pill badge-sat-glo" title="" data-i18n-title="sidebar.satGloTitle">GLO</span>
+            <span class="sidebar-sat-pill badge-sat-gal" title="" data-i18n-title="sidebar.satGalTitle">GAL</span>
+            <span class="sidebar-sat-pill badge-sat-bds" title="" data-i18n-title="sidebar.satBdsTitle">BDS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Shortcuts Card -->
+      <div class="sidebar-shortcuts-card">
+        <div class="sidebar-shortcut-row" onclick="document.getElementById('inputHomeHeroFile')?.click()" title="" data-i18n-title="sidebar.quickUpload">
+          <div class="d-flex items-center gap-6">
+            <i class="fa-solid fa-folder-open text-cyan text-xs"></i>
+            <span data-i18n="sidebar.openFile"></span>
+          </div>
+          <kbd class="sidebar-kbd">Ctrl+O</kbd>
+        </div>
+        <div class="sidebar-shortcut-row" id="btnSidebarThemeShortcut" title="" data-i18n-title="sidebar.themeChange">
+          <div class="d-flex items-center gap-6">
+            <i class="fa-solid fa-circle-half-stroke text-amber text-xs"></i>
+            <span data-i18n="sidebar.themeChange"></span>
+          </div>
+          <kbd class="sidebar-kbd">Ctrl+D</kbd>
+        </div>
+      </div>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="sidebar-footer-wrap">
+          <span class="d-flex items-center gap-6"><i class="fa-solid fa-shield-halved text-emerald"></i> <span data-i18n="sidebar.localClient"></span></span>
+          <button id="btnSidebarAbout" class="sidebar-about-btn">
+            <i class="fa-solid fa-circle-info"></i> <span data-i18n="sidebar.aboutBtn"></span>
+          </button>
+        </div>
+        <div data-i18n="sidebar.privacyNotice"></div>
+      </div>
+    </div>
+  </aside>

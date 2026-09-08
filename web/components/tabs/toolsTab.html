@@ -1,0 +1,390 @@
+      <!-- ================= TAB: GEODETIC CALCULATION TOOLS WORKSTATION ================= -->
+      <section id="tab-tools" class="tool-tab">
+        <div class="card d-flex flex-col gap-16">
+
+          <!-- Master Header -->
+          <div class="card-header flex-wrap gap-12 mb-0 pb-12">
+            <div class="card-title">
+              <i class="fa-solid fa-calculator text-cyan text-lg"></i>
+              <span data-i18n="tools.headerTitle">Jeodezik Hesaplama Araçları</span>
+            </div>
+            <div class="d-flex gap-6 flex-wrap">
+              <span class="badge badge-cyan text-xs font-bold" data-i18n="tools.badgeVincenty">Vincenty Elipsoit</span>
+              <span class="badge badge-emerald text-xs font-bold" data-i18n="tools.badgeShoelace">Gauss Alanı</span>
+              <span class="badge badge-purple text-xs font-bold" data-i18n="tools.badgeDirect">1. & 2. Temel Ödev</span>
+              <span class="badge badge-amber text-xs font-bold" data-i18n="tools.badgePolar">Kutupsal Alım</span>
+            </div>
+          </div>
+
+          <!-- Tools Subtabs Bar -->
+          <div class="subtabs-bar">
+            <button class="btn btn-primary sub-tab-btn active tools-subtab-btn" data-subtab="subtab-tools-inv">
+              <i class="fa-solid fa-arrows-left-right"></i> <span data-i18n="tools.tabInverse">Mesafe & Azimut (Ters Ödev)</span>
+            </button>
+            <button class="btn btn-secondary sub-tab-btn tools-subtab-btn" data-subtab="subtab-tools-dir">
+              <i class="fa-solid fa-location-arrow"></i> <span data-i18n="tools.tabDirect">Düz Jeodezi (1. Temel Ödev)</span>
+            </button>
+            <button class="btn btn-secondary sub-tab-btn tools-subtab-btn" data-subtab="subtab-tools-area">
+              <i class="fa-solid fa-draw-polygon"></i> <span data-i18n="tools.tabGaussArea">Gauss Poligon Alanı & Çevre</span>
+            </button>
+            <button class="btn btn-secondary sub-tab-btn tools-subtab-btn" data-subtab="subtab-tools-polar">
+              <i class="fa-solid fa-compass"></i> <span data-i18n="tools.tabPolarAngle">Kutupsal Alım & Açı Dönüşümü</span>
+            </button>
+          </div>
+
+          <!-- SUBTAB 1: INVERSE GEODESY (MESAFE & AZİMUT) -->
+          <div id="subtab-tools-inv" class="subtab-content tools-subtab-pane active">
+            <div class="cadastre-table-panel">
+              <div class="card-header items-center flex-wrap gap-8 border-b pb-8 mb-12">
+                <div class="card-title m-0">
+                  <i class="fa-solid fa-arrows-left-right text-cyan"></i>
+                  <span data-i18n="tools.invTitle">İki Nokta Arası Jeodezik Mesafe ve Azimut (2. Temel Ödev)</span>
+                </div>
+                <div class="d-flex items-center gap-8 flex-wrap">
+                  <div class="d-flex items-center gap-6">
+                    <span class="text-xs font-bold text-dim uppercase" data-i18n="tools.lblCoordType">Koordinat Tipi:</span>
+                    <select id="toolsSelDistType" class="select-glass w-auto py-2 px-8 text-xs">
+                      <option value="GEO" selected data-i18n="tools.optGeoVincenty">Coğrafi (Enlem / Boylam - Vincenty)</option>
+                      <option value="GRID" data-i18n="tools.optGridProj">Grid / Projeksiyon (Y / X / Z)</option>
+                    </select>
+                    <select id="toolsSelDistEllipsoid" class="select-glass w-auto py-2 px-8 text-xs">
+                      <option value="GRS80" selected>GRS80 / WGS84 (TUREF)</option>
+                      <option value="HAYFORD">Hayford 1924 / ED50</option>
+                    </select>
+                  </div>
+                  <button type="button" class="btn btn-secondary btn-sm text-xs py-3 px-8" id="toolsBtnLoadDistSample">
+                    <i class="fa-solid fa-flask text-cyan"></i> <span data-i18n="tools.btnLoadDistSample">Örnek Yükle (Ankara ➔ İstanbul)</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="text-xs text-muted mb-12" data-i18n="tools.invIntro">
+                Elipsoit üzerinde Vincenty hassas jeodezik mesafe ve ileri/geri azimut açısı, veya projeksiyon düzleminde grid mesafesi ve semt açısı hesaplar.
+              </div>
+
+              <div class="d-grid gap-14 grid-split-11-10">
+                <!-- Inputs Column -->
+                <div class="d-flex flex-col gap-10">
+                  <!-- Point 1 -->
+                  <div class="geodesy-panel-box p-12">
+                    <span class="text-xs font-bold text-cyan uppercase d-block mb-6">
+                      <i class="fa-solid fa-location-dot"></i> <span data-i18n="tools.lblPoint1">1. Başlangıç Noktası (P1):</span>
+                    </span>
+                    <div class="d-grid gap-8 grid-cols-3">
+                      <div>
+                        <label id="toolsLblDistP1C1" class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="tools.lblLatEnlem">Enlem (Lat / DD):</label>
+                        <input type="text" id="toolsDistP1C1" value="39.920770" class="geo-coord-input" />
+                      </div>
+                      <div>
+                        <label id="toolsLblDistP1C2" class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="tools.lblLonBoylam">Boylam (Lon / DD):</label>
+                        <input type="text" id="toolsDistP1C2" value="32.854110" class="geo-coord-input" />
+                      </div>
+                      <div>
+                        <label id="toolsLblDistP1C3" class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="ui.kotYukseklikHZ">Kot / h (m):</label>
+                        <input type="text" id="toolsDistP1C3" value="985.000" class="geo-coord-input" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Point 2 -->
+                  <div class="geodesy-panel-box p-12">
+                    <span class="text-xs font-bold text-emerald uppercase d-block mb-6">
+                      <i class="fa-solid fa-location-dot"></i> <span data-i18n="tools.lblPoint2">2. Hedef Noktası (P2):</span>
+                    </span>
+                    <div class="d-grid gap-8 grid-cols-3">
+                      <div>
+                        <label id="toolsLblDistP2C1" class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="tools.lblLatEnlem">Enlem (Lat / DD):</label>
+                        <input type="text" id="toolsDistP2C1" value="41.008240" class="geo-coord-input" />
+                      </div>
+                      <div>
+                        <label id="toolsLblDistP2C2" class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="tools.lblLonBoylam">Boylam (Lon / DD):</label>
+                        <input type="text" id="toolsDistP2C2" value="28.978360" class="geo-coord-input" />
+                      </div>
+                      <div>
+                        <label id="toolsLblDistP2C3" class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="ui.kotYukseklikHZ">Kot / h (m):</label>
+                        <input type="text" id="toolsDistP2C3" value="45.000" class="geo-coord-input" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex gap-6">
+                    <button class="btn btn-primary flex-1 py-9 px-14 text-sm font-bold" id="toolsBtnCalcDistAzimuth">
+                      <i class="fa-solid fa-calculator"></i> <span data-i18n="tools.btnCalcDistAzimuth">Mesafe ve Azimut Hesapla</span>
+                    </button>
+                    <button class="btn btn-secondary py-9 px-12 text-xs" id="toolsBtnCopyDistResult" title="" data-i18n-title="common.copy">
+                      <i class="fa-solid fa-copy"></i> <span data-i18n="common.copy">Kopyala</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Output Column -->
+                <div>
+                  <div class="console-box coord-result-display h-full min-h-200" id="toolsDistResultBox" data-i18n="tools.distResultPlaceholder">
+                    Hesaplama sonucunu görmek için koordinatları girip 'Mesafe ve Azimut Hesapla' butonuna tıklayın.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUBTAB 2: DIRECT GEODESY (1. TEMEL ÖDEV) -->
+          <div id="subtab-tools-dir" class="subtab-content tools-subtab-pane">
+            <div class="cadastre-table-panel">
+              <div class="card-header items-center flex-wrap gap-8 border-b pb-8 mb-12">
+                <div class="card-title m-0">
+                  <i class="fa-solid fa-location-arrow text-cyan"></i>
+                  <span data-i18n="tools.dirTitle">Düz Jeodezi Problemi (1. Temel Ödev)</span>
+                </div>
+                <div class="d-flex items-center gap-6">
+                  <span class="text-xs font-bold text-dim uppercase">Elipsoit:</span>
+                  <select id="toolsSelDirectEllipsoid" class="select-glass w-auto py-2 px-8 text-xs">
+                    <option value="GRS80" selected>GRS80 / WGS84 (TUREF)</option>
+                    <option value="HAYFORD">Hayford 1924 / ED50</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="text-xs text-muted mb-12" data-i18n="tools.dirIntro">
+                Başlangıç noktasının enlem/boylamı, çıkış azimutu ve elipsoit mesafesi verilerek hedef noktanın kesin jeodezik koordinatlarını ve geri azimutunu hesaplar.
+              </div>
+
+              <div class="d-grid gap-14 grid-split-11-10">
+                <div class="d-flex flex-col gap-10">
+                  <div class="geodesy-panel-box p-12">
+                    <span class="text-xs font-bold text-cyan uppercase d-block mb-6">
+                      <i class="fa-solid fa-location-dot"></i> <span data-i18n="tools.lblStartPointParams">Başlangıç Noktası (P1) & Yön Parametreleri:</span>
+                    </span>
+                    <div class="d-grid gap-8 grid-cols-2">
+                      <div>
+                        <label class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="tools.lblLat1">Enlem (Lat1 / DD veya DMS):</label>
+                        <input type="text" id="toolsDirLat1" value="39.920770" class="geo-coord-input" />
+                      </div>
+                      <div>
+                        <label class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="tools.lblLon1">Boylam (Lon1 / DD veya DMS):</label>
+                        <input type="text" id="toolsDirLon1" value="32.854110" class="geo-coord-input" />
+                      </div>
+                    </div>
+                    <div class="d-grid gap-8 grid-cols-2 mt-8">
+                      <div>
+                        <label class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="tools.lblForwardAzimuth">Çıkış Azimutu (α₁₂ / Derece °):</label>
+                        <input type="text" id="toolsDirAzimuth" value="291.4235" class="geo-coord-input" />
+                      </div>
+                      <div>
+                        <label class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="tools.lblEllipsoidDist">Elipsoit Mesafesi (s / Metre):</label>
+                        <input type="text" id="toolsDirDistance" value="350149.20" class="geo-coord-input" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex gap-6">
+                    <button class="btn btn-primary flex-1 py-9 px-14 text-sm font-bold" id="toolsBtnCalcDirectGeodesy">
+                      <i class="fa-solid fa-location-arrow"></i> <span data-i18n="tools.btnCalcDirect">Hedef Noktayı Hesapla</span>
+                    </button>
+                    <button class="btn btn-secondary py-9 px-12 text-xs" id="toolsBtnCopyDirResult" title="" data-i18n-title="common.copy">
+                      <i class="fa-solid fa-copy"></i> <span data-i18n="common.copy">Kopyala</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="console-box coord-result-display h-full min-h-200" id="toolsDirResultBox" data-i18n="tools.dirResultPlaceholder">
+                    Hesaplama sonucunu görmek için başlangıç noktası ve parametreleri girip butona tıklayın.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUBTAB 3: GAUSS AREA & PERIMETER (SHOELACE FORMULA) -->
+          <div id="subtab-tools-area" class="subtab-content tools-subtab-pane">
+            <div class="cadastre-table-panel">
+              <div class="card-header items-center flex-wrap gap-8 border-b pb-8 mb-12">
+                <div class="card-title m-0">
+                  <i class="fa-solid fa-draw-polygon text-emerald"></i>
+                  <span data-i18n="tools.areaTitle">Gauss (Shoelace) Poligon Alanı & Çevre Hesabı</span>
+                </div>
+                <div class="d-flex gap-6 flex-wrap">
+                  <button type="button" class="btn btn-secondary btn-sm text-xs py-2 px-8" id="toolsBtnLoadAreaSample">
+                    <i class="fa-solid fa-flask text-emerald"></i> <span data-i18n="tools.btnSampleParcel">Örnek Parsel (100×100m)</span>
+                  </button>
+                  <label class="btn btn-secondary btn-outline-cyan btn-sm m-0 cursor-pointer text-xs py-2 px-8">
+                    <i class="fa-solid fa-folder-open text-cyan"></i> <span data-i18n="tools.btnSelectFile">Dosya Seç (.ncn, .txt, .csv)</span>
+                    <input type="file" id="toolsFileAreaInput" accept=".txt,.csv,.ncn,.dat,.xyz" class="d-none" />
+                  </label>
+                </div>
+              </div>
+
+              <div class="text-xs text-muted mb-12" data-i18n="tools.areaIntro">
+                Projeksiyon (Grid Y, X) köşe koordinatlarından Gauss (Shoelace) yöntemiyle poligon alanı (m², Dönüm, Hektar), çevre uzunluğu ve ağırlık merkezi hesabı yapar.
+              </div>
+
+              <div class="d-grid gap-14 grid-split-11-10">
+                <div class="d-flex flex-col gap-8">
+                  <textarea id="toolsTxtAreaInput" rows="7" placeholder="P1  500000.000  4500000.000&#10;P2  500100.000  4500000.000&#10;P3  500100.000  4500100.000&#10;P4  500000.000  4500100.000" class="batch-textarea min-h-140"></textarea>
+                  <button class="btn btn-primary py-9 px-14 text-sm font-bold w-100" id="toolsBtnCalcGaussArea">
+                    <i class="fa-solid fa-draw-polygon"></i> <span data-i18n="tools.btnCalcArea">Poligon Alanı & Çevre Hesapla</span>
+                  </button>
+                </div>
+
+                <!-- Area Output Cards Grid -->
+                <div class="geodesy-panel-box d-flex flex-col justify-between p-12">
+                  <div class="d-grid gap-8 grid-cols-2">
+                    <div class="area-kpi-card p-10 text-center">
+                      <span class="text-xs text-dim d-block mb-2">📐 Alan (Metrekare)</span>
+                      <strong id="toolsResAreaM2" class="text-emerald font-mono text-base d-block">0.000 m²</strong>
+                    </div>
+                    <div class="area-kpi-card p-10 text-center">
+                      <span class="text-xs text-dim d-block mb-2">🌾 Alan (Dönüm - TR)</span>
+                      <strong id="toolsResAreaDonum" class="text-cyan font-mono text-base d-block">0.000 Dönüm</strong>
+                    </div>
+                    <div class="area-kpi-card p-10 text-center">
+                      <span class="text-xs text-dim d-block mb-2">🗺️ Alan (Hektar)</span>
+                      <strong id="toolsResAreaHektar" class="text-purple font-mono text-base d-block">0.000 ha</strong>
+                    </div>
+                    <div class="area-kpi-card p-10 text-center">
+                      <span class="text-xs text-dim d-block mb-2">📏 Çevre Uzunluğu</span>
+                      <strong id="toolsResAreaPerimeter" class="text-amber font-mono text-base d-block">0.000 m</strong>
+                    </div>
+                  </div>
+                  <div class="text-xs text-dim text-center mt-8 pt-8 border-t border-white/5">
+                    Köşe Sayısı: <strong id="toolsResAreaCount" class="text-white font-mono mr-8">0</strong> | 
+                    Ağırlık Merkezi: <strong id="toolsResAreaCentroid" class="text-cyan font-mono">Y: -- | X: --</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUBTAB 4: POLAR COORDINATES (KUTUPSAL ALIM/APLİKASYON) & ANGLE CONVERTER -->
+          <div id="subtab-tools-polar" class="subtab-content tools-subtab-pane">
+            <div class="d-grid gap-14 grid-split-11-10">
+
+              <!-- Left Card: Kutupsal Alım & Aplikasyon Hesabı -->
+              <div class="cadastre-table-panel p-14">
+                <div class="card-title m-0 border-b pb-8 mb-10">
+                  <i class="fa-solid fa-compass text-purple"></i>
+                  <span data-i18n="tools.polarTitle">Kutupsal Nokta Hesabı (Alım & Aplikasyon)</span>
+                </div>
+                <div class="text-xs text-muted mb-10" data-i18n="tools.polarDesc">
+                  Duran nokta, bakılan referans nokta, kırılma açısı (veya semt) ve yatay mesafe ile yeni noktanın koordinatlarını hesaplar.
+                </div>
+
+                <div class="d-flex flex-col gap-8">
+                  <!-- Station (Duran Nokta) -->
+                  <div class="geodesy-panel-box p-8">
+                    <span class="text-xs font-bold text-purple uppercase d-block mb-4">📍 Duran Nokta (D):</span>
+                    <div class="d-grid gap-6 grid-cols-2">
+                      <div>
+                        <label class="text-2xs text-dim">Y (Sağa Değer / m):</label>
+                        <input type="number" id="toolsPolarYD" value="500000.000" step="0.001" class="geo-coord-input text-xs" />
+                      </div>
+                      <div>
+                        <label class="text-2xs text-dim">X (Yukarı Değer / m):</label>
+                        <input type="number" id="toolsPolarXD" value="4500000.000" step="0.001" class="geo-coord-input text-xs" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Backsight (Bakılan Nokta) -->
+                  <div class="geodesy-panel-box p-8">
+                    <span class="text-xs font-bold text-cyan uppercase d-block mb-4">🎯 Bakılan Referans Nokta (B):</span>
+                    <div class="d-grid gap-6 grid-cols-2">
+                      <div>
+                        <label class="text-2xs text-dim">Y (Sağa Değer / m):</label>
+                        <input type="number" id="toolsPolarYB" value="500250.000" step="0.001" class="geo-coord-input text-xs" />
+                      </div>
+                      <div>
+                        <label class="text-2xs text-dim">X (Yukarı Değer / m):</label>
+                        <input type="number" id="toolsPolarXB" value="4500180.000" step="0.001" class="geo-coord-input text-xs" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Angle & Distance -->
+                  <div class="geodesy-panel-box p-8">
+                    <span class="text-xs font-bold text-amber uppercase d-block mb-4">📐 Ölçülen Açı & Mesafe:</span>
+                    <div class="d-grid gap-6 grid-cols-2">
+                      <div>
+                        <label class="text-2xs text-dim">Kırılma Açısı (β / Grad veya °):</label>
+                        <input type="text" id="toolsPolarAngle" value="75.4520" class="geo-coord-input text-xs" />
+                      </div>
+                      <div>
+                        <label class="text-2xs text-dim">Yatay Mesafe (S / Metre):</label>
+                        <input type="number" id="toolsPolarDist" value="142.650" step="0.001" class="geo-coord-input text-xs" />
+                      </div>
+                    </div>
+                    <div class="d-flex items-center gap-6 mt-6">
+                      <label class="text-2xs text-dim">Açı Birimi:</label>
+                      <select id="toolsPolarAngleUnit" class="select-glass text-xs py-1 px-6">
+                        <option value="GRAD" selected>Grad (gon)</option>
+                        <option value="DEG">Derece (° DD)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <button class="btn btn-primary py-8 px-12 text-xs font-bold" id="toolsBtnCalcPolar">
+                    <i class="fa-solid fa-calculator"></i> <span data-i18n="tools.btnCalcPolar">Kutupsal Nokta Koordinatını Hesapla</span>
+                  </button>
+
+                  <div class="console-box coord-result-display" id="toolsPolarResultBox">
+                    Sonucu görmek için parametreleri girip hesapla butonuna tıklayın.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Card: Hassas Açı Birimi Dönüştürücü -->
+              <div class="cadastre-table-panel p-14">
+                <div class="card-title m-0 border-b pb-8 mb-10">
+                  <i class="fa-solid fa-arrows-rotate text-emerald"></i>
+                  <span data-i18n="tools.angleConvTitle">Hassas Açı Birimi Dönüştürücü</span>
+                </div>
+                <div class="text-xs text-muted mb-10" data-i18n="tools.angleConvDesc">
+                  DMS (Derece-Dakika-Saniye), Ondalık Derece (DD), Grad (gon) ve Radyan açı formatları arasında anlık çift yönlü dönüşüm.
+                </div>
+
+                <div class="d-flex flex-col gap-10">
+                  <div>
+                    <label class="text-xs font-bold text-cyan d-block mb-3">DMS (Derece-Dakika-Saniye):</label>
+                    <div class="d-flex gap-4">
+                      <input type="text" id="toolsAngleDMS" placeholder="39° 55' 14.5200\"" class="geo-coord-input text-xs" />
+                      <button type="button" class="btn btn-secondary btn-sm" id="toolsBtnConvertFromDMS" title="DMS'den Dönüştür">➔</button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="text-xs font-bold text-emerald d-block mb-3">Ondalık Derece (Decimal Degrees - DD):</label>
+                    <div class="d-flex gap-4">
+                      <input type="number" id="toolsAngleDD" step="0.00000001" placeholder="39.92070000" class="geo-coord-input text-xs" />
+                      <button type="button" class="btn btn-secondary btn-sm" id="toolsBtnConvertFromDD" title="Dereceden Dönüştür">➔</button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="text-xs font-bold text-amber d-block mb-3">Grad / Gon (400 gon = 360°):</label>
+                    <div class="d-flex gap-4">
+                      <input type="number" id="toolsAngleGrad" step="0.00000001" placeholder="44.35633333" class="geo-coord-input text-xs" />
+                      <button type="button" class="btn btn-secondary btn-sm" id="toolsBtnConvertFromGrad" title="Grad'dan Dönüştür">➔</button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="text-xs font-bold text-purple d-block mb-3">Radyan (Rad):</label>
+                    <div class="d-flex gap-4">
+                      <input type="number" id="toolsAngleRad" step="0.00000001" placeholder="0.69674844" class="geo-coord-input text-xs" />
+                      <button type="button" class="btn btn-secondary btn-sm" id="toolsBtnConvertFromRad" title="Radyandan Dönüştür">➔</button>
+                    </div>
+                  </div>
+
+                  <div class="alert-static-coord-banner mt-4 p-8">
+                    <div class="text-xs text-dim leading-relaxed">
+                      💡 <strong>İpucu:</strong> Herhangi bir açı kutusuna değer yazıp yanındaki <strong>[➔]</strong> butonuna tıkladığınızda tüm birimler anında senkronize edilir.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>

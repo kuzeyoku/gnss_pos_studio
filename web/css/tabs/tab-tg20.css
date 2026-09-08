@@ -1,0 +1,330 @@
+/* ==========================================================================
+   21. TG-20 GEOID & HEIGHT REDUCTION STUDIO MASTERY
+   ========================================================================== */
+.tg20-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tg20-stat-chip {
+  background: rgba(3, 7, 18, 0.75);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.25s ease;
+}
+
+.tg20-stat-chip:hover {
+  transform: translateY(-2px);
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.tg20-stat-chip-emerald {
+  border-color: rgba(16, 185, 129, 0.35);
+  background: linear-gradient(135deg, rgba(3, 7, 18, 0.85), rgba(16, 185, 129, 0.12));
+}
+
+.tg20-stat-chip-amber {
+  border-color: rgba(245, 158, 11, 0.35);
+  background: linear-gradient(135deg, rgba(3, 7, 18, 0.85), rgba(245, 158, 11, 0.1));
+}
+
+.tg20-stat-label {
+  font-size: 10.5px;
+  color: var(--text-dim);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tg20-stat-val {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.tg20-formula-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.75), rgba(6, 182, 212, 0.08));
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.tg20-regions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.tg20-region-chip {
+  background: rgba(3, 7, 18, 0.65);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  padding: 7px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  font-family: var(--font-mono);
+  transition: all 0.2s ease;
+}
+
+.tg20-region-chip:hover {
+  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.06);
+}
+
+.tg20-action-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+}
+
+/* ==========================================================================
+   TG-20 SUB-TAB NAVIGATION, PANES & INTERACTIVE GEOID MAP STYLES
+   ========================================================================== */
+.tg20-subtab-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-glass, rgba(255, 255, 255, 0.08));
+  border-radius: 12px;
+  padding: 5px;
+  backdrop-filter: blur(8px);
+}
+
+.tg20-subtab-btn {
+  font-family: var(--font-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dim, #94a3b8);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.2px;
+}
+
+.tg20-subtab-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tg20-subtab-btn.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.25) 0%, rgba(14, 165, 233, 0.2) 100%);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.2);
+}
+
+.tg20-pane {
+  display: none;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.tg20-pane.active {
+  display: block;
+}
+
+.tg20-interactive-map-card {
+  margin-bottom: 0;
+}
+
+.tg20-map-canvas {
+  height: 560px;
+  width: 100%;
+  z-index: 1;
+}
+
+.tg20-map-hud-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 10px;
+  padding: 6px 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 12px rgba(245, 158, 11, 0.15);
+  flex-wrap: wrap;
+  max-width: calc(100% - 16px);
+}
+
+/* Ensure Leaflet scale bar sits clearly above the bottom HUD card */
+#tg20MapContainer .leaflet-bottom.leaflet-left {
+  bottom: 74px !important;
+  left: 14px !important;
+  z-index: 999 !important;
+  pointer-events: none;
+}
+
+#tg20MapContainer .leaflet-control-scale {
+  pointer-events: auto;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+}
+
+@media (max-width: 768px) {
+  #tg20MapContainer .leaflet-bottom.leaflet-left {
+    bottom: 118px !important;
+  }
+}
+
+.tg20-hud-icon-box {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tg20-hud-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.text-glow-amber {
+  text-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+}
+
+/* Custom Leaflet Popup Overrides (Dark Mode Default) */
+.custom-leaflet-popup .leaflet-popup-content-wrapper {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 16px rgba(245, 158, 11, 0.15) !important;
+  padding: 4px !important;
+}
+
+.custom-leaflet-popup .leaflet-popup-tip {
+  background: #0f172a !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+}
+
+.custom-leaflet-popup .leaflet-popup-content {
+  margin: 8px 10px !important;
+  line-height: 1.4 !important;
+}
+
+.custom-leaflet-popup .leaflet-popup-close-button {
+  color: #94a3b8 !important;
+  padding: 4px 6px 0 0 !important;
+}
+
+.custom-leaflet-popup .leaflet-popup-close-button:hover {
+  color: #f59e0b !important;
+}
+
+.tg20-pulsing-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.tg20-pulsing-ring {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.4);
+  animation: tg20Pulse 1.8s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tg20-pulsing-core {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #f59e0b;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 10px #f59e0b;
+  z-index: 2;
+}
+
+@keyframes tg20Pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Yanıp Sönen 4 TG-20 Izgara Düğüm Pini (Cyan Pulsing Pin) */
+.tg20-grid-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.tg20-grid-pin-ring {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(6, 182, 212, 0.5);
+  animation: tg20GridPulse 1.5s infinite ease-out;
+}
+
+.tg20-grid-pin-core {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #06b6d4;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 8px #06b6d4;
+  z-index: 2;
+}
+
+@keyframes tg20GridPulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}

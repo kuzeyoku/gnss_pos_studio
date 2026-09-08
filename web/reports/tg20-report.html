@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title data-i18n="reports.tg20MainTitle"></title>
+  <link rel="stylesheet" href="../css/report.css">
+  <style>
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-bottom: 12px;
+      font-size: 10px;
+    }
+    .meta-item {
+      display: flex !important;
+      justify-content: flex-start !important;
+      align-items: baseline !important;
+      gap: 6px !important;
+      padding: 2px 0 !important;
+      text-align: left !important;
+    }
+    .meta-label {
+      color: #64748b !important;
+      font-weight: 600 !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+    }
+    .meta-value {
+      color: #0f172a !important;
+      font-weight: 700 !important;
+      font-family: 'Consolas', 'Courier New', monospace !important;
+      text-align: left !important;
+    }
+  </style>
+</head>
+<body class="report-body">
+  <button class="print-btn-float" onclick="window.print()" data-i18n="reports.btnPrint"></button>
+
+  <div class="report-container">
+    <div class="report-header-banner">
+      <div>
+        <div class="brand-title" data-i18n="reports.tg20BrandTitle"></div>
+        <div class="brand-sub" data-i18n="reports.tg20BrandSub"></div>
+      </div>
+      <div class="report-meta-header">
+        <div><strong data-i18n="reports.tg20MetaHeader"></strong></div>
+        <div><span data-i18n="reports.lblDateTime"></span> <strong>{{DATE}} {{TIME}}</strong></div>
+      </div>
+    </div>
+
+    <div class="report-title-box">
+      <h1 data-i18n="reports.tg20MainTitle"></h1>
+      <p data-i18n="reports.tg20SubTitle"></p>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-item"><span class="meta-label" data-i18n="reports.lblProject"></span><span class="meta-value">{{PROJECT}}</span></div>
+      <div class="meta-item"><span class="meta-label" data-i18n="reports.lblCalcDate"></span><span class="meta-value">{{DATE}} - {{TIME}}</span></div>
+      <div class="meta-item"><span class="meta-label" data-i18n="reports.lblProjection"></span><span class="meta-value">{{PROJECTION_STR}}</span></div>
+      <div class="meta-item"><span class="meta-label" data-i18n="reports.lblGeoidModel"></span><span class="meta-value" data-i18n="reports.valGeoidModel"></span></div>
+      <div class="meta-item"><span class="meta-label" data-i18n="reports.lblTotalPoints"></span><span class="meta-value">{{TOTAL_POINTS}}</span></div>
+      <div class="meta-item"><span class="meta-label" data-i18n="reports.lblVerticalDatum"></span><span class="meta-value" data-i18n="reports.valVerticalDatum"></span></div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-math"><strong data-i18n="reports.formulaTitle"></strong>&nbsp;&nbsp; <span>H<sub>ortometrik</sub> = h<sub>elipsoit</sub> − N<sub>TG-20</sub></span></div>
+      <div class="formula-stats"><span data-i18n="reports.avgUndulationPrefix"></span> <strong>{{AVG_UNDULATION}}</strong></div>
+    </div>
+
+    <table class="report-table">
+      <thead>
+        <tr>
+          <th class="col-num" data-i18n="reports.thNum"></th>
+          <th class="col-pname" data-i18n="reports.thPointName"></th>
+          <th class="col-lat" data-i18n="reports.thLat"></th>
+          <th class="col-lon" data-i18n="reports.thLon"></th>
+          <th class="col-metric" data-i18n="reports.thEastM"></th>
+          <th class="col-metric" data-i18n="reports.thNorthM"></th>
+          <th class="col-metric" data-i18n="reports.thElevEllipsoidM"></th>
+          <th class="col-metric col-geoid" data-i18n="reports.thUndulationM"></th>
+          <th class="col-metric col-ortho" data-i18n="reports.thElevOrthoM"></th>
+          <th class="col-obstype" data-i18n="reports.thObsType"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{TABLE_ROWS}}
+      </tbody>
+    </table>
+
+    <div class="disclaimer-card">
+      <div class="disclaimer-title" data-i18n="reports.disclaimerTitle"></div>
+      <div data-i18n="reports.disclaimerText"></div>
+    </div>
+
+    <div class="footer-bar">
+      <div data-i18n="reports.footerBrand"></div>
+      <div data-i18n="reports.footerRef"></div>
+      <div data-i18n="reports.footerPage"></div>
+    </div>
+  </div>
+</body>
+</html>

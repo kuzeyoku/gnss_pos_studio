@@ -1,0 +1,214 @@
+      <!-- ================= TAB 0: PREMIUM HOMEPAGE DASHBOARD ================= -->
+      <section id="tab-home" class="tool-tab active">
+
+        <!-- Hero Welcome Banner -->
+        <div class="home-hero-card">
+          <div class="hero-content">
+            <div class="hero-pill">
+              <span class="hero-pill-dot"></span>
+              <span data-i18n="home.heroPill"></span>
+            </div>
+            <h2 class="hero-title" data-i18n="home.heroTitle"></h2>
+            <p class="hero-description" data-i18n="home.heroDesc"></p>
+          </div>
+
+          <!-- Hero Universal Fast Dropzone -->
+          <div class="hero-quick-dropzone" id="homeHeroDropzone">
+            <i class="fa-solid fa-cloud-arrow-up hero-drop-icon"></i>
+            <div class="hero-drop-title" data-i18n="home.heroDropTitle"></div>
+            <div class="hero-drop-sub" data-i18n="home.heroDropSub"></div>
+            <div class="hero-drop-badge" data-i18n="home.heroDropBadge"></div>
+            <input type="file" id="inputHomeHeroFile"
+              accept=".rw5,.raw,.csv,.txt,.jxl,.dat,.o,.rnx,.crx,.obs,.ncn,.dns,.kml,.kmz,.geojson,.json" />
+          </div>
+        </div>
+
+        <!-- Bento Grid of Tool Modules -->
+        <div class="home-bento-grid">
+
+          <!-- Bento Card 1: RTK & Ham Data -->
+          <div class="bento-card" data-launch-tab="tab-cadastre">
+            <div class="bento-card-header">
+              <div class="bento-icon-box bento-icon-cyan">
+                <i class="fa-solid fa-table-cells"></i>
+              </div>
+
+              <span class="bento-badge badge-cyan" data-i18n="home.rtkBadge"></span>
+            </div>
+            <h3 class="bento-title" data-i18n="home.rtkTitle"></h3>
+            <p class="bento-desc" data-i18n="home.rtkDesc"></p>
+            <div class="bento-features">
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.rtkFeat1"></span></span>
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.rtkFeat2"></span></span>
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.rtkFeat3"></span></span>
+            </div>
+            <div class="bento-footer">
+              <button type="button" class="bento-action-btn"><span data-i18n="home.openModule"></span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Bento Card 2: İHA Uçuş Planlama & Akıllı YKN -->
+          <div class="bento-card" data-launch-tab="tab-flight">
+            <div class="bento-card-header">
+              <div class="bento-icon-box bento-icon-cyan">
+                <i class="fa-solid fa-plane-up"></i>
+              </div>
+              <span class="bento-badge badge-cyan" data-i18n="home.flightBadge"></span>
+            </div>
+            <h3 class="bento-title" data-i18n="home.flightTitle"></h3>
+            <p class="bento-desc" data-i18n="home.flightDesc"></p>
+            <div class="bento-features">
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.flightFeat1"></span></span>
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.flightFeat2"></span></span>
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.flightFeat3"></span></span>
+            </div>
+            <div class="bento-footer">
+              <button type="button" class="bento-action-btn"><span data-i18n="home.openModule"></span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Bento Card 2: RINEX Düzenleyici -->
+          <div class="bento-card" data-launch-tab="tab-rinex-studio">
+            <div class="bento-card-header">
+              <div class="bento-icon-box bento-icon-blue">
+                <i class="fa-solid fa-satellite"></i>
+              </div>
+              <span class="bento-badge badge-blue" data-i18n="home.rinexBadge"></span>
+            </div>
+            <h3 class="bento-title" data-i18n="home.rinexTitle"></h3>
+            <p class="bento-desc" data-i18n="home.rinexDesc"></p>
+            <div class="bento-features">
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.rinexFeat1"></span></span>
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.rinexFeat2"></span></span>
+            </div>
+            <div class="bento-footer">
+              <button type="button" class="bento-action-btn"><span data-i18n="home.openModule"></span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Bento Card 3: Pafta İndeksi & Harita -->
+          <div class="bento-card" data-launch-tab="tab-map">
+            <div class="bento-card-header">
+              <div class="bento-icon-box bento-icon-purple">
+                <i class="fa-solid fa-map-location-dot"></i>
+              </div>
+              <span class="bento-badge badge-purple" data-i18n="home.mapBadge"></span>
+            </div>
+            <h3 class="bento-title" data-i18n="home.mapTitle"></h3>
+            <p class="bento-desc" data-i18n="home.mapDesc"></p>
+            <div class="bento-features">
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.mapFeat1"></span></span>
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.mapFeat2"></span></span>
+            </div>
+            <div class="bento-footer">
+              <button type="button" class="bento-action-btn"><span data-i18n="home.openModule"></span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Bento Card 4: Koordinat Dönüşümü & Helmert 2D -->
+          <div class="bento-card" data-launch-tab="tab-geodesy">
+            <div class="bento-card-header">
+              <div class="bento-icon-box bento-icon-emerald">
+                <i class="fa-solid fa-compass-drafting"></i>
+              </div>
+              <span class="bento-badge badge-emerald" data-i18n="home.geodesyBadge"></span>
+            </div>
+            <h3 class="bento-title" data-i18n="home.geodesyTitle"></h3>
+            <p class="bento-desc" data-i18n="home.geodesyDesc"></p>
+            <div class="bento-features">
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.geodesyFeat1"></span></span>
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.geodesyFeat2"></span></span>
+            </div>
+            <div class="bento-footer">
+              <button type="button" class="bento-action-btn"><span data-i18n="home.openModule"></span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Bento Card 5: Jeodezik Hesaplama Araçları -->
+          <div class="bento-card" data-launch-tab="tab-tools">
+            <div class="bento-card-header">
+              <div class="bento-icon-box bento-icon-cyan">
+                <i class="fa-solid fa-calculator"></i>
+              </div>
+              <span class="bento-badge badge-cyan" data-i18n="home.toolsBadge"></span>
+            </div>
+            <h3 class="bento-title" data-i18n="home.toolsTitle"></h3>
+            <p class="bento-desc" data-i18n="home.toolsDesc"></p>
+            <div class="bento-features">
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.toolsFeat1"></span></span>
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.toolsFeat2"></span></span>
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.toolsFeat3"></span></span>
+            </div>
+            <div class="bento-footer">
+              <button type="button" class="bento-action-btn"><span data-i18n="home.openModule"></span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Bento Card 6: TG-20 Jeoit Kot İndirgeme -->
+          <div class="bento-card" data-launch-tab="tab-tg20">
+            <div class="bento-card-header">
+              <div class="bento-icon-box bento-icon-amber">
+                <i class="fa-solid fa-mountain-sun"></i>
+              </div>
+              <span class="bento-badge badge-amber" data-i18n="home.tg20Badge"></span>
+            </div>
+            <h3 class="bento-title" data-i18n="home.tg20Title"></h3>
+            <p class="bento-desc" data-i18n="home.tg20Desc"></p>
+            <div class="bento-features">
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.tg20Feat1"></span></span>
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.tg20Feat2"></span></span>
+            </div>
+            <div class="bento-footer">
+              <button type="button" class="bento-action-btn"><span data-i18n="home.openModule"></span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Bento Card 7: Evrensel Format Dönüştürücü -->
+          <div class="bento-card" data-launch-tab="tab-converter">
+            <div class="bento-card-header">
+              <div class="bento-icon-box bento-icon-cyan">
+                <i class="fa-solid fa-arrows-rotate"></i>
+              </div>
+              <span class="bento-badge badge-cyan" data-i18n="home.converterBadge"></span>
+            </div>
+            <h3 class="bento-title" data-i18n="home.converterTitle"></h3>
+            <p class="bento-desc" data-i18n="home.converterDesc"></p>
+            <div class="bento-features">
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.converterFeat1"></span></span>
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.converterFeat2"></span></span>
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.converterFeat3"></span></span>
+              <span><i class="fa-solid fa-check"></i> <span data-i18n="home.converterFeat4"></span></span>
+            </div>
+            <div class="bento-footer">
+              <button type="button" class="bento-action-btn"><span data-i18n="home.openModule"></span> <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Trust & Technical Feature Badges Bar -->
+        <div class="home-trust-bar">
+          <div class="trust-item">
+            <i class="fa-solid fa-lock trust-icon"></i>
+            <div>
+              <strong data-i18n="home.trust1Title"></strong>
+              <span data-i18n="home.trust1Desc"></span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <i class="fa-solid fa-bolt trust-icon"></i>
+            <div>
+              <strong data-i18n="home.trust2Title"></strong>
+              <span data-i18n="home.trust2Desc"></span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <i class="fa-solid fa-file-shield trust-icon"></i>
+            <div>
+              <strong data-i18n="home.trust3Title"></strong>
+              <span data-i18n="home.trust3Desc"></span>
+            </div>
+          </div>
+        </div>
+
+      </section>

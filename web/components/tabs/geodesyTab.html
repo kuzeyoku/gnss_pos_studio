@@ -1,0 +1,498 @@
+      <!-- ================= TAB 4: GEODESY & UNIVERSAL EPSG WORKSTATION ================= -->
+      <section id="tab-geodesy" class="tool-tab">
+
+        <!-- ================= CARD 1: SINGLE POINT INTERACTIVE CONVERTER ================= -->
+        <div class="card d-flex flex-col gap-14">
+          <div class="card-header mb-0 pb-4">
+            <div class="card-title">
+              <i class="fa-solid fa-compass-drafting text-cyan"></i>
+              <span data-i18n="geodesy.tabSinglePoint"></span>
+            </div>
+            <div class="d-flex gap-6">
+              <span class="badge badge-cyan" data-i18n="geodesy.badgeTurefEd50"></span>
+            </div>
+          </div>
+
+          <div class="geodesy-crs-grid">
+            <!-- Source CRS -->
+            <div>
+              <label class="label-form-section mb-4" data-i18n="geodesy.lblSourceCrs"></label>
+              <select id="selSourceEpsg" class="select-glass"></select>
+            </div>
+
+            <!-- Swap Button -->
+            <div class="d-flex items-center justify-center">
+              <button type="button" id="btnSwapEpsg" class="btn-swap-crs" title="" data-i18n-title="geodesy.titleSwapSystems">
+                <i class="fa-solid fa-right-left"></i>
+              </button>
+            </div>
+
+            <!-- Target CRS -->
+            <div>
+              <label class="label-form-section mb-4 text-emerald" data-i18n="geodesy.lblTargetCrs"></label>
+              <select id="selTargetEpsg" class="select-glass border-cyan"></select>
+            </div>
+          </div>
+
+          <!-- Cross-Datum Info Alert -->
+          <div id="crossDatumWarningBanner" class="alert-datum-warning d-none">
+            <i class="fa-solid fa-circle-info text-cyan mr-4"></i>
+            <strong data-i18n="geodesy.geodeticInfoLabel"></strong> <span data-i18n="geodesy.datumNotice"></span>
+          </div>
+
+          <!-- Optional 7-Parameter Panel Toggle -->
+          <details class="text-sm text-dim">
+            <summary class="cursor-pointer text-cyan font-semibold py-4 d-flex items-center justify-between">
+              <span data-i18n="geodesy.paramBursaWolfCustom"></span>
+              <span class="text-xs text-purple font-semibold" data-i18n="geodesy.btnCalcFrom3dPoints"></span>
+            </summary>
+            <div class="bursa-details-box">
+              <!-- Manual Inputs Grid -->
+              <div class="d-grid gap-6 grid-cols-7">
+                <div><span class="text-xs text-dim" data-i18n="geodesy.dxLabel"></span><input type="number" id="p_dx" value="-84.1"
+                    step="0.001" class="bursa-param-input" /></div>
+                <div><span class="text-xs text-dim" data-i18n="geodesy.dyLabel"></span><input type="number" id="p_dy" value="-101.8"
+                    step="0.001" class="bursa-param-input" /></div>
+                <div><span class="text-xs text-dim" data-i18n="geodesy.dzLabel"></span><input type="number" id="p_dz" value="-129.7"
+                    step="0.001" class="bursa-param-input" /></div>
+                <div><span class="text-xs text-dim" data-i18n="geodesy.rxLabel"></span><input type="number" id="p_rx" value="0.0"
+                    step="0.0001" class="bursa-param-input" /></div>
+                <div><span class="text-xs text-dim" data-i18n="geodesy.ryLabel"></span><input type="number" id="p_ry" value="0.0"
+                    step="0.0001" class="bursa-param-input" /></div>
+                <div><span class="text-xs text-dim" data-i18n="geodesy.rzLabel"></span><input type="number" id="p_rz" value="0.0"
+                    step="0.0001" class="bursa-param-input" /></div>
+                <div><span class="text-xs text-dim" data-i18n="geodesy.scaleLabel"></span><input type="number" id="p_ds" value="0.0"
+                    step="0.001" class="bursa-param-input" /></div>
+              </div>
+
+              <!-- 3D Common Control Points Auto-Solver (Collapsible Inside) -->
+              <details class="details-bursa">
+                <summary class="summary-bursa" data-i18n="geodesy.paramAutoCalcTitle"></summary>
+                <div class="mt-1 d-flex flex-col gap-6">
+                  <div class="text-xs text-dim d-flex justify-between items-center">
+                    <span><span data-i18n="geodesy.lblFormatPrefix"></span>: <code>NoktaNo  X_ITRF  Y_ITRF  Z_ITRF  X_ED50  Y_ED50  Z_ED50</code> (<span data-i18n="geodesy.min3Points"></span>)</span>
+                    <button type="button" class="btn btn-secondary btn-sm text-xs py-2 px-6"
+                      id="btnLoadBursaWolfSample" data-i18n="geodesy.btnSample4Points"></button>
+                  </div>
+                  <textarea id="txtBursaWolfCommonPoints" rows="3"
+                    placeholder="P1  4123450.000  2654320.000  4098760.000  4123365.900  2654218.200  4098630.300&#10;P2  4125600.000  2651200.000  4100100.000  4125515.800  2651098.300  4099970.200&#10;P3  4121200.000  2658900.000  4095400.000  4121116.100  2658798.100  4095270.400"
+                    class="batch-textarea min-h-70"></textarea>
+                  <div class="d-flex justify-between items-center">
+                    <button type="button" class="btn btn-primary btn-sm py-4 px-10 text-xs" id="btnSolveBursaWolf">
+                      <i class="fa-solid fa-calculator"></i> <span data-i18n="geodesy.btnSolve7Param"></span>
+                    </button>
+                    <span id="lblBursaWolfM0" class="text-xs font-bold text-emerald font-mono"></span>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </details>
+
+          <!-- Coordinate Inputs & Result Row -->
+          <div class="d-grid gap-14 grid-split-11-10">
+            <!-- Inputs -->
+            <div class="d-flex flex-col gap-10">
+              <div class="d-grid gap-8 grid-cols-3">
+                <div>
+                  <label id="lblInputC1" class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="geodesy.lblInputLat"></label>
+                  <input type="text" id="geoLat" value="38.74561234" class="geo-coord-input" />
+                </div>
+                <div>
+                  <label id="lblInputC2" class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="geodesy.lblInputLon"></label>
+                  <input type="text" id="geoLon" value="30.54321987" class="geo-coord-input" />
+                </div>
+                <div>
+                  <label id="lblInputC3" class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="ui.kotYukseklikHZ"></label>
+                  <input type="text" id="geoH" value="1050.250" class="geo-coord-input" />
+                </div>
+              </div>
+
+              <div class="d-flex gap-6 flex-wrap">
+                <button class="btn btn-primary flex-1 py-8 px-12 text-xs font-bold" id="btnConvertCoord">
+                  <i class="fa-solid fa-arrows-rotate"></i> <span data-i18n="geodesy.btnConvertPrecise"></span>
+                </button>
+                <button class="btn btn-secondary py-8 px-8 text-xs" id="btnCopySingleCoordResult"
+                  title="" data-i18n-title="geodesy.titleCopyReport">
+                  <i class="fa-solid fa-copy"></i> <span data-i18n="common.copy"></span>
+                </button>
+                <button class="btn btn-secondary btn-outline-emerald py-8 px-8 text-xs" id="btnCopySingleTg20"
+                  title="" data-i18n-title="geodesy.titleCopyTg20">
+                  <i class="fa-solid fa-clipboard-check"></i> <span data-i18n="geodesy.btnCopyTg20"></span>
+                </button>
+                <button class="btn btn-secondary btn-soft-emerald py-8 px-8 text-xs" id="btnSendSingleToTg20"
+                  title="" data-i18n-title="geodesy.titleSendTg20">
+                  <i class="fa-solid fa-mountain-sun"></i> <span data-i18n="geodesy.btnSendTg20"></span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Output Box -->
+            <div>
+              <div class="console-box coord-result-display" id="coordResultBox" data-i18n="ui.donusumSonucunuGormekIcin"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= CARD 2: BATCH LIST & FILE TRANSFORMER ================= -->
+        <div class="card d-flex flex-col gap-12">
+
+          <!-- Card Header & Delimiter -->
+          <div class="card-header mb-0 pb-2">
+            <div class="card-title">
+              <i class="fa-solid fa-table-list text-purple"></i>
+              <span data-i18n="ui.2TopluListeDosya"></span>
+            </div>
+            <div class="d-flex items-center gap-6">
+              <span class="text-xs font-bold text-dim uppercase" data-i18n="ui.ayirici"></span>
+              <select id="selBatchDelimiter" class="select-glass w-auto py-2 px-8 text-xs">
+                <option value="AUTO" selected data-i18n="ui.otomatikAlgila"></option>
+                <option value="SPACE" data-i18n="ui.boslukSpace"></option>
+                <option value="COMMA" data-i18n="ui.virgul"></option>
+                <option value="SEMICOLON" data-i18n="ui.noktaliVirgul"></option>
+                <option value="TAB">Tab (\t)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Quick 6° <-> 3° Presets Bar -->
+          <div class="preset-template-bar">
+            <span class="text-xs font-bold text-cyan d-flex items-center gap-4"><i class="fa-solid fa-bolt"></i> <span data-i18n="geodesy.quickPresets"></span>:</span>
+            <button type="button" class="btn-quick-epsg" data-src="EPSG:32636" data-tgt="EPSG:5255">6° UTM 36 ➔ 3° TM
+              33</button>
+            <button type="button" class="btn-quick-epsg" data-src="EPSG:32635" data-tgt="EPSG:5253">6° UTM 35 ➔ 3° TM
+              27</button>
+            <button type="button" class="btn-quick-epsg" data-src="EPSG:32637" data-tgt="EPSG:5257">6° UTM 37 ➔ 3° TM
+              39</button>
+            <button type="button" class="btn-quick-epsg" data-src="EPSG:5255" data-tgt="EPSG:32636">3° TM 33 ➔ 6° UTM
+              36</button>
+            <button type="button" class="btn-quick-epsg" data-src="EPSG:23036" data-tgt="EPSG:5265">ED50 6° 36 ➔ ED50 3°
+              33</button>
+          </div>
+
+          <!-- Source & Target Projection Selectors -->
+          <div class="geodesy-crs-grid">
+            <!-- Batch Source CRS -->
+            <div>
+              <label class="label-form-section mb-4" data-i18n="ui.girdiDosyasininKaynakProjeksiyonu"></label>
+              <select id="selBatchSourceEpsg" class="select-glass"></select>
+            </div>
+
+            <!-- Batch Swap Button -->
+            <div class="d-flex items-center justify-center">
+              <button type="button" id="btnSwapBatchEpsg" class="btn-swap-crs"
+                title="" data-i18n-title="geodesy.titleSwapSystems">
+                <i class="fa-solid fa-right-left"></i>
+              </button>
+            </div>
+
+            <!-- Batch Target CRS -->
+            <div>
+              <label class="label-form-section mb-4 text-emerald" data-i18n="ui.ciktininHedefProjeksiyonu"></label>
+              <select id="selBatchTargetEpsg" class="select-glass border-cyan"></select>
+            </div>
+          </div>
+
+          <!-- Main Input & Configuration Row (2 Columns: Left=Data Input, Right=Column Mapping & Action) -->
+          <div class="d-grid gap-14 grid-split-13-10">
+
+            <!-- Left: Textarea & File Upload -->
+            <div class="d-flex flex-col gap-6">
+              <div class="d-flex justify-between items-center">
+                <span class="text-xs font-bold text-dim uppercase">
+                  <span data-i18n="geodesy.coordListInput"></span>:
+                </span>
+                <label class="btn btn-secondary btn-outline-cyan btn-sm m-0 cursor-pointer text-xs py-2 px-8">
+                  <i class="fa-solid fa-folder-open text-cyan"></i> <span data-i18n="geodesy.btnSelectFromFile"></span>
+                  <input type="file" id="fileBatchInput" accept=".txt,.csv,.ncn,.dat,.xyz,.raw,.rw5" class="d-none" />
+                </label>
+              </div>
+              <textarea id="txtBatchInput" rows="6"
+                placeholder="" data-i18n-placeholder="geodesy.batchInputPlaceholder"
+                class="batch-textarea min-h-120"></textarea>
+            </div>
+
+            <!-- Right: Column Mapping & Transform Button -->
+            <div class="geodesy-panel-box d-flex flex-col justify-between gap-10">
+              <div>
+                <span class="text-xs font-bold text-cyan uppercase d-block mb-6">
+                  <i class="fa-solid fa-table-columns"></i> <span data-i18n="geodesy.colMappingTitle"></span>:
+                </span>
+                <div class="d-grid gap-6 grid-cols-2">
+                  <div>
+                    <span class="text-xs text-dim d-block mb-2" data-i18n="ui.1Sutun"></span>
+                    <select id="selCol1" class="col-select-glass">
+                      <option value="PN" selected data-i18n="cadastre.btnLabels"></option>
+                      <option value="C1" data-i18n="ui.ySagaEnlem"></option>
+                      <option value="C2" data-i18n="ui.xYukariBoylam"></option>
+                      <option value="C3" data-i18n="ui.zKotH"></option>
+                    </select>
+                  </div>
+                  <div>
+                    <span class="text-xs text-dim d-block mb-2" data-i18n="ui.2Sutun"></span>
+                    <select id="selCol2" class="col-select-glass">
+                      <option value="C1" selected data-i18n="ui.ySagaEnlem"></option>
+                      <option value="C2" data-i18n="ui.xYukariBoylam"></option>
+                      <option value="PN" data-i18n="cadastre.btnLabels"></option>
+                      <option value="C3" data-i18n="ui.zKotH"></option>
+                    </select>
+                  </div>
+                  <div>
+                    <span class="text-xs text-dim d-block mb-2" data-i18n="ui.3Sutun"></span>
+                    <select id="selCol3" class="col-select-glass">
+                      <option value="C2" selected data-i18n="ui.xYukariBoylam"></option>
+                      <option value="C1" data-i18n="ui.ySagaEnlem"></option>
+                      <option value="C3" data-i18n="ui.zKotH"></option>
+                      <option value="PN" data-i18n="cadastre.btnLabels"></option>
+                    </select>
+                  </div>
+                  <div>
+                    <span class="text-xs text-dim d-block mb-2" data-i18n="ui.4Sutun"></span>
+                    <select id="selCol4" class="col-select-glass">
+                      <option value="C3" selected data-i18n="ui.zKotH"></option>
+                      <option value="CODE" data-i18n="ui.kodAciklama"></option>
+                      <option value="NONE" data-i18n="ui.yokBos"></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <button class="btn btn-primary py-9 px-14 text-sm font-bold w-100" id="btnBatchTransform">
+                <i class="fa-solid fa-play"></i> <span data-i18n="geodesy.btnTransformAll"></span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Batch Results Table & Exports -->
+          <div id="batchResultsWrapper" class="d-none mt-10 flex-col gap-10">
+            <div class="d-flex justify-between items-center flex-wrap gap-8">
+              <span id="lblBatchSummary" class="text-xs font-semibold text-emerald font-mono"></span>
+              <div class="d-flex gap-6 flex-wrap">
+                <button class="btn btn-secondary btn-outline-cyan btn-sm text-xs" id="btnExportBatchNcn">
+                  <i class="fa-solid fa-file-export text-cyan"></i> Netcad (.ncn)
+                </button>
+                <button class="btn btn-secondary btn-outline-purple btn-sm text-xs" id="btnExportBatchDxf">
+                  <i class="fa-solid fa-drafting-compass text-purple"></i> AutoCAD (.dxf)
+                </button>
+                <button class="btn btn-secondary btn-outline-emerald btn-sm text-xs" id="btnExportBatchKml">
+                  <i class="fa-solid fa-globe text-emerald"></i> Google Earth (.kml)
+                </button>
+                <button class="btn btn-secondary btn-outline-amber btn-sm text-xs" id="btnExportBatchTxt">
+                  <i class="fa-solid fa-file-lines text-amber"></i> Metin / CSV (.txt)
+                </button>
+                <button class="btn btn-secondary btn-outline-emerald btn-sm text-xs" id="btnCopyBatchTg20"
+                  title="" data-i18n-title="geodesy.titleCopyTg20Batch">
+                  <i class="fa-solid fa-clipboard-check"></i> <span data-i18n="geodesy.btnCopyTg20"></span>
+                </button>
+                <button class="btn btn-secondary btn-soft-emerald btn-sm text-xs" id="btnSendBatchToTg20"
+                  title="" data-i18n-title="geodesy.titleSendTg20">
+                  <i class="fa-solid fa-mountain-sun"></i> <span data-i18n="geodesy.btnSendTg20"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="table-container table-scroll-350 w-100">
+              <table class="table-hover w-100">
+                <thead>
+                  <tr>
+                    <th class="th-w-40px">#</th>
+                    <th data-i18n="ui.noktaAdi"></th>
+                    <th id="thBatchSrc1" data-i18n="geodesy.thSrc1"></th>
+                    <th id="thBatchSrc2" data-i18n="geodesy.thSrc2"></th>
+                    <th data-i18n="ui.kaynakKot"></th>
+                    <th id="thBatchTgt1" class="text-cyan" data-i18n="ui.donusen1"></th>
+                    <th id="thBatchTgt2" class="text-cyan" data-i18n="ui.donusen2"></th>
+                    <th class="text-cyan" data-i18n="ui.donusenKot"></th>
+                  </tr>
+                </thead>
+                <tbody id="tbodyBatchResults">
+                  <!-- Batch Results rendered here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= CARD 3: LOCAL 2D HELMERT TRANSFORMATION ================= -->
+        <div class="card d-flex flex-col gap-14">
+          <div class="card-header mb-0 pb-4">
+            <div class="card-title">
+              <i class="fa-solid fa-shapes text-amber"></i>
+              <span data-i18n="ui.3Lokal2bHelmert"></span>
+            </div>
+            <div class="d-flex gap-4">
+              <button type="button" class="btn btn-primary btn-sm text-xs py-3 px-8" id="btnTabHelmertDns" data-i18n="ui.netcadDnsDosyasi"></button>
+              <button type="button" class="btn btn-secondary btn-sm text-xs py-3 px-8" id="btnTabHelmertPoints" data-i18n="geodesy.tabCommonPoints"></button>
+            </div>
+          </div>
+
+          <div class="text-xs text-muted" data-i18n="geodesy.helmertIntro"></div>
+
+          <!-- Geodetic Rule: 3-Degree Zone Requirement Alert -->
+          <div class="alert-helmert-notice">
+            <i class="fa-solid fa-circle-info text-amber text-lg flex-shrink-0 mt-2"></i>
+            <div>
+              <strong class="text-amber d-block mb-2 text-xs font-bold uppercase" data-i18n="ui.onemliJeodezikKural3"></strong>
+              <span class="text-xs" data-i18n="geodesy.helmertRuleNotice"></span>
+            </div>
+          </div>
+
+          <!-- 2-Column Main Workspace -->
+          <div class="grid-2col-helmert">
+            <!-- Left: Parameter Input Modes (DNS File vs Common Points) -->
+            <div class="geodesy-panel-box d-flex flex-col gap-10">
+              <div class="d-flex justify-between items-center">
+                <span class="text-sm font-bold text-cyan uppercase" data-i18n="ui.1DonusumParametreKaynagi"></span>
+              </div>
+
+              <!-- Pane A: Netcad .DNS File Loader -->
+              <div id="paneHelmertDns" class="d-flex flex-col gap-8">
+                <div class="file-upload-glass p-10 text-center">
+                  <span id="txtHelmertDnsFileName" class="text-sm text-main d-flex items-center justify-center gap-6">
+                    <i class="fa-solid fa-file-lines text-cyan"></i> <span data-i18n="ui.netcadDnsParametreDosyasi"></span>
+                  </span>
+                  <input type="file" id="inputHelmertDnsFile" accept=".dns,.txt" />
+                </div>
+                <div class="text-xs text-dim" data-i18n="ui.veyaDnsDosyaIcerigini"></div>
+                <textarea id="txtHelmertDnsContent" rows="4"
+                  placeholder="[NETCAD_DONUSUM]&#10;TIP=HELMERT2D&#10;A=0.99995377&#10;B=-0.00004665&#10;DY=236.5729&#10;DX=189.7714"
+                  class="dns-textarea"></textarea>
+                <button class="btn btn-primary w-full py-8 px-12 text-sm font-bold" id="btnApplyDnsParams">
+                  <i class="fa-solid fa-check"></i> <span data-i18n="geodesy.btnApplyDns"></span>
+                </button>
+              </div>
+
+              <!-- Pane B: Common Control Points Calculator -->
+              <div id="paneHelmertPoints" class="d-none flex-col gap-8">
+                <div class="d-flex justify-between items-center">
+                  <span class="text-xs text-dim font-mono" data-i18n="geodesy.helmertPointFormat"></span>
+                  <button type="button" class="btn btn-secondary btn-sm text-xs py-2 px-6" id="btnLoadHelmertSample">
+                    <i class="fa-solid fa-flask"></i> <span data-i18n="geodesy.btnSampleLoad"></span>
+                  </button>
+                </div>
+                <textarea id="txtHelmertCommonPoints" rows="5"
+                  placeholder="P1  500120.000  4520100.000  500122.500  4520104.200&#10;P2  501240.000  4520150.000  501242.600  4520154.100&#10;P3  501260.000  4521200.000  501262.400  4521204.300&#10;P4  500150.000  4521180.000  500152.700  4521184.000"
+                  class="dns-textarea"></textarea>
+                <button class="btn btn-primary w-full py-8 px-12 text-sm font-bold" id="btnSolveHelmert">
+                  <i class="fa-solid fa-calculator"></i> <span data-i18n="geodesy.btnSolveHelmert"></span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right: Points to Transform -->
+            <div class="geodesy-panel-box d-flex flex-col gap-10">
+              <label class="text-sm font-bold text-emerald uppercase m-0" data-i18n="ui.2DonusturulecekNoktalarHedef"></label>
+              <div class="text-xs text-dim font-mono" data-i18n="ui.formatNoktanoYKaynak"></div>
+              <textarea id="txtHelmertPointsToTransform" rows="6"
+                placeholder="101  500500.000  4520500.000  125.400&#10;102  500650.000  4520750.000  128.200&#10;103  500800.000  4520900.000  131.050&#10;104  500950.000  4521050.000  133.800"
+                class="dns-textarea min-h-120"></textarea>
+
+              <button class="btn btn-primary w-full py-10 px-14 text-sm font-bold" id="btnTransformHelmertPoints">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="geodesy.btnTransformPoints"></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Helmert Solution Results Dashboard -->
+          <div id="helmertResultsWrapper" class="helmert-results-container d-none mt-14 flex-col gap-12">
+            <!-- Parameter Stat Cards -->
+            <div class="helmert-solution-card p-14 rounded-sm">
+              <div class="helmert-card-header-flex">
+                <div class="d-flex items-center gap-8">
+                  <i class="fa-solid fa-circle-check text-emerald"></i>
+                  <strong id="lblHelmertStatusSource" class="font-bold text-main helmert-status-title" data-i18n="ui.aktifHelmert2dParametreleri"></strong>
+                  <span id="badgeHelmertM0" class="badge badge-helmert-m0">m0 = 0.00 cm</span>
+                </div>
+              </div>
+
+              <div class="helmert-params-auto-grid">
+                <div class="helmert-param-box">
+                  <span class="helmert-param-label"><span data-i18n="geodesy.paramA"></span>:</span>
+                  <strong id="resHelmertA" class="text-sky">1.00000000</strong>
+                </div>
+                <div class="helmert-param-box">
+                  <span class="helmert-param-label"><span data-i18n="geodesy.paramB"></span>:</span>
+                  <strong id="resHelmertB" class="text-sky">0.00000000</strong>
+                </div>
+                <div class="helmert-param-box">
+                  <span class="helmert-param-label" data-i18n="ui.yOteleme"></span>
+                  <strong id="resHelmertDy" class="text-amber">0.000 m</strong>
+                </div>
+                <div class="helmert-param-box">
+                  <span class="helmert-param-label" data-i18n="ui.xOteleme"></span>
+                  <strong id="resHelmertDx" class="text-amber">0.000 m</strong>
+                </div>
+                <div class="helmert-param-box">
+                  <span class="helmert-param-label" data-i18n="ui.olcekKatsayisiM"></span>
+                  <strong id="resHelmertScale" class="text-emerald">1.00000000</strong>
+                </div>
+                <div class="helmert-param-box">
+                  <span class="helmert-param-label" data-i18n="ui.donukluk"></span>
+                  <strong id="resHelmertTheta" class="helmert-param-val-purple">0.000000 grad</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Residuals & Control Points Table (if solved from points) -->
+            <div id="wrapperHelmertResiduals">
+              <h5 class="helmert-section-title-cyan">
+                <i class="fa-solid fa-list-check"></i> <span data-i18n="geodesy.residualsTitle"></span>:
+              </h5>
+              <div class="table-container table-h180">
+                <table>
+                  <thead>
+                    <tr>
+                      <th data-i18n="converter.kpiPoints"></th>
+                      <th data-i18n="geodesy.thYSource"></th>
+                      <th data-i18n="geodesy.thXSource"></th>
+                      <th data-i18n="geodesy.thYTarget"></th>
+                      <th data-i18n="geodesy.thXTarget"></th>
+                      <th class="helmert-th-vy">vY (cm)</th>
+                      <th class="helmert-th-vx">vX (cm)</th>
+                      <th class="helmert-th-vs">vS (cm)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbodyHelmertResiduals"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Transformed Points Result Table -->
+            <div>
+              <div class="helmert-export-row">
+                <h5 class="helmert-section-title-emerald">
+                  <i class="fa-solid fa-circle-check"></i> <span data-i18n="geodesy.transformedPointsTitle"></span>:
+                </h5>
+                <div class="helmert-export-btns">
+                  <button type="button" class="btn btn-secondary btn-sm helmert-btn-sm" id="btnExportHelmertNcn">
+                    <i class="fa-solid fa-file-export text-cyan"></i> Netcad .NCN
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm helmert-btn-sm" id="btnExportHelmertDxf">
+                    <i class="fa-solid fa-file-lines text-purple"></i> AutoCAD .DXF
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm helmert-btn-sm" id="btnExportHelmertCsv">
+                    <i class="fa-solid fa-table text-emerald"></i> CSV / Metin
+                  </button>
+                </div>
+              </div>
+              <div class="table-container table-h220">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th data-i18n="cadastre.btnLabels"></th>
+                      <th data-i18n="geodesy.thYSource"></th>
+                      <th data-i18n="geodesy.thXSource"></th>
+                      <th class="helmert-th-result" data-i18n="ui.yDonusen"></th>
+                      <th class="helmert-th-result" data-i18n="ui.xDonusen"></th>
+                      <th data-i18n="ui.kotZ"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbodyHelmertTransformed"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>

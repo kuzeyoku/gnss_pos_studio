@@ -1,0 +1,252 @@
+/* ==========================================================================
+   TAB 4: KOORDİNAT & 2B HELMERT DÖNÜŞÜMÜ (GEODESY & EPSG WORKSTATION)
+   ========================================================================== */
+
+.geodesy-panel-box {
+  background: rgba(3, 7, 18, 0.6);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.geodesy-crs-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+@media (max-width: 900px) {
+  .geodesy-crs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btn-swap-crs {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--border-glass);
+  color: var(--cyan-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 2px;
+}
+
+.btn-swap-crs:hover {
+  background: rgba(6, 182, 212, 0.2);
+  border-color: var(--cyan-400);
+  color: #ffffff;
+  transform: rotate(180deg);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
+}
+
+.geo-coord-input {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--border-glass);
+  color: #ffffff;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  transition: all 0.2s ease;
+}
+
+.geo-coord-input:focus {
+  outline: none;
+  border-color: var(--cyan-400);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.35);
+  background: rgba(15, 23, 42, 0.98);
+}
+
+.coord-result-display {
+  min-height: 105px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 11.5px;
+  line-height: 1.5;
+  background: rgba(2, 6, 23, 0.9);
+  border: 1px solid var(--border-cyan-glow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.preset-template-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  background: rgba(4, 9, 24, 0.6);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-glass);
+}
+
+.btn-quick-epsg {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-glass);
+  color: var(--text-dim);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-quick-epsg:hover {
+  background: rgba(6, 182, 212, 0.15);
+  border-color: rgba(6, 182, 212, 0.4);
+  color: var(--cyan-400);
+  transform: translateY(-1px);
+}
+
+.batch-textarea {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--border-glass);
+  color: #ffffff;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1.45;
+  resize: vertical;
+  min-height: 120px;
+  transition: all 0.2s ease;
+}
+
+.batch-textarea:focus {
+  outline: none;
+  border-color: var(--cyan-400);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.35);
+}
+
+.col-select-glass {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--border-glass);
+  color: #ffffff;
+  padding: 5px 6px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-family: var(--font-sans);
+}
+
+.col-select-glass:focus {
+  outline: none;
+  border-color: var(--cyan-400);
+}
+
+.alert-datum-warning {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  margin-top: 10px;
+  font-size: 11.5px;
+  color: #fde68a;
+  line-height: 1.5;
+}
+
+.bursa-details-box {
+  margin-top: 8px;
+  background: rgba(2, 6, 23, 0.7);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bursa-param-input {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--border-glass);
+  color: #ffffff;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-family: var(--font-mono);
+}
+
+.alert-helmert-notice {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #fef08a;
+}
+
+.grid-2col-helmert {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .grid-2col-helmert {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dns-textarea {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--border-glass);
+  color: #ffffff;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1.4;
+  resize: vertical;
+  min-height: 110px;
+}
+
+.dns-textarea:focus {
+  outline: none;
+  border-color: var(--cyan-400);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.35);
+}
+
+.file-upload-glass {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px dashed rgba(6, 182, 212, 0.4);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.file-upload-glass:hover {
+  border-color: var(--cyan-400);
+  background: rgba(6, 182, 212, 0.08);
+}
+
+.file-upload-glass input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}

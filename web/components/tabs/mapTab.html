@@ -1,0 +1,182 @@
+      <!-- ================= TAB 3: MAP VISUALIZER & PAFTA INDEX WORKSTATION ================= -->
+      <section id="tab-map" class="tool-tab">
+        <div class="card d-flex flex-col gap-14">
+          <div class="card-header flex-wrap gap-12 mb-0">
+            <div class="card-title">
+              <i class="fa-solid fa-map-location-dot text-cyan"></i>
+              <span data-i18n="map.headerTitle"></span>
+            </div>
+            <div class="d-flex gap-8 flex-wrap items-center">
+              <label class="btn btn-primary m-0 cursor-pointer d-inline-flex items-center gap-6 py-8 px-14 text-sm">
+                <i class="fa-solid fa-cloud-arrow-up"></i> <span data-i18n="map.btnImportKml"></span>
+                <input type="file" id="inputImportKml" accept=".kml,.kmz,.geojson,.json" class="d-none" />
+              </label>
+            </div>
+          </div>
+
+          <!-- Pafta Index Control Toolbar -->
+          <div class="pafta-toolbar">
+            <div class="d-flex items-center gap-10 flex-wrap">
+              <div class="d-flex items-center gap-8">
+                <div class="pafta-toolbar-icon-badge">
+                  <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <span class="pafta-toolbar-title" data-i18n="map.toolbarTitle"></span>
+              </div>
+              <div class="d-flex items-center gap-6 flex-wrap">
+                <button class="btn btn-sm" id="btnPafta100k">
+                  <i class="fa-solid fa-border-all"></i> <span data-i18n="map.btnPafta100k"></span>
+                </button>
+                <button class="btn btn-sm" id="btnPafta50k">
+                  <i class="fa-solid fa-table-cells-large"></i> <span data-i18n="map.btnPafta50k"></span>
+                </button>
+                <button class="btn btn-sm" id="btnPafta25k">
+                  <i class="fa-solid fa-table-cells"></i> <span data-i18n="map.btnPafta25k"></span>
+                </button>
+                <button class="btn btn-sm" id="btnPafta5k">
+                  <i class="fa-solid fa-border-none"></i> <span>1/5 000</span>
+                </button>
+                <button class="btn btn-sm" id="btnPafta2k">
+                  <i class="fa-solid fa-border-all"></i> <span>1/2 000</span>
+                </button>
+                <button class="btn btn-sm" id="btnPafta1k">
+                  <i class="fa-solid fa-microchip"></i> <span>1/1 000</span>
+                </button>
+                <button class="btn btn-sm" id="btnPaftaOff">
+                  <i class="fa-solid fa-eye-slash"></i> <span data-i18n="map.btnPaftaOff"></span>
+                </button>
+                <div class="divider-v-glass"></div>
+                <button class="btn btn-sm" id="btnToggleDom">
+                  <i class="fa-solid fa-globe"></i> <span data-i18n="map.btnToggleDom"></span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Search by Sheet Name -->
+            <div class="pafta-search-wrapper">
+              <div class="pafta-search-input-box">
+                <i class="fa-solid fa-magnifying-glass pafta-search-icon"></i>
+                <input type="text" id="inputPaftaSearch" placeholder="" data-i18n-placeholder="map.searchPlaceholder"
+                  class="pafta-search-input">
+              </div>
+              <button class="btn btn-primary btn-sm pafta-search-btn" id="btnPaftaSearch" type="button">
+                <i class="fa-solid fa-location-crosshairs"></i>
+                <span data-i18n="common.goToPafta"></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Map Container with Floating Pafta Details Card & Intersecting Project Card -->
+          <div class="pos-rel">
+            <div id="mapContainer" class="cadastre-map-canvas overflow-hidden">
+            </div>
+
+            <!-- Floating Active Pafta Info Card (Bottom-Left) -->
+            <div id="cardActivePafta" class="floating-pafta-card" style="display: none;">
+              <div class="pafta-card-header">
+                <div class="d-flex items-center gap-6">
+                  <i class="fa-solid fa-map text-cyan"></i>
+                  <span id="txtPaftaCardTitle" class="pafta-card-title" data-i18n="ui.f22Paftasi"></span>
+                </div>
+                <button id="btnClosePaftaCard" class="btn-close-minimal" type="button" title="" data-i18n-title="common.close">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+
+              <div class="pafta-card-body">
+                <div class="d-flex justify-between"><span class="text-dim" data-i18n="common.scale"></span> <strong id="txtPaftaCardScale" class="text-emerald" data-i18n="map.btnPafta100k"></strong></div>
+                <div class="d-flex justify-between"><span class="text-dim" data-i18n="common.centerLat"></span> <span id="txtPaftaCardLat" class="font-mono">40.75000° N</span></div>
+                <div class="d-flex justify-between"><span class="text-dim" data-i18n="common.centerLon"></span> <span id="txtPaftaCardLon" class="font-mono">28.75000° E</span></div>
+                <div class="d-flex justify-between"><span class="text-dim">TUREF TM3° DOM:</span> <span id="txtPaftaCardDom" class="font-mono text-purple">DOM 27° (Dilim 9)</span></div>
+                <div class="divider-glass"></div>
+                <div class="d-flex justify-between"><span class="text-dim">1/100 000:</span> <span id="txtPaftaCard100k" class="font-mono font-extrabold text-cyan cursor-pointer">F22</span></div>
+                <div class="d-flex justify-between"><span class="text-dim">1/50 000:</span> <span id="txtPaftaCard50k" class="font-mono font-extrabold text-purple cursor-pointer">F22-a</span></div>
+                <div class="d-flex justify-between"><span class="text-dim">1/25 000:</span> <span id="txtPaftaCard25k" class="font-mono font-extrabold text-emerald cursor-pointer">F22-a1</span></div>
+                <div class="d-flex justify-between"><span class="text-dim">1/5 000:</span> <span id="txtPaftaCard5k" class="font-mono font-extrabold text-rose cursor-pointer">--</span></div>
+                <div class="d-flex justify-between"><span class="text-dim">1/2 000:</span> <span id="txtPaftaCard2k" class="font-mono font-extrabold text-indigo cursor-pointer">--</span></div>
+                <div class="d-flex justify-between"><span class="text-dim">1/1 000:</span> <span id="txtPaftaCard1k" class="font-mono font-extrabold text-sky cursor-pointer">--</span></div>
+
+                <!-- 1/25 000 HGM Resmi Datum & Yükseklik Düzeltme Parametreleri (ED50 <-> WGS84) -->
+                <div id="boxGeoidInfo" class="pafta-geoid-box">
+                  <div class="pafta-geoid-head">
+                    <span class="font-bold text-amber"><i class="fa-solid fa-mountain mr-4"></i><span data-i18n="map.hgmCorrectionTitle"></span></span>
+                    <span id="txtHgmSourceLabel" class="badge-official-db" data-i18n="map.officialDb"></span>
+                  </div>
+                  <div class="d-flex justify-between pafta-adj-row" style="border-bottom: 1px dashed rgba(245, 158, 11, 0.25); padding-bottom: 4px; margin-bottom: 5px;">
+                    <span class="text-dim"><span data-i18n="map.source25kSheet"></span>:</span>
+                    <strong id="txtHgmPaftaRef" class="font-mono text-emerald font-bold cursor-pointer" title="" data-i18n-title="map.show25kSheetTitle">--</strong>
+                  </div>
+                  <div class="d-flex justify-between items-center py-2">
+                    <span class="text-amber font-bold" data-i18n="map.lblHeightCorr"></span>
+                    <strong id="txtHgmYukseklik" class="font-mono text-amber text-sm font-bold">-- m</strong>
+                  </div>
+                  <div class="pafta-adj-row">
+                    <span class="text-dim" data-i18n="ui.yukariDegerDuzX"></span>
+                    <span id="txtHgmYukari" class="font-mono text-main">-- m</span>
+                  </div>
+                  <div class="pafta-adj-row">
+                    <span class="text-dim" data-i18n="ui.sagaDegerDuzY"></span>
+                    <span id="txtHgmSaga" class="font-mono text-main">-- m</span>
+                  </div>
+                  <div class="pafta-adj-row">
+                    <span class="text-dim" data-i18n="ui.enlemDuz"></span>
+                    <span id="txtHgmEnlem" class="font-mono text-main">--"</span>
+                  </div>
+                  <div class="pafta-adj-row">
+                    <span class="text-dim" data-i18n="ui.boylamDuz"></span>
+                    <span id="txtHgmBoylam" class="font-mono text-main">--"</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pafta-btn-download-grid">
+                <button class="btn btn-secondary btn-sm pafta-btn-download-item" id="btnDownloadPaftaKml"><i class="fa-solid fa-earth-americas"></i>
+                  KML</button>
+                <button class="btn btn-secondary btn-sm pafta-btn-download-item" id="btnDownloadPaftaDxf"><i class="fa-solid fa-vector-square"></i> DXF</button>
+                <button class="btn btn-secondary btn-sm pafta-btn-download-item" id="btnDownloadPaftaJson"><i class="fa-solid fa-code"></i> JSON</button>
+              </div>
+            </div>
+
+            <!-- Floating Intersecting Paftas Info Card (Top-Right of Map) -->
+            <div id="cardIntersectingPaftas" class="floating-intersect-card" style="display: none;">
+              <div class="pafta-intersect-header">
+                <div class="pafta-intersect-title-group">
+                  <i class="fa-solid fa-layer-group pafta-intersect-icon"></i>
+                  <span class="font-bold text-main pafta-intersect-title" data-i18n="map.intersectingSheetsTitle"></span>
+                  <span id="badgeIntersectingCount" class="badge-intersecting" data-i18n="map.initialSheetCount"></span>
+                </div>
+                <button id="btnCloseIntersectingCard" class="btn-close-minimal" type="button" title="" data-i18n-title="common.close">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+
+              <!-- Project File Summary -->
+              <div class="pafta-project-summary pafta-project-summary-box">
+                <span class="pafta-summary-filename" id="txtImportedFileName" data-i18n="ui.projeDosyasi"></span>
+                <span id="txtImportedFeatureCount" class="text-cyan font-bold" data-i18n="map.initialGeometryCount"></span>
+              </div>
+
+              <!-- Scale Switcher for Intersecting Results -->
+              <div class="pafta-scale-btn-row">
+                <button class="btn btn-secondary btn-sm btn-intersect-scale btn-pafta-scale-opt" data-scale="100k">1/100 000</button>
+                <button class="btn btn-secondary btn-sm btn-intersect-scale btn-pafta-scale-opt" data-scale="50k">1/50 000</button>
+                <button class="btn btn-primary btn-sm btn-intersect-scale btn-pafta-scale-opt" data-scale="25k">1/25 000</button>
+                <button class="btn btn-secondary btn-sm btn-intersect-scale btn-pafta-scale-opt" data-scale="5k">1/5 000</button>
+                <button class="btn btn-secondary btn-sm btn-intersect-scale btn-pafta-scale-opt" data-scale="2k">1/2 000</button>
+                <button class="btn btn-secondary btn-sm btn-intersect-scale btn-pafta-scale-opt" data-scale="1k">1/1 000</button>
+              </div>
+
+              <!-- List of Intersecting Paftas -->
+              <div id="listIntersectingPaftas" class="pafta-intersect-scroll-list">
+                <!-- Dynamically generated sheet items -->
+              </div>
+
+              <!-- Bulk KML Export for Intersecting Sheets -->
+              <button id="btnDownloadAllIntersectingKml" class="btn btn-secondary btn-sm btn-download-all-kml">
+                <i class="fa-solid fa-file-arrow-down text-emerald"></i>
+                <span class="font-bold" data-i18n="ui.temasEdenTumPaftalari"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>

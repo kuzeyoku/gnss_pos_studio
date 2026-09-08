@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>{{TITLE}} - Harita Tools</title>
+  <link rel="stylesheet" href="../css/report.css">
+</head>
+<body class="report-body">
+  <button class="print-btn-float" onclick="window.print()" data-i18n="reports.btnPrint">{{BTN_PRINT}}</button>
+
+  <div class="report-container">
+    <div class="report-header-banner">
+      <div>
+        <div class="brand-title" data-i18n="reports.tg20BrandTitle">{{BRAND_TITLE}}</div>
+        <div class="brand-sub" data-i18n="reports.tg20BrandSub">{{BRAND_SUB}}</div>
+      </div>
+      <div class="report-meta-header">
+        <div data-i18n="reports.tg20MetaHeader"><strong>{{META_HEADER}}</strong></div>
+        <div><span data-i18n="reports.lblDateTime">{{LBL_DATETIME}}</span> <strong>{{DATE}} {{TIME}}</strong></div>
+      </div>
+    </div>
+
+    <div class="report-title-box">
+      <h1 data-i18n="reports.tg20MainTitle">{{MAIN_TITLE}}</h1>
+      <p data-i18n="reports.tg20SubTitle">{{SUB_TITLE}}</p>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-item"><span class="meta-label" data-i18n="reports.lblProject">{{LBL_PROJECT}}</span><span class="meta-value">{{PROJECT}}</span></div>
+      <div class="meta-item"><span class="meta-label" data-i18n="reports.lblCalcDate">{{LBL_CALC_DATE}}</span><span class="meta-value">{{DATE}} - {{TIME}}</span></div>
+      <div class="meta-item"><span class="meta-label" data-i18n="reports.lblProjection">{{LBL_PROJECTION}}</span><span class="meta-value">{{PROJECTION_STR}}</span></div>
+      <div class="meta-item"><span class="meta-label" data-i18n="reports.lblGeoidModel">{{LBL_GEOID_MODEL}}</span><span class="meta-value" data-i18n="reports.valGeoidModel">{{VAL_GEOID_MODEL}}</span></div>
+      <div class="meta-item"><span class="meta-label" data-i18n="reports.lblTotalPoints">{{LBL_TOTAL_POINTS}}</span><span class="meta-value">{{TOTAL_POINTS}}</span></div>
+      <div class="meta-item"><span class="meta-label" data-i18n="reports.lblVerticalDatum">{{LBL_VERTICAL_DATUM}}</span><span class="meta-value" data-i18n="reports.valVerticalDatum">{{VAL_VERTICAL_DATUM}}</span></div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-math"><strong data-i18n="reports.formulaTitle">{{FORMULA_TITLE}}</strong>&nbsp;&nbsp; <span>H<sub>ortometrik</sub> = h<sub>elipsoit</sub> − N<sub>TG-20</sub></span></div>
+      <div class="formula-stats"><span data-i18n="reports.avgUndulationPrefix">{{AVG_UNDULATION_PREFIX}}</span> <strong>{{AVG_UNDULATION}}</strong></div>
+    </div>
+
+    <table class="report-table">
+      <thead>
+        <tr>
+          <th class="col-num" data-i18n="reports.thNum">{{TH_NUM}}</th>
+          <th class="col-pname" data-i18n="reports.thPointName">{{TH_POINT_NAME}}</th>
+          <th class="col-lat" data-i18n="reports.thLat">{{TH_LAT}}</th>
+          <th class="col-lon" data-i18n="reports.thLon">{{TH_LON}}</th>
+          <th class="col-metric" data-i18n="reports.thEastM">{{TH_EAST_M}}</th>
+          <th class="col-metric" data-i18n="reports.thNorthM">{{TH_NORTH_M}}</th>
+          <th class="col-metric" data-i18n="reports.thElevEllipsoidM">{{TH_ELEV_ELLIPSOID_M}}</th>
+          <th class="col-metric" data-i18n="reports.thUndulationM">{{TH_UNDULATION_M}}</th>
+          <th class="col-metric" data-i18n="reports.thElevOrthoM">{{TH_ELEV_ORTHO_M}}</th>
+          <th class="col-obstype" data-i18n="reports.thObsType">{{TH_OBS_TYPE}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{TABLE_ROWS}}
+      </tbody>
+    </table>
+
+    <div class="disclaimer-card">
+      <div class="disclaimer-title" data-i18n="reports.disclaimerTitle">{{DISCLAIMER_TITLE}}</div>
+      <div data-i18n="reports.disclaimerText">{{DISCLAIMER_TEXT}}</div>
+    </div>
+
+    <div class="footer-bar">
+      <div data-i18n="reports.footerBrand">{{FOOTER_BRAND}}</div>
+      <div data-i18n="reports.footerRef">{{FOOTER_REF}}</div>
+      <div data-i18n="reports.footerPage">{{FOOTER_PAGE}}</div>
+    </div>
+  </div>
+</body>
+</html>

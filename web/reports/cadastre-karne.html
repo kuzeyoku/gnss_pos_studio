@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>{{TITLE}}</title>
+  <link rel="stylesheet" href="../css/report.css">
+</head>
+<body class="cadastre-report">
+  <button class="print-btn-float" onclick="window.print()" data-i18n="reports.btnPrint"></button>
+
+  <h2 data-i18n="reports.cadastreAgencyTitle"></h2>
+  <h3 data-i18n="reports.cadastreReportSubTitle"></h3>
+  <br>
+  <div class="header-box">
+    <div><strong data-i18n="reports.lblJobFile"></strong> {{TITLE}}</div>
+    <div><strong data-i18n="reports.lblDate"></strong> {{DATE}}</div>
+    <div><strong data-i18n="reports.lblProjection"></strong> {{PROJECTION_STR}}</div>
+    <div><strong data-i18n="reports.lblErrorLimit"></strong> {{ERROR_LIMIT_STR}} | <strong data-i18n="reports.lblMinTime"></strong> {{MIN_TIME_STR}}</div>
+  </div>
+
+  <h4 data-i18n="reports.cadastreSec1Title"></h4>
+  <table class="report-table-compact">
+    <thead>
+      <tr>
+        <th rowspan="2" data-i18n="reports.thPointNo"></th>
+        <th colspan="2" data-i18n="reports.thObs1Time"></th>
+        <th colspan="2" data-i18n="reports.thObs2Time"></th>
+        <th rowspan="2" data-i18n="reports.thTimeDiff"></th>
+        <th colspan="3" data-i18n="reports.thDiffs"></th>
+        <th rowspan="2" data-i18n="reports.thDs2d"></th>
+        <th rowspan="2" data-i18n="reports.thControl"></th>
+        <th colspan="3" data-i18n="reports.thAvgCoords"></th>
+      </tr>
+      <tr>
+        <th data-i18n="reports.thDate"></th>
+        <th data-i18n="reports.thTime"></th>
+        <th data-i18n="reports.thDate"></th>
+        <th data-i18n="reports.thTime"></th>
+        <th data-i18n="reports.thDy"></th>
+        <th data-i18n="reports.thDx"></th>
+        <th data-i18n="reports.thDh"></th>
+        <th data-i18n="reports.thEast"></th>
+        <th data-i18n="reports.thNorth"></th>
+        <th><span data-i18n="reports.thElev"></span> {{TG20_LABEL}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{PAIRS_ROWS}}
+    </tbody>
+  </table>
+
+  <div class="unmatched-section" style="{{UNMATCHED_STYLE}}">
+    <h4 data-i18n="reports.cadastreSec2Title"></h4>
+    <table class="report-table-compact">
+      <thead>
+        <tr>
+          <th data-i18n="reports.thNum">#</th>
+          <th data-i18n="reports.thPointName"></th>
+          <th data-i18n="reports.thDate"></th>
+          <th data-i18n="reports.thTime"></th>
+          <th data-i18n="reports.thEastM"></th>
+          <th data-i18n="reports.thNorthM"></th>
+          <th><span data-i18n="{{UNMATCHED_H_I18N}}"></span> {{TG20_LABEL}}</th>
+          <th data-i18n="reports.thHrms"></th>
+          <th data-i18n="reports.thPdop"></th>
+          <th data-i18n="reports.thSats"></th>
+          <th data-i18n="reports.thStatus"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{UNMATCHED_ROWS}}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <div class="sign-box" data-i18n="reports.sigSurveyor"></div>
+    <div class="sign-box" data-i18n="reports.sigController"></div>
+    <div class="sign-box" data-i18n="reports.sigApprover"></div>
+  </div>
+</body>
+</html>

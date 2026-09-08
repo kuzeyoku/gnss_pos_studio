@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="app.title"></title>
+
+  <!-- Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Core Design System (High-Performance Consolidated Bundle) -->
+  <link rel="stylesheet" href="css/core.css">
+
+  <!-- JSZip for in-browser zipping -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body>
+
+  <!-- Mobile Backdrop Overlay -->
+  <div id="mobileNavOverlay" class="mobile-nav-overlay"></div>
+
+  <!-- Sidebar Component -->
+  <!-- @include:components/sidebar.html -->
+
+  <!-- Main Wrapper -->
+  <main class="main-wrapper">
+
+    <!-- Top Header Component -->
+    <!-- @include:components/header.html -->
+
+    <!-- Content Body -->
+    <div class="content-body">
+
+      <!-- @include:components/tabs/homeTab.html -->
+
+      <!-- @include:components/tabs/cadastreTab.html -->
+
+      <!-- @include:components/tabs/rinexTab.html -->
+
+      <!-- @include:components/tabs/mapTab.html -->
+
+      <!-- @include:components/tabs/geodesyTab.html -->
+
+      <!-- @include:components/tabs/tg20Tab.html -->
+
+      <!-- @include:components/tabs/flightTab.html -->
+
+      <!-- @include:components/tabs/converterTab.html -->
+
+      <!-- @include:components/tabs/standardsTab.html -->
+
+      <!-- @include:components/tabs/guideTab.html -->
+
+    </div>
+    <!-- End Content Body -->
+
+    <!-- Permanent Sticky Live Console Dock Component -->
+    <!-- @include:components/consoleDock.html -->
+
+  </main>
+
+  <!-- Modals -->
+  <!-- @include:components/modals/aboutModal.html -->
+
+  <!-- Consolidated Application Engine & Shell Bundle (Auto-updated via Watch Mode) -->
+  <script src="js/app.bundle.js"></script>
+
+</body>
+
+</html>

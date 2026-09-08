@@ -1,0 +1,103 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-08-30",
+  "description": "Harita Tools / GNSS Pos Web Studio - Mevzuat, Standartlar ve Kılavuzlar Kataloğu",
+  "documents": {
+    "bohhbuy": {
+      "id": "bohhbuy",
+      "cat": "bohhbuy",
+      "title": "Büyük Ölçekli Harita ve Harita Bilgileri Üretim Yönetmeliği (BÖHHBÜY)",
+      "sub": "T.C. Cumhurbaşkanlığı • Resmi Gazete Sayı: 30460 • Karar No: 2018/11962",
+      "badge": "BÖHHBÜY",
+      "badgeClass": "badge-doc-bohhbuy",
+      "icon": "fa-solid fa-file-pdf",
+      "iconColor": "text-emerald",
+      "pdfUrl": "https://www.mevzuat.gov.tr/MevzuatMetin/3.5.201811962.pdf",
+      "portalUrl": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=201811962&MevzuatTur=3&MevzuatTertip=5"
+    },
+    "mapeg": {
+      "id": "mapeg",
+      "cat": "mapeg",
+      "title": "MAPEG Maden ve İmalat Haritaları Üretimine İlişkin Yönerge (2025)",
+      "sub": "Maden ve Petrol İşleri Genel Müdürlüğü • Resmi Yönerge Tarihi: 04.11.2025",
+      "badge": "MAPEG 2025",
+      "badgeClass": "badge-doc-mapeg",
+      "icon": "fa-solid fa-gem",
+      "iconColor": "text-amber",
+      "pdfUrl": "files/MapegHaritaveimalatYonerge_4.11.2025.pdf",
+      "portalUrl": "https://www.mapeg.gov.tr/Home/Mevzuat"
+    },
+    "tkgm-iha": {
+      "id": "tkgm-iha",
+      "cat": "tkgm",
+      "title": "TKGM İnsansız Hava Araçları (İHA) ile Kadastral Harita Üretimi Standartları",
+      "sub": "Tapu ve Kadastro Genel Müdürlüğü (TKGM) • Kadastro Dairesi Başkanlığı",
+      "badge": "TKGM İHA",
+      "badgeClass": "badge-doc-tkgm",
+      "icon": "fa-solid fa-plane-up",
+      "iconColor": "text-cyan",
+      "pdfUrl": "https://www.tkgm.gov.tr/sites/default/files/2023-01/kadastro_faaliyetleri.pdf",
+      "portalUrl": "https://mevzuat.tkgm.gov.tr/"
+    },
+    "tkgm-lihkab": {
+      "id": "tkgm-lihkab",
+      "cat": "tkgm",
+      "title": "5368 Sayılı LİHKAB Kanunu & Tescile Esas Harita Kılavuzu",
+      "sub": "Tapu ve Kadastro Genel Müdürlüğü • 5368 Sayılı Lisanslı Harita Kadastro Mühendisleri Kanunu",
+      "badge": "TKGM / LİHKAB",
+      "badgeClass": "badge-doc-tkgm",
+      "icon": "fa-solid fa-building-columns",
+      "iconColor": "text-cyan",
+      "pdfUrl": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5368.pdf",
+      "portalUrl": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=5368&MevzuatTur=1&MevzuatTertip=5"
+    },
+    "hgm-tg20": {
+      "id": "hgm-tg20",
+      "cat": "hgm",
+      "title": "HGM TG-20 Türkiye Hibrit Jeoidi 2020 Teknik Portalı",
+      "sub": "Harita Genel Müdürlüğü (HGM) • Jeodezi Dairesi Başkanlığı",
+      "badge": "HGM TG-20",
+      "badgeClass": "badge-doc-hgm",
+      "icon": "fa-solid fa-mountain-sun",
+      "iconColor": "text-purple",
+      "pdfUrl": "https://www.harita.gov.tr/urun/turkiye-hibrit-jeoidi-2020-tg-20/66",
+      "portalUrl": "https://www.harita.gov.tr/urun/turkiye-hibrit-jeoidi-2020-tg-20/66"
+    },
+    "hgm-turef": {
+      "id": "hgm-turef",
+      "cat": "hgm",
+      "title": "Türkiye Ulusal Referans Çerçevesi (TUREF) & Datum Standartları",
+      "sub": "Harita Genel Müdürlüğü (HGM) • Jeodezik Kontrol Ağları",
+      "badge": "HGM TUREF",
+      "badgeClass": "badge-doc-hgm",
+      "icon": "fa-solid fa-globe",
+      "iconColor": "text-purple",
+      "pdfUrl": "https://www.harita.gov.tr/jeodezi",
+      "portalUrl": "https://www.harita.gov.tr/jeodezi"
+    },
+    "dsi-kamulastirma": {
+      "id": "dsi-kamulastirma",
+      "cat": "dsi",
+      "title": "2942 Sayılı Kamulaştırma Kanunu & Harita Standartları",
+      "sub": "Devlet Su İşleri & Karayolları Genel Müdürlüğü • 2942/4650 Sayılı Kamulaştırma Kanunu",
+      "badge": "DSİ / KGM",
+      "badgeClass": "badge-doc-dsi",
+      "icon": "fa-solid fa-water",
+      "iconColor": "text-sky",
+      "pdfUrl": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2942.pdf",
+      "portalUrl": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=2942&MevzuatTur=1&MevzuatTertip=5"
+    },
+    "ilbank-halihazir": {
+      "id": "ilbank-halihazir",
+      "cat": "ilbank",
+      "title": "3194 Sayılı İmar Kanunu & Halihazır Harita Yapım Esasları",
+      "sub": "İller Bankası A.Ş. & Çevre, Şehircilik ve İklim Değişikliği Bakanlığı",
+      "badge": "İLBANK / İMAR",
+      "badgeClass": "badge-doc-ilbank",
+      "icon": "fa-solid fa-city",
+      "iconColor": "text-rose",
+      "pdfUrl": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.3194.pdf",
+      "portalUrl": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=3194&MevzuatTur=1&MevzuatTertip=5"
+    }
+  }
+}

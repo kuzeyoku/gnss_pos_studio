@@ -1,0 +1,480 @@
+/* ==========================================================================
+   04. ATOMIC UTILITIES & LAYOUT DESIGN SYSTEM
+   ========================================================================== */
+.d-flex { display: flex !important; }
+.d-none { display: none !important; }
+.d-grid { display: grid !important; }
+.d-inline-flex { display: inline-flex !important; }
+.flex-col { display: flex !important; flex-direction: column !important; }
+.flex-row { display: flex !important; flex-direction: row !important; }
+.flex-1 { flex: 1 !important; }
+.flex-shrink-0 { flex-shrink: 0 !important; }
+.flex-wrap { flex-wrap: wrap !important; }
+.items-center { align-items: center !important; }
+.items-start { align-items: flex-start !important; }
+.items-end { align-items: flex-end !important; }
+.items-baseline { align-items: baseline !important; }
+.justify-between { justify-content: space-between !important; }
+.justify-center { justify-content: center !important; }
+.justify-end { justify-content: flex-end !important; }
+.justify-start { justify-content: flex-start !important; }
+
+.gap-2 { gap: 2px !important; }
+.gap-4 { gap: 4px !important; }
+.gap-6 { gap: 6px !important; }
+.gap-8 { gap: 8px !important; }
+.gap-10 { gap: 10px !important; }
+.gap-12 { gap: 12px !important; }
+.gap-14 { gap: 14px !important; }
+.gap-16 { gap: 16px !important; }
+.gap-20 { gap: 20px !important; }
+
+.w-100, .w-full { width: 100% !important; }
+.h-100 { height: 100% !important; }
+.w-auto { width: auto !important; }
+.min-w-0 { min-width: 0 !important; }
+.cursor-pointer { cursor: pointer !important; }
+.relative, .pos-rel { position: relative !important; }
+.absolute, .pos-abs { position: absolute !important; }
+.overflow-hidden { overflow: hidden !important; }
+
+.text-center { text-align: center !important; }
+.text-right { text-align: right !important; }
+.text-left { text-align: left !important; }
+.nowrap { white-space: nowrap !important; }
+.truncate { white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; }
+
+.text-muted { color: var(--text-muted) !important; }
+.text-dim { color: var(--text-dim) !important; }
+.text-main { color: var(--text-main) !important; }
+.text-white { color: #ffffff !important; }
+.text-cyan { color: var(--cyan-400) !important; }
+.text-emerald { color: var(--emerald-400) !important; }
+.text-amber { color: var(--amber-400) !important; }
+.text-rose { color: var(--rose-400) !important; }
+.text-purple { color: var(--purple-400) !important; }
+.text-indigo { color: var(--indigo-400) !important; }
+.text-sky { color: var(--sky-400) !important; }
+
+.font-mono { font-family: var(--font-mono) !important; }
+.font-display { font-family: var(--font-display) !important; }
+.font-bold { font-weight: 700 !important; }
+.font-extrabold { font-weight: 800 !important; }
+.font-black { font-weight: 900 !important; }
+.font-semibold { font-weight: 600 !important; }
+
+.text-3xs { font-size: 9px !important; }
+.text-2xs { font-size: 10px !important; }
+.text-xs { font-size: 11px !important; }
+.text-sm { font-size: 11.5px !important; }
+.text-base { font-size: 13px !important; }
+.text-md { font-size: 14px !important; }
+.text-lg { font-size: 16px !important; }
+.text-xl { font-size: 18px !important; }
+.text-2xl { font-size: 20px !important; }
+
+.mb-0 { margin-bottom: 0 !important; }
+.mb-1 { margin-bottom: 4px !important; }
+.mb-2 { margin-bottom: 8px !important; }
+.mb-3 { margin-bottom: 12px !important; }
+.mt-1 { margin-top: 4px !important; }
+.mt-2 { margin-top: 8px !important; }
+.mt-3 { margin-top: 12px !important; }
+
+.form-label {
+  display: block;
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  color: var(--text-dim, #94a3b8) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 5px !important;
+  line-height: 1.2 !important;
+}
+
+
+/* ==========================================================================
+   20. INLINE-STYLE REPLACEMENT UTILITY CLASSES
+   Moved from HTML inline style= attributes to keep markup clean.
+   ========================================================================== */
+
+/* --- Helmert Module Labels & Values --- */
+.helmert-param-label {
+  color: var(--text-dim);
+  display: block;
+  font-size: 10px;
+}
+.helmert-param-val-purple { color: #7c3aed; }
+.helmert-section-title-cyan {
+  color: var(--cyan-400);
+  font-size: 12px;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+.helmert-section-title-emerald {
+  color: var(--emerald-400);
+  font-size: 12px;
+  margin: 0;
+  font-weight: 700;
+}
+.helmert-export-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.helmert-export-btns { display: flex; gap: 6px; }
+.helmert-btn-sm {
+  font-size: 11px;
+  padding: 3px 8px;
+}
+.helmert-th-vy { color: #fca5a5; }
+.helmert-th-vx { color: #fca5a5; }
+.helmert-th-vs { color: #fdba74; }
+.helmert-th-result { color: var(--emerald-400); }
+
+/* --- Flight Planner Compact Controls --- */
+.flight-compact-input {
+  font-size: 11.5px;
+  padding: 4px 22px 4px 8px !important;
+}
+.flight-unit-suffix {
+  font-size: 9.5px;
+  right: 6px;
+}
+.flight-compact-select {
+  font-size: 11px;
+  padding: 4px 6px;
+}
+.flight-checkbox-sm {
+  width: 13px;
+  height: 13px;
+  accent-color: var(--cyan-400);
+  cursor: pointer;
+  margin: 0;
+}
+.flight-label-row-h16 { height: 16px; }
+.flight-compact-heading-input {
+  padding: 2px 14px 2px 4px !important;
+  height: 26px !important;
+}
+.flight-heading-suffix { font-size: 9px; right: 4px; }
+.flight-heading-wrap { width: 52px; flex-shrink: 0; }
+.flight-heading-btn-sm { height: 22px; }
+.flight-overlap-row { margin-top: 4px; margin-bottom: 2px; }
+.flight-unit-suffix-pct { font-size: 9px; right: 5px; }
+
+/* --- YKN Generate Main CTA Button --- */
+.btn-flight-generate-gcp {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.35);
+  border-radius: var(--radius-sm);
+}
+
+/* --- Cloud Indicator Circle (Solar Widget) --- */
+.cloud-indicator-circle {
+  width: 32px;
+  height: 32px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.cloud-indicator-icon { font-size: 13px; }
+.weather-dot { width: 6px; height: 6px; }
+
+/* --- Table Column Width Helpers --- */
+.th-w-40px { width: 40px; text-align: center; }
+
+/* --- Export Menu Icon Width --- */
+.export-icon-w16 { width: 16px; }
+
+/* --- Miscellaneous Inline Replacements --- */
+.flight-date-input-w { width: 115px; }
+.flight-time-badge { min-width: 38px; }
+.flight-time-slider { width: 80px; }
+.flight-export-z { z-index: 1100; }
+.flight-chevron-sm { font-size: 9px; margin-left: 2px; }
+.pos-rel-w100 { position: relative; width: 100%; }
+.stat-val-fs115 { font-size: 11.5px; }
+.table-h180 { max-height: 180px; }
+.table-h220 { max-height: 220px; }
+.calendar-overlay-icon { font-size: 9px; margin-left: -2px; }
+
+/* --- TG-20 Batch Actions Toolbar --- */
+.tg20-batch-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* --- BÖHHBÜY Guide Table th widths --- */
+.bohhbuy-th-type { width: 28%; }
+.bohhbuy-th-pos { width: 18%; }
+.bohhbuy-th-elev { width: 18%; }
+.bohhbuy-th-time { width: 18%; }
+.bohhbuy-th-law { width: 18%; }
+
+/* --- TG-20 Tab-2 Sub-tab badge colors --- */
+.badge-region-cyan {
+  border-color: rgba(6, 182, 212, 0.4);
+  color: #38bdf8;
+}
+.badge-region-purple {
+  border-color: rgba(168, 85, 247, 0.4);
+  color: #c084fc;
+}
+.badge-region-emerald {
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #34d399;
+}
+.badge-region-amber {
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #fbbf24;
+}
+
+/* --- RINEX & Solar & Pafta Module Helpers --- */
+.time-crop-presets-grid {
+  grid-template-columns: 1fr 1fr auto;
+}
+.rinex-output-config-grid {
+  grid-template-columns: 1.1fr 1.3fr 0.9fr;
+}
+.ppk-cards-grid {
+  grid-template-columns: 1fr 1fr;
+}
+.ppk-stats-grid {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+.rinex-quality-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+}
+.quality-stat-label {
+  font-size: 10px;
+  color: var(--text-dim);
+  display: block;
+}
+.quality-stat-val {
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+.quality-stat-val-sm {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.timeline-chart-container {
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  position: relative;
+}
+.timeline-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.timeline-legend-title {
+  font-size: 11px;
+  font-weight: 700;
+}
+.timeline-legend-items {
+  display: flex;
+  gap: 10px;
+  font-size: 10.5px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.legend-dot-8px {
+  font-size: 8px;
+}
+.quality-chart-canvas {
+  width: 100%;
+  height: 180px;
+  display: block;
+}
+.pafta-adj-row {
+  display: flex;
+  justify-content: space-between;
+}
+.pafta-btn-download-grid {
+  display: flex;
+  gap: 6px;
+}
+.pafta-btn-download-item {
+  flex: 1;
+  padding: 5px;
+  font-size: 11px;
+}
+.pafta-intersect-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border-glass);
+  padding-bottom: 8px;
+}
+.pafta-intersect-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pafta-intersect-icon {
+  color: var(--cyan-400);
+  font-size: 14px;
+}
+.pafta-intersect-title {
+  font-size: 14px;
+}
+.badge-intersecting {
+  background: rgba(6, 182, 212, 0.15);
+  color: var(--cyan-400);
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 12px;
+  white-space: nowrap;
+  margin-left: 6px;
+}
+.pafta-project-summary-box {
+  font-size: 11px;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pafta-summary-filename {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 190px;
+  color: var(--text-dim);
+}
+.pafta-scale-btn-row {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.btn-pafta-scale-opt {
+  flex: 1;
+  padding: 4px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.pafta-intersect-scroll-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 270px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+.helmert-card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.helmert-status-title {
+  font-size: 13px;
+}
+.badge-helmert-m0 {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--emerald-400);
+  border-color: var(--emerald-400);
+}
+.helmert-params-auto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+}
+.dial-sun-needle {
+  width: 2px;
+  height: 12px;
+  background: linear-gradient(to bottom, #f59e0b, transparent);
+}
+.dial-sun-glow-icon {
+  font-size: 9px;
+  filter: drop-shadow(0 0 4px #f59e0b);
+}
+.dial-wind-needle {
+  width: 2px;
+  height: 12px;
+  background: linear-gradient(to bottom, #22d3ee, transparent);
+}
+.dial-wind-glow-icon {
+  font-size: 10px;
+  filter: drop-shadow(0 0 4px #06b6d4);
+}
+.dial-center-dot-white {
+  width: 4px;
+  height: 4px;
+}
+
+/* Button outline & soft badges */
+.btn-outline-cyan { border-color: rgba(6, 182, 212, 0.4) !important; color: #38bdf8 !important; }
+.btn-outline-purple { border-color: rgba(168, 85, 247, 0.4) !important; color: #c084fc !important; }
+.btn-outline-emerald { border-color: rgba(16, 185, 129, 0.4) !important; color: #34d399 !important; }
+.btn-outline-amber { border-color: rgba(245, 158, 11, 0.4) !important; color: #fbbf24 !important; }
+.btn-soft-cyan { border-color: rgba(6, 182, 212, 0.4) !important; background: rgba(6, 182, 212, 0.12) !important; color: #38bdf8 !important; }
+.btn-soft-amber { border-color: rgba(245, 158, 11, 0.4) !important; background: rgba(245, 158, 11, 0.12) !important; color: #fbbf24 !important; }
+.btn-soft-emerald { border-color: rgba(16, 185, 129, 0.5) !important; background: rgba(16, 185, 129, 0.12) !important; color: #6ee7b7 !important; font-weight: 700 !important; }
+
+/* Layout dividers */
+.divider-glass { height: 1px; background: var(--border-glass); margin: 4px 0; }
+.divider-v-glass { height: 20px; width: 1px; background: var(--border-glass); margin: 0 4px; }
+
+/* Grid columns */
+.grid-cols-7 { grid-template-columns: repeat(7, 1fr) !important; }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr) !important; }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr) !important; }
+.grid-split-11-10 { grid-template-columns: 1.1fr 1fr !important; }
+.grid-split-13-10 { grid-template-columns: 1.3fr 1fr !important; }
+
+/* Sizing & Min Heights */
+.th-w-40px { width: 40px !important; text-align: center !important; }
+.th-w-45px { width: 45px !important; }
+.w-190 { width: 190px !important; }
+.min-h-70 { min-height: 70px !important; }
+.min-h-120 { min-height: 120px !important; }
+.lh-145 { line-height: 1.45 !important; }
+
+/* Floating Pafta Card Utilities */
+.pafta-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-bottom: 1px solid var(--border-glass); padding-bottom: 6px; }
+.pafta-card-title { font-weight: 800; font-size: 14px; font-family: var(--font-mono); color: var(--cyan-400); }
+.pafta-card-body { font-size: 12px; display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.pafta-geoid-box { margin-top: 8px; padding: 8px 10px; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: var(--radius-sm); font-size: 11px; display: flex; flex-direction: column; gap: 4px; }
+.pafta-geoid-head { font-weight: 800; color: #fbbf24; font-size: 11.5px; border-bottom: 1px dashed rgba(245, 158, 11, 0.3); padding-bottom: 4px; margin-bottom: 2px; display: flex; justify-content: space-between; align-items: center; }
+.badge-official-db { font-size: 9.5px; font-weight: 600; color: var(--emerald-400); background: rgba(16, 185, 129, 0.15); padding: 1px 6px; border-radius: 4px; }
+.details-bursa { border-top: 1px dashed var(--border-glass); padding-top: 6px; }
+.summary-bursa { cursor: pointer; color: #c084fc; font-weight: 700; font-size: 11.5px; }
+

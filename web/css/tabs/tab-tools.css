@@ -1,0 +1,38 @@
+/* ==========================================================================
+   TAB: JEODEZİK HESAPLAMA ARAÇLARI (tab-tools.css)
+   ========================================================================== */
+
+#tab-tools .tools-subtab-pane {
+  display: none;
+}
+
+#tab-tools .tools-subtab-pane.active {
+  display: block;
+}
+
+#tab-tools .area-kpi-card {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+#tab-tools .area-kpi-card:hover {
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(6, 182, 212, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+#tab-tools .coord-result-display {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: rgba(2, 6, 23, 0.85);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  color: #e2e8f0;
+}

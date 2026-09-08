@@ -1,0 +1,597 @@
+/* ==========================================================================
+   16. TAB 6: İHA UÇUŞ PLANLAMA & AKILLI YKN İSTASYONU
+   ========================================================================== */
+
+/* Solar Altitude Bar Chart */
+.solar-bar-item {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  min-height: 4px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.solar-bar-item:hover {
+  transform: scaleY(1.2);
+  filter: brightness(1.3);
+}
+
+.solar-bar-item.optimal {
+  background: linear-gradient(to top, #f59e0b, #fbbf24);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+
+.solar-bar-item.active-sim {
+  background: #00f2ff !important;
+  box-shadow: 0 0 10px #00f2ff !important;
+  transform: scaleY(1.35);
+}
+
+/* Custom Leaflet Map Markers for Flight Mission */
+.gcp-map-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  font-family: var(--font-mono, monospace);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+  border: 2.5px solid #ffffff;
+  transition: transform 0.15s ease;
+  z-index: 1000 !important;
+  cursor: grab !important;
+  user-select: none;
+}
+
+.gcp-map-pin:hover {
+  transform: scale(1.25);
+  z-index: 10000 !important;
+}
+
+.gcp-map-pin:active {
+  cursor: grabbing !important;
+  transform: scale(1.35) !important;
+}
+
+.gcp-pin-ykn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-color: #a7f3d0;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+}
+
+.gcp-pin-dn {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  border-color: #fde68a;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+}
+
+/* Status Badges */
+.badge-safety-safe {
+  background: rgba(16, 185, 129, 0.18) !important;
+  color: #10b981 !important;
+  border: 1px solid rgba(16, 185, 129, 0.4) !important;
+}
+
+.badge-safety-warning {
+  background: rgba(245, 158, 11, 0.18) !important;
+  color: #f59e0b !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+}
+
+.badge-safety-danger {
+  background: rgba(239, 68, 68, 0.18) !important;
+  color: #ef4444 !important;
+  border: 1px solid rgba(239, 68, 68, 0.4) !important;
+}
+
+/* Tooltip & Row Highlights */
+.road-dist-tooltip {
+  background: rgba(15, 23, 42, 0.90) !important;
+  backdrop-filter: blur(4px) !important;
+  border: 1px solid rgba(245, 158, 11, 0.9) !important;
+  color: #fbbf24 !important;
+  font-family: var(--font-mono, monospace) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  padding: 1px 5px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
+}
+
+.road-dist-tooltip::before {
+  display: none !important;
+}
+
+@keyframes rowHighlightFlash {
+  0% { background-color: rgba(0, 242, 255, 0.45); }
+  100% { background-color: transparent; }
+}
+
+.table-row-highlight {
+  animation: rowHighlightFlash 1.8s ease-out;
+}
+
+.gcp-pin-del-badge {
+  position: absolute !important;
+  top: -8px !important;
+  right: -8px !important;
+  width: 17px !important;
+  height: 17px !important;
+  background: #ef4444 !important;
+  color: #ffffff !important;
+  border: 1.5px solid #ffffff !important;
+  border-radius: 50% !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6) !important;
+  transition: transform 0.15s ease, background 0.15s ease !important;
+  z-index: 1020 !important;
+  line-height: 1 !important;
+}
+
+.gcp-pin-del-badge:hover {
+  background: #b91c1c !important;
+  transform: scale(1.3) !important;
+}
+
+.flight-dir-arrow-icon {
+  background: transparent !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  pointer-events: none !important;
+}
+
+.flight-home-icon {
+  background: transparent !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  animation: pulseHome 2.5s infinite ease-in-out;
+}
+
+@keyframes pulseHome {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.8)); }
+  50% { transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(16, 185, 129, 1)); }
+}
+
+.flight-header-card {
+  margin-bottom: 14px;
+  overflow: visible !important;
+  position: relative;
+  z-index: 1050;
+  padding: 12px 16px;
+}
+
+.flight-time-slider-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #030712;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.flight-export-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(6, 182, 212, 0.5);
+  color: #ffffff;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.flight-export-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 99999;
+  min-width: 235px;
+  background: #080d1a;
+  border: 1.5px solid rgba(6, 182, 212, 0.5);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.95);
+  border-radius: var(--radius-sm);
+  padding: 6px;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.flight-map-card {
+  margin: 0 0 16px 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  position: relative !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6) !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.flight-map-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.flight-map-canvas {
+  height: 520px;
+  width: 100%;
+  background: #080d1a;
+}
+
+.map-mobile-menu-toggle {
+  display: none;
+}
+
+.map-floating-toolbar {
+  position: absolute;
+  top: 10px;
+  left: 54px;
+  z-index: 1000;
+  background: rgba(3, 7, 18, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.map-toolbar-actions-group,
+.map-layer-toggles-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.map-toolbar-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 0 2px;
+}
+
+.flight-wind-heading-badge {
+  position: absolute;
+  top: 10px;
+  right: 54px;
+  z-index: 1000;
+  background: rgba(3, 7, 18, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 3px 8px;
+  height: 25px;
+  border-radius: var(--radius-sm, 6px);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffffff;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+.flight-solar-compass-widget {
+  background: rgba(8, 13, 26, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  color: #ffffff;
+  user-select: none;
+  z-index: 10;
+}
+
+.solar-wind-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.solar-wind-divider {
+  width: 1px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.solar-dial-circle {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(245, 158, 11, 0.5);
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, rgba(2, 6, 23, 0.9) 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.wind-dial-circle {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(6, 182, 212, 0.5);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(2, 6, 23, 0.9) 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   22. FLIGHT PLANNER & PHOTOGRAMMETRY LUXURY BENTO CARDS
+   ========================================================================== */
+.flight-workflow-card {
+  border: 1px solid var(--border-glass);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  margin: 0 !important;
+}
+
+.flight-workflow-card:hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.flight-workflow-card-cyan {
+  border-color: rgba(6, 182, 212, 0.25);
+}
+
+.flight-workflow-card-indigo {
+  border-color: rgba(99, 102, 241, 0.25);
+}
+
+.flight-workflow-card-emerald {
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.flight-inputs-grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 7px 10px;
+  align-items: start;
+}
+
+.flight-inputs-grid-2x2 .form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0 !important;
+}
+
+.flight-inputs-grid-2x2 label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  height: 16px !important;
+  min-height: 16px !important;
+  max-height: 16px !important;
+  line-height: 16px !important;
+  margin-bottom: 3px !important;
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  letter-spacing: 0.1px !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+  color: var(--text-dim, #94a3b8) !important;
+}
+
+.flight-inputs-grid-2x2 label.text-cyan {
+  color: var(--cyan-400, #38bdf8) !important;
+}
+
+.flight-inputs-grid-2x2 label i {
+  font-size: 9.5px !important;
+  width: 12px !important;
+  text-align: center !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.flight-inputs-grid-2x2 .input-unit-group,
+.flight-inputs-grid-2x2 .form-select,
+.flight-inputs-grid-2x2 .form-input {
+  height: 28px !important;
+  font-size: 11.5px !important;
+  box-sizing: border-box !important;
+}
+
+.flight-geo-matrix {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.flight-geo-chip {
+  background: rgba(3, 7, 18, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: all 0.2s ease;
+}
+
+.flight-geo-chip:hover {
+  border-color: rgba(6, 182, 212, 0.35);
+  background: rgba(6, 182, 212, 0.05);
+}
+
+.flight-geo-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.flight-geo-val {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.flight-telemetry-badge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.flight-telemetry-chip {
+  background: rgba(3, 7, 18, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 5px 6px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.flight-telemetry-chip span {
+  font-size: 9px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.flight-telemetry-chip strong {
+  font-size: 11px;
+  font-family: var(--font-mono);
+}
+
+.flight-bottom-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+@media (max-width: 1100px) {
+  .flight-bottom-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.flight-workflow-card .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.flight-workflow-card .flight-summary-box {
+  margin-top: auto;
+}
+
+.flight-slider-container {
+  background: rgba(3, 7, 18, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.flight-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+
+.flight-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9.5px;
+  color: var(--text-dim);
+  padding: 0 2px;
+}
+
+.flight-slider,
+input[type="range"].flight-slider {
+  width: 100% !important;
+  height: 6px;
+  margin: 6px 0 !important;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+  accent-color: var(--cyan-400);
+  cursor: pointer;
+  display: block;
+}
+
+.flight-heading-box {
+  background: rgba(3, 7, 18, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.flight-summary-box {
+  background: rgba(3, 7, 18, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-sm);
+  padding: 8px 11px;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.flight-summary-box > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flight-summary-box strong {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+}

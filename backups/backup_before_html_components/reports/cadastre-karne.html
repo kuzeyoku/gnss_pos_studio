@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>{{TITLE}}</title>
+  <link rel="stylesheet" href="../css/report.css">
+</head>
+<body class="cadastre-report">
+  <h2 data-i18n="reports.cadastreAgencyTitle">{{AGENCY_TITLE}}</h2>
+  <h3 data-i18n="reports.cadastreReportSubTitle">{{REPORT_SUBTITLE}}</h3>
+  <br>
+  <div class="header-box">
+    <div><strong data-i18n="reports.lblJobFile">{{LBL_JOB_FILE}}</strong> {{TITLE}}</div>
+    <div><strong data-i18n="reports.lblDate">{{LBL_DATE}}</strong> {{DATE}}</div>
+    <div><strong data-i18n="reports.lblProjection">{{LBL_PROJECTION}}</strong> {{PROJECTION_STR}}</div>
+    <div><strong data-i18n="reports.lblErrorLimit">{{LBL_ERROR_LIMIT}}</strong> {{ERROR_LIMIT_STR}} | <strong data-i18n="reports.lblMinTime">{{LBL_MIN_TIME}}</strong> {{MIN_TIME_STR}}</div>
+  </div>
+
+  <h4 data-i18n="reports.cadastreSec1Title">{{SEC1_TITLE}}</h4>
+  <table class="report-table-compact">
+    <thead>
+      <tr>
+        <th rowspan="2" data-i18n="reports.thPointNo">{{TH_POINT_NO}}</th>
+        <th colspan="2" data-i18n="reports.thObs1Time">{{TH_OBS1_TIME}}</th>
+        <th colspan="2" data-i18n="reports.thObs2Time">{{TH_OBS2_TIME}}</th>
+        <th rowspan="2" data-i18n="reports.thTimeDiff">{{TH_TIME_DIFF}}</th>
+        <th colspan="3" data-i18n="reports.thDiffs">{{TH_DIFFS}}</th>
+        <th rowspan="2" data-i18n="reports.thDs2d">{{TH_DS2D}}</th>
+        <th rowspan="2" data-i18n="reports.thControl">{{TH_CONTROL}}</th>
+        <th colspan="3" data-i18n="reports.thAvgCoords">{{TH_AVG_COORDS}}</th>
+      </tr>
+      <tr>
+        <th data-i18n="reports.thDate">{{TH_DATE}}</th>
+        <th data-i18n="reports.thTime">{{TH_TIME}}</th>
+        <th data-i18n="reports.thDate">{{TH_DATE}}</th>
+        <th data-i18n="reports.thTime">{{TH_TIME}}</th>
+        <th data-i18n="reports.thDy">{{TH_DY}}</th>
+        <th data-i18n="reports.thDx">{{TH_DX}}</th>
+        <th data-i18n="reports.thDh">{{TH_DH}}</th>
+        <th data-i18n="reports.thEast">{{TH_EAST}}</th>
+        <th data-i18n="reports.thNorth">{{TH_NORTH}}</th>
+        <th>{{TH_ELEV}} {{TG20_LABEL}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{PAIRS_ROWS}}
+    </tbody>
+  </table>
+
+  {{UNMATCHED_SECTION}}
+
+  <div class="footer">
+    <div class="sign-box" data-i18n="reports.sigSurveyor">{{SIG_SURVEYOR}}</div>
+    <div class="sign-box" data-i18n="reports.sigController">{{SIG_CONTROLLER}}</div>
+    <div class="sign-box" data-i18n="reports.sigApprover">{{SIG_APPROVER}}</div>
+  </div>
+</body>
+</html>
