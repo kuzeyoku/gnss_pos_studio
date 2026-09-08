@@ -53,6 +53,7 @@ const BUNDLE_SOURCES = [
   'js/core/componentLoader.js',
   'js/core/i18n.js',
   'js/core/console.js',
+  'js/core/cacheStore.js',
   'js/core/dragdrop.js',
   'js/core/maps.js',
   'js/core/exporter.js',

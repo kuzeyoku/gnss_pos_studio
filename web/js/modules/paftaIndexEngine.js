@@ -464,7 +464,36 @@ class PaftaIndexEngine {
     if (this.hgmLoadPromise) return this.hgmLoadPromise;
 
     this.hgmLoadPromise = (async () => {
+      const cache = (typeof GeoCacheStore !== "undefined" ? GeoCacheStore : null) ||
+                    (typeof window !== "undefined" ? window.__geoCacheStore : null);
+      const CACHE_KEY = "HGM_DATUM_DATABASE";
+      const CURRENT_VERSION = "2024.1";
+
+      // 1. IndexedDB Önbellek Kontrolü
+      if (cache) {
+        try {
+          const cached = await cache.get(CACHE_KEY, CURRENT_VERSION);
+          if (cached && typeof cached === "object") {
+            this.hgmDatabase = cached;
+            if (typeof window !== "undefined") {
+              window.HGM_DATUM_CORRECTIONS = this.hgmDatabase;
+              if (typeof window.logMessage === "function") {
+                window.logMessage("⚡ HGM pafta datum veritabanı IndexedDB önbelleğinden yüklendi.");
+              }
+            }
+            this.isHgmLoaded = true;
+            return this.hgmDatabase;
+          }
+        } catch (cacheErr) {
+          console.warn("[PaftaIndex] Cache read error, falling back to network fetch:", cacheErr);
+        }
+      }
+
+      // 2. Ağ Üzerinden İndirme
       try {
+        if (typeof window !== "undefined" && typeof window.logMessage === "function") {
+          window.logMessage("📥 HGM pafta datum veritabanı indiriliyor (~185KB)...");
+        }
         const basePath = typeof window !== "undefined" && window.location ? window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/") + 1) : "./";
         const fullUrl = url.startsWith("http") || url.startsWith("/") ? url : `${basePath}${url}`;
         const res = await fetch(`${fullUrl}?v=${Date.now()}`);
@@ -474,6 +503,19 @@ class PaftaIndexEngine {
           window.HGM_DATUM_CORRECTIONS = this.hgmDatabase;
         }
         this.isHgmLoaded = true;
+
+        // 3. İleriki Açılışlar İçin IndexedDB'ye Kaydetme
+        if (cache && this.hgmDatabase) {
+          try {
+            await cache.set(CACHE_KEY, this.hgmDatabase, CURRENT_VERSION);
+            if (typeof window !== "undefined" && typeof window.logMessage === "function") {
+              window.logMessage("✅ HGM pafta datum veritabanı indirildi ve IndexedDB'ye önbelleklendi.");
+            }
+          } catch (saveErr) {
+            console.warn("[PaftaIndex] Cache write error:", saveErr);
+          }
+        }
+
         return this.hgmDatabase;
       } catch (err) {
         console.warn("HGM Datum Database fetch error:", err);

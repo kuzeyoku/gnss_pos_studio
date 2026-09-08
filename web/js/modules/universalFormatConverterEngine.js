@@ -114,6 +114,11 @@ class UniversalFormatConverterEngine {
       return this.parseNcn(textContent, options);
     }
 
+    if (ext === "pos" || this._isUavPos(trimmed)) {
+      this.sourceFormat = "UAV_POS";
+      return this.parseUavPos(textContent, options);
+    }
+
     // Tablo / CSV / Serbest Metin
     this.sourceFormat = "TXT_CSV";
     return this.parseCsv(textContent, options);
@@ -1265,6 +1270,119 @@ class UniversalFormatConverterEngine {
     this.features = features;
     this._recomputeStats();
     return features;
+  }
+
+  /* =========================================================================
+   * 5B. İHA & OBLIQUE KAMERA POZ PARSER (CHC C30 / SHARE UAV / DJI Terra)
+   * ========================================================================= */
+  parseUavPos(posText, options = {}) {
+    const lines = posText.split(/\r?\n/);
+    const features = [];
+    let delimiter = ",";
+    const firstLine = lines.find(l => l.trim().length > 0 && !l.trim().startsWith("#") && !l.trim().startsWith("//")) || "";
+    if (firstLine.includes("\t")) delimiter = "\t";
+    else if (firstLine.includes(";")) delimiter = ";";
+    else if (firstLine.includes(",")) delimiter = ",";
+    else if (firstLine.includes(" ")) delimiter = " ";
+
+    let colMap = { id: 0, lon: 1, lat: 2, height: 3, yaw: -1, pitch: -1, roll: -1, omega: -1, phi: -1, kappa: -1, lens: -1 };
+    let hasHeader = false;
+
+    for (let i = 0; i < lines.length; i++) {
+      const raw = lines[i].trim();
+      if (!raw || raw.startsWith("#") || raw.startsWith("//") || raw.startsWith(";")) continue;
+
+      const parts = delimiter === " " ? raw.split(/\s+/) : raw.split(delimiter).map(s => s.trim());
+      if (parts.length < 3) continue;
+
+      if (!hasHeader) {
+        const lower = parts.map(p => p.toLowerCase());
+        if (lower.some(s => s.includes("photo") || s.includes("image") || s.includes("name") || s.includes("yaw") || s.includes("lat") || s.includes("lon") || s.includes("omega") || s.includes("kappa"))) {
+          hasHeader = true;
+          lower.forEach((col, idx) => {
+            if (col.includes("photo") || col.includes("image") || col.includes("name") || col === "id" || col === "no") colMap.id = idx;
+            if (col.includes("lon") || col.includes("saga") || col.includes("east") || col === "y" || col === "x") colMap.lon = idx;
+            if (col.includes("lat") || col.includes("yukari") || col.includes("north") || col === "x" || col === "y") colMap.lat = idx;
+            if (col.includes("alt") || col.includes("height") || col.includes("elev") || col.includes("kot") || col === "z" || col === "h") colMap.height = idx;
+            if (col.includes("yaw") || col.includes("heading")) colMap.yaw = idx;
+            if (col.includes("pitch") || col.includes("tilt")) colMap.pitch = idx;
+            if (col.includes("roll")) colMap.roll = idx;
+            if (col.includes("omega")) colMap.omega = idx;
+            if (col.includes("phi")) colMap.phi = idx;
+            if (col.includes("kappa")) colMap.kappa = idx;
+            if (col.includes("lens") || col.includes("cam") || col.includes("kamera")) colMap.lens = idx;
+          });
+          continue;
+        }
+      }
+
+      const pId = parts[colMap.id] || `IMG_${features.length + 1}`;
+      let c1 = parseFloat(parts[colMap.lon >= 0 ? colMap.lon : 1]);
+      let c2 = parseFloat(parts[colMap.lat >= 0 ? colMap.lat : 2]);
+      let alt = parseFloat(parts[colMap.height >= 0 ? colMap.height : 3]) || 0;
+
+      if (isNaN(c1) || isNaN(c2)) continue;
+
+      // Detect if coordinates are Lat/Lon vs TM Easting/Northing
+      let isWgs = false;
+      let finalCoords = [c1, c2, alt];
+      if ((c1 >= -180 && c1 <= 180) && (c2 >= -90 && c2 <= 90)) {
+        isWgs = true;
+        // Lon, Lat order for internal GeoJSON standards
+        if (c1 > 25 && c1 < 45 && c2 > 35 && c2 < 43) {
+          finalCoords = [c1, c2, alt];
+        } else if (c2 > 25 && c2 < 45 && c1 > 35 && c1 < 43) {
+          finalCoords = [c2, c1, alt];
+        }
+      }
+
+      const yaw = colMap.yaw >= 0 && parts[colMap.yaw] ? parseFloat(parts[colMap.yaw]) : (colMap.kappa >= 0 ? parseFloat(parts[colMap.kappa]) : 0);
+      const pitch = colMap.pitch >= 0 && parts[colMap.pitch] ? parseFloat(parts[colMap.pitch]) : (colMap.phi >= 0 ? parseFloat(parts[colMap.phi]) : 0);
+      const roll = colMap.roll >= 0 && parts[colMap.roll] ? parseFloat(parts[colMap.roll]) : (colMap.omega >= 0 ? parseFloat(parts[colMap.omega]) : 0);
+
+      // Oblique lens detection (1..5 or Nadir/FWD/RGT/BWD/LFT)
+      let lensCode = colMap.lens >= 0 && parts[colMap.lens] ? parts[colMap.lens] : "NADIR";
+      if (pId.endsWith("_1") || pId.includes("_NAD") || pId.includes("_1.")) lensCode = "NADIR";
+      else if (pId.endsWith("_2") || pId.includes("_FWD") || pId.includes("_2.")) lensCode = "FORWARD";
+      else if (pId.endsWith("_3") || pId.includes("_RGT") || pId.includes("_3.")) lensCode = "RIGHT";
+      else if (pId.endsWith("_4") || pId.includes("_BWD") || pId.includes("_4.")) lensCode = "BACKWARD";
+      else if (pId.endsWith("_5") || pId.includes("_LFT") || pId.includes("_5.")) lensCode = "LEFT";
+
+      features.push({
+        type: "Point",
+        layer: "UAV_KAMERA_POZLARI",
+        name: pId,
+        coordinates: finalCoords,
+        properties: {
+          name: pId,
+          layer: "UAV_KAMERA_POZLARI",
+          elevation: alt,
+          yaw: isNaN(yaw) ? 0 : yaw,
+          pitch: isNaN(pitch) ? 0 : pitch,
+          roll: isNaN(roll) ? 0 : roll,
+          lens: lensCode,
+          isUavCamera: true,
+          isWgs84: isWgs
+        }
+      });
+      this._registerLayer("UAV_KAMERA_POZLARI", "#0ea5e9");
+    }
+
+    this.features = features;
+    this._recomputeStats();
+    return features;
+  }
+
+  _isUavPos(text) {
+    const lower = text.slice(0, 1000).toLowerCase();
+    return lower.includes("photoid") ||
+           lower.includes("imagename") ||
+           (lower.includes("yaw") && lower.includes("pitch")) ||
+           (lower.includes("omega") && lower.includes("phi") && lower.includes("kappa")) ||
+           lower.includes("chc") ||
+           lower.includes("share uav") ||
+           lower.includes("c30") ||
+           lower.includes("psdk");
   }
 
   /* =========================================================================

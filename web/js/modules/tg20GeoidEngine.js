@@ -12,7 +12,7 @@ class Tg20GeoidEngine {
     this.nRows = 421;
     this.nCols = 1171;
     this.headerSize = 146;
-    this.scale = 0.001;
+    this.scale = 0.002;
     this.gridDataUint16 = null;
     this.gridDataFloat = null;
     this.loadPromise = null;
@@ -69,7 +69,36 @@ class Tg20GeoidEngine {
     if (this.isLoaded) return true;
     if (this.tryLoadEmbeddedModel()) return true;
 
+    const cache = (typeof GeoCacheStore !== "undefined" ? GeoCacheStore : null) ||
+                  (typeof window !== "undefined" ? window.__geoCacheStore : null);
+    const CACHE_KEY = "TG20_GEOID_MODEL";
+    const CURRENT_VERSION = "2020.1";
+
+    // 1. IndexedDB Önbellek Kontrolü (Offline-first)
+    if (cache) {
+      try {
+        const cachedModel = await cache.get(CACHE_KEY, CURRENT_VERSION);
+        if (cachedModel) {
+          if (typeof window !== "undefined") {
+            window.TG20_GEOID_MODEL = cachedModel;
+          }
+          if (this.tryLoadEmbeddedModel()) {
+            if (typeof window !== "undefined" && typeof window.logMessage === "function") {
+              window.logMessage("⚡ TG-20 jeoit modeli IndexedDB önbelleğinden yüklendi.");
+            }
+            return true;
+          }
+        }
+      } catch (cacheErr) {
+        console.warn("[TG20] Cache read error, falling back to network fetch:", cacheErr);
+      }
+    }
+
+    // 2. Ağ Üzerinden İndirme
     try {
+      if (typeof window !== "undefined" && typeof window.logMessage === "function") {
+        window.logMessage("📥 TG-20 jeoit modeli sunucudan indiriliyor (~1.3MB)...");
+      }
       const basePath = typeof window !== "undefined" && window.location ? window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/") + 1) : "./";
       const fullUrl = url.startsWith("http") || url.startsWith("/") ? url : `${basePath}${url}`;
       const res = await fetch(`${fullUrl}?v=${Date.now()}`);
@@ -78,6 +107,19 @@ class Tg20GeoidEngine {
       if (typeof window !== "undefined") {
         window.TG20_GEOID_MODEL = model;
       }
+
+      // 3. İleriki Açılışlar İçin IndexedDB'ye Kaydetme
+      if (cache) {
+        try {
+          await cache.set(CACHE_KEY, model, CURRENT_VERSION);
+          if (typeof window !== "undefined" && typeof window.logMessage === "function") {
+            window.logMessage("✅ TG-20 jeoit modeli indirildi ve IndexedDB'ye önbelleklendi.");
+          }
+        } catch (saveErr) {
+          console.warn("[TG20] Cache write error:", saveErr);
+        }
+      }
+
       return this.tryLoadEmbeddedModel();
     } catch (err) {
       console.warn("TG-20 database could not be loaded:", err);

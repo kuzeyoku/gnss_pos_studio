@@ -25,6 +25,36 @@ class GeodesyEngine {
     if (GeodesyEngine.loadPromise) return GeodesyEngine.loadPromise;
 
     GeodesyEngine.loadPromise = (async () => {
+      const cache = (typeof GeoCacheStore !== "undefined" ? GeoCacheStore : null) ||
+                    (typeof window !== "undefined" ? window.__geoCacheStore : null);
+      const CACHE_KEY = "EPSG_REGISTRY_DATA";
+      const CURRENT_VERSION = "2024.1";
+
+      const applyData = (json) => {
+        if (json && Array.isArray(json.systems)) {
+          GeodesyEngine.epsgData = json;
+          GeodesyEngine.epsgRegistry = {};
+          for (const sys of json.systems) {
+            GeodesyEngine.epsgRegistry[sys.code] = sys;
+          }
+          return true;
+        }
+        return false;
+      };
+
+      // 1. IndexedDB Önbellek Kontrolü
+      if (cache) {
+        try {
+          const cached = await cache.get(CACHE_KEY, CURRENT_VERSION);
+          if (cached && applyData(cached)) {
+            return GeodesyEngine.epsgData;
+          }
+        } catch (cacheErr) {
+          console.warn("[Geodesy] Cache read error, falling back to network fetch:", cacheErr);
+        }
+      }
+
+      // 2. Ağ Üzerinden İndirme
       try {
         const basePath = (typeof window !== "undefined" && window.location && window.location.pathname)
           ? window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1)
@@ -32,11 +62,13 @@ class GeodesyEngine {
         const res = await fetch(`${basePath}data/epsg_registry.json?v=${Date.now()}`);
         if (res.ok) {
           const json = await res.json();
-          if (json && Array.isArray(json.systems)) {
-            GeodesyEngine.epsgData = json;
-            GeodesyEngine.epsgRegistry = {};
-            for (const sys of json.systems) {
-              GeodesyEngine.epsgRegistry[sys.code] = sys;
+          if (applyData(json)) {
+            if (cache) {
+              try {
+                await cache.set(CACHE_KEY, json, CURRENT_VERSION);
+              } catch (saveErr) {
+                console.warn("[Geodesy] Cache write error:", saveErr);
+              }
             }
           }
         }

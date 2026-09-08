@@ -58,8 +58,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (typeof initTg20GeoidStation === "function") initTg20GeoidStation();
   if (typeof initFlightPlannerStudio === "function") initFlightPlannerStudio();
   if (typeof initFormatConverterModule === "function") initFormatConverterModule();
-  if (typeof initVersionAndFormatCascader === "function") initVersionAndFormatCascader();
   if (typeof initGuideSearchAndFilter === "function") initGuideSearchAndFilter();
+
+  // 3. Service Worker (Offline Support)
+  if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+    navigator.serviceWorker.register('sw.js').then((reg) => {
+      console.log('🚀 [ServiceWorker] Kayıt başarılı, scope:', reg.scope);
+    }).catch((err) => {
+      console.warn('⚠️ [ServiceWorker] Kayıt başarısız (çevrimdışı mod fallback devrede):', err);
+    });
+  }
 
   console.log("🚀 Harita Tools (Beta) Modüler Çekirdek Başarıyla Başlatıldı.");
 });

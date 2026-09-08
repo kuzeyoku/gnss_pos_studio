@@ -4,7 +4,8 @@
     "build": "node scripts/bundle.js",
     "bundle": "node scripts/bundle.js",
     "watch": "node scripts/bundle.js --watch",
-    "dev": "node scripts/bundle.js --watch"
+    "dev": "node scripts/bundle.js --watch",
+    "test": "node --test tests/*.test.js"
   },
   "dependencies": {
     "javascript-obfuscator": "^5.6.0"
