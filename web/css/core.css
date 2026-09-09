@@ -1,6 +1,6 @@
 /* =========================================================================
  * GNSS POS STUDIO - CONSOLIDATED CORE DESIGN SYSTEM (core.css)
- * Otomatik Derleme Tarihi: 10.09.2026 00:00:56
+ * Otomatik Derleme Tarihi: 10.09.2026 00:22:16
  * Modüler CSS kaynaklarından otomatik derlenmiştir.
  * ========================================================================= */
 
@@ -189,7 +189,6 @@ body {
 .font-display  { font-family: var(--font-display) !important; }
 .font-bold     { font-weight: 700 !important; }
 .font-extrabold { font-weight: 800 !important; }
-.font-black    { font-weight: 900 !important; }
 .font-semibold { font-weight: 600 !important; }
 
 /* — Font Size — */
@@ -211,15 +210,11 @@ body {
 .mb-3, .mb-12 { margin-bottom: 12px !important; }
 .mb-14 { margin-bottom: 14px !important; }
 .mb-16 { margin-bottom: 16px !important; }
-.mb-18 { margin-bottom: 18px !important; }
-.mb-20 { margin-bottom: 20px !important; }
 .mt-1, .mt-4 { margin-top: 4px !important; }
 .mt-2, .mt-8 { margin-top: 8px !important; }
 .mt-3, .mt-12 { margin-top: 12px !important; }
 .mt-14 { margin-top: 14px !important; }
 .mt-16 { margin-top: 16px !important; }
-.mt-18 { margin-top: 18px !important; }
-.mt-20 { margin-top: 20px !important; }
 .ml-auto { margin-left: auto !important; }
 .mr-auto { margin-right: auto !important; }
 .pt-2 { padding-top: 2px !important; }
@@ -281,12 +276,9 @@ body {
 .w-190       { width: 190px !important; }
 .min-h-70    { min-height: 70px !important; }
 .min-h-120   { min-height: 120px !important; }
-.pos-rel-w100 { position: relative; width: 100%; }
-
 /* — Text Glow — */
 .text-glow-cyan  { text-shadow: 0 0 12px rgba(6, 182, 212, 0.6); }
 .text-glow-amber { text-shadow: 0 0 12px rgba(245, 158, 11, 0.6); }
-
 
 /* — Keyframe Animations — */
 @keyframes pulseDot {
@@ -3032,17 +3024,6 @@ body.report-body {
 .formula-stats { display: flex; gap: 12px; font-size: 10px; color: #334155; }
 .formula-stats strong { font-family: 'Consolas', 'Courier New', monospace; color: #0f766e; }
 
-.report-section-title {
-  font-size: 11px;
-  font-weight: 800;
-  color: #0f766e;
-  border-bottom: 1.5px solid #14b8a6;
-  padding-bottom: 3px;
-  margin: 12px 0 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-}
-
 .report-table { width: 100%; border-collapse: collapse; font-size: 9.5px; margin-bottom: 10px; }
 .report-table th {
   background: #ecfdf5;
@@ -3058,18 +3039,9 @@ body.report-body {
 .report-table th.col-lon { width: 13%; }
 .report-table th.col-metric { width: 11%; }
 .report-table th.col-obstype { width: 10%; }
-.report-table td.point-name, .col-name { font-weight: 700; color: #0f172a; text-align: left; padding-left: 6px; }
+.col-name { font-weight: 700; color: #0f172a; text-align: left; padding-left: 6px; }
 .report-table td { padding: 4px 6px; border: 1px solid #d1d5db; }
 .report-table tbody tr:nth-child(even) { background: #f8fafc; }
-
-.report-footer {
-  margin-top: 16px;
-  padding-top: 8px;
-  border-top: 1px solid #d1d5db;
-  font-size: 8.5px;
-  color: #94a3b8;
-  text-align: center;
-}
 
 /* — Report Floating Print Button & Header Box — */
 .print-float-action {
@@ -3172,13 +3144,6 @@ body.report-body {
 .col-mono  { font-family: 'Consolas', monospace; font-size: 9px; }
 
 .report-table td.mono,
-.report-table td.mono-bold,
-.report-table td.mono-amber,
-.report-table td.mono-emerald { font-family: 'Consolas', 'Courier New', monospace; }
-.report-table td.mono-bold    { font-weight: 700; }
-.report-table td.mono-amber   { font-weight: 700; color: #b45309; background: #fffbeb; }
-.report-table td.mono-emerald { font-weight: 800; color: #047857; background: #f0fdf4; }
-
 .report-table .badge {
   font-weight: 700;
   border-radius: 3px;
@@ -3209,13 +3174,6 @@ body.report-body {
   font-size: 9px;
 }
 
-.signature-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin-top: 18px;
-  page-break-inside: avoid;
-}
 .footer    { margin-top: 30px; display: flex; justify-content: space-between; text-align: center; }
 .sign-block  { width: 200px; padding-top: 40px; border-top: 1px solid #333; }
 .footer-bar {
