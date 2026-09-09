@@ -349,7 +349,7 @@
 [data-theme="light"] .tg20-map-canvas,
 [data-theme="light"] .flight-map-canvas,
 [data-theme="light"] .ppk-upload-box,
-[data-theme="light"] .dom-badge-card,
+[data-theme="light"] .dom-zone-item,
 [data-theme="light"] .formula-box,
 [data-theme="light"] .guide-shortcut-card {
   background: #f8fafc;
@@ -457,7 +457,7 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-[data-theme="light"] .dom-label-badge {
+[data-theme="light"] .dom-marker-label {
   background: #f59e0b;
   color: #ffffff;
   border: 1px solid #d97706;
@@ -476,7 +476,7 @@
   color: #0f172a;
 }
 
-[data-theme="light"] .flight-wind-heading-badge {
+[data-theme="light"] .flight-wind-hud {
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid #a7f3d0;
   color: #065f46;
@@ -536,9 +536,7 @@
   border: 1px solid #cbd5e1;
 }
 
-[data-theme="light"] .map-hud-badge,
-[data-theme="light"] .tg20-map-hud-badge,
-[data-theme="light"] .cadastre-map-hud-badge {
+[data-theme="light"] .map-hud-badge {
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(217, 119, 6, 0.4);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -1302,7 +1300,7 @@
     font-size: 12px !important;
   }
 
-  .flight-wind-heading-badge {
+  .flight-wind-hud {
     top: 8px !important;
     right: 48px !important;
     font-size: 9.5px !important;
@@ -1360,8 +1358,7 @@
     justify-content: flex-start !important;
   }
 
-  .map-hud-badge,
-  .tg20-map-hud-badge {
+  .map-hud-badge {
     position: static !important;
     width: 100% !important;
     margin-top: 0 !important;
@@ -1673,7 +1670,7 @@
     gap: 8px !important;
   }
 
-  .guide-hero-badges {
+  .guide-hero-inner .badge-group {
     width: 100% !important;
     justify-content: flex-start !important;
   }

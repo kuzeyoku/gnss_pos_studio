@@ -835,12 +835,12 @@ function renderDomGrid() {
     }).addTo(state.domLayerGroup);
     const v_2 = L.divIcon({
       className: "",
-      html: "<div class=\"dom-label-badge\" title=\"" + item.name + " (" + item.minLon + "° - " + item.maxLon + "° E)\">📍 DOM " + item.dom + "°<br><span style=\"font-size: 8.5px; font-weight: 500; opacity: 0.85;\">Dilim " + item.zone + "</span></div>",
+      html: "<div class=\"dom-marker-label\" title=\"" + item.name + " (" + item.minLon + "° - " + item.maxLon + "° E)\">📍 DOM " + item.dom + "°<br><span style=\"font-size: 8.5px; font-weight: 500; opacity: 0.85;\">Dilim " + item.zone + "</span></div>",
       iconSize: null
     });
     const v_3 = L.divIcon({
       className: "",
-      html: "<div class=\"dom-label-badge\" title=\"" + item.name + " (" + item.minLon + "° - " + item.maxLon + "° E)\">📍 DOM " + item.dom + "°<br><span style=\"font-size: 8.5px; font-weight: 500; opacity: 0.85;\">Dilim " + item.zone + "</span></div>",
+      html: "<div class=\"dom-marker-label\" title=\"" + item.name + " (" + item.minLon + "° - " + item.maxLon + "° E)\">📍 DOM " + item.dom + "°<br><span style=\"font-size: 8.5px; font-weight: 500; opacity: 0.85;\">Dilim " + item.zone + "</span></div>",
       iconSize: null
     });
     const v_4 = L.marker([41.9, item.dom], {

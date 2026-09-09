@@ -1,6 +1,6 @@
 /* =========================================================================
  * GNSS POS STUDIO - CONSOLIDATED CORE DESIGN SYSTEM (core.css)
- * Otomatik Derleme Tarihi: 09.09.2026 14:46:50
+ * Otomatik Derleme Tarihi: 09.09.2026 15:05:06
  * Modüler CSS kaynaklarından otomatik derlenmiştir.
  * ========================================================================= */
 
@@ -517,49 +517,41 @@ body {
   transition: all 0.2s ease;
 }
 
-.badge-secondary,
-.bento-badge,
-.flight-time-badge {
+.badge-secondary {
   background: rgba(255, 255, 255, 0.06);
   color: var(--text-dim);
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-.badge-cyan,
-.badge-intersecting,
-.badge-region-cyan {
+.badge-cyan {
   background: rgba(6, 182, 212, 0.12);
   color: var(--cyan-400);
   border-color: rgba(6, 182, 212, 0.35);
   box-shadow: 0 0 10px rgba(6, 182, 212, 0.15);
 }
 
-.badge-purple,
-.badge-helmert-m0,
-.badge-region-purple {
+.badge-purple {
   background: rgba(168, 85, 247, 0.12);
   color: #c084fc;
   border-color: rgba(168, 85, 247, 0.35);
   box-shadow: 0 0 10px rgba(168, 85, 247, 0.15);
 }
 
-.badge-emerald,
-.badge-official-db {
+.badge-emerald {
   background: rgba(16, 185, 129, 0.12);
   color: var(--emerald-400);
   border-color: rgba(16, 185, 129, 0.35);
   box-shadow: 0 0 10px rgba(16, 185, 129, 0.15);
 }
 
-.badge-amber,
-.flight-wind-heading-badge {
+.badge-amber {
   background: rgba(245, 158, 11, 0.12);
   color: #fbbf24;
   border-color: rgba(245, 158, 11, 0.35);
   box-shadow: 0 0 10px rgba(245, 158, 11, 0.15);
 }
 
-.badge-rose, .badge-danger {
+.badge-rose {
   background: rgba(244, 63, 94, 0.12);
   color: #fb7185;
   border-color: rgba(244, 63, 94, 0.35);
@@ -582,26 +574,6 @@ body {
   padding: 1px 6px;
   border-radius: 4px;
 }
-
-.badge-pass, .badge-fail, .badge-single-warn {
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 11px;
-}
-.badge-pass        { background: rgba(16, 185, 129, 0.2); color: var(--emerald-400); border: 1px solid rgba(52, 211, 153, 0.3); }
-.badge-fail        { background: rgba(244, 63, 94, 0.2); color: var(--rose-400); border: 1px solid rgba(251, 113, 133, 0.3); }
-.badge-single-warn { background: rgba(245, 158, 11, 0.18); color: var(--amber-400); border: 1px solid rgba(251, 191, 36, 0.3); }
-
-/* Safety Badges (Flight) */
-.badge-safety-safe,
-.badge-safety-warning,
-.badge-safety-danger {
-  border: 1px solid;
-}
-.badge-safety-safe    { background: rgba(16, 185, 129, 0.18); color: #10b981; border-color: rgba(16, 185, 129, 0.4); }
-.badge-safety-warning { background: rgba(245, 158, 11, 0.18); color: #f59e0b; border-color: rgba(245, 158, 11, 0.4); }
-.badge-safety-danger  { background: rgba(239, 68, 68, 0.18); color: #ef4444; border-color: rgba(239, 68, 68, 0.4); }
 
 /* Status Dots */
 .status-dot-active {
@@ -1740,7 +1712,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .bento-card-header,
 .card-header-row,
 .flight-summary-box > div,
-.dom-badge-header { display: flex; justify-content: space-between; align-items: center; }
+.dom-zone-header { display: flex; justify-content: space-between; align-items: center; }
 
 .icon-cyan,    .bento-icon-cyan    { background: rgba(6, 182, 212, 0.15); color: var(--cyan-400); border: 1px solid rgba(6, 182, 212, 0.3); }
 .icon-blue,    .bento-icon-blue    { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
@@ -1749,8 +1721,6 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .icon-amber,   .bento-icon-amber   { background: rgba(245, 158, 11, 0.15); color: var(--amber-400); border: 1px solid rgba(245, 158, 11, 0.3); }
 .icon-sky,     .bento-icon-sky     { background: rgba(56, 189, 248, 0.15); color: var(--sky-400); border: 1px solid rgba(56, 189, 248, 0.3); }
 .icon-rose,    .bento-icon-rose    { background: rgba(244, 63, 94, 0.15); color: var(--rose-400); border: 1px solid rgba(244, 63, 94, 0.3); }
-
-.bento-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.3px; border: 1px solid transparent; }
 .bento-title { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: #ffffff; margin: 0; }
 .bento-desc  { font-size: 11.5px; color: var(--text-muted); line-height: 1.45; margin: 0; }
 .bento-features { display: flex; flex-direction: column; gap: 4px; font-size: 11px; color: var(--text-dim); }
@@ -1928,9 +1898,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
   min-height: 480px;
 }
 
-.map-hud-badge,
-.cadastre-map-hud-badge,
-.tg20-map-hud-badge {
+.map-hud-badge {
   position: absolute;
   bottom: 8px;
   left: 8px;
@@ -2243,7 +2211,6 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
    16. MAP / PAFTA TAB
    ========================================================================== */
 .pafta-toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; background: rgba(4, 9, 24, 0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 10px 16px; }
-.pafta-toolbar-icon-badge { width: 32px; height: 32px; border-radius: var(--radius-sm); background: rgba(6, 182, 212, 0.15); border: 1px solid rgba(6, 182, 212, 0.35); display: flex; align-items: center; justify-content: center; font-size: 15px; color: var(--cyan-400); box-shadow: 0 0 12px rgba(6, 182, 212, 0.25); flex-shrink: 0; }
 .pafta-toolbar-title { font-family: var(--font-display); font-size: 13.5px; font-weight: 700; color: #ffffff; letter-spacing: 0.3px; white-space: nowrap; }
 
 /* Pafta Scale Buttons */
@@ -2368,8 +2335,8 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .pafta-label-5k   { background: rgba(244, 63, 94, 0.9); border: 1px solid #fb7185; box-shadow: 0 2px 8px rgba(244, 63, 94, 0.4); }
 .pafta-label-2k   { background: rgba(139, 92, 246, 0.9); border: 1px solid #a78bfa; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4); }
 .pafta-label-1k   { background: rgba(14, 165, 233, 0.9); border: 1px solid #38bdf8; box-shadow: 0 2px 8px rgba(14, 165, 233, 0.4); }
-.dom-label-badge  { background: rgba(245, 158, 11, 0.92); backdrop-filter: blur(6px); color: #030712; border: 1.5px solid #fbbf24; border-radius: 6px; padding: 3px 8px; font-family: var(--font-mono); font-size: 11px; font-weight: 800; box-shadow: 0 6px 16px rgba(245, 158, 11, 0.5); pointer-events: auto; cursor: pointer; white-space: nowrap; transform: translate(-50%, -50%); text-align: center; transition: all 0.2s ease; }
-.dom-label-badge:hover { transform: translate(-50%, -50%) scale(1.08); box-shadow: 0 8px 22px rgba(245, 158, 11, 0.7); }
+.dom-marker-label  { background: rgba(245, 158, 11, 0.92); backdrop-filter: blur(6px); color: #030712; border: 1.5px solid #fbbf24; border-radius: 6px; padding: 3px 8px; font-family: var(--font-mono); font-size: 11px; font-weight: 800; box-shadow: 0 6px 16px rgba(245, 158, 11, 0.5); pointer-events: auto; cursor: pointer; white-space: nowrap; transform: translate(-50%, -50%); text-align: center; transition: all 0.2s ease; }
+.dom-marker-label:hover { transform: translate(-50%, -50%) scale(1.08); box-shadow: 0 8px 22px rgba(245, 158, 11, 0.7); }
 
 /* ==========================================================================
    17. GEODESY TAB
@@ -2443,8 +2410,8 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .gcp-pin-ykn { background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-color: #a7f3d0; box-shadow: 0 0 10px rgba(16, 185, 129, 0.6); }
 .gcp-pin-dn  { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-color: #fde68a; box-shadow: 0 0 10px rgba(245, 158, 11, 0.6); }
 
-.gcp-pin-del-badge { position: absolute !important; top: -8px !important; right: -8px !important; width: 17px !important; height: 17px !important; background: #ef4444 !important; color: #ffffff !important; border: 1.5px solid #ffffff !important; border-radius: 50% !important; font-size: 10px !important; font-weight: 900 !important; display: flex !important; align-items: center !important; justify-content: center !important; cursor: pointer !important; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6) !important; transition: transform 0.15s ease, background 0.15s ease !important; z-index: 1020 !important; line-height: 1 !important; }
-.gcp-pin-del-badge:hover { background: #b91c1c !important; transform: scale(1.3) !important; }
+.gcp-pin-delete { position: absolute !important; top: -8px !important; right: -8px !important; width: 17px !important; height: 17px !important; background: #ef4444 !important; color: #ffffff !important; border: 1.5px solid #ffffff !important; border-radius: 50% !important; font-size: 10px !important; font-weight: 900 !important; display: flex !important; align-items: center !important; justify-content: center !important; cursor: pointer !important; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6) !important; transition: transform 0.15s ease, background 0.15s ease !important; z-index: 1020 !important; line-height: 1 !important; }
+.gcp-pin-delete:hover { background: #b91c1c !important; transform: scale(1.3) !important; }
 
 .road-dist-tooltip { background: rgba(15, 23, 42, 0.90) !important; backdrop-filter: blur(4px) !important; border: 1px solid rgba(245, 158, 11, 0.9) !important; color: #fbbf24 !important; font-family: var(--font-mono) !important; font-size: 10px !important; font-weight: 700 !important; padding: 1px 5px !important; border-radius: 4px !important; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important; white-space: nowrap !important; pointer-events: none !important; z-index: 10 !important; }
 .road-dist-tooltip::before { display: none !important; }
@@ -2463,7 +2430,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
   width: 100%;
 }
 .flight-map-canvas { height: 520px; }
-.flight-wind-heading-badge { position: absolute; top: 10px; right: 54px; z-index: 1000; background: rgba(3, 7, 18, 0.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 3px 8px; height: 25px; border-radius: var(--radius-sm); border: 1px solid rgba(16, 185, 129, 0.35); font-size: 11px; display: flex; align-items: center; gap: 6px; color: #ffffff; white-space: nowrap; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6); }
+.flight-wind-hud { position: absolute; top: 10px; right: 54px; z-index: 1000; background: rgba(3, 7, 18, 0.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 3px 8px; height: 25px; border-radius: var(--radius-sm); border: 1px solid rgba(16, 185, 129, 0.35); font-size: 11px; display: flex; align-items: center; gap: 6px; color: #ffffff; white-space: nowrap; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6); }
 .flight-solar-compass-widget { background: rgba(8, 13, 26, 0.95); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 14px; color: #ffffff; user-select: none; z-index: 10; }
 .solar-wind-divider { width: 1px; height: 30px; background: rgba(255, 255, 255, 0.1); }
 .solar-dial-circle,
@@ -2511,7 +2478,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .flight-geo-chip:hover { border-color: rgba(6, 182, 212, 0.35); background: rgba(6, 182, 212, 0.05); }
 .flight-geo-label { font-size: 10px; text-transform: uppercase; color: var(--text-dim); font-weight: 700; display: flex; align-items: center; gap: 5px; }
 .flight-geo-val { font-family: var(--font-mono); font-size: 13px; font-weight: 800; color: #ffffff; }
-.flight-telemetry-badge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 6px; }
+.flight-telemetry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 6px; }
 .flight-telemetry-chip {
   background: rgba(3, 7, 18, 0.65);
   padding: 5px 6px;
@@ -2562,7 +2529,6 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .guide-hero-info { display: flex; flex-direction: column; gap: 2px; }
 .guide-hero-title { font-family: var(--font-display); font-size: 14px; font-weight: 800; color: #ffffff; margin: 0; letter-spacing: 0.3px; }
 .guide-hero-lead { color: #94a3b8; font-size: 11px; margin: 0; line-height: 1.4; }
-.guide-hero-badges { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 .guide-search-filter-bar { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 10px; }
 .guide-search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--cyan-400); font-size: 12px; pointer-events: none; }
 .guide-search-input { width: 100%; padding: 7px 32px 7px 34px; background: rgba(3, 7, 18, 0.65); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: var(--radius-sm); color: #ffffff; font-size: 11.5px; outline: none; transition: all 0.2s ease; }
@@ -2592,7 +2558,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .guide-card-icon-box { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
 .guide-card-body-text { font-size: 11px; color: #cbd5e1; line-height: 1.45; display: flex; flex-direction: column; gap: 6px; }
 .guide-feature-row { display: flex; flex-direction: column; gap: 2px; background: rgba(15, 23, 42, 0.4); border-radius: 5px; padding: 5px 8px; border-left: 2px solid rgba(255, 255, 255, 0.15); }
-.guide-feature-badge { font-family: var(--font-mono); font-size: 8.5px; font-weight: 800; letter-spacing: 0.4px; display: inline-block; align-self: flex-start; padding: 1px 4px; border-radius: 3px; margin-bottom: 1px; }
+.badge-xs { font-family: var(--font-mono); font-size: 8.5px; font-weight: 800; letter-spacing: 0.4px; display: inline-block; align-self: flex-start; padding: 1px 4px; border-radius: 3px; margin-bottom: 1px; }
 
 /* Standards & Formulas */
 .guide-standards-bento { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
@@ -2602,7 +2568,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .guide-standards-table-wrap { border-radius: var(--radius-sm); border: 1px solid var(--border-glass); }
 .guide-table th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; padding: 6px 8px; }
 .guide-table td { font-size: 10.5px; padding: 6px 8px; }
-.dom-badge-card { background: rgba(15, 23, 42, 0.45); border: 1px solid var(--border-glass); border-radius: 6px; padding: 6px 8px; display: flex; flex-direction: column; gap: 2px; }
+.dom-zone-item { background: rgba(15, 23, 42, 0.45); border: 1px solid var(--border-glass); border-radius: 6px; padding: 6px 8px; display: flex; flex-direction: column; gap: 2px; }
 .dom-code { font-size: 11px; font-weight: 700; color: var(--cyan-400); font-family: var(--font-mono); }
 .formula-box { background: rgba(3, 7, 18, 0.45); border: 1px solid var(--border-glass); border-radius: 6px; padding: 6px 8px; display: flex; flex-direction: column; gap: 4px; }
 .formula-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
@@ -3524,16 +3490,12 @@ body.report-body {
 .report-table td.mono-amber   { font-weight: 700; color: #b45309; background: #fffbeb; }
 .report-table td.mono-emerald { font-weight: 800; color: #047857; background: #f0fdf4; }
 
-.badge-ok, .badge-pair, .badge-single, .badge-out, .badge-warn {
+.report-table .badge {
   font-weight: 700;
   border-radius: 3px;
   font-size: 8px;
+  padding: 2px 4px;
 }
-.badge-ok     { background: #dcfce7; color: #166534; padding: 1px 5px; border: 1px solid #bbf7d0; }
-.badge-pair   { background: #dbeafe; color: #1e40af; padding: 2px 4px; }
-.badge-single { background: #fef3c7; color: #92400e; padding: 2px 4px; }
-.badge-out    { background: #fee2e2; color: #991b1b; padding: 1px 5px; border: 1px solid #fecaca; }
-.badge-warn   { background: #fef3c7; color: #92400e; padding: 1px 5px; border: 1px solid #fde68a; }
 
 /* — Disclaimer & Signatures — */
 .disclaimer-card {
@@ -3943,7 +3905,7 @@ body.report-body {
 [data-theme="light"] .tg20-map-canvas,
 [data-theme="light"] .flight-map-canvas,
 [data-theme="light"] .ppk-upload-box,
-[data-theme="light"] .dom-badge-card,
+[data-theme="light"] .dom-zone-item,
 [data-theme="light"] .formula-box,
 [data-theme="light"] .guide-shortcut-card {
   background: #f8fafc;
@@ -4051,7 +4013,7 @@ body.report-body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-[data-theme="light"] .dom-label-badge {
+[data-theme="light"] .dom-marker-label {
   background: #f59e0b;
   color: #ffffff;
   border: 1px solid #d97706;
@@ -4070,7 +4032,7 @@ body.report-body {
   color: #0f172a;
 }
 
-[data-theme="light"] .flight-wind-heading-badge {
+[data-theme="light"] .flight-wind-hud {
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid #a7f3d0;
   color: #065f46;
@@ -4130,9 +4092,7 @@ body.report-body {
   border: 1px solid #cbd5e1;
 }
 
-[data-theme="light"] .map-hud-badge,
-[data-theme="light"] .tg20-map-hud-badge,
-[data-theme="light"] .cadastre-map-hud-badge {
+[data-theme="light"] .map-hud-badge {
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(217, 119, 6, 0.4);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -4896,7 +4856,7 @@ body.report-body {
     font-size: 12px !important;
   }
 
-  .flight-wind-heading-badge {
+  .flight-wind-hud {
     top: 8px !important;
     right: 48px !important;
     font-size: 9.5px !important;
@@ -4954,8 +4914,7 @@ body.report-body {
     justify-content: flex-start !important;
   }
 
-  .map-hud-badge,
-  .tg20-map-hud-badge {
+  .map-hud-badge {
     position: static !important;
     width: 100% !important;
     margin-top: 0 !important;
@@ -5267,7 +5226,7 @@ body.report-body {
     gap: 8px !important;
   }
 
-  .guide-hero-badges {
+  .guide-hero-inner .badge-group {
     width: 100% !important;
     justify-content: flex-start !important;
   }

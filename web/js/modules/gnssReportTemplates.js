@@ -137,7 +137,7 @@ function renderTg20Report(data = {}) {
     ? `<tr><td colspan="10" class="empty-table-cell" data-i18n="reports.emptyData"></td></tr>`
     : rows.map((r, idx) => {
         const isPair = r.isPair ?? (r.typeCode === "PAIR_AVG");
-        const badgeCls = isPair ? "badge-pair" : "badge-single";
+        const badgeCls = isPair ? "badge badge-blue" : "badge badge-amber";
         const typeLabel = isPair
           ? tFunc("reports.typeDualAvg", "Çift Okuma Ort.")
           : tFunc("reports.typeSingle", "Tekil Ölçü");
@@ -235,7 +235,7 @@ function renderCadastreKarne(data = {}) {
         <td>${pt.hsdvVal != null ? (pt.hsdvVal * 1000).toFixed(1) : "-"}</td>
         <td>${pt.pdop || "-"}</td>
         <td>${pt.sats || "-"}</td>
-        <td><span class="badge-single-warn" data-i18n="reports.badgeSingleWarn"></span></td>
+        <td><span class="badge badge-amber" data-i18n="reports.badgeSingleWarn"></span></td>
       </tr>
     `;
   }).join("");

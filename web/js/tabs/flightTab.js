@@ -484,7 +484,7 @@ async function updateWeatherAndSolar(arg1, arg2, arg3) {
   }
   if (domEl_2) {
     domEl_2.textContent = v_4.hasSufficientSun ? t("flight.lblSunEfficient") : t("flight.lblSunLowAngle");
-    domEl_2.className = v_4.hasSufficientSun ? "status-pill badge-safety-safe" : "status-pill badge-safety-warning";
+    domEl_2.className = v_4.hasSufficientSun ? "status-pill badge-emerald" : "status-pill badge-amber";
   }
   if (typeof window !== "undefined" && typeof window.renderSolarTimelineBars === "function") {
     window.renderSolarTimelineBars(v_4.hourlySeries);
@@ -507,7 +507,8 @@ async function updateWeatherAndSolar(arg1, arg2, arg3) {
   if (domEl_6) {
     const badgeKey = v_5.overallSafety === "danger" ? "badgeDanger" : (v_5.overallSafety === "warning" ? "badgeWarning" : "badgeSafe");
     domEl_6.textContent = t("flight." + badgeKey);
-    domEl_6.className = "status-pill badge-safety-" + v_5.overallSafety;
+    const safetyBadgeClass = v_5.overallSafety === "danger" ? "badge-rose" : (v_5.overallSafety === "warning" ? "badge-amber" : "badge-emerald");
+    domEl_6.className = "status-pill " + safetyBadgeClass;
   }
   if (domEl_7) {
     domEl_7.textContent = v_5.optimalFlightHeading || "--";
@@ -1305,7 +1306,7 @@ function renderGcpMarkersOnMap(arg1) {
   arg1.forEach(item => {
     const v_1 = item.type === "YKN";
     const v_2 = v_1 ? "gcp-pin-ykn" : "gcp-pin-dn";
-    const v_3 = "\n            <div class=\"gcp-map-pin " + v_2 + "\">\n                <span class=\"gcp-pin-num\">" + item.id + "</span>\n                <div class=\"gcp-pin-del-badge\" title=\"" + t("flight.btnRemoveGcpPoint", { name: item.name }) + "\" onclick=\"event.stopPropagation(); window.deleteGcpPoint(" + item.id + ")\">✕</div>\n            </div>\n        ";
+    const v_3 = "\n            <div class=\"gcp-map-pin " + v_2 + "\">\n                <span class=\"gcp-pin-num\">" + item.id + "</span>\n                <div class=\"gcp-pin-delete\" title=\"" + t("flight.btnRemoveGcpPoint", { name: item.name }) + "\" onclick=\"event.stopPropagation(); window.deleteGcpPoint(" + item.id + ")\">✕</div>\n            </div>\n        ";
     const v_4 = L.divIcon({
       html: v_3,
       className: "custom-gcp-icon-wrap",
@@ -1411,7 +1412,7 @@ function renderGcpMarkersOnMap(arg1) {
     setTimeout(() => {
       const v_1_1 = v_6.getElement();
       if (v_1_1) {
-        const domEl = v_1_1.querySelector(".gcp-pin-del-badge");
+        const domEl = v_1_1.querySelector(".gcp-pin-delete");
         if (domEl) {
           L.DomEvent.disableClickPropagation(domEl);
           L.DomEvent.disableScrollPropagation(domEl);

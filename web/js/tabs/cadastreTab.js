@@ -568,8 +568,8 @@ function renderRw5MatchedTable(arg1 = [], arg2 = []) {
 
       const statusCell = tr.querySelector(".cell-status");
       statusCell.innerHTML = item.isDistPassed
-        ? `<span class="badge-pass">${t("cadastre.badgePassDual")}</span>`
-        : `<span class="badge-fail">${t("cadastre.badgeFailLimit")}</span>`;
+        ? `<span class="badge badge-emerald">${t("cadastre.badgePassDual")}</span>`
+        : `<span class="badge badge-rose">${t("cadastre.badgeFailLimit")}</span>`;
 
       tr.querySelector(".cell-e").textContent = item.avgE;
       tr.querySelector(".cell-n").textContent = item.avgN;
