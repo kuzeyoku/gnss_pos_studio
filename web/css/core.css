@@ -1,6 +1,6 @@
 /* =========================================================================
  * GNSS POS STUDIO - CONSOLIDATED CORE DESIGN SYSTEM (core.css)
- * Otomatik Derleme Tarihi: 09.09.2026 15:37:06
+ * Otomatik Derleme Tarihi: 09.09.2026 15:57:17
  * Modüler CSS kaynaklarından otomatik derlenmiştir.
  * ========================================================================= */
 
@@ -1117,8 +1117,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
   animation: fadeIn 0.25s ease;
 }
 
-.modal-card,
-.about-modal-card {
+.modal-dialog {
   background: linear-gradient(145deg, rgba(15, 23, 42, 0.96) 0%, rgba(3, 7, 18, 0.98) 100%);
   border: 1px solid var(--border-cyan-glow);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(6, 182, 212, 0.25);
@@ -1202,12 +1201,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .about-spec-val-dev { color: #ffffff; font-size: 13px; display: flex; align-items: center; gap: 5px; margin-top: 2px; }
 .about-spec-val-owner { color: #38bdf8; font-size: 12px; display: flex; align-items: center; gap: 5px; margin-top: 2px; }
 
-.about-standards-card {
-  background: rgba(15, 23, 42, 0.5);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-sm);
-  padding: 12px 14px;
-}
+
 
 .about-standards-title {
   font-size: 11.5px;
@@ -1224,7 +1218,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .about-standards-list { display: flex; flex-direction: column; gap: 6px; font-size: 11.5px; color: #94a3b8; }
 .about-standard-row { display: flex; align-items: flex-start; gap: 8px; }
 
-.about-privacy-box {
+.privacy-note {
   background: rgba(16, 185, 129, 0.08);
   border: 1px solid rgba(16, 185, 129, 0.25);
   border-radius: var(--radius-sm);
@@ -1577,23 +1571,11 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
   color: #fef08a;
 }
 
-.alert-pruning-box {
-  background: rgba(6, 182, 212, 0.08);
-  border: 1px solid rgba(6, 182, 212, 0.25);
-  border-radius: var(--radius-sm);
-  padding: 8px 12px;
-  font-size: 11.5px;
-  color: #a5f3fc;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  line-height: 1.4;
-}
 
 /* ==========================================================================
    13. HOME TAB
    ========================================================================== */
-.home-hero-card {
+.card.home-hero-banner {
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(10, 16, 32, 0.95) 100%);
   border: 1px solid var(--border-cyan-glow);
   border-radius: var(--radius-sm);
@@ -1607,7 +1589,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
   box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
-.home-hero-card::before {
+.card.home-hero-banner::before {
   content: '';
   position: absolute;
   top: -50%; left: -20%;
@@ -1677,9 +1659,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 
 .bento-card:hover { transform: translateY(-2px); border-color: rgba(6, 182, 212, 0.4); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); }
 
-.bento-card-header,
-.card-header-row,
-.flight-summary-box > div,
+.flight-summary-wrap > div,
 .dom-zone-header { display: flex; justify-content: space-between; align-items: center; }
 
 .icon-cyan,    .bento-icon-cyan    { background: rgba(6, 182, 212, 0.15); color: var(--cyan-400); border: 1px solid rgba(6, 182, 212, 0.3); }
@@ -1713,12 +1693,10 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .subtab-content { display: none !important; }
 .subtab-content.active { display: block !important; animation: tabFadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
 
-.checkbox-tg20-label { display: flex; align-items: center; gap: 8px; cursor: pointer; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); padding: 5px 14px; border-radius: var(--radius-sm); }
+.tg20-check-label { display: flex; align-items: center; gap: 8px; cursor: pointer; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); padding: 5px 14px; border-radius: var(--radius-sm); }
 .table-scroll-520 { max-height: 520px; min-height: 220px; overflow-y: auto; }
 
-.config-panel,
-.cadastre-config-panel,
-.rinex-config-panel { background: rgba(6, 11, 24, 0.5); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 14px 16px; }
+.config-panel { background: rgba(6, 11, 24, 0.5); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 14px 16px; }
 .cadastre-controls-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr 1.1fr; gap: 10px; align-items: end; }
 .cadastre-tg20-bar { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
 
@@ -1845,16 +1823,14 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 /* ==========================================================================
    CANONICAL SHARED MAP COMPONENTS (Cards, HUD Badges, Export Bars)
    ========================================================================== */
-.interactive-map-card,
-.cadastre-interactive-map-card,
-.tg20-interactive-map-card,
-.flight-map-card,
+.card.app-map-card,
 .converter-map-container {
   border-radius: var(--radius-md);
   border: 1px solid var(--border-glass);
   overflow: hidden;
   position: relative;
   background: rgba(15, 23, 42, 0.55);
+  padding: 0;
 }
 
 .map-canvas,
@@ -1892,26 +1868,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
   background: rgba(255, 255, 255, 0.14);
 }
 
-.hud-icon-box,
-.cadastre-hud-icon-box,
-.tg20-hud-icon-box {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  background: rgba(6, 182, 212, 0.15);
-  border: 1px solid rgba(6, 182, 212, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  color: var(--cyan-400);
-  flex-shrink: 0;
-}
-
-.export-bar,
-.map-export-card,
-.cadastre-map-export-card,
-.converter-export-card {
+.export-bar {
   border-top: 1px solid var(--border-glass);
   background: rgba(10, 16, 32, 0.85);
   padding: 10px 16px;
@@ -1952,12 +1909,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.icon-box,
-.converter-icon-box,
-.converter-file-icon-box,
-.bento-icon-box,
-.guide-card-icon-box,
-.guide-hero-icon-box {
+.bento-icon-box {
   width: 36px;
   height: 36px;
   border-radius: var(--radius-sm);
@@ -2005,25 +1957,25 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
    15. RINEX TAB
    ========================================================================== */
 .grid-2col-rinex { display: grid; grid-template-columns: 1fr 1.25fr; gap: 14px; margin-bottom: 14px; align-items: stretch; }
-.dropzone-panel { display: flex; flex-direction: column; height: 100%; }
-.dropzone-panel > .dropzone { flex: 1; height: 100%; min-height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 32px 24px; }
+.dropzone-wrap { display: flex; flex-direction: column; height: 100%; }
+.dropzone-wrap > .dropzone { flex: 1; height: 100%; min-height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 32px 24px; }
 .rinex-output-config-grid { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 12px; }
 .rinex-output-config-grid > div { min-width: 0; }
 .empty-scan-placeholder { font-size: 11.5px; color: var(--text-dim); font-style: italic; background: rgba(3, 7, 18, 0.4); padding: 5px 10px; border-radius: var(--radius-sm); border: 1px dashed var(--border-glass); display: inline-block; }
 .label-form-section { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
-.time-crop-panel { background: rgba(3, 7, 18, 0.5); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); padding: 10px 14px; display: flex; flex-direction: column; gap: 8px; }
-.time-crop-meta-box { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 11px; background: rgba(2, 6, 23, 0.7); padding: 6px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); }
-.ppk-cards-grid {
+.time-crop-wrap { background: rgba(3, 7, 18, 0.5); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); padding: 10px 14px; display: flex; flex-direction: column; gap: 8px; }
+.time-crop-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 11px; background: rgba(2, 6, 23, 0.7); padding: 6px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); }
+.ppk-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
 }
-.ppk-cards-grid > .card {
+.ppk-grid > .card {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
-.ppk-cards-grid .dropzone {
+.ppk-grid .dropzone {
   flex: 1;
   min-height: 130px;
   display: flex;
@@ -2038,7 +1990,6 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .rinex-quality-dashboard {
   margin-top: 18px !important;
 }
-.ppk-station-card { display: flex; flex-direction: column; gap: 6px; background: rgba(6, 11, 24, 0.85); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); padding: 14px; }
 .banner-ppk-status {
   padding: 14px 18px;
   border-radius: var(--radius-sm);
@@ -2087,7 +2038,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 }
 #btnMergeAll { padding: 9px 20px; font-weight: 700; }
 .border-bottom-glass { border-bottom: 1px solid var(--border-glass); }
-.quality-inspector-panel { background: transparent; border: none; border-radius: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+
 .quality-action-bar {
   background: rgba(6, 11, 24, 0.75);
   border: 1px solid var(--border-glass);
@@ -2098,7 +2049,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .quality-action-bar:hover {
   border-color: rgba(245, 158, 11, 0.35);
 }
-.timeline-chart-box {
+.timeline-chart-wrap {
   background: rgba(4, 9, 24, 0.85);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-sm);
@@ -2142,7 +2093,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
   height: 180px;
   display: block;
 }
-.stat-card-glass { background: rgba(4, 9, 24, 0.85); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); padding: 8px 12px; }
+
 
 /* ==========================================================================
    16. MAP / PAFTA TAB
@@ -2198,15 +2149,15 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 
 /* Pafta Search */
 .pafta-search-wrapper, .converter-export-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.pafta-search-input-box { position: relative; display: flex; align-items: center; }
+.pafta-search-field { position: relative; display: flex; align-items: center; }
 .pafta-search-icon { position: absolute; left: 11px; font-size: 13px; color: var(--text-dim); pointer-events: none; }
 .pafta-search-input { background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); color: #ffffff; padding: 7px 12px 7px 32px; border-radius: var(--radius-sm); font-size: 12px; font-family: var(--font-mono); width: 250px; text-transform: uppercase; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
 .pafta-search-input:focus { outline: none; border-color: var(--cyan-400); box-shadow: 0 0 14px rgba(6, 182, 212, 0.4); background: rgba(15, 23, 42, 0.98); }
 #btnSearchPafta { padding: 7px 14px; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 6px; border-radius: var(--radius-sm); white-space: nowrap; }
 
 /* Floating Cards */
-.floating-pafta-card, #cardActivePafta,
-.floating-intersect-card, #cardIntersectingPaftas {
+.floating-pafta-widget, #cardActivePafta,
+.floating-intersect-widget, #cardIntersectingPaftas {
   position: absolute !important;
   bottom: 16px !important;
   z-index: 1500 !important;
@@ -2225,14 +2176,14 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
   pointer-events: auto !important;
   display: none;
 }
-.floating-pafta-card, #cardActivePafta { left: 16px !important; width: 320px !important; }
-.floating-intersect-card, #cardIntersectingPaftas { right: 16px !important; width: 340px !important; }
+.floating-pafta-widget, #cardActivePafta { left: 16px !important; width: 320px !important; }
+.floating-intersect-widget, #cardIntersectingPaftas { right: 16px !important; width: 340px !important; }
 
-.floating-pafta-card::-webkit-scrollbar, .floating-intersect-card::-webkit-scrollbar { width: 4px; }
-.floating-pafta-card::-webkit-scrollbar-thumb, .floating-intersect-card::-webkit-scrollbar-thumb { background: rgba(6, 182, 212, 0.4); border-radius: 4px; }
-.floating-pafta-card::-webkit-scrollbar-track, .floating-intersect-card::-webkit-scrollbar-track { background: transparent; }
+.floating-pafta-widget::-webkit-scrollbar, .floating-intersect-widget::-webkit-scrollbar { width: 4px; }
+.floating-pafta-widget::-webkit-scrollbar-thumb, .floating-intersect-widget::-webkit-scrollbar-thumb { background: rgba(6, 182, 212, 0.4); border-radius: 4px; }
+.floating-pafta-widget::-webkit-scrollbar-track, .floating-intersect-widget::-webkit-scrollbar-track { background: transparent; }
 
-.pafta-geoid-box { margin-top: 8px; padding: 8px 10px; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: var(--radius-sm); font-size: 11px; display: flex; flex-direction: column; gap: 4px; }
+.pafta-geoid-wrap { margin-top: 8px; padding: 8px 10px; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: var(--radius-sm); font-size: 11px; display: flex; flex-direction: column; gap: 4px; }
 #btnDownloadAllPaftaKml { width: 100%; margin-top: 10px; font-size: 11px; padding: 7px; display: flex; align-items: center; justify-content: center; gap: 6px; border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.1); }
 
 /* Pafta Labels */
@@ -2278,7 +2229,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 /* ==========================================================================
    17. GEODESY TAB
    ========================================================================== */
-.geodesy-panel-box { background: rgba(3, 7, 18, 0.6); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
+
 .geodesy-crs-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: flex-end; }
 #btnSwapEpsg, #btnSwapBatchEpsg { width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-glass); color: var(--cyan-400); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 2px; }
 #btnSwapEpsg:hover, #btnSwapBatchEpsg:hover { background: rgba(6, 182, 212, 0.2); border-color: var(--cyan-400); color: #ffffff; transform: rotate(180deg); box-shadow: 0 0 12px rgba(6, 182, 212, 0.4); }
@@ -2289,7 +2240,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .batch-textarea { width: 100%; background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border-glass); color: #ffffff; padding: 10px 12px; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 11.5px; line-height: 1.45; resize: vertical; min-height: 120px; transition: all 0.2s ease; }
 .grid-2col-helmert { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; }
 .dns-textarea { width: 100%; background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border-glass); color: #ffffff; padding: 8px 10px; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 11.5px; line-height: 1.4; resize: vertical; min-height: 110px; }
-.bursa-details-box { margin-top: 8px; background: rgba(2, 6, 23, 0.7); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); padding: 10px 14px; display: flex; flex-direction: column; gap: 10px; }
+.bursa-details-wrap { margin-top: 8px; background: rgba(2, 6, 23, 0.7); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); padding: 10px 14px; display: flex; flex-direction: column; gap: 10px; }
 
 /* ==========================================================================
    18. TOOLS TAB
@@ -2306,7 +2257,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
    ========================================================================== */
 .kpi-card.border-emerald, .tg20-stat-chip-emerald { border-color: rgba(16, 185, 129, 0.35); background: linear-gradient(135deg, rgba(3, 7, 18, 0.85), rgba(16, 185, 129, 0.12)); }
 .kpi-card.border-amber, .tg20-stat-chip-amber     { border-color: rgba(245, 158, 11, 0.35); background: linear-gradient(135deg, rgba(3, 7, 18, 0.85), rgba(245, 158, 11, 0.1)); }
-.tg20-formula-card { background: linear-gradient(135deg, rgba(15, 23, 42, 0.75), rgba(6, 182, 212, 0.08)); border: 1px solid rgba(6, 182, 212, 0.25); border-radius: var(--radius-sm); padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+
 .tg20-regions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .tg20-region-chip { background: rgba(3, 7, 18, 0.65); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); padding: 7px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; font-family: var(--font-mono); transition: all 0.2s ease; }
 .tg20-region-chip:hover { border-color: rgba(16, 185, 129, 0.35); background: rgba(16, 185, 129, 0.06); }
@@ -2356,11 +2307,10 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .flight-dir-arrow-icon { background: transparent !important; border: none !important; display: flex !important; align-items: center !important; justify-content: center !important; pointer-events: none !important; }
 .flight-home-icon { background: transparent !important; border: none !important; display: flex !important; align-items: center !important; justify-content: center !important; animation: pulseHome 2.5s infinite ease-in-out; }
 
-.flight-header-card { margin-bottom: 14px; overflow: visible !important; position: relative; z-index: 1050; padding: 12px 16px; }
-.flight-time-slider-box { display: flex; align-items: center; gap: 6px; background: #030712; padding: 5px 10px; border-radius: var(--radius-sm); border: 1px solid rgba(255, 255, 255, 0.14); }
+.card.flight-header-bar { margin-bottom: 14px; overflow: visible !important; position: relative; z-index: 1050; padding: 12px 16px; }
+.flight-time-slider-wrap { display: flex; align-items: center; gap: 6px; background: #030712; padding: 5px 10px; border-radius: var(--radius-sm); border: 1px solid rgba(255, 255, 255, 0.14); }
 #btnToggleExportMenu { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; font-size: 12px; background: rgba(15, 23, 42, 0.9); border-color: rgba(6, 182, 212, 0.5); color: #ffffff; white-space: nowrap; cursor: pointer; }
 .flight-export-menu { display: none; position: absolute; right: 0; top: calc(100% + 8px); z-index: 99999; min-width: 235px; background: #080d1a; border: 1.5px solid rgba(6, 182, 212, 0.5); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.95); border-radius: var(--radius-sm); padding: 6px; flex-direction: column; gap: 3px; }
-.flight-map-card { margin: 0 0 16px 0; padding: 0; overflow: hidden; position: relative; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: var(--radius-md); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; }
 .flight-map-wrapper,
 .guide-search-input-wrap {
   position: relative;
@@ -2384,14 +2334,47 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .solar-dial-circle { border: 1.5px solid rgba(245, 158, 11, 0.5); background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, rgba(2, 6, 23, 0.9) 70%); }
 .wind-dial-circle  { border: 1.5px solid rgba(6, 182, 212, 0.5); background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(2, 6, 23, 0.9) 70%); }
 
-/* Flight Workflow Cards */
-.flight-workflow-card { border: 1px solid var(--border-glass); background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px); border-radius: var(--radius-md); display: flex; flex-direction: column; transition: all 0.3s ease; margin: 0; }
-.flight-workflow-card:hover { border-color: rgba(6, 182, 212, 0.4); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35); }
-.flight-workflow-card-cyan,
-.guide-card-cyan { border-color: rgba(6, 182, 212, 0.25); }
-.flight-workflow-card-indigo  { border-color: rgba(99, 102, 241, 0.25); }
-.flight-workflow-card-emerald,
-.guide-card-emerald { border-color: rgba(16, 185, 129, 0.25); }
+/* Card Color Accents & Variants (Compound Classes Scoped Under .card) */
+.card.card-accent-cyan,
+.card.card-accent-indigo,
+.card.card-accent-emerald,
+.card.card-accent-purple,
+.card.card-accent-amber,
+.card.card-accent-sky,
+.card.card-accent-rose {
+  border: 1px solid var(--border-glass);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  margin: 0;
+}
+.card.card-accent-cyan:hover,
+.card.card-accent-indigo:hover,
+.card.card-accent-emerald:hover,
+.card.card-accent-purple:hover,
+.card.card-accent-amber:hover,
+.card.card-accent-sky:hover,
+.card.card-accent-rose:hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+.card.card-accent-cyan    { border-color: rgba(6, 182, 212, 0.25); }
+.card.card-accent-cyan:hover { border-color: rgba(6, 182, 212, 0.5); }
+.card.card-accent-indigo  { border-color: rgba(99, 102, 241, 0.25); }
+.card.card-accent-indigo:hover { border-color: rgba(99, 102, 241, 0.5); }
+.card.card-accent-emerald { border-color: rgba(16, 185, 129, 0.25); }
+.card.card-accent-emerald:hover { border-color: rgba(16, 185, 129, 0.5); }
+.card.card-accent-purple  { border-color: rgba(168, 85, 247, 0.25); }
+.card.card-accent-purple:hover { border-color: rgba(168, 85, 247, 0.5); }
+.card.card-accent-amber   { border-color: rgba(245, 158, 11, 0.25); }
+.card.card-accent-amber:hover { border-color: rgba(245, 158, 11, 0.5); }
+.card.card-accent-sky     { border-color: rgba(56, 189, 248, 0.25); }
+.card.card-accent-sky:hover { border-color: rgba(56, 189, 248, 0.5); }
+.card.card-accent-rose    { border-color: rgba(244, 63, 94, 0.25); }
+.card.card-accent-rose:hover { border-color: rgba(244, 63, 94, 0.5); }
 .flight-inputs-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px 10px; align-items: start; }
 .flight-inputs-grid-2x2 .form-group { display: flex; flex-direction: column; justify-content: flex-start; margin: 0; }
 .flight-inputs-grid-2x2 label { display: flex; align-items: center; gap: 5px; height: 16px; min-height: 16px; max-height: 16px; line-height: 16px; margin-bottom: 3px; font-size: 10.5px; font-weight: 600; text-transform: none; letter-spacing: 0.1px; white-space: nowrap; color: var(--text-dim); }
@@ -2424,15 +2407,15 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 }
 .flight-telemetry-chip span { font-size: 9px; color: var(--text-dim); text-transform: uppercase; font-weight: 700; }
 .flight-telemetry-chip strong { font-size: 11px; font-family: var(--font-mono); }
-.flight-bottom-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: stretch; }
-.flight-workflow-card .card-body { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; gap: 10px; }
-.flight-workflow-card .flight-summary-box { margin-top: auto; }
+.flight-bottom-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: stretch; }
+.card[class*="card-accent-"] .card-body { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; gap: 10px; }
+.card[class*="card-accent-"] .flight-summary-wrap { margin-top: auto; }
 .flight-slider-container { background: rgba(3, 7, 18, 0.55); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-sm); padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
 .flight-slider-header { display: flex; justify-content: space-between; align-items: center; font-size: 11px; }
 .flight-slider-labels { display: flex; justify-content: space-between; font-size: 9.5px; color: var(--text-dim); padding: 0 2px; }
 .flight-slider, input[type="range"].flight-slider { width: 100%; height: 6px; margin: 6px 0; border-radius: 4px; background: rgba(255, 255, 255, 0.15); outline: none; accent-color: var(--cyan-400); cursor: pointer; display: block; }
-.flight-heading-box { background: rgba(3, 7, 18, 0.55); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-sm); padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
-.flight-summary-box { background: rgba(3, 7, 18, 0.75); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: var(--radius-sm); padding: 8px 11px; font-size: 11px; display: flex; flex-direction: column; gap: 5px; }
+.flight-heading-wrap { background: rgba(3, 7, 18, 0.55); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-sm); padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
+.flight-summary-wrap { background: rgba(3, 7, 18, 0.75); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: var(--radius-sm); padding: 8px 11px; font-size: 11px; display: flex; flex-direction: column; gap: 5px; }
 .flight-summary-box strong { font-family: var(--font-mono); font-size: 11.5px; }
 
 /* ==========================================================================
@@ -2440,7 +2423,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
    ========================================================================== */
 .converter-workstation { display: flex; flex-direction: column; gap: 10px; }
 .converter-top-bar { background: rgba(10, 16, 30, 0.85); border: 1px solid var(--border-glass); }
-.converter-icon-box { width: 36px; height: 36px; border-radius: var(--radius-sm); background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.3); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+
 .converter-workspace-grid { display: grid; grid-template-columns: 370px 1fr; gap: 14px; align-items: start; margin-top: 10px; }
 .converter-left-pane { display: flex; flex-direction: column; gap: 12px; }
 .converter-right-pane { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
@@ -2462,7 +2445,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .guide-hero-banner { background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(15, 23, 42, 0.75) 100%); border: 1px solid rgba(6, 182, 212, 0.25); border-radius: var(--radius-md); padding: 12px 16px; }
 .guide-hero-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
 .guide-hero-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 280px; }
-.guide-hero-icon-box { width: 36px; height: 36px; border-radius: 9px; background: rgba(6, 182, 212, 0.15); border: 1px solid rgba(6, 182, 212, 0.35); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+
 .guide-hero-info { display: flex; flex-direction: column; gap: 2px; }
 .guide-hero-title { font-family: var(--font-display); font-size: 14px; font-weight: 800; color: #ffffff; margin: 0; letter-spacing: 0.3px; }
 .guide-hero-lead { color: #94a3b8; font-size: 11px; margin: 0; line-height: 1.4; }
@@ -2478,34 +2461,22 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 .guide-filter-chip.active { background: linear-gradient(135deg, rgba(6, 182, 212, 0.25) 0%, rgba(14, 165, 233, 0.2) 100%); border-color: rgba(56, 189, 248, 0.5); color: #ffffff; box-shadow: 0 2px 8px rgba(6, 182, 212, 0.2); }
 .guide-section-heading { display: flex; align-items: center; gap: 6px; font-family: var(--font-display); font-size: 11.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: #ffffff; margin-top: 14px; margin-bottom: 10px; }
 .guide-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.guide-card-box { display: flex; flex-direction: column; gap: 10px; padding: 12px; height: 100%; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
-.guide-card-box:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); }
-.guide-card-cyan:hover    { border-color: rgba(6, 182, 212, 0.5); }
-.guide-card-purple:hover  { border-color: rgba(168, 85, 247, 0.5); }
-.guide-card-emerald:hover { border-color: rgba(16, 185, 129, 0.5); }
-.guide-card-amber:hover   { border-color: rgba(245, 158, 11, 0.5); }
-.guide-card-sky:hover     { border-color: rgba(56, 189, 248, 0.5); }
-.guide-card-purple  { border-color: rgba(168, 85, 247, 0.25); }
-.guide-card-amber   { border-color: rgba(245, 158, 11, 0.25); }
-.guide-card-sky     { border-color: rgba(56, 189, 248, 0.25); }
-.guide-card-rose    { border-color: rgba(244, 63, 94, 0.25); }
-.guide-card-head { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border-glass); padding-bottom: 8px; }
-.guide-card-icon-box { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
-.guide-card-body-text { font-size: 11px; color: #cbd5e1; line-height: 1.45; display: flex; flex-direction: column; gap: 6px; }
+.guide-grid .card .card-header { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border-glass); padding-bottom: 8px; margin-bottom: 8px; }
+.card .card-body { font-size: 11px; color: #cbd5e1; line-height: 1.45; display: flex; flex-direction: column; gap: 6px; }
 .guide-feature-row { display: flex; flex-direction: column; gap: 2px; background: rgba(15, 23, 42, 0.4); border-radius: 5px; padding: 5px 8px; border-left: 2px solid rgba(255, 255, 255, 0.15); }
 .badge-xs { font-family: var(--font-mono); font-size: 8.5px; font-weight: 800; letter-spacing: 0.4px; display: inline-block; align-self: flex-start; padding: 1px 4px; border-radius: 3px; margin-bottom: 1px; }
 
 /* Standards & Formulas */
 .guide-standards-bento { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
 .guide-standards-subgrid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 10px; }
-.guide-bento-card { padding: 10px 14px; display: flex; flex-direction: column; }
+
 .guide-bento-title { display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; color: #ffffff; margin-bottom: 2px; }
 .guide-standards-table-wrap { border-radius: var(--radius-sm); border: 1px solid var(--border-glass); }
 .guide-table th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; padding: 6px 8px; }
 .guide-table td { font-size: 10.5px; padding: 6px 8px; }
 .dom-zone-item { background: rgba(15, 23, 42, 0.45); border: 1px solid var(--border-glass); border-radius: 6px; padding: 6px 8px; display: flex; flex-direction: column; gap: 2px; }
 .dom-code { font-size: 11px; font-weight: 700; color: var(--cyan-400); font-family: var(--font-mono); }
-.formula-box { background: rgba(3, 7, 18, 0.45); border: 1px solid var(--border-glass); border-radius: 6px; padding: 6px 8px; display: flex; flex-direction: column; gap: 4px; }
+.formula-item { background: rgba(3, 7, 18, 0.45); border: 1px solid var(--border-glass); border-radius: 6px; padding: 6px 8px; display: flex; flex-direction: column; gap: 4px; }
 .formula-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
 .formula-math { background: rgba(15, 23, 42, 0.85); border-radius: 4px; padding: 4px 6px; font-size: 10.5px; font-weight: 700; text-align: center; border: 1px solid rgba(255, 255, 255, 0.08); }
 .formula-desc-grid { display: flex; flex-direction: column; gap: 2px; font-size: 9px; color: var(--text-dim); line-height: 1.3; }
@@ -2524,8 +2495,8 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 
 /* Hotkeys */
 .grid-4col-shortcuts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-.guide-shortcut-card { display: flex; flex-direction: column; gap: 4px; background: rgba(15, 23, 42, 0.45); border: 1px solid var(--border-glass); border-radius: 6px; padding: 8px 10px; transition: all 0.2s ease; }
-.guide-shortcut-card:hover { border-color: var(--border-glass-hover); background: rgba(15, 23, 42, 0.7); }
+.guide-shortcut-item { display: flex; flex-direction: column; gap: 4px; background: rgba(15, 23, 42, 0.45); border: 1px solid var(--border-glass); border-radius: 6px; padding: 8px 10px; transition: all 0.2s ease; }
+.guide-shortcut-item:hover { border-color: var(--border-glass-hover); background: rgba(15, 23, 42, 0.7); }
 .guide-kbd { font-family: var(--font-mono); font-size: 10px; font-weight: 700; background: rgba(3, 7, 18, 0.8); border: 1px solid rgba(6, 182, 212, 0.35); color: var(--cyan-400); padding: 2px 7px; border-radius: 4px; white-space: nowrap; letter-spacing: 0.3px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .guide-shortcut-title { font-size: 11px; font-weight: 700; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
@@ -2761,7 +2732,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 }
 
 /* — Geodetic HUD Card — */
-.sidebar-geo-card {
+.sidebar-geo-widget {
   background: rgba(6, 11, 24, 0.75);
   border: 1px solid rgba(6, 182, 212, 0.22);
   border-radius: var(--radius-sm);
@@ -2773,7 +2744,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
   transition: border-color 0.2s ease;
 }
 
-.sidebar-geo-card:hover { border-color: rgba(6, 182, 212, 0.45); }
+.sidebar-geo-widget:hover { border-color: rgba(6, 182, 212, 0.45); }
 
 .sidebar-geo-header {
   display: flex;
@@ -2866,7 +2837,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 }
 
 /* — Sidebar Shortcuts — */
-.sidebar-shortcuts-card {
+.sidebar-shortcuts-widget {
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -3088,7 +3059,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
 
 .console-dock.minimized { padding: 6px 24px; }
 
-.console-dock.minimized .console-box,
+.console-dock.minimized .console-terminal,
 .console-dock.minimized .progress-container {
   display: none !important;
 }
@@ -3131,7 +3102,7 @@ tbody tr:hover { background: rgba(6, 182, 212, 0.09); }
   animation: pulseDot 2s infinite ease-in-out;
 }
 
-.console-box {
+.console-terminal {
   background: rgba(2, 6, 23, 0.85);
   border: 1px solid var(--border-glass);
   color: #38bdf8;
@@ -3243,7 +3214,7 @@ body.report-body {
 
 .report-meta-header { text-align: right; font-size: 9.5px; color: #64748b; }
 
-.report-title-box {
+.report-title-banner {
   text-align: center;
   background: #f0fdfa;
   border: 1px solid #ccfbf1;
@@ -3252,8 +3223,8 @@ body.report-body {
   margin-bottom: 12px;
 }
 
-.report-title-box h2 { font-size: 13px; font-weight: 800; color: #0f766e; }
-.report-title-box p  { font-size: 9.5px; color: #64748b; margin-top: 3px; }
+.report-title-banner h2 { font-size: 13px; font-weight: 800; color: #0f766e; }
+.report-title-banner p  { font-size: 9.5px; color: #64748b; margin-top: 3px; }
 
 .report-body .bento-summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
 .report-body .bento-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 10px; display: flex; flex-direction: column; justify-content: center; }
@@ -3265,7 +3236,7 @@ body.report-body {
 .report-body .bento-val.val-purple  { color: #4338ca; }
 .report-body .bento-sub { font-size: 8px; color: #94a3b8; font-weight: 600; }
 
-.formula-card { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 1px solid #cbd5e1; border-left: 4px solid #0d9488; padding: 6px 12px; border-radius: 4px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.report-formula-bar { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 1px solid #cbd5e1; border-left: 4px solid #0d9488; padding: 6px 12px; border-radius: 4px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
 .formula-stats { display: flex; gap: 12px; font-size: 10px; color: #334155; }
 .formula-stats strong { font-family: 'Consolas', 'Courier New', monospace; color: #0f766e; }
 
@@ -3299,14 +3270,7 @@ body.report-body {
 .report-table td { padding: 4px 6px; border: 1px solid #d1d5db; }
 .report-table tbody tr:nth-child(even) { background: #f8fafc; }
 
-.report-summary-box {
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-radius: 4px;
-  padding: 8px 10px;
-  margin-top: 8px;
-  font-size: 9.5px;
-}
+
 
 .report-footer {
   margin-top: 16px;
@@ -3347,7 +3311,7 @@ body.report-body {
   margin: 2px 0;
 }
 
-.header-box {
+.cadastre-report .report-meta-header {
   border: 1px solid #333;
   padding: 8px;
   margin-bottom: 12px;
@@ -3433,7 +3397,7 @@ body.report-body {
 }
 
 /* — Disclaimer & Signatures — */
-.disclaimer-card {
+.report-disclaimer {
   background: #fffbeb;
   border: 1px solid #fde68a;
   border-left: 4px solid #d97706;
@@ -3462,19 +3426,8 @@ body.report-body {
   margin-top: 18px;
   page-break-inside: avoid;
 }
-.sig-box {
-  border: 1px dashed #cbd5e1;
-  border-radius: 6px;
-  padding: 10px 14px;
-  text-align: center;
-  font-size: 9.5px;
-  background: #fafafa;
-}
-.sig-title { font-weight: 700; color: #334155; margin-bottom: 25px; text-transform: uppercase; }
-.sig-line  { border-top: 1px solid #94a3b8; padding-top: 4px; color: #64748b; font-size: 8.5px; }
-
 .footer    { margin-top: 30px; display: flex; justify-content: space-between; text-align: center; }
-.sign-box  { width: 200px; padding-top: 40px; border-top: 1px solid #333; }
+.sign-block  { width: 200px; padding-top: 40px; border-top: 1px solid #333; }
 .footer-bar {
   margin-top: 12px;
   padding-top: 6px;
@@ -3615,7 +3568,7 @@ body.report-body {
   border-top: 1px solid #e2e8f0;
 }
 
-[data-theme="light"] .sidebar-geo-card {
+[data-theme="light"] .sidebar-geo-widget {
   background: #f8fafc;
   border: 1px solid #cbd5e1;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -3629,7 +3582,7 @@ body.report-body {
   color: #0f172a;
 }
 
-[data-theme="light"] .sidebar-shortcuts-card {
+[data-theme="light"] .sidebar-shortcuts-widget {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
 }
@@ -3804,9 +3757,6 @@ body.report-body {
 
 /* 8. KPI & Stat Chips */
 [data-theme="light"] .kpi-card,
-[data-theme="light"] .cadastre-kpi-card,
-[data-theme="light"] .converter-kpi-card,
-[data-theme="light"] .stat-card-glass,
 [data-theme="light"] .flight-geo-chip,
 [data-theme="light"] .flight-telemetry-chip {
   background: #ffffff;
@@ -3833,7 +3783,7 @@ body.report-body {
 
 [data-theme="light"] .data-panel,
 [data-theme="light"] .config-panel,
-[data-theme="light"] .interactive-map-card,
+[data-theme="light"] .app-map-card,
 [data-theme="light"] .export-bar {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
@@ -3852,8 +3802,8 @@ body.report-body {
 [data-theme="light"] .tg20-map-canvas,
 [data-theme="light"] .flight-map-canvas,
 [data-theme="light"] .dom-zone-item,
-[data-theme="light"] .formula-box,
-[data-theme="light"] .guide-shortcut-card {
+[data-theme="light"] .formula-item,
+[data-theme="light"] .guide-shortcut-item {
   background: #f8fafc;
   border-color: #cbd5e1;
 }
@@ -3920,9 +3870,9 @@ body.report-body {
 }
 
 /* 10. Floating Overlays & Pafta Cards */
-[data-theme="light"] .floating-pafta-card,
+[data-theme="light"] .floating-pafta-widget,
 [data-theme="light"] #cardActivePafta,
-[data-theme="light"] .floating-intersect-card,
+[data-theme="light"] .floating-intersect-widget,
 [data-theme="light"] #cardIntersectingPaftas {
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid #cbd5e1;
@@ -3966,7 +3916,9 @@ body.report-body {
 }
 
 /* 11. Flight Planner Studio */
-[data-theme="light"] .flight-workflow-card {
+[data-theme="light"] .card.card-accent-cyan,
+[data-theme="light"] .card.card-accent-indigo,
+[data-theme="light"] .card.card-accent-emerald {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   box-shadow: 0 6px 24px -4px rgba(0, 0, 0, 0.06);
@@ -3984,9 +3936,9 @@ body.report-body {
   color: #065f46;
 }
 
-[data-theme="light"] .flight-summary-box,
+[data-theme="light"] .flight-summary-wrap,
 [data-theme="light"] .flight-slider-container,
-[data-theme="light"] .flight-heading-box {
+[data-theme="light"] .flight-heading-wrap {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   color: #1e293b;
@@ -4018,12 +3970,6 @@ body.report-body {
   color: #92400e;
 }
 
-[data-theme="light"] .tg20-formula-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%);
-  border: 1px solid #ccfbf1;
-  color: #115e59;
-}
-
 [data-theme="light"] .tg20-region-chip {
   background: #f8fafc;
   border: 1px solid #cbd5e1;
@@ -4031,9 +3977,8 @@ body.report-body {
 }
 
 [data-theme="light"] .tg20-action-toolbar,
-[data-theme="light"] .time-crop-panel,
-[data-theme="light"] .about-spec-grid,
-[data-theme="light"] .about-standards-card {
+[data-theme="light"] .time-crop-wrap,
+[data-theme="light"] .about-spec-grid {
   background: #f8fafc;
   border: 1px solid #cbd5e1;
 }
@@ -4083,10 +4028,7 @@ body.report-body {
   border-color: rgba(2, 132, 199, 0.3);
 }
 
-[data-theme="light"] .ppk-station-card {
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-}
+
 
 [data-theme="light"] .banner-ppk-status {
   background: #f8fafc;
@@ -4098,7 +4040,7 @@ body.report-body {
   border-color: #cbd5e1;
 }
 
-[data-theme="light"] .timeline-chart-box {
+[data-theme="light"] .timeline-chart-wrap {
   background: #f8fafc;
   border-color: #cbd5e1;
 }
@@ -4160,7 +4102,7 @@ body.report-body {
   border-left-color: #cbd5e1;
 }
 
-[data-theme="light"] .guide-card-body-text,
+[data-theme="light"] .card-body,
 [data-theme="light"] .guide-faq-answer {
   color: #475569;
 }
@@ -4181,7 +4123,7 @@ body.report-body {
   border-top-color: #e2e8f0;
 }
 
-[data-theme="light"] .guide-shortcut-card:hover {
+[data-theme="light"] .guide-shortcut-item:hover {
   background: #f1f5f9;
   border-color: #94a3b8;
 }
@@ -4213,7 +4155,7 @@ body.report-body {
   border-color: #0284c7;
 }
 
-[data-theme="light"] .console-box {
+[data-theme="light"] .console-terminal {
   background: #f8fafc;
   color: #0f172a;
   border: 1px solid #cbd5e1;
@@ -4239,19 +4181,7 @@ body.report-body {
   color: #64748b;
 }
 
-/* 17. About Modal */
-[data-theme="light"] .about-modal-card {
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.15);
-  color: #0f172a;
-}
-
-[data-theme="light"] .about-standard-row {
-  color: #334155;
-}
-
-[data-theme="light"] .about-privacy-box {
+[data-theme="light"] .privacy-note {
   background: #ecfdf5;
   border: 1px solid #a7f3d0;
   color: #065f46;
@@ -4551,10 +4481,10 @@ body.report-body {
   .grid-2col-rinex,
   .grid-2col-helmert,
   .d-grid.gap-14,
-  .flight-bottom-cards-grid,
+  .flight-bottom-grid,
   .time-crop-presets-grid,
   .rinex-output-config-grid,
-  .ppk-cards-grid,
+  .ppk-grid,
   .converter-workspace-grid {
     grid-template-columns: 1fr !important;
     gap: 10px !important;
@@ -4620,12 +4550,7 @@ body.report-body {
     justify-content: center !important;
   }
 
-  .tg20-formula-card {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 4px !important;
-    padding: 8px 10px !important;
-  }
+
 
   .guide-filter-chips {
     overflow-x: auto !important;
@@ -4906,7 +4831,7 @@ body.report-body {
   }
 
 
-  .console-dock .console-box {
+  .console-dock .console-terminal {
     max-height: 110px !important;
     font-size: 10px !important;
     padding: 6px 8px !important;
@@ -5016,17 +4941,17 @@ body.report-body {
     width: 100% !important;
   }
 
-  .flight-heading-box {
+  .flight-heading-wrap {
     padding: 8px 10px !important;
   }
 
-  .flight-heading-box .d-flex.justify-between {
+  .flight-heading-wrap .d-flex.justify-between {
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 6px !important;
   }
 
-  .flight-heading-box .d-flex.items-center.gap-4 {
+  .flight-heading-wrap .d-flex.items-center.gap-4 {
     width: 100% !important;
   }
 
@@ -5092,9 +5017,9 @@ body.report-body {
     gap: 6px !important;
   }
 
-  .floating-pafta-card,
+  .floating-pafta-widget,
   #cardActivePafta,
-  .floating-intersect-card,
+  .floating-intersect-widget,
   #cardIntersectingPaftas {
     position: fixed !important;
     left: 10px !important;

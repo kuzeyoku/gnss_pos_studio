@@ -1,7 +1,7 @@
       <section id="tab-flight" class="tool-tab">
 
         <!-- Action Toolbar & Quick Ingest -->
-        <div class="card flight-header-card">
+        <div class="card flight-header-bar">
           <div class="flight-toolbar-wrap d-flex items-center justify-between gap-12 text-nowrap">
             <!-- Left: Ingest & Atmospheric Simulation Controls -->
             <div class="d-flex items-center gap-8 flex-shrink-0 text-nowrap">
@@ -28,7 +28,7 @@
               </div>
 
               <!-- Flight Time Slider -->
-              <div class="flight-time-slider-box">
+              <div class="flight-time-slider-wrap">
                 <i class="fa-solid fa-clock text-amber text-xs"></i>
                 <span class="text-xs font-bold text-dim uppercase" data-i18n="common.time"></span>
                 <span id="txtToolbarFlightTime" class="badge badge-amber text-sm font-mono">11:00</span>
@@ -94,7 +94,7 @@
         </div>
 
         <!-- 1. FULL-WIDTH PANORAMIC FLIGHT MAP (TOP) -->
-        <div class="card flight-map-card p-0 overflow-hidden">
+        <div class="card app-map-card p-0 overflow-hidden">
           <div class="flight-map-wrapper pos-rel w-full">
 
             <!-- Mobile Map Tools Trigger Button (Only visible on <= 900px) -->
@@ -278,10 +278,10 @@
         </div>
 
         <!-- 2. THREE WORKFLOW CARDS SIDE-BY-SIDE UNDER MAP (BALANCED EQUAL-HEIGHT BENTO GRID) -->
-        <div class="flight-bottom-cards-grid mb-16">
+        <div class="flight-bottom-grid mb-16">
 
           <!-- Panel 1: Uçuş Sahası & Sınır Sadeleştirme -->
-          <div class="card flight-workflow-card flight-workflow-card-cyan">
+          <div class="card card-accent-cyan">
             <div class="card-header py-10 px-14 border-b border-white/10 d-flex items-center justify-between">
               <div class="card-title text-sm d-flex items-center gap-8">
                 <i class="fa-solid fa-draw-polygon text-cyan"></i>
@@ -340,7 +340,7 @@
               </div>
 
               <!-- Geometri & Alan Emniyeti Özet Kutusu -->
-              <div class="flight-summary-box">
+              <div class="flight-summary-wrap">
                 <div>
                   <span class="text-muted" data-i18n="ui.alanFarki"></span>
                   <strong class="text-emerald font-mono" id="kpiAreaDiff">(+%0.0)</strong>
@@ -366,7 +366,7 @@
           </div>
 
           <!-- Panel 2: YKN & Yol Ağına Bağlama Motoru -->
-          <div class="card flight-workflow-card flight-workflow-card-indigo">
+          <div class="card card-accent-indigo">
             <div class="card-header py-10 px-14 border-b border-white/10 d-flex items-center justify-between">
               <div class="card-title text-sm d-flex items-center gap-8">
                 <i class="fa-solid fa-route text-indigo"></i>
@@ -450,7 +450,7 @@
               </button>
 
               <!-- Jeodezi & GNSS Standart Kutusu -->
-              <div class="flight-summary-box">
+              <div class="flight-summary-wrap">
                 <div>
                   <span class="text-muted" data-i18n="sidebar.geoidModel"></span>
                   <strong class="text-emerald font-mono">🇹🇷 TG-20 (HGM)</strong>
@@ -476,7 +476,7 @@
           </div>
 
           <!-- Panel 3: İHA, GSD & Uçuş Planlayıcı -->
-          <div class="card flight-workflow-card flight-workflow-card-emerald">
+          <div class="card card-accent-emerald">
             <div class="card-header py-10 px-14 border-b border-white/10 d-flex items-center justify-between">
               <div class="card-title text-sm d-flex items-center gap-8">
                 <i class="fa-solid fa-camera text-emerald"></i>
@@ -582,7 +582,7 @@
               </div>
 
               <!-- Hat Açısı (Doğrultu) & Optimal Eksen Seçici -->
-              <div class="flight-heading-box">
+              <div class="flight-heading-wrap">
                 <div class="d-flex justify-between items-center">
                   <label class="text-xs font-semibold text-cyan m-0 d-flex items-center gap-6">
                     <i class="fa-solid fa-compass"></i> <span data-i18n="ui.ucusHatYonu"></span> <span id="txtFlightHeadingVal"
@@ -613,7 +613,7 @@
               </div>
 
               <!-- Hesaplanan Uçuş & Telemetri Çıktısı -->
-              <div class="flight-summary-box">
+              <div class="flight-summary-wrap">
                 <div>
                   <span class="text-muted" data-i18n="ui.ucusYuksekligi"></span>
                   <strong id="resCalcAltitude" class="text-cyan font-mono">100 m AGL | GSD: 2.73 cm</strong>

@@ -7,7 +7,7 @@ function initGuideSearchAndFilter() {
   const inputSearch = document.getElementById("inputGuideSearch");
   const btnClearSearch = document.getElementById("btnClearGuideSearch");
   const filterChips = document.querySelectorAll(".guide-filter-chip");
-  const moduleCards = document.querySelectorAll("#guideModulesGrid .guide-card-box");
+  const moduleCards = document.querySelectorAll("#guideModulesGrid .card");
   const standardsBento = document.querySelectorAll(".guide-standards-bento");
   const faqItems = document.querySelectorAll(".guide-faq-item");
   const sectionHeadings = document.querySelectorAll(".guide-section-heading");
@@ -306,7 +306,7 @@ function initGuideSearchAndFilter() {
       html += `<div class="section-title">1. Mühendislik Modülleri ve İş Akışları</div>`;
       visibleCards.forEach(c => {
         const title = c.querySelector("h4")?.textContent || "";
-        const sub = c.querySelector(".guide-card-head span")?.textContent || "";
+        const sub = c.querySelector(".card-header span")?.textContent || "";
         const rows = Array.from(c.querySelectorAll(".guide-feature-row")).map(r => {
           const badge = r.querySelector(".guide-feature-badge")?.textContent || "";
           const p = r.querySelector("p")?.innerHTML || "";

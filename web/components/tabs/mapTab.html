@@ -54,7 +54,7 @@
 
             <!-- Search by Sheet Name -->
             <div class="pafta-search-wrapper">
-              <div class="pafta-search-input-box">
+              <div class="pafta-search-field">
                 <i class="fa-solid fa-magnifying-glass pafta-search-icon"></i>
                 <input type="text" id="inputPaftaSearch" placeholder="" data-i18n-placeholder="map.searchPlaceholder"
                   class="form-input pafta-search-input">
@@ -72,7 +72,7 @@
             </div>
 
             <!-- Floating Active Pafta Info Card (Bottom-Left) -->
-            <div id="cardActivePafta" class="floating-pafta-card" style="display: none;">
+            <div id="cardActivePafta" class="floating-pafta-widget" style="display: none;">
               <div class="pafta-card-header">
                 <div class="d-flex items-center gap-6">
                   <i class="fa-solid fa-map text-cyan"></i>
@@ -97,7 +97,7 @@
                 <div class="d-flex justify-between"><span class="text-dim">1/1 000:</span> <span id="txtPaftaCard1k" class="font-mono font-extrabold text-sky cursor-pointer">--</span></div>
 
                 <!-- 1/25 000 HGM Resmi Datum & Yükseklik Düzeltme Parametreleri (ED50 <-> WGS84) -->
-                <div id="boxGeoidInfo" class="pafta-geoid-box">
+                <div id="boxGeoidInfo" class="pafta-geoid-wrap">
                   <div class="pafta-geoid-head">
                     <span class="font-bold text-amber"><i class="fa-solid fa-mountain mr-4"></i><span data-i18n="map.hgmCorrectionTitle"></span></span>
                     <span id="txtHgmSourceLabel" class="badge badge-emerald" data-i18n="map.officialDb"></span>
@@ -138,7 +138,7 @@
             </div>
 
             <!-- Floating Intersecting Paftas Info Card (Top-Right of Map) -->
-            <div id="cardIntersectingPaftas" class="floating-intersect-card" style="display: none;">
+            <div id="cardIntersectingPaftas" class="floating-intersect-widget" style="display: none;">
               <div class="pafta-intersect-header">
                 <div class="chip-row">
                   <i class="fa-solid fa-layer-group pafta-intersect-icon"></i>

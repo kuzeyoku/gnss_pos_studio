@@ -124,7 +124,7 @@
   border-top: 1px solid #e2e8f0;
 }
 
-[data-theme="light"] .sidebar-geo-card {
+[data-theme="light"] .sidebar-geo-widget {
   background: #f8fafc;
   border: 1px solid #cbd5e1;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -138,7 +138,7 @@
   color: #0f172a;
 }
 
-[data-theme="light"] .sidebar-shortcuts-card {
+[data-theme="light"] .sidebar-shortcuts-widget {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
 }
@@ -313,9 +313,6 @@
 
 /* 8. KPI & Stat Chips */
 [data-theme="light"] .kpi-card,
-[data-theme="light"] .cadastre-kpi-card,
-[data-theme="light"] .converter-kpi-card,
-[data-theme="light"] .stat-card-glass,
 [data-theme="light"] .flight-geo-chip,
 [data-theme="light"] .flight-telemetry-chip {
   background: #ffffff;
@@ -342,7 +339,7 @@
 
 [data-theme="light"] .data-panel,
 [data-theme="light"] .config-panel,
-[data-theme="light"] .interactive-map-card,
+[data-theme="light"] .app-map-card,
 [data-theme="light"] .export-bar {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
@@ -361,8 +358,8 @@
 [data-theme="light"] .tg20-map-canvas,
 [data-theme="light"] .flight-map-canvas,
 [data-theme="light"] .dom-zone-item,
-[data-theme="light"] .formula-box,
-[data-theme="light"] .guide-shortcut-card {
+[data-theme="light"] .formula-item,
+[data-theme="light"] .guide-shortcut-item {
   background: #f8fafc;
   border-color: #cbd5e1;
 }
@@ -429,9 +426,9 @@
 }
 
 /* 10. Floating Overlays & Pafta Cards */
-[data-theme="light"] .floating-pafta-card,
+[data-theme="light"] .floating-pafta-widget,
 [data-theme="light"] #cardActivePafta,
-[data-theme="light"] .floating-intersect-card,
+[data-theme="light"] .floating-intersect-widget,
 [data-theme="light"] #cardIntersectingPaftas {
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid #cbd5e1;
@@ -475,7 +472,9 @@
 }
 
 /* 11. Flight Planner Studio */
-[data-theme="light"] .flight-workflow-card {
+[data-theme="light"] .card.card-accent-cyan,
+[data-theme="light"] .card.card-accent-indigo,
+[data-theme="light"] .card.card-accent-emerald {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   box-shadow: 0 6px 24px -4px rgba(0, 0, 0, 0.06);
@@ -493,9 +492,9 @@
   color: #065f46;
 }
 
-[data-theme="light"] .flight-summary-box,
+[data-theme="light"] .flight-summary-wrap,
 [data-theme="light"] .flight-slider-container,
-[data-theme="light"] .flight-heading-box {
+[data-theme="light"] .flight-heading-wrap {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   color: #1e293b;
@@ -527,12 +526,6 @@
   color: #92400e;
 }
 
-[data-theme="light"] .tg20-formula-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%);
-  border: 1px solid #ccfbf1;
-  color: #115e59;
-}
-
 [data-theme="light"] .tg20-region-chip {
   background: #f8fafc;
   border: 1px solid #cbd5e1;
@@ -540,9 +533,8 @@
 }
 
 [data-theme="light"] .tg20-action-toolbar,
-[data-theme="light"] .time-crop-panel,
-[data-theme="light"] .about-spec-grid,
-[data-theme="light"] .about-standards-card {
+[data-theme="light"] .time-crop-wrap,
+[data-theme="light"] .about-spec-grid {
   background: #f8fafc;
   border: 1px solid #cbd5e1;
 }
@@ -592,10 +584,7 @@
   border-color: rgba(2, 132, 199, 0.3);
 }
 
-[data-theme="light"] .ppk-station-card {
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-}
+
 
 [data-theme="light"] .banner-ppk-status {
   background: #f8fafc;
@@ -607,7 +596,7 @@
   border-color: #cbd5e1;
 }
 
-[data-theme="light"] .timeline-chart-box {
+[data-theme="light"] .timeline-chart-wrap {
   background: #f8fafc;
   border-color: #cbd5e1;
 }
@@ -669,7 +658,7 @@
   border-left-color: #cbd5e1;
 }
 
-[data-theme="light"] .guide-card-body-text,
+[data-theme="light"] .card-body,
 [data-theme="light"] .guide-faq-answer {
   color: #475569;
 }
@@ -690,7 +679,7 @@
   border-top-color: #e2e8f0;
 }
 
-[data-theme="light"] .guide-shortcut-card:hover {
+[data-theme="light"] .guide-shortcut-item:hover {
   background: #f1f5f9;
   border-color: #94a3b8;
 }
@@ -722,7 +711,7 @@
   border-color: #0284c7;
 }
 
-[data-theme="light"] .console-box {
+[data-theme="light"] .console-terminal {
   background: #f8fafc;
   color: #0f172a;
   border: 1px solid #cbd5e1;
@@ -748,19 +737,7 @@
   color: #64748b;
 }
 
-/* 17. About Modal */
-[data-theme="light"] .about-modal-card {
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.15);
-  color: #0f172a;
-}
-
-[data-theme="light"] .about-standard-row {
-  color: #334155;
-}
-
-[data-theme="light"] .about-privacy-box {
+[data-theme="light"] .privacy-note {
   background: #ecfdf5;
   border: 1px solid #a7f3d0;
   color: #065f46;
@@ -1060,10 +1037,10 @@
   .grid-2col-rinex,
   .grid-2col-helmert,
   .d-grid.gap-14,
-  .flight-bottom-cards-grid,
+  .flight-bottom-grid,
   .time-crop-presets-grid,
   .rinex-output-config-grid,
-  .ppk-cards-grid,
+  .ppk-grid,
   .converter-workspace-grid {
     grid-template-columns: 1fr !important;
     gap: 10px !important;
@@ -1129,12 +1106,7 @@
     justify-content: center !important;
   }
 
-  .tg20-formula-card {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 4px !important;
-    padding: 8px 10px !important;
-  }
+
 
   .guide-filter-chips {
     overflow-x: auto !important;
@@ -1415,7 +1387,7 @@
   }
 
 
-  .console-dock .console-box {
+  .console-dock .console-terminal {
     max-height: 110px !important;
     font-size: 10px !important;
     padding: 6px 8px !important;
@@ -1525,17 +1497,17 @@
     width: 100% !important;
   }
 
-  .flight-heading-box {
+  .flight-heading-wrap {
     padding: 8px 10px !important;
   }
 
-  .flight-heading-box .d-flex.justify-between {
+  .flight-heading-wrap .d-flex.justify-between {
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 6px !important;
   }
 
-  .flight-heading-box .d-flex.items-center.gap-4 {
+  .flight-heading-wrap .d-flex.items-center.gap-4 {
     width: 100% !important;
   }
 
@@ -1601,9 +1573,9 @@
     gap: 6px !important;
   }
 
-  .floating-pafta-card,
+  .floating-pafta-widget,
   #cardActivePafta,
-  .floating-intersect-card,
+  .floating-intersect-widget,
   #cardIntersectingPaftas {
     position: fixed !important;
     left: 10px !important;

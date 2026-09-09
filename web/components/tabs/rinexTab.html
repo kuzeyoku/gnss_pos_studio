@@ -19,7 +19,7 @@
           <div class="grid-2col-rinex">
 
             <!-- Dropzone Panel -->
-            <div class="dropzone-panel">
+            <div class="dropzone-wrap">
               <div class="dropzone" id="mergerDropzone">
                 <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
                 <div class="dropzone-title" data-i18n="rinex.dropzoneTitle"></div>
@@ -45,7 +45,7 @@
               </div>
 
               <!-- Pruning / Deletion Notice Badge -->
-              <div class="alert-pruning-box">
+              <div class="alert alert-cyan">
                 <i class="fa-solid fa-circle-info text-cyan text-md flex-shrink-0"></i>
                 <span data-i18n="rinex.pruneNotice"></span>
               </div>
@@ -81,7 +81,7 @@
               </div>
 
               <!-- Time Window & Slicing Control -->
-              <div id="timeCropPanel" class="time-crop-panel">
+              <div id="timeCropPanel" class="time-crop-wrap">
                 <div class="d-flex justify-between items-center">
                   <label class="label-form-section text-cyan d-flex items-center gap-6 m-0">
                     <i class="fa-solid fa-clock-rotate-left"></i> <span data-i18n="rinex.lblTimeWindowCrop"></span>
@@ -98,7 +98,7 @@
                 <!-- Inner Controls Container (Controlled by Switch) -->
                 <div id="timeCropControlsContainer" class="time-crop-disabled d-flex flex-col gap-8">
                   <!-- Discovered Time Range Display -->
-                  <div class="time-crop-meta-box">
+                  <div class="time-crop-meta">
                     <span>📅 <span data-i18n="rinex.lblDetectedDate"></span> <strong id="lblDetectedDate" class="text-pure">--</strong></span>
                     <span>⏱️ <span data-i18n="rinex.lblDetectedTimeRange"></span> <strong id="lblDetectedTimeRange" class="text-cyan font-mono">--:--:-- -
                         --:--:-- UTC</strong></span>
@@ -214,7 +214,7 @@
               <span class="badge badge-emerald" data-i18n="rinex.ppkBadge"></span>
             </div>
 
-            <div class="d-grid gap-14 ppk-cards-grid grid-cols-2">
+            <div class="d-grid gap-14 ppk-grid grid-cols-2">
               <!-- Base Station RINEX -->
               <div class="card p-14">
                 <label class="label-form-section text-cyan mb-6" data-i18n="rinex.lblBaseStation"></label>
@@ -352,7 +352,7 @@
               <span class="badge badge-amber" data-i18n="rinex.qualityBadge"></span>
             </div>
 
-            <div class="quality-inspector-panel">
+            <div class="d-flex flex-col gap-12">
               <!-- File Selector for Quality Inspector -->
               <div class="quality-action-bar d-flex items-center justify-between flex-wrap gap-12">
                 <div class="d-flex items-center gap-10">
@@ -426,7 +426,7 @@
                 </div>
 
                 <!-- Interactive Multi-Constellation Timeline Chart Canvas -->
-                <div class="timeline-chart-box">
+                <div class="timeline-chart-wrap">
                   <!-- Legend -->
                   <div class="timeline-header-flex">
                     <span class="timeline-legend-title" data-i18n="rinex.timelineChartTitle"></span>

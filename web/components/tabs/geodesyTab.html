@@ -46,7 +46,7 @@
               <span data-i18n="geodesy.paramBursaWolfCustom"></span>
               <span class="text-xs text-purple font-semibold" data-i18n="geodesy.btnCalcFrom3dPoints"></span>
             </summary>
-            <div class="bursa-details-box">
+            <div class="bursa-details-wrap">
               <!-- Manual Inputs Grid -->
               <div class="d-grid gap-6 grid-cols-7">
                 <div><span class="text-xs text-dim" data-i18n="geodesy.dxLabel"></span><input type="number" id="p_dx" value="-84.1"
@@ -128,7 +128,7 @@
 
             <!-- Output Box -->
             <div>
-              <div class="console-box coord-result-display" id="coordResultBox" data-i18n="ui.donusumSonucunuGormekIcin"></div>
+              <div class="console-terminal coord-result-display" id="coordResultBox" data-i18n="ui.donusumSonucunuGormekIcin"></div>
             </div>
           </div>
         </div>
@@ -212,7 +212,7 @@
             </div>
 
             <!-- Right: Column Mapping & Transform Button -->
-            <div class="geodesy-panel-box d-flex flex-col justify-between gap-10">
+            <div class="config-panel d-flex flex-col justify-between gap-10">
               <div>
                 <span class="text-xs font-bold text-cyan uppercase d-block mb-6">
                   <i class="fa-solid fa-table-columns"></i> <span data-i18n="geodesy.colMappingTitle"></span>:
@@ -340,7 +340,7 @@
           <!-- 2-Column Main Workspace -->
           <div class="grid-2col-helmert">
             <!-- Left: Parameter Input Modes (DNS File vs Common Points) -->
-            <div class="geodesy-panel-box d-flex flex-col gap-10">
+            <div class="config-panel d-flex flex-col gap-10">
               <div class="d-flex justify-between items-center">
                 <span class="text-sm font-bold text-cyan uppercase" data-i18n="ui.1DonusumParametreKaynagi"></span>
               </div>
@@ -385,7 +385,7 @@
             </div>
 
             <!-- Right: Points to Transform -->
-            <div class="geodesy-panel-box d-flex flex-col gap-10">
+            <div class="config-panel d-flex flex-col gap-10">
               <label class="text-sm font-bold text-emerald uppercase m-0" data-i18n="ui.2DonusturulecekNoktalarHedef"></label>
               <div class="text-xs text-dim font-mono" data-i18n="ui.formatNoktanoYKaynak"></div>
               <textarea id="txtHelmertPointsToTransform" rows="6"
