@@ -52,22 +52,18 @@ function initKeyboardShortcuts() {
 function initThemeToggle() {
   const btnEl = document.getElementById("btnThemeToggle");
   const domEl = document.getElementById("themeIcon");
-  const v_1 = localStorage.getItem("gnss_studio_theme") || "dark";
-  v_2(v_1);
+  v_2("dark");
+  localStorage.setItem("gnss_studio_theme", "dark");
   if (btnEl) {
     btnEl.addEventListener("click", () => {
-      const v_1_1 = document.documentElement.getAttribute("data-theme") || "dark";
-      const v_2_1 = v_1_1 === "dark" ? "light" : "dark";
-      v_2(v_2_1);
-      localStorage.setItem("gnss_studio_theme", v_2_1);
-      showToast(v_2_1 === "light" ? t("core.navigation.toastThemeLight") : t("core.navigation.toastThemeDark"), "info");
+      showToast("Karanlık tema varsayılandır (Açık tema geliştirme aşamasındadır)", "info");
     });
   }
 
   const btnSidebarTheme = document.getElementById("btnSidebarThemeShortcut");
   if (btnSidebarTheme) {
     btnSidebarTheme.addEventListener("click", () => {
-      btnEl?.click();
+      showToast("Karanlık tema varsayılandır (Açık tema geliştirme aşamasındadır)", "info");
     });
   }
 
@@ -78,30 +74,20 @@ function initThemeToggle() {
       document.getElementById("inputHomeHeroFile")?.click();
     } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "d") {
       e.preventDefault();
-      btnEl?.click();
+      showToast("Karanlık tema varsayılandır (Açık tema geliştirme aşamasındadır)", "info");
     }
   });
 
   function v_2(arg1) {
-    document.documentElement.setAttribute("data-theme", arg1);
+    document.documentElement.setAttribute("data-theme", "dark");
     if (domEl) {
-      if (arg1 === "light") {
-        domEl.className = "fa-solid fa-sun";
-        domEl.style.color = "var(--amber-500)";
-      } else {
-        domEl.className = "fa-solid fa-moon";
-        domEl.style.color = "var(--cyan-400)";
-      }
+      domEl.className = "fa-solid fa-moon";
+      domEl.style.color = "var(--cyan-400)";
     }
     const mobileThemeIcon = document.getElementById("mobileThemeIcon");
     if (mobileThemeIcon) {
-      if (arg1 === "light") {
-        mobileThemeIcon.className = "fa-solid fa-sun";
-        mobileThemeIcon.style.color = "var(--amber-500)";
-      } else {
-        mobileThemeIcon.className = "fa-solid fa-moon";
-        mobileThemeIcon.style.color = "var(--cyan-400)";
-      }
+      mobileThemeIcon.className = "fa-solid fa-moon";
+      mobileThemeIcon.style.color = "var(--cyan-400)";
     }
   }
 }

@@ -250,6 +250,22 @@ body {
 .grid-cols-2        { grid-template-columns: repeat(2, 1fr) !important; }
 .grid-split-11-10   { grid-template-columns: 1.1fr 1fr !important; }
 .grid-split-13-10   { grid-template-columns: 1.3fr 1fr !important; }
+.grid-2             { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.grid-3             { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.grid-4             { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.grid-5             { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+
+/* — Status Pulse Dot Component — */
+.pulse-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; animation: pulseDot 2s infinite ease-in-out; }
+.pulse-dot-emerald, .pulse-dot.online { background: var(--emerald-400); box-shadow: 0 0 10px rgba(16, 185, 129, 0.7); }
+.pulse-dot-cyan    { background: var(--cyan-400); box-shadow: 0 0 10px rgba(6, 182, 212, 0.7); }
+.pulse-dot-amber   { background: var(--amber-400); box-shadow: 0 0 10px rgba(245, 158, 11, 0.7); }
+.pulse-dot-rose    { background: var(--rose-400); box-shadow: 0 0 10px rgba(244, 63, 94, 0.7); }
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+}
 
 /* — Sizing Utilities — */
 .th-w-40px   { width: 40px !important; text-align: center !important; }

@@ -1,4 +1,4 @@
-      <!-- ================= TAB: EVRENSEL DOSYA & FORMAT DÖNÜŞTÜRÜCÜ STUDIO ================= -->
+      <!-- ================= TAB: EVRENSEL DOSYA & FORMAT DÃ–NÃœÅTÃœRÃœCÃœ STUDIO ================= -->
       <section id="tab-converter" class="tool-tab">
         <div class="converter-workstation">
 
@@ -19,7 +19,7 @@
               <div class="d-flex items-center gap-6">
                 <span class="badge badge-cyan font-mono"><i class="fa-solid fa-bolt"></i> <span data-i18n="converter.badgeOffline"></span></span>
                 <span class="badge badge-emerald font-mono"><i class="fa-solid fa-layer-group"></i> <span data-i18n="converter.badgeMultiLayer"></span></span>
-                <span class="badge badge-purple font-mono" id="badgeConverterCrs">TUREF TM 3° (DOM: 30°)</span>
+                <span class="badge badge-purple font-mono" id="badgeConverterCrs">TUREF TM 3Â° (DOM: 30Â°)</span>
               </div>
             </div>
           </div>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="flex-1 min-w-0">
                       <div class="text-xs font-bold text-white truncate" id="txtConverterFileName" data-i18n="ui.dosyaDxf"></div>
-                      <div class="text-2xs text-dim" id="txtConverterFileDetails">AutoCAD DXF • 0 Geometri</div>
+                      <div class="text-2xs text-dim" id="txtConverterFileDetails">AutoCAD DXF â€¢ 0 Geometri</div>
                     </div>
                     <button type="button" class="btn btn-xs btn-secondary" id="btnResetConverter" title="" data-i18n-title="common.clear">
                       <i class="fa-solid fa-xmark"></i>
@@ -80,7 +80,7 @@
                   <div class="form-group mb-0">
                     <label class="form-label" data-i18n="common.sourceSystem"></label>
                     <select id="selConverterSrcCrs" class="form-select form-select-sm">
-                      <option value="TUREF_TM" selected>ITRF-96 / TUREF TM 3° (Metre)</option>
+                      <option value="TUREF_TM" selected>ITRF-96 / TUREF TM 3Â° (Metre)</option>
                       <option value="WGS84" data-i18n="ui.wgs84CografiEnlem"></option>
                       <option value="ED50_TM" data-i18n="ui.ed50GaussKruger"></option>
                     </select>
@@ -89,13 +89,13 @@
                   <div class="form-group mb-0">
                     <label class="form-label" data-i18n="geodesy.domLabel"></label>
                     <select id="selConverterDom" class="form-select form-select-sm">
-                      <option value="27">27° (Dilim 1 / 9)</option>
-                      <option value="30" selected>30° (Dilim 2 / 10)</option>
-                      <option value="33">33° (Dilim 3 / 11)</option>
-                      <option value="36">36° (Dilim 4 / 12)</option>
-                      <option value="39">39° (Dilim 5 / 13)</option>
-                      <option value="42">42° (Dilim 6 / 14)</option>
-                      <option value="45">45° (Dilim 7 / 15)</option>
+                      <option value="27">27Â° (Dilim 1 / 9)</option>
+                      <option value="30" selected>30Â° (Dilim 2 / 10)</option>
+                      <option value="33">33Â° (Dilim 3 / 11)</option>
+                      <option value="36">36Â° (Dilim 4 / 12)</option>
+                      <option value="39">39Â° (Dilim 5 / 13)</option>
+                      <option value="42">42Â° (Dilim 6 / 14)</option>
+                      <option value="45">45Â° (Dilim 7 / 15)</option>
                     </select>
                   </div>
                 </div>
@@ -151,7 +151,7 @@
               <!-- Telemetry & KPI Cards -->
               <div class="kpi-grid">
                 <div class="kpi-card">
-                  <div class="kpi-icon bento-icon-cyan"><i class="fa-solid fa-location-dot"></i></div>
+                  <div class="kpi-icon icon-cyan"><i class="fa-solid fa-location-dot"></i></div>
                   <div>
                     <div class="kpi-val text-cyan" id="kpiConverterPoints">0</div>
                     <div class="kpi-label" data-i18n="ui.noktaSayisi"></div>
@@ -159,7 +159,7 @@
                 </div>
 
                 <div class="kpi-card">
-                  <div class="kpi-icon bento-icon-purple"><i class="fa-solid fa-font"></i></div>
+                  <div class="kpi-icon icon-purple"><i class="fa-solid fa-font"></i></div>
                   <div>
                     <div class="kpi-val text-purple" id="kpiConverterTexts">0</div>
                     <div class="kpi-label" data-i18n="ui.yaziCadMetni"></div>
@@ -167,7 +167,7 @@
                 </div>
 
                 <div class="kpi-card">
-                  <div class="kpi-icon bento-icon-blue"><i class="fa-solid fa-route"></i></div>
+                  <div class="kpi-icon icon-blue"><i class="fa-solid fa-route"></i></div>
                   <div>
                     <div class="kpi-val text-blue" id="kpiConverterLines">0</div>
                     <div class="kpi-label" data-i18n="converter.kpiLines"></div>
@@ -175,7 +175,7 @@
                 </div>
 
                 <div class="kpi-card">
-                  <div class="kpi-icon bento-icon-emerald"><i class="fa-solid fa-draw-polygon"></i></div>
+                  <div class="kpi-icon icon-emerald"><i class="fa-solid fa-draw-polygon"></i></div>
                   <div>
                     <div class="kpi-val text-emerald" id="kpiConverterPolygons">0</div>
                     <div class="kpi-label" data-i18n="geomatics.closedArea"></div>

@@ -27,11 +27,11 @@
                 <div class="dropzone-tags mt-12">
                   <span class="dropzone-tag-pill">RINEX 2 / 3 / 4</span>
                   <span class="dropzone-tag-pill">.OBS / .RNX</span>
-                  <span class="dropzone-tag-pill">.*O (Gözlem)</span>
+                  <span class="dropzone-tag-pill">.*O (GÃ¶zlem)</span>
                   <span class="dropzone-tag-pill">.*N (Navigasyon)</span>
                   <span class="dropzone-tag-pill">.CRX / .*D (Hatanaka)</span>
                   <span class="dropzone-tag-pill">ZIP / GZ</span>
-                  <span class="dropzone-tag-pill">Çoklu Dosya</span>
+                  <span class="dropzone-tag-pill">Ã‡oklu Dosya</span>
                 </div>
                 <input type="file" id="mergerFileInput" class="file-drop-input" multiple accept=".o,.rnx,.obs,.*o,.*O,.crx,.zip,.gz,.*n,.*N,.*d,.*D" />
               </div>
@@ -99,10 +99,10 @@
                 <div id="timeCropControlsContainer" class="time-crop-disabled d-flex flex-col gap-8">
                   <!-- Discovered Time Range Display -->
                   <div class="time-crop-meta">
-                    <span>📅 <span data-i18n="rinex.lblDetectedDate"></span> <strong id="lblDetectedDate" class="text-pure">--</strong></span>
-                    <span>⏱️ <span data-i18n="rinex.lblDetectedTimeRange"></span> <strong id="lblDetectedTimeRange" class="text-cyan font-mono">--:--:-- -
+                    <span>ğŸ“… <span data-i18n="rinex.lblDetectedDate"></span> <strong id="lblDetectedDate" class="text-pure">--</strong></span>
+                    <span>â±ï¸ <span data-i18n="rinex.lblDetectedTimeRange"></span> <strong id="lblDetectedTimeRange" class="text-cyan font-mono">--:--:-- -
                         --:--:-- UTC</strong></span>
-                    <span>⌛ <span data-i18n="rinex.lblDetectedDuration"></span> <strong id="lblDetectedDuration" class="text-purple">--</strong></span>
+                    <span>âŒ› <span data-i18n="rinex.lblDetectedDuration"></span> <strong id="lblDetectedDuration" class="text-purple">--</strong></span>
                   </div>
 
                   <!-- Time Inputs & Presets -->
@@ -127,7 +127,7 @@
               </div>
 
               <!-- Output Version, Dynamic Format & Sampling Grid -->
-              <div class="d-grid gap-10 rinex-output-config-grid grid-cols-3">
+              <div class="grid-3">
                 <!-- 1. Version Selector -->
                 <div>
                   <label class="label-form-section mb-4" data-i18n="rinex.lblTargetVersion"></label>
@@ -214,7 +214,7 @@
               <span class="badge badge-emerald" data-i18n="rinex.ppkBadge"></span>
             </div>
 
-            <div class="d-grid gap-14 ppk-grid grid-cols-2">
+            <div class="grid-2">
               <!-- Base Station RINEX -->
               <div class="card p-14">
                 <label class="label-form-section text-cyan mb-6" data-i18n="rinex.lblBaseStation"></label>
@@ -269,7 +269,7 @@
               <!-- Stats Grid -->
               <div class="kpi-grid-5">
                 <div class="kpi-card">
-                  <div class="kpi-icon bento-icon-cyan">
+                  <div class="kpi-icon icon-cyan">
                     <i class="fa-solid fa-tower-broadcast"></i>
                   </div>
                   <div class="min-w-0">
@@ -279,7 +279,7 @@
                 </div>
 
                 <div class="kpi-card">
-                  <div class="kpi-icon bento-icon-emerald">
+                  <div class="kpi-icon icon-emerald">
                     <i class="fa-solid fa-satellite"></i>
                   </div>
                   <div class="min-w-0">
@@ -289,7 +289,7 @@
                 </div>
 
                 <div class="kpi-card">
-                  <div class="kpi-icon bento-icon-amber">
+                  <div class="kpi-icon icon-amber">
                     <i class="fa-solid fa-clock"></i>
                   </div>
                   <div class="min-w-0">
@@ -299,7 +299,7 @@
                 </div>
 
                 <div class="kpi-card">
-                  <div class="kpi-icon bento-icon-purple">
+                  <div class="kpi-icon icon-purple">
                     <i class="fa-solid fa-arrows-left-right"></i>
                   </div>
                   <div class="min-w-0">
@@ -309,7 +309,7 @@
                 </div>
 
                 <div class="kpi-card">
-                  <div class="kpi-icon bento-icon-blue">
+                  <div class="kpi-icon icon-blue">
                     <i class="fa-solid fa-circle-nodes"></i>
                   </div>
                   <div class="min-w-0">
@@ -356,7 +356,7 @@
               <!-- File Selector for Quality Inspector -->
               <div class="quality-action-bar d-flex items-center justify-between flex-wrap gap-12">
                 <div class="d-flex items-center gap-10">
-                  <div class="kpi-icon bento-icon-amber" style="width: 38px; height: 38px; font-size: 15px;">
+                  <div class="kpi-icon icon-amber" style="width: 38px; height: 38px; font-size: 15px;">
                     <i class="fa-solid fa-chart-simple"></i>
                   </div>
                   <div>
@@ -375,7 +375,7 @@
                 <!-- Stat Cards Bar -->
                 <div class="kpi-grid-5">
                   <div class="kpi-card">
-                    <div class="kpi-icon bento-icon-cyan">
+                    <div class="kpi-icon icon-cyan">
                       <i class="fa-solid fa-stopwatch"></i>
                     </div>
                     <div class="min-w-0">
@@ -385,7 +385,7 @@
                   </div>
 
                   <div class="kpi-card">
-                    <div class="kpi-icon bento-icon-blue">
+                    <div class="kpi-icon icon-blue">
                       <i class="fa-solid fa-wave-square"></i>
                     </div>
                     <div class="min-w-0">
@@ -395,7 +395,7 @@
                   </div>
 
                   <div class="kpi-card">
-                    <div class="kpi-icon bento-icon-amber">
+                    <div class="kpi-icon icon-amber">
                       <i class="fa-solid fa-satellite"></i>
                     </div>
                     <div class="min-w-0">
@@ -405,7 +405,7 @@
                   </div>
 
                   <div class="kpi-card">
-                    <div class="kpi-icon bento-icon-emerald">
+                    <div class="kpi-icon icon-emerald">
                       <i class="fa-solid fa-globe"></i>
                     </div>
                     <div class="min-w-0">
@@ -415,7 +415,7 @@
                   </div>
 
                   <div class="kpi-card">
-                    <div class="kpi-icon bento-icon-purple">
+                    <div class="kpi-icon icon-purple">
                       <i class="fa-solid fa-award"></i>
                     </div>
                     <div class="min-w-0">
