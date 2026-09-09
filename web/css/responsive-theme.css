@@ -348,7 +348,6 @@
 [data-theme="light"] .cadastre-map-canvas,
 [data-theme="light"] .tg20-map-canvas,
 [data-theme="light"] .flight-map-canvas,
-[data-theme="light"] .ppk-upload-box,
 [data-theme="light"] .dom-zone-item,
 [data-theme="light"] .formula-box,
 [data-theme="light"] .guide-shortcut-card {
@@ -558,45 +557,34 @@
 }
 
 /* 13. RINEX Studio & Canonical Dropzones */
-[data-theme="light"] .dropzone,
-[data-theme="light"] .converter-dropzone,
-[data-theme="light"] .hero-quick-dropzone {
+[data-theme="light"] .dropzone {
   background: #ffffff;
   border: 2px dashed #38bdf8;
 }
 
 [data-theme="light"] .dropzone:hover,
 [data-theme="light"] .dropzone.dragover,
-[data-theme="light"] .dropzone.drag-over,
-[data-theme="light"] .converter-dropzone:hover,
-[data-theme="light"] .converter-dropzone.dragover,
-[data-theme="light"] .hero-quick-dropzone:hover {
+[data-theme="light"] .dropzone.drag-over {
   border-color: #0284c7;
   background: #f0f9ff;
   box-shadow: 0 4px 20px rgba(2, 132, 199, 0.15);
 }
 
-[data-theme="light"] .dropzone-title,
-[data-theme="light"] .converter-drop-title,
-[data-theme="light"] .hero-drop-title {
+[data-theme="light"] .dropzone-title {
   color: #0f172a;
 }
 
-[data-theme="light"] .dropzone-desc,
-[data-theme="light"] .hero-drop-sub {
+[data-theme="light"] .dropzone-desc {
   color: #475569;
 }
 
-[data-theme="light"] .dropzone-tag-pill,
-[data-theme="light"] .converter-tag-pill {
+[data-theme="light"] .dropzone-tag-pill {
   background: rgba(15, 23, 42, 0.05);
   color: #475569;
   border-color: rgba(15, 23, 42, 0.12);
 }
 
-[data-theme="light"] .dropzone:hover .dropzone-tag-pill,
-[data-theme="light"] .converter-dropzone:hover .converter-tag-pill,
-[data-theme="light"] .hero-quick-dropzone:hover .dropzone-tag-pill {
+[data-theme="light"] .dropzone:hover .dropzone-tag-pill {
   background: rgba(2, 132, 199, 0.1);
   color: #0284c7;
   border-color: rgba(2, 132, 199, 0.3);
@@ -612,7 +600,7 @@
   border-color: #cbd5e1;
 }
 
-[data-theme="light"] .quality-upload-bar {
+[data-theme="light"] .quality-action-bar {
   background: #f8fafc;
   border-color: #cbd5e1;
 }
