@@ -8,7 +8,7 @@
  * 3. Yeni sürüm derlendiğinde eski önbellekler anında silinir.
  */
 
-const CACHE_NAME = 'gnss-pos-studio-v1788951302642';
+const CACHE_NAME = 'gnss-pos-studio-v1788954410076';
 const PRECACHE_ASSETS = [
   './',
   'index.html',
