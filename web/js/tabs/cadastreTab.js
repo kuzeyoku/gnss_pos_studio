@@ -2,7 +2,7 @@
  * Harita Tools - RTK & Cadastre Module Controller
  */
 function initGpsFormatSubtabs() {
-  const subBtns = document.querySelectorAll(".sub-tab-btn");
+  const subBtns = document.querySelectorAll(".subtab-btn, .sub-tab-btn");
   const subContents = document.querySelectorAll(".subtab-content");
 
   subBtns.forEach(item => {

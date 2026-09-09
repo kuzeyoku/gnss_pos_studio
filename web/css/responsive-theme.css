@@ -183,7 +183,7 @@
 }
 
 [data-theme="light"] .status-pill,
-[data-theme="light"] .mobile-menu-btn {
+[data-theme="light"] .mobile-nav-toggle {
   background: #f1f5f9;
   border-color: #cbd5e1;
   color: #0284c7;
@@ -276,23 +276,35 @@
   border-color: #94a3b8;
 }
 
-[data-theme="light"] .sub-tab-btn,
-[data-theme="light"] .guide-filter-chip,
-[data-theme="light"] .about-close-btn {
+[data-theme="light"] .subtab-btn,
+[data-theme="light"] .modal-close-trigger {
+  color: #475569;
+  border-color: rgba(203, 213, 225, 0.8);
+}
+
+[data-theme="light"] .subtab-btn:hover {
+  background: rgba(241, 245, 249, 0.9);
+  color: #0f172a;
+}
+
+[data-theme="light"] .subtab-btn.active {
+  background: #ffffff;
+  color: #0369a1;
+  border-color: #38bdf8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .guide-filter-chip {
   background: #f1f5f9;
   color: #475569;
   border: 1px solid #cbd5e1;
 }
 
-[data-theme="light"] .sub-tab-btn:hover,
-[data-theme="light"] .guide-filter-chip:hover,
-[data-theme="light"] .map-btn-compact:hover,
-[data-theme="light"] .map-toggle-btn:hover {
+[data-theme="light"] .guide-filter-chip:hover {
   background: #e2e8f0;
   color: #0f172a;
 }
 
-[data-theme="light"] .sub-tab-btn.active,
 [data-theme="light"] .guide-filter-chip.active {
   background: #0284c7;
   color: #ffffff;
@@ -544,16 +556,6 @@
 [data-theme="light"] .tg20-subtab-nav {
   background: #f1f5f9;
   border-color: #cbd5e1;
-}
-
-[data-theme="light"] .tg20-subtab-btn {
-  color: #475569;
-}
-
-[data-theme="light"] .tg20-subtab-btn.active {
-  color: #0369a1;
-  background: #ffffff;
-  border-color: #38bdf8;
 }
 
 /* 13. RINEX Studio & Canonical Dropzones */
@@ -848,31 +850,32 @@
     box-shadow: 10px 0 40px rgba(0, 0, 0, 0.75) !important;
   }
 
-  .mobile-sidebar-close-btn {
+  .mobile-sidebar-close {
     display: flex !important;
-    position: absolute !important;
-    top: 10px !important;
-    right: 10px !important;
-    width: 32px !important;
-    height: 32px !important;
-    border-radius: 8px !important;
-    background: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid var(--border-glass) !important;
-    color: var(--text-dim) !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-size: 14px !important;
-    cursor: pointer !important;
-    z-index: 10 !important;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid var(--border-glass);
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 40;
+    transition: all 0.2s ease;
   }
 
-  .mobile-sidebar-close-btn:hover {
-    color: #ffffff !important;
-    background: rgba(244, 63, 94, 0.2) !important;
-    border-color: rgba(244, 63, 94, 0.4) !important;
+  .mobile-sidebar-close:hover {
+    color: #ffffff;
+    background: rgba(244, 63, 94, 0.2);
+    border-color: rgba(244, 63, 94, 0.4);
   }
 
-  [data-theme="light"] .mobile-sidebar-close-btn {
+  [data-theme="light"] .mobile-sidebar-close {
     background: #f1f5f9 !important;
     border-color: #cbd5e1 !important;
     color: #64748b !important;
@@ -927,23 +930,23 @@
     flex: 1 !important;
   }
 
-  .mobile-menu-btn {
+  .mobile-nav-toggle {
     display: flex !important;
-    width: 34px !important;
-    height: 34px !important;
-    border-radius: 8px !important;
-    background: rgba(255, 255, 255, 0.06) !important;
-    border: 1px solid var(--border-glass) !important;
-    color: var(--cyan-400) !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-size: 14px !important;
-    cursor: pointer !important;
-    flex-shrink: 0 !important;
-    transition: all 0.2s ease !important;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid var(--border-glass);
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
   }
 
-  .mobile-menu-btn:active {
+  .mobile-nav-toggle:active {
     transform: scale(0.92) !important;
     background: rgba(6, 182, 212, 0.2) !important;
   }
@@ -980,7 +983,7 @@
     width: auto !important;
   }
 
-  .header-btn-icon,
+  .btn-icon,
   #btnThemeToggle,
   #btnOpenAboutModal {
     width: 32px !important;
@@ -1029,7 +1032,6 @@
     border-radius: 6px !important;
   }
 
-  .sub-tab-btn,
   .subtab-btn {
     min-height: 28px !important;
     height: 28px !important;
@@ -1088,7 +1090,7 @@
     gap: 6px !important;
   }
 
-  .tg20-subtab-btn {
+  .tg20-subtab-nav .subtab-btn {
     flex: 1 1 auto !important;
     min-width: 130px !important;
     padding: 6px 10px !important;
@@ -1448,7 +1450,7 @@
     display: none;
   }
 
-  .sub-tab-btn {
+  .subtab-btn {
     white-space: nowrap !important;
     flex-shrink: 0 !important;
     font-size: 11px !important;
@@ -1458,7 +1460,7 @@
     border-radius: 6px !important;
   }
 
-  .sub-tab-btn span {
+  .subtab-btn span {
     font-size: 11px !important;
   }
 
@@ -1537,7 +1539,7 @@
     width: 100% !important;
   }
 
-  .flight-heading-btn-sm {
+  #btnAutoOptimalHeading {
     flex: 1 !important;
     justify-content: center !important;
     min-height: 24px !important;
@@ -1550,7 +1552,7 @@
     width: 100% !important;
   }
 
-  .flight-export-btn {
+  #btnToggleExportMenu {
     width: 100% !important;
     justify-content: center !important;
     min-height: 28px !important;
@@ -1570,7 +1572,7 @@
     box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.7) !important;
   }
 
-  .btn-flight-generate-gcp {
+  #btnGenerateGCPs {
     min-height: 36px !important;
     height: 36px !important;
     font-size: 12px !important;
@@ -1615,7 +1617,7 @@
     z-index: 1500 !important;
   }
 
-  .pafta-btn-download-grid {
+  .pafta-download-grid {
     display: grid !important;
     grid-template-columns: 1fr 1fr 1fr !important;
     gap: 4px !important;

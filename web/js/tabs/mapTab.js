@@ -36,25 +36,20 @@ function initMap() {
   const domEl = document.getElementById("cardActivePafta");
   const btnEl_6 = document.getElementById("btnClosePaftaCard");
   function updatePaftaScaleButtonUi(scale) {
-    btnEl?.classList.remove("btn-pafta-active");
-    btnEl_1?.classList.remove("btn-pafta-active-50k");
-    btnEl_2?.classList.remove("btn-pafta-active-25k");
-    btnEl_5k?.classList.remove("btn-pafta-active-5k");
-    btnEl_2k?.classList.remove("btn-pafta-active-2k");
-    btnEl_1k?.classList.remove("btn-pafta-active-1k");
+    [btnEl, btnEl_1, btnEl_2, btnEl_5k, btnEl_2k, btnEl_1k].forEach(b => b?.classList.remove("active"));
     btnEl_3?.classList.remove("btn-secondary");
     if (scale === "100k") {
-      btnEl?.classList.add("btn-pafta-active");
+      btnEl?.classList.add("active");
     } else if (scale === "50k") {
-      btnEl_1?.classList.add("btn-pafta-active-50k");
+      btnEl_1?.classList.add("active");
     } else if (scale === "25k") {
-      btnEl_2?.classList.add("btn-pafta-active-25k");
+      btnEl_2?.classList.add("active");
     } else if (scale === "5k") {
-      btnEl_5k?.classList.add("btn-pafta-active-5k");
+      btnEl_5k?.classList.add("active");
     } else if (scale === "2k") {
-      btnEl_2k?.classList.add("btn-pafta-active-2k");
+      btnEl_2k?.classList.add("active");
     } else if (scale === "1k") {
-      btnEl_1k?.classList.add("btn-pafta-active-1k");
+      btnEl_1k?.classList.add("active");
     } else if (scale === "off") {
       btnEl_3?.classList.add("btn-secondary");
     }
@@ -98,12 +93,12 @@ function initMap() {
   function v_5() {
     state.isDomLayerActive = !state.isDomLayerActive;
     if (state.isDomLayerActive) {
-      btnEl_4?.classList.add("btn-dom-active");
+      btnEl_4?.classList.add("active");
       renderDomGrid();
       logMessage(t("map.logDomActive"));
       showToast(t("map.toastDomLoaded"), "success");
     } else {
-      btnEl_4?.classList.remove("btn-dom-active");
+      btnEl_4?.classList.remove("active");
       state.domLayerGroup.clearLayers();
       logMessage(t("map.logDomHidden"));
       showToast(t("map.toastDomClosed"), "info");

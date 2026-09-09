@@ -22,7 +22,7 @@
 
             <!-- Swap Button -->
             <div class="d-flex items-center justify-center">
-              <button type="button" id="btnSwapEpsg" class="btn-swap-crs" title="" data-i18n-title="geodesy.titleSwapSystems">
+              <button type="button" id="btnSwapEpsg" class="btn btn-secondary btn-icon" title="" data-i18n-title="geodesy.titleSwapSystems">
                 <i class="fa-solid fa-right-left"></i>
               </button>
             </div>
@@ -115,11 +115,11 @@
                   title="" data-i18n-title="geodesy.titleCopyReport">
                   <i class="fa-solid fa-copy"></i> <span data-i18n="common.copy"></span>
                 </button>
-                <button class="btn btn-secondary btn-outline-emerald py-8 px-8 text-xs" id="btnCopySingleTg20"
+                <button class="btn btn-secondary btn-sm text-emerald py-8 px-8 text-xs" id="btnCopySingleTg20"
                   title="" data-i18n-title="geodesy.titleCopyTg20">
                   <i class="fa-solid fa-clipboard-check"></i> <span data-i18n="geodesy.btnCopyTg20"></span>
                 </button>
-                <button class="btn btn-secondary btn-soft-emerald py-8 px-8 text-xs" id="btnSendSingleToTg20"
+                <button class="btn btn-secondary btn-sm text-emerald py-8 px-8 text-xs" id="btnSendSingleToTg20"
                   title="" data-i18n-title="geodesy.titleSendTg20">
                   <i class="fa-solid fa-mountain-sun"></i> <span data-i18n="geodesy.btnSendTg20"></span>
                 </button>
@@ -157,15 +157,15 @@
           <!-- Quick 6° <-> 3° Presets Bar -->
           <div class="preset-template-bar">
             <span class="text-xs font-bold text-cyan d-flex items-center gap-4"><i class="fa-solid fa-bolt"></i> <span data-i18n="geodesy.quickPresets"></span>:</span>
-            <button type="button" class="btn-quick-epsg" data-src="EPSG:32636" data-tgt="EPSG:5255">6° UTM 36 ➔ 3° TM
+            <button type="button" class="quick-epsg-chip" data-src="EPSG:32636" data-tgt="EPSG:5255">6° UTM 36 ➔ 3° TM
               33</button>
-            <button type="button" class="btn-quick-epsg" data-src="EPSG:32635" data-tgt="EPSG:5253">6° UTM 35 ➔ 3° TM
+            <button type="button" class="quick-epsg-chip" data-src="EPSG:32635" data-tgt="EPSG:5253">6° UTM 35 ➔ 3° TM
               27</button>
-            <button type="button" class="btn-quick-epsg" data-src="EPSG:32637" data-tgt="EPSG:5257">6° UTM 37 ➔ 3° TM
+            <button type="button" class="quick-epsg-chip" data-src="EPSG:32637" data-tgt="EPSG:5257">6° UTM 37 ➔ 3° TM
               39</button>
-            <button type="button" class="btn-quick-epsg" data-src="EPSG:5255" data-tgt="EPSG:32636">3° TM 33 ➔ 6° UTM
+            <button type="button" class="quick-epsg-chip" data-src="EPSG:5255" data-tgt="EPSG:32636">3° TM 33 ➔ 6° UTM
               36</button>
-            <button type="button" class="btn-quick-epsg" data-src="EPSG:23036" data-tgt="EPSG:5265">ED50 6° 36 ➔ ED50 3°
+            <button type="button" class="quick-epsg-chip" data-src="EPSG:23036" data-tgt="EPSG:5265">ED50 6° 36 ➔ ED50 3°
               33</button>
           </div>
 
@@ -179,7 +179,7 @@
 
             <!-- Batch Swap Button -->
             <div class="d-flex items-center justify-center">
-              <button type="button" id="btnSwapBatchEpsg" class="btn-swap-crs"
+              <button type="button" id="btnSwapBatchEpsg" class="btn btn-secondary btn-icon"
                 title="" data-i18n-title="geodesy.titleSwapSystems">
                 <i class="fa-solid fa-right-left"></i>
               </button>
@@ -201,7 +201,7 @@
                 <span class="text-xs font-bold text-dim uppercase">
                   <span data-i18n="geodesy.coordListInput"></span>:
                 </span>
-                <label class="btn btn-secondary btn-outline-cyan btn-sm m-0 cursor-pointer text-xs py-2 px-8">
+                <label class="btn btn-secondary btn-sm m-0 cursor-pointer text-xs py-2 px-8 text-cyan">
                   <i class="fa-solid fa-folder-open text-cyan"></i> <span data-i18n="geodesy.btnSelectFromFile"></span>
                   <input type="file" id="fileBatchInput" accept=".txt,.csv,.ncn,.dat,.xyz,.raw,.rw5" class="d-none" />
                 </label>
@@ -268,23 +268,23 @@
             <div class="d-flex justify-between items-center flex-wrap gap-8">
               <span id="lblBatchSummary" class="text-xs font-semibold text-emerald font-mono"></span>
               <div class="d-flex gap-6 flex-wrap">
-                <button class="btn btn-secondary btn-outline-cyan btn-sm text-xs" id="btnExportBatchNcn">
+                <button class="btn btn-secondary btn-sm text-xs text-cyan" id="btnExportBatchNcn">
                   <i class="fa-solid fa-file-export text-cyan"></i> Netcad (.ncn)
                 </button>
-                <button class="btn btn-secondary btn-outline-purple btn-sm text-xs" id="btnExportBatchDxf">
+                <button class="btn btn-secondary btn-sm text-xs text-purple" id="btnExportBatchDxf">
                   <i class="fa-solid fa-drafting-compass text-purple"></i> AutoCAD (.dxf)
                 </button>
-                <button class="btn btn-secondary btn-outline-emerald btn-sm text-xs" id="btnExportBatchKml">
+                <button class="btn btn-secondary btn-sm text-xs text-emerald" id="btnExportBatchKml">
                   <i class="fa-solid fa-globe text-emerald"></i> Google Earth (.kml)
                 </button>
-                <button class="btn btn-secondary btn-outline-amber btn-sm text-xs" id="btnExportBatchTxt">
+                <button class="btn btn-secondary btn-sm text-xs text-amber" id="btnExportBatchTxt">
                   <i class="fa-solid fa-file-lines text-amber"></i> Metin / CSV (.txt)
                 </button>
-                <button class="btn btn-secondary btn-outline-emerald btn-sm text-xs" id="btnCopyBatchTg20"
+                <button class="btn btn-secondary btn-sm text-xs text-emerald" id="btnCopyBatchTg20"
                   title="" data-i18n-title="geodesy.titleCopyTg20Batch">
                   <i class="fa-solid fa-clipboard-check"></i> <span data-i18n="geodesy.btnCopyTg20"></span>
                 </button>
-                <button class="btn btn-secondary btn-soft-emerald btn-sm text-xs" id="btnSendBatchToTg20"
+                <button class="btn btn-secondary btn-sm text-xs text-emerald" id="btnSendBatchToTg20"
                   title="" data-i18n-title="geodesy.titleSendTg20">
                   <i class="fa-solid fa-mountain-sun"></i> <span data-i18n="geodesy.btnSendTg20"></span>
                 </button>

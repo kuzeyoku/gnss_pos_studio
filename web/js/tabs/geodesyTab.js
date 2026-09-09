@@ -260,7 +260,7 @@ function initGeodesy() {
   const inputEl_4 = document.getElementById("fileBatchInput");
   const domEl_9 = document.getElementById("selBatchDelimiter");
   const btnEl_5 = document.getElementById("btnSwapBatchEpsg");
-  document.querySelectorAll(".btn-quick-epsg").forEach(item => {
+  document.querySelectorAll(".quick-epsg-chip, .btn-quick-epsg").forEach(item => {
     item.addEventListener("click", () => {
       const v_1_1 = item.getAttribute("data-src");
       const v_2_1 = item.getAttribute("data-tgt");

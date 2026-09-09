@@ -59,7 +59,7 @@
                 <input type="text" id="inputPaftaSearch" placeholder="" data-i18n-placeholder="map.searchPlaceholder"
                   class="form-input pafta-search-input">
               </div>
-              <button class="btn btn-primary btn-sm pafta-search-btn" id="btnPaftaSearch" type="button">
+              <button class="btn btn-primary btn-sm" id="btnPaftaSearch" type="button">
                 <i class="fa-solid fa-location-crosshairs"></i>
                 <span data-i18n="common.goToPafta"></span>
               </button>
@@ -78,7 +78,7 @@
                   <i class="fa-solid fa-map text-cyan"></i>
                   <span id="txtPaftaCardTitle" class="pafta-card-title" data-i18n="ui.f22Paftasi"></span>
                 </div>
-                <button id="btnClosePaftaCard" class="btn-close-minimal" type="button" title="" data-i18n-title="common.close">
+                <button id="btnClosePaftaCard" class="close-minimal" type="button" title="" data-i18n-title="common.close">
                   <i class="fa-solid fa-xmark"></i>
                 </button>
               </div>
@@ -129,7 +129,7 @@
                 </div>
               </div>
 
-              <div class="pafta-btn-download-grid">
+              <div class="pafta-download-grid">
                 <button class="btn btn-secondary btn-sm pafta-btn-download-item" id="btnDownloadPaftaKml"><i class="fa-solid fa-earth-americas"></i>
                   KML</button>
                 <button class="btn btn-secondary btn-sm pafta-btn-download-item" id="btnDownloadPaftaDxf"><i class="fa-solid fa-vector-square"></i> DXF</button>
@@ -145,7 +145,7 @@
                   <span class="font-bold text-main pafta-intersect-title" data-i18n="map.intersectingSheetsTitle"></span>
                   <span id="badgeIntersectingCount" class="badge badge-cyan" data-i18n="map.initialSheetCount"></span>
                 </div>
-                <button id="btnCloseIntersectingCard" class="btn-close-minimal" type="button" title="" data-i18n-title="common.close">
+                <button id="btnCloseIntersectingCard" class="close-minimal" type="button" title="" data-i18n-title="common.close">
                   <i class="fa-solid fa-xmark"></i>
                 </button>
               </div>
@@ -158,12 +158,12 @@
 
               <!-- Scale Switcher for Intersecting Results -->
               <div class="pafta-scale-btn-row">
-                <button class="btn btn-secondary btn-sm btn-intersect-scale btn-pafta-scale-opt" data-scale="100k">1/100 000</button>
-                <button class="btn btn-secondary btn-sm btn-intersect-scale btn-pafta-scale-opt" data-scale="50k">1/50 000</button>
-                <button class="btn btn-primary btn-sm btn-intersect-scale btn-pafta-scale-opt" data-scale="25k">1/25 000</button>
-                <button class="btn btn-secondary btn-sm btn-intersect-scale btn-pafta-scale-opt" data-scale="5k">1/5 000</button>
-                <button class="btn btn-secondary btn-sm btn-intersect-scale btn-pafta-scale-opt" data-scale="2k">1/2 000</button>
-                <button class="btn btn-secondary btn-sm btn-intersect-scale btn-pafta-scale-opt" data-scale="1k">1/1 000</button>
+                <button class="btn btn-secondary btn-sm btn-intersect-scale" data-scale="100k">1/100 000</button>
+                <button class="btn btn-secondary btn-sm btn-intersect-scale" data-scale="50k">1/50 000</button>
+                <button class="btn btn-primary btn-sm btn-intersect-scale" data-scale="25k">1/25 000</button>
+                <button class="btn btn-secondary btn-sm btn-intersect-scale" data-scale="5k">1/5 000</button>
+                <button class="btn btn-secondary btn-sm btn-intersect-scale" data-scale="2k">1/2 000</button>
+                <button class="btn btn-secondary btn-sm btn-intersect-scale" data-scale="1k">1/1 000</button>
               </div>
 
               <!-- List of Intersecting Paftas -->
@@ -172,7 +172,7 @@
               </div>
 
               <!-- Bulk KML Export for Intersecting Sheets -->
-              <button id="btnDownloadAllIntersectingKml" class="btn btn-secondary btn-sm btn-download-all-kml">
+              <button id="btnDownloadAllIntersectingKml" class="btn btn-secondary btn-sm w-full mt-10 justify-center">
                 <i class="fa-solid fa-file-arrow-down text-emerald"></i>
                 <span class="font-bold" data-i18n="ui.temasEdenTumPaftalari"></span>
               </button>

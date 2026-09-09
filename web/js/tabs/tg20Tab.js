@@ -584,9 +584,9 @@ function initTg20InteractiveMap() {
   });
 
   // TG-20 Subtab Switcher
-  document.querySelectorAll(".tg20-subtab-btn").forEach(btn => {
+  document.querySelectorAll(".subtab-btn, .tg20-subtab-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      document.querySelectorAll(".tg20-subtab-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".subtab-btn, .tg20-subtab-btn").forEach(b => b.classList.remove("active"));
       document.querySelectorAll(".tg20-pane").forEach(p => p.classList.remove("active"));
       btn.classList.add("active");
       const targetId = btn.getAttribute("data-tg20-target");

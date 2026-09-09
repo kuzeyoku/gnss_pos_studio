@@ -48,7 +48,7 @@ function getElementsRegistry() {
   return {
     get navItems() { return document.querySelectorAll(".sidebar .nav-item, .nav-item"); },
     get toolTabs() { return document.querySelectorAll(".tool-tab"); },
-    get subTabBtns() { return document.querySelectorAll(".sub-tab-btn"); },
+    get subTabBtns() { return document.querySelectorAll(".subtab-btn, .sub-tab-btn"); },
     get subTabContents() { return document.querySelectorAll(".subtab-content"); },
     get pageTitle() { return document.getElementById("pageTitle"); },
     get pageSubtitle() { return document.getElementById("pageSubtitle"); },

@@ -39,7 +39,7 @@ function initFlightPlannerStudio() {
         }
       });
 
-      mapToolbarEl.querySelectorAll(".map-btn-compact").forEach(btn => {
+      mapToolbarEl.querySelectorAll(".btn, .map-btn-compact").forEach(btn => {
         btn.addEventListener("click", () => {
           if (window.innerWidth <= 900) {
             mapToolbarEl.classList.remove("mobile-open");

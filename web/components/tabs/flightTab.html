@@ -39,7 +39,7 @@
 
             <!-- Right: Single-Button Luxury Export Dropdown -->
             <div class="dropdown-export-wrap pos-rel flex-shrink-0 flight-export-z">
-              <button class="btn btn-secondary btn-sm flight-export-btn" id="btnToggleExportMenu"
+              <button class="btn btn-secondary btn-sm" id="btnToggleExportMenu"
                 onclick="window.toggleExportDropdown(event)" type="button">
                 <i class="fa-solid fa-download text-cyan"></i>
                 <span class="font-bold" data-i18n="common.export"></span>
@@ -111,28 +111,28 @@
               </div>
 
               <div class="d-flex items-center gap-4">
-                <button class="map-btn-compact" id="btnFlightFitBounds" type="button" title="" data-i18n-title="flight.titleFitBounds">
+                <button class="btn btn-secondary btn-sm" id="btnFlightFitBounds" type="button" title="" data-i18n-title="flight.titleFitBounds">
                   <i class="fa-solid fa-expand text-cyan"></i> <span data-i18n="ui.alanaSigdir"></span>
                 </button>
 
-                <button class="map-btn-compact" id="btnFetchRoadsNow" type="button" title="" data-i18n-title="flight.titleFetchRoads">
+                <button class="btn btn-secondary btn-sm" id="btnFetchRoadsNow" type="button" title="" data-i18n-title="flight.titleFetchRoads">
                   <i class="fa-solid fa-cloud-arrow-down text-indigo"></i> <span id="txtRoadBtn" data-i18n="ui.yolINdir"></span>
                 </button>
 
-                <button class="map-btn-compact border-amber text-amber" id="btnDrawCustomRoad" type="button"
+                <button class="btn btn-secondary btn-sm border-amber text-amber" id="btnDrawCustomRoad" type="button"
                   title="" data-i18n-title="flight.titleDrawRoad">
                   <i class="fa-solid fa-pen-nib"></i> <span id="txtDrawRoadBtn" data-i18n="flight.btnDrawRoad"></span>
                 </button>
 
-                <button class="map-btn-compact hidden d-none bg-emerald border-emerald text-white" id="btnFinishDrawRoad"
+                <button class="btn btn-secondary btn-sm hidden d-none bg-emerald border-emerald text-white" id="btnFinishDrawRoad"
                   type="button">
                   <i class="fa-solid fa-check"></i> <span data-i18n="ui.cizimiBitir"></span>
                 </button>
-                <button class="map-btn-compact hidden d-none text-rose border-rose" id="btnCancelDrawRoad" type="button">
+                <button class="btn btn-secondary btn-sm hidden d-none text-rose border-rose" id="btnCancelDrawRoad" type="button">
                   <i class="fa-solid fa-xmark"></i> <span data-i18n="ui.iPtal"></span>
                 </button>
 
-                <button class="map-btn-compact" id="btnUploadRoadFile" type="button"
+                <button class="btn btn-secondary btn-sm" id="btnUploadRoadFile" type="button"
                   title="" data-i18n-title="flight.titleUploadRoad">
                   <i class="fa-solid fa-folder-plus text-cyan"></i> <span data-i18n="ui.kmlYukle"></span>
                 </button>
@@ -144,23 +144,23 @@
               <!-- Minimalist Layer Toggles -->
               <div class="map-layer-toggles-container">
                 <div class="d-flex items-center gap-4">
-                  <button class="map-toggle-btn active" id="btnToggleRoadNetwork" type="button"
+                  <button class="btn btn-secondary btn-sm btn-icon active" id="btnToggleRoadNetwork" type="button"
                     title="" data-i18n-title="flight.titleToggleRoad">
                     <i class="fa-solid fa-road text-indigo"></i>
                   </button>
-                  <button class="map-toggle-btn active" id="btnToggleGcpPins" type="button"
+                  <button class="btn btn-secondary btn-sm btn-icon active" id="btnToggleGcpPins" type="button"
                     title="" data-i18n-title="flight.titleTogglePins">
                     <i class="fa-solid fa-map-pin text-emerald"></i>
                   </button>
-                  <button class="map-toggle-btn active" id="btnToggleTriangles" type="button"
+                  <button class="btn btn-secondary btn-sm btn-icon active" id="btnToggleTriangles" type="button"
                     title="" data-i18n-title="flight.titleToggleTriangles">
                     <i class="fa-solid fa-shapes text-cyan"></i>
                   </button>
-                  <button class="map-toggle-btn active" id="btnToggleFlightLines" type="button"
+                  <button class="btn btn-secondary btn-sm btn-icon active" id="btnToggleFlightLines" type="button"
                     title="" data-i18n-title="flight.titleToggleLines">
                     <i class="fa-solid fa-plane text-sky"></i>
                   </button>
-                  <button class="map-toggle-btn active" id="btnToggleWaypoints" type="button"
+                  <button class="btn btn-secondary btn-sm btn-icon active" id="btnToggleWaypoints" type="button"
                     title="" data-i18n-title="flight.titleToggleWaypoints">
                     <i class="fa-solid fa-camera text-amber"></i>
                   </button>
@@ -444,7 +444,7 @@
                 </div>
               </div>
 
-              <button class="btn btn-primary btn-flight-generate-gcp" id="btnGenerateGCPs" type="button">
+              <button class="btn btn-primary" id="btnGenerateGCPs" type="button">
                 <i class="fa-solid fa-wand-magic-sparkles"></i>
                 <span data-i18n="ui.yknDnNoktalariniDagit"></span>
               </button>
@@ -589,12 +589,12 @@
                       class="font-mono text-white text-xs ml-2">--°</span>
                   </label>
                   <div class="d-flex items-center gap-4">
-                    <button class="btn btn-secondary btn-sm text-xs py-2 px-8 text-emerald border-emerald flight-heading-btn-sm"
+                    <button class="btn btn-secondary btn-sm text-xs py-2 px-8 text-emerald border-emerald"
                       id="btnAutoOptimalHeading" type="button"
                       title="" data-i18n-title="flight.titleAutoLongAxis">
                       <i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="flight.longAxis"></span>
                     </button>
-                    <button class="btn btn-secondary btn-sm text-xs py-2 px-8 text-cyan border-cyan flight-heading-btn-sm"
+                    <button class="btn btn-secondary btn-sm text-xs py-2 px-8 text-cyan border-cyan"
                       id="btnWindAlignHeading" type="button"
                       title="" data-i18n-title="flight.titleWindAlign">
                       <i class="fa-solid fa-wind"></i> <span data-i18n="flight.windDir"></span>
