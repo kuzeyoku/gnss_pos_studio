@@ -23,7 +23,7 @@ const ComponentLoader = {
         if (window.__COMPONENT_CACHE__ && window.__COMPONENT_CACHE__[src]) {
           html = window.__COMPONENT_CACHE__[src];
         } else {
-          const response = await fetch(src);
+          const response = await fetch(src, { cache: 'no-cache' });
           if (!response.ok) {
             throw new Error(`HTTP ${response.status} - ${response.statusText}`);
           }

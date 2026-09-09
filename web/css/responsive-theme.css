@@ -609,6 +609,21 @@
   border: 1px solid #cbd5e1;
 }
 
+[data-theme="light"] .banner-ppk-status {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+[data-theme="light"] .quality-upload-bar {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+[data-theme="light"] .timeline-chart-box {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
 [data-theme="light"] .timeline-track-base {
   background: rgba(2, 132, 199, 0.15);
   border-color: #0284c7;
@@ -1592,6 +1607,7 @@
 
   .rinex-quality-stats-grid,
   .kpi-grid,
+  .kpi-grid-5,
   .cadastre-kpi-grid,
   .converter-kpi-grid {
     grid-template-columns: 1fr 1fr !important;

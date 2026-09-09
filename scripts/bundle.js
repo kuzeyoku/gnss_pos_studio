@@ -186,6 +186,34 @@ function buildBundle() {
   const elapsed = Date.now() - startTime;
   const kbSize = (fs.statSync(bundleOutputFile).size / 1024).toFixed(1);
   console.log(`⚡ [JS BUNDLE] ${fileCount} modül paketlendi -> web/js/app.bundle.js (${kbSize} KB) [${elapsed} ms]`);
+
+  // 4. Service Worker ve index.html önbellek versiyonlarını senkronize et
+  const buildVersion = Date.now();
+  updateVersionTags(buildVersion);
+}
+
+/**
+ * Derleme 4: Service Worker & index.html Önbellek ve Versiyon Etiketlerini Senkronize Et
+ */
+function updateVersionTags(version) {
+  // 1. sw.js içindeki CACHE_NAME'i güncelle
+  const swFile = path.join(webDir, 'sw.js');
+  if (fs.existsSync(swFile)) {
+    let swContent = fs.readFileSync(swFile, 'utf8');
+    swContent = swContent.replace(/const CACHE_NAME = ['"][^'"]+['"];/, `const CACHE_NAME = 'gnss-pos-studio-v${version}';`);
+    fs.writeFileSync(swFile, swContent, 'utf8');
+    console.log(`🛡️ [SERVICE WORKER] Önbellek sürümü güncellendi -> gnss-pos-studio-v${version}`);
+  }
+
+  // 2. index.html içindeki CSS ve JS ?v= versiyon parametrelerini güncelle
+  const indexFile = path.join(webDir, 'index.html');
+  if (fs.existsSync(indexFile)) {
+    let indexContent = fs.readFileSync(indexFile, 'utf8');
+    indexContent = indexContent.replace(/(href=["']css\/[^"']+\.css)\?v=[^"']*(["'])/g, `$1?v=${version}$2`);
+    indexContent = indexContent.replace(/(src=["']js\/app\.bundle\.js)\?v=[^"']*(["'])/g, `$1?v=${version}$2`);
+    fs.writeFileSync(indexFile, indexContent, 'utf8');
+    console.log(`🏷️ [INDEX.HTML] Cache buster versiyonları güncellendi -> ?v=${version}`);
+  }
 }
 
 // Komut satırı parametreleri

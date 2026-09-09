@@ -17,7 +17,7 @@
             <!-- Source CRS -->
             <div>
               <label class="label-form-section mb-4" data-i18n="geodesy.lblSourceCrs"></label>
-              <select id="selSourceEpsg" class="select-glass"></select>
+              <select id="selSourceEpsg" class="form-select"></select>
             </div>
 
             <!-- Swap Button -->
@@ -30,7 +30,7 @@
             <!-- Target CRS -->
             <div>
               <label class="label-form-section mb-4 text-emerald" data-i18n="geodesy.lblTargetCrs"></label>
-              <select id="selTargetEpsg" class="select-glass border-cyan"></select>
+              <select id="selTargetEpsg" class="form-select border-cyan"></select>
             </div>
           </div>
 
@@ -50,19 +50,19 @@
               <!-- Manual Inputs Grid -->
               <div class="d-grid gap-6 grid-cols-7">
                 <div><span class="text-xs text-dim" data-i18n="geodesy.dxLabel"></span><input type="number" id="p_dx" value="-84.1"
-                    step="0.001" class="bursa-param-input" /></div>
+                    step="0.001" class="form-input font-mono form-input-sm" /></div>
                 <div><span class="text-xs text-dim" data-i18n="geodesy.dyLabel"></span><input type="number" id="p_dy" value="-101.8"
-                    step="0.001" class="bursa-param-input" /></div>
+                    step="0.001" class="form-input font-mono form-input-sm" /></div>
                 <div><span class="text-xs text-dim" data-i18n="geodesy.dzLabel"></span><input type="number" id="p_dz" value="-129.7"
-                    step="0.001" class="bursa-param-input" /></div>
+                    step="0.001" class="form-input font-mono form-input-sm" /></div>
                 <div><span class="text-xs text-dim" data-i18n="geodesy.rxLabel"></span><input type="number" id="p_rx" value="0.0"
-                    step="0.0001" class="bursa-param-input" /></div>
+                    step="0.0001" class="form-input font-mono form-input-sm" /></div>
                 <div><span class="text-xs text-dim" data-i18n="geodesy.ryLabel"></span><input type="number" id="p_ry" value="0.0"
-                    step="0.0001" class="bursa-param-input" /></div>
+                    step="0.0001" class="form-input font-mono form-input-sm" /></div>
                 <div><span class="text-xs text-dim" data-i18n="geodesy.rzLabel"></span><input type="number" id="p_rz" value="0.0"
-                    step="0.0001" class="bursa-param-input" /></div>
+                    step="0.0001" class="form-input font-mono form-input-sm" /></div>
                 <div><span class="text-xs text-dim" data-i18n="geodesy.scaleLabel"></span><input type="number" id="p_ds" value="0.0"
-                    step="0.001" class="bursa-param-input" /></div>
+                    step="0.001" class="form-input font-mono form-input-sm" /></div>
               </div>
 
               <!-- 3D Common Control Points Auto-Solver (Collapsible Inside) -->
@@ -95,15 +95,15 @@
               <div class="d-grid gap-8 grid-cols-3">
                 <div>
                   <label id="lblInputC1" class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="geodesy.lblInputLat"></label>
-                  <input type="text" id="geoLat" value="38.74561234" class="geo-coord-input" />
+                  <input type="text" id="geoLat" value="38.74561234" class="form-input font-mono" />
                 </div>
                 <div>
                   <label id="lblInputC2" class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="geodesy.lblInputLon"></label>
-                  <input type="text" id="geoLon" value="30.54321987" class="geo-coord-input" />
+                  <input type="text" id="geoLon" value="30.54321987" class="form-input font-mono" />
                 </div>
                 <div>
                   <label id="lblInputC3" class="text-xs font-bold uppercase text-dim d-block mb-3" data-i18n="ui.kotYukseklikHZ"></label>
-                  <input type="text" id="geoH" value="1050.250" class="geo-coord-input" />
+                  <input type="text" id="geoH" value="1050.250" class="form-input font-mono" />
                 </div>
               </div>
 
@@ -144,7 +144,7 @@
             </div>
             <div class="d-flex items-center gap-6">
               <span class="text-xs font-bold text-dim uppercase" data-i18n="ui.ayirici"></span>
-              <select id="selBatchDelimiter" class="select-glass w-auto py-2 px-8 text-xs">
+              <select id="selBatchDelimiter" class="form-select w-auto py-2 px-8 text-xs">
                 <option value="AUTO" selected data-i18n="ui.otomatikAlgila"></option>
                 <option value="SPACE" data-i18n="ui.boslukSpace"></option>
                 <option value="COMMA" data-i18n="ui.virgul"></option>
@@ -174,7 +174,7 @@
             <!-- Batch Source CRS -->
             <div>
               <label class="label-form-section mb-4" data-i18n="ui.girdiDosyasininKaynakProjeksiyonu"></label>
-              <select id="selBatchSourceEpsg" class="select-glass"></select>
+              <select id="selBatchSourceEpsg" class="form-select"></select>
             </div>
 
             <!-- Batch Swap Button -->
@@ -188,7 +188,7 @@
             <!-- Batch Target CRS -->
             <div>
               <label class="label-form-section mb-4 text-emerald" data-i18n="ui.ciktininHedefProjeksiyonu"></label>
-              <select id="selBatchTargetEpsg" class="select-glass border-cyan"></select>
+              <select id="selBatchTargetEpsg" class="form-select border-cyan"></select>
             </div>
           </div>
 
@@ -220,7 +220,7 @@
                 <div class="d-grid gap-6 grid-cols-2">
                   <div>
                     <span class="text-xs text-dim d-block mb-2" data-i18n="ui.1Sutun"></span>
-                    <select id="selCol1" class="col-select-glass">
+                    <select id="selCol1" class="form-select form-select-sm">
                       <option value="PN" selected data-i18n="cadastre.btnLabels"></option>
                       <option value="C1" data-i18n="ui.ySagaEnlem"></option>
                       <option value="C2" data-i18n="ui.xYukariBoylam"></option>
@@ -229,7 +229,7 @@
                   </div>
                   <div>
                     <span class="text-xs text-dim d-block mb-2" data-i18n="ui.2Sutun"></span>
-                    <select id="selCol2" class="col-select-glass">
+                    <select id="selCol2" class="form-select form-select-sm">
                       <option value="C1" selected data-i18n="ui.ySagaEnlem"></option>
                       <option value="C2" data-i18n="ui.xYukariBoylam"></option>
                       <option value="PN" data-i18n="cadastre.btnLabels"></option>
@@ -238,7 +238,7 @@
                   </div>
                   <div>
                     <span class="text-xs text-dim d-block mb-2" data-i18n="ui.3Sutun"></span>
-                    <select id="selCol3" class="col-select-glass">
+                    <select id="selCol3" class="form-select form-select-sm">
                       <option value="C2" selected data-i18n="ui.xYukariBoylam"></option>
                       <option value="C1" data-i18n="ui.ySagaEnlem"></option>
                       <option value="C3" data-i18n="ui.zKotH"></option>
@@ -247,7 +247,7 @@
                   </div>
                   <div>
                     <span class="text-xs text-dim d-block mb-2" data-i18n="ui.4Sutun"></span>
-                    <select id="selCol4" class="col-select-glass">
+                    <select id="selCol4" class="form-select form-select-sm">
                       <option value="C3" selected data-i18n="ui.zKotH"></option>
                       <option value="CODE" data-i18n="ui.kodAciklama"></option>
                       <option value="NONE" data-i18n="ui.yokBos"></option>
@@ -401,12 +401,12 @@
           <!-- Helmert Solution Results Dashboard -->
           <div id="helmertResultsWrapper" class="helmert-results-container d-none mt-14 flex-col gap-12">
             <!-- Parameter Stat Cards -->
-            <div class="helmert-solution-card p-14 rounded-sm">
+            <div class="card p-14 rounded-sm">
               <div class="helmert-card-header-flex">
                 <div class="d-flex items-center gap-8">
                   <i class="fa-solid fa-circle-check text-emerald"></i>
                   <strong id="lblHelmertStatusSource" class="font-bold text-main helmert-status-title" data-i18n="ui.aktifHelmert2dParametreleri"></strong>
-                  <span id="badgeHelmertM0" class="badge badge-helmert-m0">m0 = 0.00 cm</span>
+                  <span id="badgeHelmertM0" class="badge badge-purple font-mono">m0 = 0.00 cm</span>
                 </div>
               </div>
 

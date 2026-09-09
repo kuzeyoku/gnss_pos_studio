@@ -22,7 +22,7 @@
                 title="" data-i18n-title="flight.datePickerTitle">
                 <i class="fa-solid fa-calendar-days text-cyan text-xs"></i>
                 <span class="text-xs font-extrabold uppercase tracking-wide text-dim" data-i18n="common.date"></span>
-                <input type="date" id="flightDatePicker" class="custom-flight-date-input text-xs flight-date-input-w"
+                <input type="date" id="flightDatePicker" class="form-input form-input-sm flight-date-input-w"
                   title="" data-i18n-title="flight.dateInputTitle" />
                 <i class="fa-solid fa-chevron-down text-cyan pointer-events-none calendar-overlay-icon"></i>
               </div>
@@ -31,7 +31,7 @@
               <div class="flight-time-slider-box">
                 <i class="fa-solid fa-clock text-amber text-xs"></i>
                 <span class="text-xs font-bold text-dim uppercase" data-i18n="common.time"></span>
-                <span id="txtToolbarFlightTime" class="text-sm font-extrabold font-mono text-amber flight-time-badge">11:00</span>
+                <span id="txtToolbarFlightTime" class="badge badge-amber text-sm font-mono">11:00</span>
                 <input type="range" id="sliderToolbarFlightTime" min="360" max="1200" step="15" value="660"
                   class="accent-amber cursor-pointer flight-time-slider" title="" data-i18n-title="flight.timeSliderTitle" />
               </div>
@@ -382,7 +382,7 @@
                   </label>
                   <div class="input-unit-group">
                     <input type="number" id="inputMaxGcpDistance" value="1000" min="200" max="5000" step="50"
-                      class="form-input flight-compact-input" />
+                      class="form-input form-input-sm" />
                     <span class="input-unit-suffix flight-unit-suffix">m</span>
                   </div>
                 </div>
@@ -390,7 +390,7 @@
                   <label class="text-xs font-semibold text-dim mb-2 d-flex items-center gap-4">
                     <i class="fa-solid fa-chart-pie text-dim"></i> <span data-i18n="ui.yknDnOrani"></span>
                   </label>
-                  <select id="selectGcpRatio" class="form-input form-select flight-compact-select">
+                  <select id="selectGcpRatio" class="form-select form-select-sm">
                     <option value="0.75" selected data-i18n="flight.ratio75"></option>
                     <option value="0.80" data-i18n="flight.ratio80"></option>
                     <option value="0.67" data-i18n="flight.ratio67"></option>
@@ -403,7 +403,7 @@
                   </label>
                   <div class="input-unit-group">
                     <input type="number" id="inputInwardOffset" value="100" min="20" max="500" step="10"
-                      class="form-input flight-compact-input" />
+                      class="form-input form-input-sm" />
                     <span class="input-unit-suffix flight-unit-suffix">m</span>
                   </div>
                 </div>
@@ -418,7 +418,7 @@
                   </div>
                   <div class="input-unit-group">
                     <input type="number" id="inputSnapMaxRadius" value="300" min="20" max="2000" step="25"
-                      class="form-input text-indigo border-indigo font-bold flight-compact-input" />
+                      class="form-input form-input-sm text-indigo border-indigo font-bold" />
                     <span class="input-unit-suffix text-indigo flight-unit-suffix">m</span>
                   </div>
                 </div>
@@ -491,14 +491,14 @@
                   <label class="text-xs font-semibold text-dim mb-2 d-flex items-center gap-4">
                     <i class="fa-solid fa-plane-up text-dim"></i> <span data-i18n="ui.iHaModeli"></span>
                   </label>
-                  <select id="selectDroneModel" class="form-input form-select flight-compact-select">
+                  <select id="selectDroneModel" class="form-select form-select-sm">
                   </select>
                 </div>
                 <div class="form-group m-0">
                   <label class="text-xs font-semibold text-dim mb-2 d-flex items-center gap-4">
                     <i class="fa-solid fa-camera text-dim"></i> <span data-i18n="ui.kameraSensor"></span>
                   </label>
-                  <select id="selectDroneCamera" class="form-input form-select flight-compact-select">
+                  <select id="selectDroneCamera" class="form-select form-select-sm">
                   </select>
                 </div>
                 <div class="form-group m-0">
@@ -507,7 +507,7 @@
                   </label>
                   <div class="input-unit-group">
                     <input type="number" id="inputFlightAltitude" value="100" min="5" max="2500" step="1"
-                      class="form-input text-cyan border-cyan font-bold flight-compact-input" />
+                      class="form-input form-input-sm text-cyan border-cyan font-bold" />
                     <span class="input-unit-suffix text-cyan flight-unit-suffix">m</span>
                   </div>
                 </div>
@@ -517,7 +517,7 @@
                   </label>
                   <div class="input-unit-group">
                     <input type="number" id="inputTargetGsd" value="2.73" min="0.1" max="50" step="0.05"
-                      class="form-input text-cyan border-cyan font-bold flight-compact-input" />
+                      class="form-input form-input-sm text-cyan border-cyan font-bold" />
                     <span class="input-unit-suffix text-cyan flight-unit-suffix">cm</span>
                   </div>
                 </div>
@@ -526,7 +526,7 @@
                     <i class="fa-solid fa-gauge-high text-dim"></i> <span data-i18n="ui.ucusHizi"></span>
                   </label>
                   <div class="input-unit-group">
-                    <input type="number" id="inputFlightSpeed" value="12" min="1" max="35" step="0.5" class="form-input flight-compact-input" />
+                    <input type="number" id="inputFlightSpeed" value="12" min="1" max="35" step="0.5" class="form-input form-input-sm" />
                     <span class="input-unit-suffix flight-unit-suffix">m/s</span>
                   </div>
                 </div>
@@ -536,7 +536,7 @@
                   </label>
                   <div class="input-unit-group">
                     <input type="number" id="inputSafeBatteryDuration" value="32" min="5" max="120" step="1"
-                      class="form-input flight-compact-input" />
+                      class="form-input form-input-sm" />
                     <span class="input-unit-suffix flight-unit-suffix">dk</span>
                   </div>
                 </div>
@@ -566,7 +566,7 @@
                   </label>
                   <div class="input-unit-group">
                     <input type="number" id="inputForwardOverlap" value="80" min="50" max="90" step="5"
-                      class="form-input flight-compact-input" />
+                      class="form-input form-input-sm" />
                     <span class="input-unit-suffix flight-unit-suffix-pct">%</span>
                   </div>
                 </div>
@@ -575,7 +575,7 @@
                     <i class="fa-solid fa-arrows-left-right text-dim"></i> <span data-i18n="flight.sideOverlap"></span>
                   </label>
                   <div class="input-unit-group">
-                    <input type="number" id="inputSideOverlap" value="70" min="40" max="85" step="5" class="form-input flight-compact-input" />
+                    <input type="number" id="inputSideOverlap" value="70" min="40" max="85" step="5" class="form-input form-input-sm" />
                     <span class="input-unit-suffix flight-unit-suffix-pct">%</span>
                   </div>
                 </div>
@@ -606,7 +606,7 @@
                     class="flight-slider" />
                   <div class="input-unit-group flight-heading-wrap">
                     <input type="number" id="inputFlightHeading" value="0" min="0" max="359" step="1"
-                      class="form-input text-center text-xs flight-compact-heading-input" />
+                      class="form-input form-input-sm text-center" />
                     <span class="input-unit-suffix flight-heading-suffix">°</span>
                   </div>
                 </div>

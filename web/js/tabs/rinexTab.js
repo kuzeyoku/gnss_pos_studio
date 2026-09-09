@@ -83,6 +83,7 @@ function initMergerDropzone() {
         domEl_9.style.width = v_1_1.timeline.roverWidth + "%";
         domEl_9.style.background = v_1_1.overlapPercent >= 99.5 ? "var(--emerald-400)" : v_1_1.overlapPercent >= 70 ? "var(--amber-400)" : "var(--rose-400)";
       }
+      domEl_2.classList.remove("d-none");
       domEl_2.style.display = "flex";
       logMessage(t("rinex.logPpkAnalysisSummary", { overlap: v_1_1.overlapPercent.toFixed(1), baseline: v_1_1.baselineKm.toFixed(2), common: v_1_1.commonConstellations.join(", ") }));
       showToast(t("rinex.toastPpkCoverage", { percent: v_1_1.overlapPercent.toFixed(1) }), v_1_1.overlapPercent >= 99 ? "success" : "warning");
@@ -906,6 +907,7 @@ function initPpkInspector() {
     try {
       const v_1_1 = UniversalRinexInspector.inspectPpkOverlap(v_1, v_2);
       if (domEl_2) {
+        domEl_2.classList.remove("d-none");
         domEl_2.style.display = "flex";
       }
       const domEl_3 = document.getElementById("bannerPpkStatus");
@@ -1050,6 +1052,7 @@ function initRinexQualityInspector() {
       const v_1 = await v_2.text();
       const v_2_1 = UniversalRinexInspector.analyzeRinexQuality(v_1);
       if (domEl) {
+        domEl.classList.remove("d-none");
         domEl.style.display = "flex";
       }
       document.getElementById("statQualityEpochs").textContent = v_2_1.totalEpochs + " Epoch (" + v_2_1.startTime + " - " + v_2_1.endTime + ")";

@@ -19,8 +19,8 @@
           <div class="grid-2col-rinex">
 
             <!-- Dropzone Panel -->
-            <div class="rinex-dropzone-panel">
-              <div class="dropzone rinex-dropzone-inner" id="mergerDropzone">
+            <div class="dropzone-panel">
+              <div class="dropzone" id="mergerDropzone">
                 <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
                 <div class="dropzone-title" data-i18n="rinex.dropzoneTitle"></div>
                 <div class="dropzone-desc" data-i18n="rinex.dropzoneDesc"></div>
@@ -109,11 +109,11 @@
                   <div class="d-grid gap-8 items-end time-crop-presets-grid">
                     <div>
                       <span class="text-xs font-semibold text-dim d-block mb-2" data-i18n="rinex.lblCropStart"></span>
-                      <input type="time" id="inputCropStart" step="1" value="00:00:00" class="time-input-glass" />
+                      <input type="time" id="inputCropStart" step="1" value="00:00:00" class="form-input form-input-sm font-mono" />
                     </div>
                     <div>
                       <span class="text-xs font-semibold text-dim d-block mb-2" data-i18n="rinex.lblCropEnd"></span>
-                      <input type="time" id="inputCropEnd" step="1" value="23:59:59" class="time-input-glass" />
+                      <input type="time" id="inputCropEnd" step="1" value="23:59:59" class="form-input form-input-sm font-mono" />
                     </div>
                     <div class="d-flex gap-4 flex-wrap">
                       <button type="button" class="btn btn-secondary text-sm"
@@ -127,11 +127,11 @@
               </div>
 
               <!-- Output Version, Dynamic Format & Sampling Grid -->
-              <div class="d-grid gap-10 rinex-output-config-grid">
+              <div class="d-grid gap-10 rinex-output-config-grid grid-cols-3">
                 <!-- 1. Version Selector -->
                 <div>
                   <label class="label-form-section mb-4" data-i18n="rinex.lblTargetVersion"></label>
-                  <select id="selectTargetVersion" class="select-glass">
+                  <select id="selectTargetVersion" class="form-select form-select-sm">
                     <optgroup label="" data-i18n-label="rinex.grpRinex2">
                       <option value="RINEX_211" selected>RINEX 2.11 (TUSAGA / LGO / TBC)</option>
                       <option value="RINEX_210">RINEX 2.10 (Klasik GPS / GLO)</option>
@@ -150,7 +150,7 @@
                 <!-- 2. Dynamic Output Format -->
                 <div>
                   <label class="label-form-section mb-4 text-cyan" data-i18n="rinex.lblTargetFormat"></label>
-                  <select id="selectTargetFormat" class="select-glass">
+                  <select id="selectTargetFormat" class="form-select form-select-sm">
                     <!-- Populated dynamically based on selected version -->
                   </select>
                 </div>
@@ -158,7 +158,7 @@
                 <!-- 3. Decimation Step -->
                 <div>
                   <label class="label-form-section mb-4 text-dim" data-i18n="rinex.lblDecimationStep"></label>
-                  <select id="selectDecimationStep" class="select-glass font-mono">
+                  <select id="selectDecimationStep" class="form-select form-select-sm font-mono">
                     <option value="1" data-i18n="ui.1SaniyeTumu"></option>
                     <option value="5" data-i18n="rinex.sec5"></option>
                     <option value="10" data-i18n="rinex.sec10"></option>
@@ -214,16 +214,16 @@
               <span class="badge badge-emerald" data-i18n="rinex.ppkBadge"></span>
             </div>
 
-            <div class="d-grid gap-14 ppk-cards-grid">
+            <div class="d-grid gap-14 ppk-cards-grid grid-cols-2">
               <!-- Base Station RINEX -->
-              <div class="ppk-station-card">
+              <div class="card p-14">
                 <label class="label-form-section text-cyan mb-6" data-i18n="rinex.lblBaseStation"></label>
-                <div class="dropzone dropzone-compact ppk-dropzone-base" id="ppkBaseDropzone">
+                <div class="dropzone dropzone-compact" id="ppkBaseDropzone">
                   <i class="fa-solid fa-tower-broadcast dropzone-icon text-cyan"></i>
                   <div id="txtPpkBaseFileName" class="dropzone-title text-sm m-0">
                     <span data-i18n="rinex.lblBaseSelectOrDrag"></span>
                   </div>
-                  <div class="dropzone-tags mt-2">
+                  <div class="dropzone-tags mt-4">
                     <span class="dropzone-tag-pill">.O / .RNX</span>
                     <span class="dropzone-tag-pill">.OBS</span>
                     <span class="dropzone-tag-pill">.CRX</span>
@@ -234,14 +234,14 @@
               </div>
 
               <!-- Rover Station RINEX -->
-              <div class="ppk-station-card">
+              <div class="card p-14">
                 <label class="label-form-section text-emerald mb-6" data-i18n="rinex.lblRoverStation"></label>
-                <div class="dropzone dropzone-compact ppk-dropzone-rover" id="ppkRoverDropzone">
+                <div class="dropzone dropzone-compact" id="ppkRoverDropzone">
                   <i class="fa-solid fa-satellite dropzone-icon text-emerald"></i>
                   <div id="txtPpkRoverFileName" class="dropzone-title text-sm m-0">
                     <span data-i18n="rinex.lblRoverSelectOrDrag"></span>
                   </div>
-                  <div class="dropzone-tags mt-2">
+                  <div class="dropzone-tags mt-4">
                     <span class="dropzone-tag-pill">.O / .RNX</span>
                     <span class="dropzone-tag-pill">.OBS</span>
                     <span class="dropzone-tag-pill">.CRX</span>
@@ -252,11 +252,10 @@
               </div>
             </div>
 
-            <!-- PPK Analysis Dashboard -->
-            <div id="ppkAnalysisResultWrapper" class="mt-14 d-none flex-col gap-12">
+            <!-- PPK Analysis Dashboard (Hidden until Base & Rover files are loaded) -->
+            <div id="ppkAnalysisResultWrapper" class="ppk-analysis-result-wrapper d-none flex-col gap-12 mt-16" style="display: none;">
               <!-- Overall Status Banner -->
-              <div id="bannerPpkStatus"
-                class="p-16 rounded-sm border d-flex items-center justify-between flex-wrap gap-10">
+              <div id="bannerPpkStatus" class="banner-ppk-status">
                 <div class="d-flex items-center gap-10">
                   <i id="iconPpkStatus" class="fa-solid fa-circle-check text-xl"></i>
                   <div>
@@ -268,45 +267,74 @@
               </div>
 
               <!-- Stats Grid -->
-              <div class="d-grid gap-10 text-sm ppk-stats-grid">
-                <div class="stat-card-glass">
-                  <span class="text-dim d-block text-xs" data-i18n="rinex.lblBaseSessionUtc"></span>
-                  <strong id="statPpkBaseTime" class="font-mono text-cyan text-sm">--:-- - --:--</strong>
+              <div class="kpi-grid-5">
+                <div class="kpi-card">
+                  <div class="kpi-icon bento-icon-cyan">
+                    <i class="fa-solid fa-tower-broadcast"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <div class="kpi-val font-mono text-cyan text-sm" id="statPpkBaseTime">--:-- - --:--</div>
+                    <div class="kpi-label" data-i18n="rinex.lblBaseSessionUtc"></div>
+                  </div>
                 </div>
-                <div class="stat-card-glass">
-                  <span class="text-dim d-block text-xs" data-i18n="rinex.lblRoverSessionUtc"></span>
-                  <strong id="statPpkRoverTime" class="font-mono text-emerald text-sm">--:-- - --:--</strong>
+
+                <div class="kpi-card">
+                  <div class="kpi-icon bento-icon-emerald">
+                    <i class="fa-solid fa-satellite"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <div class="kpi-val font-mono text-emerald text-sm" id="statPpkRoverTime">--:-- - --:--</div>
+                    <div class="kpi-label" data-i18n="rinex.lblRoverSessionUtc"></div>
+                  </div>
                 </div>
-                <div class="stat-card-glass">
-                  <span class="text-dim d-block text-xs" data-i18n="rinex.lblOverlapDuration"></span>
-                  <strong id="statPpkOverlapDuration" class="font-mono text-amber text-sm">-- sa -- dk</strong>
+
+                <div class="kpi-card">
+                  <div class="kpi-icon bento-icon-amber">
+                    <i class="fa-solid fa-clock"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <div class="kpi-val font-mono text-amber text-sm" id="statPpkOverlapDuration">-- sa -- dk</div>
+                    <div class="kpi-label" data-i18n="rinex.lblOverlapDuration"></div>
+                  </div>
                 </div>
-                <div class="stat-card-glass">
-                  <span class="text-dim d-block text-xs" data-i18n="rinex.lblApproxBaseline"></span>
-                  <strong id="statPpkBaselineDist" class="font-mono text-purple text-sm">-- km</strong>
+
+                <div class="kpi-card">
+                  <div class="kpi-icon bento-icon-purple">
+                    <i class="fa-solid fa-arrows-left-right"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <div class="kpi-val font-mono text-purple text-sm" id="statPpkBaselineDist">-- km</div>
+                    <div class="kpi-label" data-i18n="rinex.lblApproxBaseline"></div>
+                  </div>
                 </div>
-                <div class="stat-card-glass">
-                  <span class="text-dim d-block text-xs" data-i18n="rinex.lblCommonSystems"></span>
-                  <strong id="statPpkCommonSystems" class="font-mono text-white text-sm">GPS + GLO</strong>
+
+                <div class="kpi-card">
+                  <div class="kpi-icon bento-icon-blue">
+                    <i class="fa-solid fa-circle-nodes"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <div class="kpi-val font-mono text-pure text-sm" id="statPpkCommonSystems">GPS + GLO</div>
+                    <div class="kpi-label" data-i18n="rinex.lblCommonSystems"></div>
+                  </div>
                 </div>
               </div>
 
               <!-- Visual Timeline Bar -->
-              <div class="stat-card-glass p-12">
-                <span class="text-xs font-bold text-dim d-block mb-8" data-i18n="rinex.lblVisualTimeline"></span>
-                <div class="d-flex flex-col gap-8">
+              <div class="card p-14">
+                <span class="text-xs font-bold text-dim d-block mb-10" data-i18n="rinex.lblVisualTimeline"></span>
+                <div class="d-flex flex-col gap-10">
                   <!-- Base Timeline -->
-                  <div class="d-flex items-center gap-8">
-                    <span class="text-xs text-cyan font-bold w-60" data-i18n="rinex.lblBaseShort"></span>
+                  <div class="d-flex items-center gap-10">
+                    <span class="timeline-station-label text-cyan" data-i18n="rinex.lblBaseShort"></span>
                     <div class="timeline-track-base">
-                      <div id="barPpkBase" class="h-full bg-cyan rounded-2 w-full"></div>
+                      <div id="barPpkBase" class="timeline-bar-base"></div>
                     </div>
                   </div>
                   <!-- Rover Timeline -->
-                  <div class="d-flex items-center gap-8">
-                    <span class="text-xs text-emerald font-bold w-60" data-i18n="rinex.lblRoverShort"></span>
+                  <div class="d-flex items-center gap-10">
+                    <span class="timeline-station-label text-emerald" data-i18n="rinex.lblRoverShort"></span>
                     <div class="timeline-track-rover">
-                      <div id="barPpkRover" class="h-full bg-emerald rounded-2 pos-abs left-0 w-full"></div>
+                      <div id="barPpkRover" class="timeline-bar-rover"></div>
                     </div>
                   </div>
                 </div>
@@ -326,43 +354,79 @@
 
             <div class="quality-inspector-panel">
               <!-- File Selector for Quality Inspector -->
-              <div class="d-flex items-center justify-between flex-wrap gap-10">
-                <div class="text-sm text-dim" data-i18n="rinex.qualityPrompt"></div>
-                <label
-                  class="btn btn-primary btn-sm m-0 cursor-pointer d-inline-flex items-center gap-6 text-sm py-6 px-12">
+              <div class="quality-upload-bar d-flex items-center justify-between flex-wrap gap-12">
+                <div class="d-flex items-center gap-10">
+                  <div class="kpi-icon bento-icon-amber" style="width: 38px; height: 38px; font-size: 15px;">
+                    <i class="fa-solid fa-chart-simple"></i>
+                  </div>
+                  <div>
+                    <strong class="text-sm d-block text-pure" data-i18n="rinex.qualityPrompt"></strong>
+                    <span class="text-xs text-dim">.OBS, .RNX, .*O, .CRX (Hatanaka)</span>
+                  </div>
+                </div>
+                <label class="btn btn-primary btn-sm m-0 cursor-pointer d-inline-flex items-center gap-6 text-sm py-6 px-14">
                   <i class="fa-solid fa-satellite"></i> <span data-i18n="rinex.btnQualityAnalyze"></span>
                   <input type="file" id="inputRinexQualityFile" accept=".o,.rnx,.obs,.*o,.*O,.crx" class="d-none" />
                 </label>
               </div>
 
               <!-- Quality Analysis Dashboard Results (Hidden initially) -->
-              <div id="rinexQualityDashboard" class="d-none flex-col gap-12">
+              <div id="rinexQualityDashboard" class="rinex-quality-dashboard d-none flex-col gap-12 mt-16" style="display: none;">
                 <!-- Stat Cards Bar -->
-                <div class="rinex-quality-stats-grid">
-                  <div class="stat-card-glass">
-                    <span class="quality-stat-label" data-i18n="rinex.statTotalEpochs"></span>
-                    <strong id="statQualityEpochs" class="quality-stat-val text-cyan">0 Epoch</strong>
+                <div class="kpi-grid-5">
+                  <div class="kpi-card">
+                    <div class="kpi-icon bento-icon-cyan">
+                      <i class="fa-solid fa-stopwatch"></i>
+                    </div>
+                    <div class="min-w-0">
+                      <div class="kpi-val text-cyan font-mono text-sm" id="statQualityEpochs">0 Epoch</div>
+                      <div class="kpi-label" data-i18n="rinex.statTotalEpochs"></div>
+                    </div>
                   </div>
-                  <div class="stat-card-glass">
-                    <span class="quality-stat-label" data-i18n="rinex.statSamplingInterval"></span>
-                    <strong id="statQualityInterval" class="quality-stat-val text-pure">1 sn</strong>
+
+                  <div class="kpi-card">
+                    <div class="kpi-icon bento-icon-blue">
+                      <i class="fa-solid fa-wave-square"></i>
+                    </div>
+                    <div class="min-w-0">
+                      <div class="kpi-val text-pure font-mono" id="statQualityInterval">1 sn</div>
+                      <div class="kpi-label" data-i18n="rinex.statSamplingInterval"></div>
+                    </div>
                   </div>
-                  <div class="stat-card-glass">
-                    <span class="quality-stat-label" data-i18n="rinex.statAvgMaxSat"></span>
-                    <strong id="statQualitySatCount" class="quality-stat-val text-amber">-- / --</strong>
+
+                  <div class="kpi-card">
+                    <div class="kpi-icon bento-icon-amber">
+                      <i class="fa-solid fa-satellite"></i>
+                    </div>
+                    <div class="min-w-0">
+                      <div class="kpi-val text-amber font-mono" id="statQualitySatCount">-- / --</div>
+                      <div class="kpi-label" data-i18n="rinex.statAvgMaxSat"></div>
+                    </div>
                   </div>
-                  <div class="stat-card-glass">
-                    <span class="quality-stat-label">GPS / GLO / GAL / BDS:</span>
-                    <strong id="statQualityConstellation" class="quality-stat-val-sm text-emerald">-- / -- / -- / --</strong>
+
+                  <div class="kpi-card">
+                    <div class="kpi-icon bento-icon-emerald">
+                      <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <div class="min-w-0">
+                      <div class="kpi-val text-emerald font-mono text-xs" id="statQualityConstellation">-- / -- / -- / --</div>
+                      <div class="kpi-label">GPS / GLO / GAL / BDS</div>
+                    </div>
                   </div>
-                  <div class="stat-card-glass">
-                    <span class="quality-stat-label" data-i18n="rinex.statScore"></span>
-                    <strong id="statQualityScore" class="quality-stat-val text-sky" data-i18n="ui.95Mukemmel"></strong>
+
+                  <div class="kpi-card">
+                    <div class="kpi-icon bento-icon-purple">
+                      <i class="fa-solid fa-award"></i>
+                    </div>
+                    <div class="min-w-0">
+                      <div class="kpi-val text-sky font-mono" id="statQualityScore" data-i18n="ui.95Mukemmel">%95</div>
+                      <div class="kpi-label" data-i18n="rinex.statScore"></div>
+                    </div>
                   </div>
                 </div>
 
                 <!-- Interactive Multi-Constellation Timeline Chart Canvas -->
-                <div class="timeline-chart-box timeline-chart-container">
+                <div class="timeline-chart-box">
                   <!-- Legend -->
                   <div class="timeline-header-flex">
                     <span class="timeline-legend-title" data-i18n="rinex.timelineChartTitle"></span>

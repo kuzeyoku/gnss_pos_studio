@@ -60,13 +60,26 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (typeof initFormatConverterModule === "function") initFormatConverterModule();
   if (typeof initGuideSearchAndFilter === "function") initGuideSearchAndFilter();
 
-  // 3. Service Worker (Offline Support)
+  // 3. Service Worker (Offline Support - Network-First)
   if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
     navigator.serviceWorker.register('sw.js').then((reg) => {
       console.log('🚀 [ServiceWorker] Kayıt başarılı, scope:', reg.scope);
+      reg.update(); // Sunucudaki yeni sw.js sürümünü hemen denetle
     }).catch((err) => {
       console.warn('⚠️ [ServiceWorker] Kayıt başarısız (çevrimdışı mod fallback devrede):', err);
     });
+  }
+
+  // 4. Eski veya bozuk Service Worker önbelleklerini proaktif olarak temizle
+  if ('caches' in window) {
+    caches.keys().then((names) => {
+      names.forEach((name) => {
+        if (name === 'gnss-pos-studio-v2' || name === 'gnss-pos-studio-v1') {
+          caches.delete(name);
+          console.log(`🧹 [Cache] Eski servis önbelleği silindi: ${name}`);
+        }
+      });
+    }).catch(() => {});
   }
 
   console.log("🚀 Harita Tools (Beta) Modüler Çekirdek Başarıyla Başlatıldı.");

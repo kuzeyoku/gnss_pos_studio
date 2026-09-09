@@ -1,9 +1,14 @@
 /**
  * Harita Tools GNSS Pos Studio - Service Worker
- * Offline-first static asset caching and network fallback
+ * Network-First (Online First) with Offline Fallback Strategy
+ * 
+ * Bu strateji sayesinde:
+ * 1. Sunucu çalışırken ve online iken (F5 dahil) her zaman en güncel dosyalar diskten/ağdan yüklenir.
+ * 2. Ağ bağlantısı kesildiğinde (çevrimdışı/offline) önbellekten kesintisiz hizmet verilir.
+ * 3. Yeni sürüm derlendiğinde eski önbellekler anında silinir.
  */
 
-const CACHE_NAME = 'gnss-pos-studio-v2';
+const CACHE_NAME = 'gnss-pos-studio-v1788951302642';
 const PRECACHE_ASSETS = [
   './',
   'index.html',
@@ -11,7 +16,6 @@ const PRECACHE_ASSETS = [
   'css/components.css',
   'css/layout.css',
   'css/responsive-theme.css',
-  'css/core.css',
   'js/app.bundle.js',
   'data/epsg_registry.json',
   'data/hgmDatumDatabase.json',
@@ -25,12 +29,13 @@ const PRECACHE_ASSETS = [
 ];
 
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(PRECACHE_ASSETS).catch((err) => {
         console.warn('[ServiceWorker] Pre-cache partial fail (non-critical):', err);
       });
-    }).then(() => self.skipWaiting())
+    })
   );
 });
 
@@ -40,7 +45,10 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         cacheNames
           .filter((name) => name !== CACHE_NAME)
-          .map((name) => caches.delete(name))
+          .map((name) => {
+            console.log('[ServiceWorker] Eski önbellek siliniyor:', name);
+            return caches.delete(name);
+          })
       );
     }).then(() => self.clients.claim())
   );
@@ -49,42 +57,39 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const request = event.request;
   
-  // Skip non-GET requests and tile servers
+  // Sadece GET isteklerini işle
   if (request.method !== 'GET') return;
   
   const url = new URL(request.url);
 
-  // For external tile servers / OSM, let network handle without aggressive caching
+  // Harici tile sunucuları (OSM, Google, Carto vb.) için tarayıcı doğrudan yönetsin
   if (url.origin !== self.location.origin && !url.hostname.includes('localhost') && !url.hostname.includes('127.0.0.1')) {
     return;
   }
 
+  // Network-First (Önce Ağ, Çevrimdışı İse Önbellek)
   event.respondWith(
-    caches.match(request).then((cachedResponse) => {
-      if (cachedResponse) {
-        // Return cached, but optionally revalidate in background
-        return cachedResponse;
-      }
-
-      return fetch(request)
-        .then((networkResponse) => {
-          if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-            return networkResponse;
-          }
-
+    fetch(request)
+      .then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
           const responseToCache = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put(request, responseToCache);
           });
-
-          return networkResponse;
-        })
-        .catch(() => {
-          // If offline and request is HTML, fallback to index
-          if (request.headers.get('accept') && request.headers.get('accept').includes('text/html')) {
+        }
+        return networkResponse;
+      })
+      .catch(() => {
+        // Ağ hatası veya çevrimdışı (offline) modda önbellekten yanıt ver
+        return caches.match(request).then((cachedResponse) => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          // Eğer sayfa gezintisi ise index.html fallback ver
+          if (request.mode === 'navigate' || (request.headers.get('accept') && request.headers.get('accept').includes('text/html'))) {
             return caches.match('index.html');
           }
         });
-    })
+      })
   );
 });
