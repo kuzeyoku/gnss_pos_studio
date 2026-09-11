@@ -824,7 +824,7 @@ function initDroneDatabaseUI() {
         </div>`;
     } else if (!v_8_1) {
       domEl_4.innerHTML = `
-        <div class="flight-telemetry-chip" style="grid-column: 1 / -1; border-color: rgba(245, 158, 11, 0.5); background: rgba(245, 158, 11, 0.12);">
+        <div class="flight-telemetry-chip" style="grid-column: 1 / -1; border-color: var(--amber-a50); background: var(--amber-a12);">
           <span style="color: #fbbf24;">${t("flight.warnCaution")}</span>
           <strong style="color: #f59e0b;">${t("flight.warnShutterLag", { speed: v_2_1 })}</strong>
         </div>`;
@@ -1527,7 +1527,7 @@ function renderGcpTable(arg1) {
     trEl.setAttribute("data-point-id", item.id);
     trEl.style.cursor = "pointer";
     const v_1 = item.type === "YKN";
-    const v_2 = v_1 ? "<span style=\"background: rgba(16, 185, 129, 0.15); color: var(--emerald-400); padding: 2px 7px; border-radius: 4px; font-weight: 700; font-size: 10.5px;\">YKN</span>" : "<span style=\"background: rgba(245, 158, 11, 0.15); color: var(--amber-400); padding: 2px 7px; border-radius: 4px; font-weight: 700; font-size: 10.5px;\">DN</span>";
+    const v_2 = v_1 ? "<span style=\"background: var(--emerald-a15); color: var(--emerald-400); padding: 2px 7px; border-radius: 4px; font-weight: 700; font-size: 10.5px;\">YKN</span>" : "<span style=\"background: var(--amber-a15); color: var(--amber-400); padding: 2px 7px; border-radius: 4px; font-weight: 700; font-size: 10.5px;\">DN</span>";
     let str = "";
     if (item.roadDistM !== null) {
       if (item.roadDistM <= 15) {
@@ -1705,11 +1705,11 @@ function startDrawingRoad() {
   }
   if (btnEl) {
     btnEl.style.borderColor = "#f59e0b";
-    btnEl.style.background = "rgba(245, 158, 11, 0.25)";
+    btnEl.style.background = "var(--amber-a25)";
   }
   if (btnEl_2) {
     btnEl_2.style.borderColor = "#f59e0b";
-    btnEl_2.style.background = "rgba(245, 158, 11, 0.25)";
+    btnEl_2.style.background = "var(--amber-a25)";
   }
   showToast(t("flight.toastDrawRoadHelp"), "info");
   logMessage(t("flight.logManualRoadDrawingActive"));
@@ -1796,11 +1796,11 @@ function cancelDrawingRoad() {
     btnEl_4.classList.add("hidden");
   }
   if (btnEl) {
-    btnEl.style.borderColor = "rgba(245, 158, 11, 0.5)";
+    btnEl.style.borderColor = "var(--amber-a50)";
     btnEl.style.background = "";
   }
   if (btnEl_2) {
-    btnEl_2.style.borderColor = "rgba(245, 158, 11, 0.4)";
+    btnEl_2.style.borderColor = "var(--amber-a40)";
     btnEl_2.style.background = "";
   }
 }

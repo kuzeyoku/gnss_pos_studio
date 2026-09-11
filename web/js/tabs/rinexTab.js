@@ -53,7 +53,7 @@ function initMergerDropzone() {
       const domEl_3 = document.getElementById("badgePpkOverlapPercent");
       if (domEl_3) {
         domEl_3.textContent = t("rinex.lblCoverageVal", { pct: v_1_1.overlapPercent.toFixed(1) });
-        domEl_3.style.background = v_1_1.overlapPercent >= 99.5 ? "rgba(16, 185, 129, 0.25)" : v_1_1.overlapPercent >= 70 ? "rgba(245, 158, 11, 0.25)" : "rgba(244, 63, 94, 0.25)";
+        domEl_3.style.background = v_1_1.overlapPercent >= 99.5 ? "var(--emerald-a25)" : v_1_1.overlapPercent >= 70 ? "var(--amber-a25)" : "rgba(var(--rose-rgb), 0.25)";
         domEl_3.style.color = v_1_1.overlapPercent >= 99.5 ? "var(--emerald-400)" : v_1_1.overlapPercent >= 70 ? "var(--amber-400)" : "var(--rose-400)";
       }
       const domEl_4 = document.getElementById("bannerPpkStatus");
@@ -61,8 +61,8 @@ function initMergerDropzone() {
       const domEl_6 = document.getElementById("titlePpkStatus");
       const domEl_7 = document.getElementById("descPpkStatus");
       if (domEl_4) {
-        domEl_4.style.borderColor = v_1_1.statusLevel === "SUCCESS" ? "rgba(16, 185, 129, 0.5)" : v_1_1.statusLevel === "WARNING" ? "rgba(245, 158, 11, 0.5)" : "rgba(244, 63, 94, 0.5)";
-        domEl_4.style.background = v_1_1.statusLevel === "SUCCESS" ? "rgba(16, 185, 129, 0.1)" : v_1_1.statusLevel === "WARNING" ? "rgba(245, 158, 11, 0.1)" : "rgba(244, 63, 94, 0.1)";
+        domEl_4.style.borderColor = v_1_1.statusLevel === "SUCCESS" ? "rgba(var(--emerald-rgb), 0.5)" : v_1_1.statusLevel === "WARNING" ? "var(--amber-a50)" : "rgba(var(--rose-rgb), 0.5)";
+        domEl_4.style.background = v_1_1.statusLevel === "SUCCESS" ? "var(--emerald-a10)" : v_1_1.statusLevel === "WARNING" ? "var(--amber-a10)" : "rgba(var(--rose-rgb), 0.1)";
       }
       if (domEl_5) {
         domEl_5.className = v_1_1.statusLevel === "SUCCESS" ? "fa-solid fa-circle-check" : v_1_1.statusLevel === "WARNING" ? "fa-solid fa-triangle-exclamation" : "fa-solid fa-circle-xmark";
@@ -425,7 +425,7 @@ function renderGroupsTable() {
   for (let v_1_1 in state.mergerGroups) {
     const v_1_2 = state.mergerGroups[v_1_1];
     const trEl = document.createElement("tr");
-    trEl.innerHTML = "\n            <td class=\"font-bold text-main font-mono\">\n              <i class=\"fa-solid fa-layer-group\" style=\"color: var(--cyan-400); margin-right: 6px;\"></i> " + v_1_2.id + "\n            </td>\n            <td style=\"font-weight: 800; color: var(--cyan-400); font-size: 13px;\">" + v_1_2.station + "</td>\n            <td><span class=\"badge-year-chip\">" + v_1_2.year + "</span></td>\n            <td><span style=\"background: rgba(139, 92, 246, 0.15); color: var(--purple-500); border: 1px solid var(--border-purple-glow); padding: 2px 8px; border-radius: 6px; font-weight: 700; font-family: var(--font-mono);\">DOY " + String(v_1_2.doy).padStart(3, "0") + "</span></td>\n            <td><span style=\"background: rgba(6, 182, 212, 0.15); color: var(--cyan-400); border: 1px solid var(--border-cyan-glow); padding: 3px 10px; border-radius: 20px; font-weight: 700;\">📁 " + t("rinex.unitHourFile", { count: v_1_2.obsFiles.length }) + "</span></td>\n            <td><span style=\"background: rgba(16, 185, 129, 0.15); color: var(--emerald-400); border: 1px solid var(--glow-emerald); padding: 3px 10px; border-radius: 20px; font-weight: 700;\">🛰️ " + t("rinex.unitFile", { count: v_1_2.navGpsFiles.length }) + "</span></td>\n            <td><span style=\"background: rgba(245, 158, 11, 0.15); color: var(--amber-400); border: 1px solid rgba(245, 158, 11, 0.3); padding: 3px 10px; border-radius: 20px; font-weight: 700;\">📡 " + t("rinex.unitFile", { count: v_1_2.navGloFiles.length }) + "</span></td>\n            <td>\n                <button class=\"btn btn-primary\" style=\"padding: 6px 14px; font-size: 12px;\" onclick=\"mergeSingleGroup('" + v_1_1 + "')\">\n                    <i class=\"fa-solid fa-bolt\"></i> " + t("rinex.btnProcessDownload") + "\n                </button>\n            </td>\n        ";
+    trEl.innerHTML = "\n            <td class=\"font-bold text-main font-mono\">\n              <i class=\"fa-solid fa-layer-group\" style=\"color: var(--cyan-400); margin-right: 6px;\"></i> " + v_1_2.id + "\n            </td>\n            <td style=\"font-weight: 800; color: var(--cyan-400); font-size: 13px;\">" + v_1_2.station + "</td>\n            <td><span class=\"badge-year-chip\">" + v_1_2.year + "</span></td>\n            <td><span style=\"background: var(--purple-a15); color: var(--purple-500); border: 1px solid var(--border-purple-glow); padding: 2px 8px; border-radius: 6px; font-weight: 700; font-family: var(--font-mono);\">DOY " + String(v_1_2.doy).padStart(3, "0") + "</span></td>\n            <td><span style=\"background: var(--cyan-a15); color: var(--cyan-400); border: 1px solid var(--border-cyan-glow); padding: 3px 10px; border-radius: 20px; font-weight: 700;\">📁 " + t("rinex.unitHourFile", { count: v_1_2.obsFiles.length }) + "</span></td>\n            <td><span style=\"background: var(--emerald-a15); color: var(--emerald-400); border: 1px solid var(--glow-emerald); padding: 3px 10px; border-radius: 20px; font-weight: 700;\">🛰️ " + t("rinex.unitFile", { count: v_1_2.navGpsFiles.length }) + "</span></td>\n            <td><span style=\"background: var(--amber-a15); color: var(--amber-400); border: 1px solid var(--amber-a30); padding: 3px 10px; border-radius: 20px; font-weight: 700;\">📡 " + t("rinex.unitFile", { count: v_1_2.navGloFiles.length }) + "</span></td>\n            <td>\n                <button class=\"btn btn-primary\" style=\"padding: 6px 14px; font-size: 12px;\" onclick=\"mergeSingleGroup('" + v_1_1 + "')\">\n                    <i class=\"fa-solid fa-bolt\"></i> " + t("rinex.btnProcessDownload") + "\n                </button>\n            </td>\n        ";
     v_1.appendChild(trEl);
   }
 }
@@ -933,8 +933,8 @@ function initPpkInspector() {
         }
       } else if (v_1_1.statusLevel === "WARNING") {
         if (domEl_3) {
-          domEl_3.style.background = "rgba(245, 158, 11, 0.12)";
-          domEl_3.style.borderColor = "rgba(245, 158, 11, 0.4)";
+          domEl_3.style.background = "var(--amber-a12)";
+          domEl_3.style.borderColor = "var(--amber-a40)";
         }
         if (domEl_4) {
           domEl_4.className = "fa-solid fa-triangle-exclamation";
@@ -944,7 +944,7 @@ function initPpkInspector() {
           domEl_5.style.color = "var(--amber-400)";
         }
         if (domEl_7) {
-          domEl_7.style.background = "rgba(245, 158, 11, 0.2)";
+          domEl_7.style.background = "var(--amber-a20)";
           domEl_7.style.color = "var(--amber-400)";
         }
       } else {
@@ -1140,7 +1140,7 @@ function drawRinexQualityChart(arg1) {
     v_2.shadowBlur = 0;
   };
   const v_11 = v_2.createLinearGradient(0, num_2, 0, num_2 + v_6);
-  v_11.addColorStop(0, "rgba(245, 158, 11, 0.25)");
+  v_11.addColorStop(0, "var(--amber-a25)");
   v_11.addColorStop(1, "rgba(245, 158, 11, 0.0)");
   v_10("total", "#f59e0b", 2.5, v_11);
   v_10("gps", "#38bdf8", 1.8);
