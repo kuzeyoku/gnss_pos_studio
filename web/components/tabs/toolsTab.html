@@ -1,18 +1,18 @@
       <!-- ================= TAB: GEODETIC CALCULATION TOOLS WORKSTATION ================= -->
       <section id="tab-tools" class="tool-tab">
-        <div class="card d-flex flex-col gap-16">
+        <div class="card">
 
           <!-- Master Header -->
-          <div class="card-header flex-wrap gap-12 mb-0 pb-12">
+          <div class="card-header">
             <div class="card-title">
               <i class="fa-solid fa-calculator text-cyan text-lg"></i>
               <span data-i18n="tools.headerTitle">Jeodezik Hesaplama Araçları</span>
             </div>
             <div class="d-flex gap-6 flex-wrap">
-              <span class="badge badge-cyan text-xs font-bold" data-i18n="tools.badgeVincenty">Vincenty Elipsoit</span>
-              <span class="badge badge-emerald text-xs font-bold" data-i18n="tools.badgeShoelace">Gauss Alanı</span>
-              <span class="badge badge-purple text-xs font-bold" data-i18n="tools.badgeDirect">1. & 2. Temel Ödev</span>
-              <span class="badge badge-amber text-xs font-bold" data-i18n="tools.badgePolar">Kutupsal Alım</span>
+              <span class="badge badge-cyan" data-i18n="tools.badgeVincenty">Vincenty Elipsoit</span>
+              <span class="badge badge-emerald" data-i18n="tools.badgeShoelace">Gauss Alanı</span>
+              <span class="badge badge-purple" data-i18n="tools.badgeDirect">1. & 2. Temel Ödev</span>
+              <span class="badge badge-amber" data-i18n="tools.badgePolar">Kutupsal Alım</span>
             </div>
           </div>
 
@@ -35,24 +35,24 @@
           <!-- SUBTAB 1: INVERSE GEODESY (MESAFE & AZİMUT) -->
           <div id="subtab-tools-inv" class="subtab-content tools-subtab-pane active">
             <div class="card">
-              <div class="card-header items-center flex-wrap gap-8 border-b pb-8 mb-12">
-                <div class="card-title m-0">
+              <div class="card-header">
+                <div class="card-title">
                   <i class="fa-solid fa-arrows-left-right text-cyan"></i>
                   <span data-i18n="tools.invTitle">İki Nokta Arası Jeodezik Mesafe ve Azimut (2. Temel Ödev)</span>
                 </div>
                 <div class="d-flex items-center gap-8 flex-wrap">
                   <div class="d-flex items-center gap-6">
                     <span class="text-xs font-bold text-dim uppercase" data-i18n="tools.lblCoordType">Koordinat Tipi:</span>
-                    <select id="toolsSelDistType" class="form-select form-select-sm w-auto py-2 px-8">
+                    <select id="toolsSelDistType" class="form-select form-select-sm w-auto">
                       <option value="GEO" selected data-i18n="tools.optGeoVincenty">Coğrafi (Enlem / Boylam - Vincenty)</option>
                       <option value="GRID" data-i18n="tools.optGridProj">Grid / Projeksiyon (Y / X / Z)</option>
                     </select>
-                    <select id="toolsSelDistEllipsoid" class="form-select form-select-sm w-auto py-2 px-8">
+                    <select id="toolsSelDistEllipsoid" class="form-select form-select-sm w-auto">
                       <option value="GRS80" selected>GRS80 / WGS84 (TUREF)</option>
                       <option value="HAYFORD">Hayford 1924 / ED50</option>
                     </select>
                   </div>
-                  <button type="button" class="btn btn-secondary btn-sm text-xs py-3 px-8" id="toolsBtnLoadDistSample">
+                  <button type="button" class="btn btn-secondary btn-sm" id="toolsBtnLoadDistSample">
                     <i class="fa-solid fa-flask text-cyan"></i> <span data-i18n="tools.btnLoadDistSample">Örnek Yükle (Ankara ➔ İstanbul)</span>
                   </button>
                 </div>
@@ -108,10 +108,10 @@
                   </div>
 
                   <div class="d-flex gap-6">
-                    <button class="btn btn-primary flex-1 py-9 px-14 text-sm font-bold" id="toolsBtnCalcDistAzimuth">
+                    <button class="btn btn-primary flex-1" id="toolsBtnCalcDistAzimuth">
                       <i class="fa-solid fa-calculator"></i> <span data-i18n="tools.btnCalcDistAzimuth">Mesafe ve Azimut Hesapla</span>
                     </button>
-                    <button class="btn btn-secondary py-9 px-12 text-xs" id="toolsBtnCopyDistResult" title="" data-i18n-title="common.copy">
+                    <button class="btn btn-secondary btn-sm" id="toolsBtnCopyDistResult" title="" data-i18n-title="common.copy">
                       <i class="fa-solid fa-copy"></i> <span data-i18n="common.copy">Kopyala</span>
                     </button>
                   </div>
@@ -130,14 +130,14 @@
           <!-- SUBTAB 2: DIRECT GEODESY (1. TEMEL ÖDEV) -->
           <div id="subtab-tools-dir" class="subtab-content tools-subtab-pane">
             <div class="card">
-              <div class="card-header items-center flex-wrap gap-8 border-b pb-8 mb-12">
-                <div class="card-title m-0">
+              <div class="card-header">
+                <div class="card-title">
                   <i class="fa-solid fa-location-arrow text-cyan"></i>
                   <span data-i18n="tools.dirTitle">Düz Jeodezi Problemi (1. Temel Ödev)</span>
                 </div>
                 <div class="d-flex items-center gap-6">
                   <span class="text-xs font-bold text-dim uppercase">Elipsoit:</span>
-                  <select id="toolsSelDirectEllipsoid" class="form-select form-select-sm w-auto py-2 px-8">
+                  <select id="toolsSelDirectEllipsoid" class="form-select form-select-sm w-auto">
                     <option value="GRS80" selected>GRS80 / WGS84 (TUREF)</option>
                     <option value="HAYFORD">Hayford 1924 / ED50</option>
                   </select>
@@ -177,10 +177,10 @@
                   </div>
 
                   <div class="d-flex gap-6">
-                    <button class="btn btn-primary flex-1 py-9 px-14 text-sm font-bold" id="toolsBtnCalcDirectGeodesy">
+                    <button class="btn btn-primary flex-1" id="toolsBtnCalcDirectGeodesy">
                       <i class="fa-solid fa-location-arrow"></i> <span data-i18n="tools.btnCalcDirect">Hedef Noktayı Hesapla</span>
                     </button>
-                    <button class="btn btn-secondary py-9 px-12 text-xs" id="toolsBtnCopyDirResult" title="" data-i18n-title="common.copy">
+                    <button class="btn btn-secondary btn-sm" id="toolsBtnCopyDirResult" title="" data-i18n-title="common.copy">
                       <i class="fa-solid fa-copy"></i> <span data-i18n="common.copy">Kopyala</span>
                     </button>
                   </div>
@@ -198,16 +198,16 @@
           <!-- SUBTAB 3: GAUSS AREA & PERIMETER (SHOELACE FORMULA) -->
           <div id="subtab-tools-area" class="subtab-content tools-subtab-pane">
             <div class="card">
-              <div class="card-header items-center flex-wrap gap-8 border-b pb-8 mb-12">
-                <div class="card-title m-0">
+              <div class="card-header">
+                <div class="card-title">
                   <i class="fa-solid fa-draw-polygon text-emerald"></i>
                   <span data-i18n="tools.areaTitle">Gauss (Shoelace) Poligon Alanı & Çevre Hesabı</span>
                 </div>
                 <div class="d-flex gap-6 flex-wrap">
-                  <button type="button" class="btn btn-secondary btn-sm text-xs py-2 px-8" id="toolsBtnLoadAreaSample">
+                  <button type="button" class="btn btn-secondary btn-sm" id="toolsBtnLoadAreaSample">
                     <i class="fa-solid fa-flask text-emerald"></i> <span data-i18n="tools.btnSampleParcel">Örnek Parsel (100×100m)</span>
                   </button>
-                  <label class="btn btn-secondary btn-sm m-0 cursor-pointer text-xs py-2 px-8 text-cyan">
+                  <label class="btn btn-secondary btn-sm m-0 cursor-pointer text-cyan">
                     <i class="fa-solid fa-folder-open text-cyan"></i> <span data-i18n="tools.btnSelectFile">Dosya Seç (.ncn, .txt, .csv)</span>
                     <input type="file" id="toolsFileAreaInput" accept=".txt,.csv,.ncn,.dat,.xyz" class="d-none" />
                   </label>
@@ -221,7 +221,7 @@
               <div class="d-grid gap-14 grid-split-11-10">
                 <div class="d-flex flex-col gap-8">
                   <textarea id="toolsTxtAreaInput" rows="7" placeholder="P1  500000.000  4500000.000&#10;P2  500100.000  4500000.000&#10;P3  500100.000  4500100.000&#10;P4  500000.000  4500100.000" class="batch-textarea min-h-140"></textarea>
-                  <button class="btn btn-primary py-9 px-14 text-sm font-bold w-100" id="toolsBtnCalcGaussArea">
+                  <button class="btn btn-primary btn-lg w-full" id="toolsBtnCalcGaussArea">
                     <i class="fa-solid fa-draw-polygon"></i> <span data-i18n="tools.btnCalcArea">Poligon Alanı & Çevre Hesapla</span>
                   </button>
                 </div>
@@ -315,14 +315,14 @@
                     </div>
                     <div class="d-flex items-center gap-6 mt-6">
                       <label class="text-2xs text-dim">Açı Birimi:</label>
-                      <select id="toolsPolarAngleUnit" class="form-select form-select-sm py-1 px-6">
+                      <select id="toolsPolarAngleUnit" class="form-select form-select-sm">
                         <option value="GRAD" selected>Grad (gon)</option>
                         <option value="DEG">Derece (° DD)</option>
                       </select>
                     </div>
                   </div>
 
-                  <button class="btn btn-primary py-8 px-12 text-xs font-bold" id="toolsBtnCalcPolar">
+                  <button class="btn btn-primary w-full" id="toolsBtnCalcPolar">
                     <i class="fa-solid fa-calculator"></i> <span data-i18n="tools.btnCalcPolar">Kutupsal Nokta Koordinatını Hesapla</span>
                   </button>
 

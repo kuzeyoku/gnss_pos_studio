@@ -12,7 +12,7 @@
                 <input type="file" id="inputFlightFile" accept=".kml,.kmz,.geojson,.json" class="d-none" />
               </label>
 
-              <button class="btn btn-secondary btn-sm py-6 px-10 text-sm text-nowrap" id="btnLoadDemoFlightKml"
+              <button class="btn btn-secondary btn-sm" id="btnLoadDemoFlightKml"
                 type="button" data-tooltip="" data-i18n-tooltip="flight.demoTooltip">
                 <i class="fa-solid fa-wand-magic-sparkles text-amber"></i>
                 <span data-i18n="common.example"></span>
@@ -31,7 +31,7 @@
               <div class="flight-time-slider-wrap">
                 <i class="fa-solid fa-clock text-amber text-xs"></i>
                 <span class="text-xs font-bold text-dim uppercase" data-i18n="common.time"></span>
-                <span id="txtToolbarFlightTime" class="badge badge-amber text-sm font-mono">11:00</span>
+                <span id="txtToolbarFlightTime" class="badge badge-amber badge-lg font-mono">11:00</span>
                 <input type="range" id="sliderToolbarFlightTime" min="360" max="1200" step="15" value="660"
                   class="accent-amber cursor-pointer flight-time-slider" title="" data-i18n-title="flight.timeSliderTitle" />
               </div>
@@ -287,9 +287,9 @@
                 <i class="fa-solid fa-draw-polygon text-cyan"></i>
                 <span data-i18n="flight.step1Title"></span>
               </div>
-              <span class="text-xs py-2 px-8 rounded-sm bg-cyan-15 text-cyan font-bold border-cyan" data-i18n="ui.sinirSadelestirme"></span>
+              <span class="badge badge-cyan" data-i18n="ui.sinirSadelestirme"></span>
             </div>
-            <div class="card-body p-14 d-flex flex-col gap-10">
+            <div class="card-body p-14">
               <!-- Sadeleştirme Kaydıracı (Genişletilmiş & Şık Konteyner) -->
               <div class="flight-slider-container">
                 <div class="flight-slider-header">
@@ -309,11 +309,11 @@
 
               <!-- Katman Görünürlük Butonları -->
               <div class="d-flex gap-8">
-                <button class="btn btn-secondary btn-sm flex-1 text-xs py-6 px-10" id="btnToggleOriginalLayer"
+                <button class="btn btn-secondary btn-sm flex-1" id="btnToggleOriginalLayer"
                   type="button">
                   <i class="fa-solid fa-eye"></i> <span data-i18n="ui.hamSinir"></span>
                 </button>
-                <button class="btn btn-secondary btn-sm flex-1 text-xs py-6 px-10 border-cyan text-cyan"
+                <button class="btn btn-outline-cyan btn-sm flex-1"
                   id="btnToggleSimplifiedLayer" type="button">
                   <i class="fa-solid fa-eye"></i> <span data-i18n="ui.sadeSinir"></span>
                 </button>
@@ -372,9 +372,9 @@
                 <i class="fa-solid fa-route text-indigo"></i>
                 <span data-i18n="ui.2YknDagitimiYol"></span>
               </div>
-              <span class="text-xs py-2 px-8 rounded-sm bg-indigo-20 text-indigo font-bold border-indigo" data-i18n="ui.bohhbuyYolAgi"></span>
+              <span class="badge badge-purple" data-i18n="ui.bohhbuyYolAgi"></span>
             </div>
-            <div class="card-body p-14 d-flex flex-col gap-10">
+            <div class="card-body p-14">
               <div class="flight-inputs-grid-2x2">
                 <div class="form-group m-0">
                   <label class="text-xs font-semibold text-dim mb-2 d-flex items-center gap-4">
@@ -482,9 +482,9 @@
                 <i class="fa-solid fa-camera text-emerald"></i>
                 <span data-i18n="ui.3IHaGsd"></span>
               </div>
-              <span class="text-xs py-2 px-8 rounded-sm bg-emerald-20 text-emerald font-bold border-emerald" data-i18n="ui.ucusBindirme"></span>
+              <span class="badge badge-emerald" data-i18n="ui.ucusBindirme"></span>
             </div>
-            <div class="card-body p-14 d-flex flex-col gap-10">
+            <div class="card-body p-14">
               <!-- İHA Modeli & Kamera (2 Sütun) -->
               <div class="flight-inputs-grid-2x2">
                 <div class="form-group m-0">
@@ -589,12 +589,12 @@
                       class="font-mono text-white text-xs ml-2">--°</span>
                   </label>
                   <div class="d-flex items-center gap-4">
-                    <button class="btn btn-secondary btn-sm text-xs py-2 px-8 text-emerald border-emerald"
+                    <button class="btn btn-outline-emerald btn-sm"
                       id="btnAutoOptimalHeading" type="button"
                       title="" data-i18n-title="flight.titleAutoLongAxis">
                       <i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="flight.longAxis"></span>
                     </button>
-                    <button class="btn btn-secondary btn-sm text-xs py-2 px-8 text-cyan border-cyan"
+                    <button class="btn btn-outline-cyan btn-sm"
                       id="btnWindAlignHeading" type="button"
                       title="" data-i18n-title="flight.titleWindAlign">
                       <i class="fa-solid fa-wind"></i> <span data-i18n="flight.windDir"></span>

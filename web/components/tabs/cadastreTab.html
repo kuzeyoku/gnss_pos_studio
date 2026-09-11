@@ -1,536 +1,208 @@
-      <!-- ================= TAB 1: GPSFORMAT STUDIO ================= -->
-      <section id="tab-cadastre" class="tool-tab">
-        <div class="card d-flex flex-col gap-16">
+<!-- ==========================================================================
+     NEXT-GEN STUDIO — CADASTRE & RTK STUDIO
+     ========================================================================== -->
+<div id="tab-cadastre" class="tool-tab geo-tab-view">
+  <div style="display: flex; flex-direction: column; gap: var(--geo-space-5);">
 
-          <!-- Master Header -->
-          <div class="card-header flex-wrap gap-12 mb-0 pb-12">
-            <div class="card-title">
-              <i class="fa-solid fa-table-cells text-cyan text-lg"></i>
-              <span data-i18n="cadastre.headerTitle"></span>
-            </div>
-            <div class="d-flex gap-6 flex-wrap">
-              <span class="badge badge-cyan text-xs font-bold" data-i18n="cadastre.badgeTusaga"></span>
-              <span class="badge badge-emerald text-xs font-bold" data-i18n="cadastre.badgeTg20"></span>
-              <span class="badge badge-purple text-xs font-bold" data-i18n="cadastre.badgeNcnDxf"></span>
-            </div>
-          </div>
-
-          <!-- Section 1: Controls & Upload Bar Panel -->
-          <div class="config-panel">
-            <div class="cadastre-controls-grid">
-              <div>
-                <label class="label-form-section mb-4" data-i18n="cadastre.lblGnssFile"></label>
-                <div class="dropzone dropzone-compact" id="rw5UploadContainer">
-                  <div class="d-flex items-center gap-6 w-100 justify-center" id="rw5FileNameLabel">
-                    <i class="fa-solid fa-satellite-dish dropzone-icon text-cyan m-0 text-sm"></i>
-                    <span id="rw5FileDisplayName" class="text-xs text-main font-bold truncate" data-i18n="cadastre.fileSelectOrDrag"></span>
-                  </div>
-                  <div class="dropzone-tags mt-2">
-                    <span class="dropzone-tag-pill">RW5</span>
-                    <span class="dropzone-tag-pill">RAW</span>
-                    <span class="dropzone-tag-pill">JXL</span>
-                    <span class="dropzone-tag-pill">CSV</span>
-                    <span class="dropzone-tag-pill">TXT / NCN</span>
-                  </div>
-                  <input type="file" id="rw5FileInput" class="file-drop-input" accept=".rw5,.raw,.csv,.txt,.ncn,.jxl,.dat" />
-                </div>
-              </div>
-
-              <div>
-                <label class="label-form-section mb-4" data-i18n="cadastre.lblSamePointThreshold"></label>
-                <div class="input-unit-group">
-                  <input type="number" id="rw5Radius" value="1.0" step="0.1" min="0.1" max="10"
-                    class="form-input text-xs h-32 px-8 py-4" />
-                  <span class="input-unit-suffix text-xs right-6">m</span>
-                </div>
-              </div>
-
-              <div>
-                <label class="label-form-section mb-4" data-i18n="cadastre.lblTolerance"></label>
-                <div class="input-unit-group">
-                  <input type="number" id="rw5Tolerance" value="7.0" step="0.5" min="1" max="50"
-                    class="form-input text-xs h-32 px-8 py-4" />
-                  <span class="input-unit-suffix text-xs right-6">cm</span>
-                </div>
-              </div>
-
-              <div>
-                <label class="label-form-section mb-4" data-i18n="cadastre.lblMinTime"></label>
-                <div class="input-unit-group">
-                  <input type="number" id="rw5MinTime" value="60" step="5" min="0" max="1440"
-                    class="form-input text-xs h-32 px-8 py-4" />
-                  <span class="input-unit-suffix text-xs right-6">dk</span>
-                </div>
-              </div>
-
-              <div>
-                <button
-                  class="btn btn-primary w-full h-32 text-xs font-bold d-inline-flex items-center justify-center gap-6"
-                  id="btnAnalyzeRw5">
-                  <i class="fa-solid fa-bolt"></i> <span data-i18n="cadastre.btnUploadSolve"></span>
-                </button>
-              </div>
-            </div>
-
-            <!-- TG-20 Optional Geoid Reduction Switch Bar -->
-            <div class="cadastre-tg20-bar">
-              <div class="d-flex items-center gap-10 flex-wrap">
-                <label class="tg20-check-label">
-                  <input type="checkbox" id="chkRw5ApplyTg20" class="cursor-pointer accent-emerald" />
-                  <span class="text-sm font-bold text-emerald d-flex items-center gap-6">
-                    <i class="fa-solid fa-mountain-sun"></i> <span data-i18n="cadastre.lblTg20Reduction"></span>
-                  </span>
-                </label>
-                <div id="badgeRw5Tg20Applied" class="d-none">
-                  <span class="badge badge-emerald text-sm">
-                    <i class="fa-solid fa-check-circle"></i> <span data-i18n="cadastre.badgeTg20Active"></span>
-                  </span>
-                </div>
-                <span class="text-sm text-dim" id="lblRw5Tg20Status" data-i18n="cadastre.lblTg20StatusHint"></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Static Coordinate Notice Banner (Shows when user uploads TXT/NCN instead of Raw GNSS sessions) -->
-          <div id="cadastreStaticCoordBanner" class="alert-static-coord-banner d-none">
-            <div class="d-flex items-start gap-12">
-              <div class="alert-icon pt-2"><i class="fa-solid fa-circle-info text-amber text-lg"></i></div>
-              <div class="flex-1">
-                <div class="font-bold text-amber text-sm" data-i18n="cadastre.bannerStaticTitle"></div>
-                <div class="text-xs text-dim mt-4 leading-relaxed" data-i18n="cadastre.bannerStaticDesc"></div>
-                <div class="mt-8 d-flex gap-8 flex-wrap">
-                  <button type="button" class="btn btn-secondary btn-xs" id="btnGoToFormatConverter">
-                    <i class="fa-solid fa-file-export text-cyan"></i> <span data-i18n="cadastre.btnGoConverter"></span>
-                  </button>
-                  <button type="button" class="btn btn-secondary btn-xs" id="btnGoToCoordTransform">
-                    <i class="fa-solid fa-arrows-rotate text-emerald"></i> <span data-i18n="cadastre.btnGoGeodesy"></span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- GPSFormat Subtabs Bar -->
-          <div class="subtabs-bar">
-            <button class="btn btn-primary sub-tab-btn active" data-subtab="subtab-rtk">
-              <i class="fa-solid fa-satellite"></i> <span data-i18n="cadastre.tabRtkTable"></span>
-            </button>
-            <button class="btn btn-secondary sub-tab-btn d-inline-flex items-center gap-6" data-subtab="subtab-gcp"
-              id="btnSubtabGcp">
-              <i class="fa-solid fa-check-double"></i>
-              <span data-i18n="cadastre.tabGcpKarne"></span>
-              <span id="badgeGcpPairCount" class="d-none"></span>
-            </button>
-            <button class="btn btn-secondary sub-tab-btn" data-subtab="subtab-coordinate">
-              <i class="fa-solid fa-file-lines"></i> <span data-i18n="cadastre.tabCoordsTransfer"></span>
-            </button>
-            <button class="btn btn-secondary sub-tab-btn" data-subtab="subtab-view">
-              <i class="fa-solid fa-map-location-dot"></i> <span data-i18n="cadastre.tabMapView"></span>
-            </button>
-          </div>
-
-          <!-- SUBTAB 1: RTK Ã–LÃ‡ÃœM TABLOSU (Unified RTK & Detail Master Table) -->
-          <div id="subtab-rtk" class="subtab-content active">
-            <!-- RTK Telemetry & Survey Statistics KPI Grid -->
-            <div class="kpi-grid mb-16" id="cadastreKpiGrid">
-              <div class="kpi-card">
-                <div class="kpi-icon icon-cyan">
-                  <i class="fa-solid fa-satellite-dish"></i>
-                </div>
-                <div>
-                  <div class="kpi-val text-cyan" id="kpiRtkTotalCount">0</div>
-                  <div class="kpi-label" data-i18n="cadastre.kpiTotalPoints">Toplam Nokta & Ã‡ift Okuma</div>
-                  <div class="text-3xs text-dim font-mono" id="kpiRtkDualSummary">0 Ã‡ift Okuma</div>
-                </div>
-              </div>
-
-              <div class="kpi-card">
-                <div class="kpi-icon icon-emerald">
-                  <i class="fa-solid fa-bullseye"></i>
-                </div>
-                <div>
-                  <div class="kpi-val text-emerald" id="kpiRtkAvgHrms">--</div>
-                  <div class="kpi-label" data-i18n="cadastre.kpiAvgHrms">Ort. HRMS Hassasiyeti</div>
-                  <div class="text-3xs text-dim font-mono" id="kpiRtkHrmsRange">Min: -- | Max: --</div>
-                </div>
-              </div>
-
-              <div class="kpi-card">
-                <div class="kpi-icon icon-purple">
-                  <i class="fa-solid fa-cubes"></i>
-                </div>
-                <div>
-                  <div class="kpi-val text-purple" id="kpiRtkAvgPdop">--</div>
-                  <div class="kpi-label" data-i18n="cadastre.kpiAvgPdop">Ortalama PDOP</div>
-                  <div class="text-3xs text-dim font-mono" id="kpiRtkPdopRange">Min: -- | Max: --</div>
-                </div>
-              </div>
-
-              <div class="kpi-card">
-                <div class="kpi-icon icon-amber">
-                  <i class="fa-solid fa-clock-rotate-left"></i>
-                </div>
-                <div>
-                  <div class="kpi-val text-amber" id="kpiRtkFixRate">--</div>
-                  <div class="kpi-label" data-i18n="cadastre.kpiFixRate">Ã‡Ã¶zÃ¼m & Epoch Durumu</div>
-                  <div class="text-3xs text-dim font-mono" id="kpiRtkAvgEpochs">Ortalama -- Epoch</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="data-panel">
-              <div class="card-header items-center flex-wrap gap-8 border-b pb-8 mb-10">
-                <div class="card-title m-0">
-                  <i class="fa-solid fa-satellite text-cyan"></i>
-                  <span data-i18n="cadastre.rtkTableTitle"></span>
-                </div>
-                <div class="d-flex flex-wrap gap-6 items-center">
-                  <button class="btn btn-primary btn-sm" id="btnPrintTg20RwReportRtk"><i
-                      class="fa-solid fa-file-pdf"></i> <span data-i18n="cadastre.btnPdfReportShort"></span></button>
-                  <button class="btn btn-secondary btn-sm text-sm text-purple" id="btnExportNcnRtk"><i
-                      class="fa-solid fa-vector-square"></i> <span data-i18n="cadastre.btnNetcadNcn"></span></button>
-                  <button class="btn btn-secondary btn-sm text-sm" id="btnExportRtkCsv"><i
-                      class="fa-solid fa-file-csv"></i> <span data-i18n="cadastre.btnRtkCsv"></span></button>
-                  <button class="btn btn-secondary btn-sm text-sm" id="btnExportDxfRtk"><i
-                      class="fa-solid fa-draw-polygon"></i> <span data-i18n="cadastre.btnAutocadDxf"></span></button>
-                  <button class="btn btn-secondary btn-sm text-sm" id="btnExportKmlRtk"><i
-                      class="fa-solid fa-earth-americas"></i> <span data-i18n="cadastre.btn3dKml"></span></button>
-                </div>
-              </div>
-
-              <div class="table-responsive table-scroll-520">
-                <table>
-                  <thead id="theadGpsFormatRtk">
-                    <tr>
-                      <th>#</th>
-                      <th data-i18n="cadastre.thPoint"></th>
-                      <th data-i18n="cadastre.thDateTime"></th>
-                      <th data-i18n="ui.eastingSaga"></th>
-                      <th data-i18n="ui.northingYukari"></th>
-                      <th id="thRtkKot" data-i18n="cadastre.thElHgt"></th>
-                      <th class="th-tg20-n col-tg20" style="display:none"><i class="fa-solid fa-layer-group"></i> <span data-i18n="cadastre.thTg20N"></span></th>
-                      <th class="th-tg20-h col-tg20" style="display:none"><i class="fa-solid fa-mountain"></i> <span data-i18n="geomatics.orthometricHeight"></span></th>
-                      <th data-i18n="cadastre.thEpoch"></th>
-                      <th data-i18n="cadastre.thHz"></th>
-                      <th data-i18n="cadastre.thSat"></th>
-                      <th data-i18n="cadastre.thHrms"></th>
-                      <th data-i18n="cadastre.thVrms"></th>
-                      <th data-i18n="cadastre.thPdop"></th>
-                      <th data-i18n="cadastre.thStatus"></th>
-                      <th data-i18n="cadastre.thNetwork"></th>
-                      <th data-i18n="cadastre.thMethod"></th>
-                      <th data-i18n="cadastre.thAntHt"></th>
-                      <th data-i18n="cadastre.thLat"></th>
-                      <th data-i18n="cadastre.thLon"></th>
-                    </tr>
-                  </thead>
-                  <tbody id="tableGpsFormatRtkBody">
-                    <tr class="empty-state-row">
-                      <td colspan="20" class="text-center py-40">
-                        <div class="d-flex flex-col items-center justify-center gap-8 py-20">
-                          <i class="fa-solid fa-satellite text-cyan text-2xl opacity-75"></i>
-                          <strong class="text-white text-sm" data-i18n="cadastre.emptyTableTitle"></strong>
-                          <span class="text-xs text-dim max-w-md text-center" data-i18n="cadastre.emptyTableHint"></span>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- SUBTAB 2: GCP / Ã‡Ä°FT OKUMA VE RESMÄ° Ã–LÃ‡Ãœ KARNESÄ° -->
-          <div id="subtab-gcp" class="subtab-content">
-            <div class="data-panel">
-              <div class="card-header items-center flex-wrap gap-8 border-b pb-8 mb-10">
-                <div class="card-title m-0">
-                  <i class="fa-solid fa-check-double text-emerald"></i>
-                  <span data-i18n="cadastre.gcpMasterTitle"></span>
-                </div>
-                <div class="d-flex flex-wrap gap-6 items-center">
-                  <button class="btn btn-primary btn-sm" id="btnPrintCadastre"><i
-                      class="fa-solid fa-file-pdf"></i> <span data-i18n="cadastre.btnOfficialKarnePdf"></span></button>
-                  <button class="btn btn-primary btn-sm" id="btnPrintTg20RwReportGcp"><i
-                      class="fa-solid fa-file-pdf"></i> <span data-i18n="cadastre.btnPdfReportShort"></span></button>
-                  <button class="btn btn-secondary btn-sm text-sm text-purple" id="btnExportNcn"><i
-                      class="fa-solid fa-vector-square"></i> <span data-i18n="cadastre.btnNetcadNcn"></span></button>
-                  <button class="btn btn-secondary btn-sm text-sm" id="btnExportCadastreCsv"><i
-                      class="fa-solid fa-file-excel"></i> <span data-i18n="cadastre.btnExcelCsv"></span></button>
-                  <button class="btn btn-secondary btn-sm text-sm" id="btnExportDxf"><i
-                      class="fa-solid fa-draw-polygon"></i> <span data-i18n="cadastre.btnAutocadDxf"></span></button>
-                  <button class="btn btn-secondary btn-sm text-sm" id="btnExportKmlCadastre"><i
-                      class="fa-solid fa-earth-americas"></i> <span data-i18n="cadastre.btn3dKml"></span></button>
-                </div>
-              </div>
-
-              <!-- Warning Alert Balloon when No Double Readings Exist -->
-              <div id="alertGcpNoPairs" class="alert-amber-banner">
-                <div class="d-flex items-center gap-8">
-                  <i class="fa-solid fa-circle-info text-amber text-md"></i>
-                  <span class="text-sm text-dim" data-i18n="cadastre.alertNoPairsDesc"></span>
-                </div>
-                <span class="text-xs text-emerald badge badge-emerald font-semibold">
-                  <i class="fa-solid fa-check"></i> <span data-i18n="cadastre.alertDownloadSingleTg20Pdf"></span>
-                </span>
-              </div>
-
-              <div class="table-responsive table-scroll-520">
-                <table>
-                  <thead id="theadRw5Matched">
-                    <tr>
-                      <th data-i18n="ui.noktaAdi"></th>
-                      <th data-i18n="ui.1OlcuZaman"></th>
-                      <th data-i18n="ui.2OlcuZaman"></th>
-                      <th data-i18n="ui.zamanFarki"></th>
-                      <th data-i18n="cadastre.thDyCm"></th>
-                      <th data-i18n="cadastre.thDxCm"></th>
-                      <th data-i18n="cadastre.thDhCm"></th>
-                      <th data-i18n="cadastre.thDs2dCm"></th>
-                      <th data-i18n="ui.olcumHataKontrolu"></th>
-                      <th data-i18n="ui.ySaga"></th>
-                      <th data-i18n="ui.xYukari"></th>
-                      <th id="thRw5MatchedKot" data-i18n="cadastre.thElHgt"></th>
-                      <th class="th-tg20-n col-tg20" style="display:none"><i class="fa-solid fa-layer-group"></i> <span data-i18n="cadastre.thTg20N"></span></th>
-                      <th class="th-tg20-h col-tg20" style="display:none"><i class="fa-solid fa-mountain"></i> <span data-i18n="geomatics.orthometricHeight"></span></th>
-                    </tr>
-                  </thead>
-                  <tbody id="tableRw5MatchedBody">
-                    <tr class="empty-state-row">
-                      <td colspan="14" class="text-center py-40">
-                        <div class="d-flex flex-col items-center justify-center gap-8 py-20">
-                          <i class="fa-solid fa-check-double text-emerald text-2xl opacity-75"></i>
-                          <strong class="text-white text-sm" data-i18n="cadastre.emptyMatchedTableTitle"></strong>
-                          <span class="text-xs text-dim max-w-md text-center" data-i18n="cadastre.emptyMatchedTableHint"></span>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- ========================================================================= -->
-          <!-- CADASTRE & RTK COMPONENT TEMPLATES (Zero-overhead clean DOM templates)    -->
-          <!-- ========================================================================= -->
-          <template id="tmplRtkRow">
-            <tr class="cadastre-rtk-row cursor-pointer">
-              <td class="cell-idx text-dim"></td>
-              <td class="cell-pn font-bold text-cyan"></td>
-              <td class="cell-time text-sm font-mono"></td>
-              <td class="cell-e font-mono font-semibold"></td>
-              <td class="cell-n font-mono font-semibold"></td>
-              <td class="cell-h font-mono"></td>
-              <td class="cell-tg20-n td-tg20-n col-tg20" style="display:none"></td>
-              <td class="cell-tg20-h td-tg20-h col-tg20" style="display:none"></td>
-              <td class="cell-ep"></td>
-              <td class="cell-hz"></td>
-              <td class="cell-sats"></td>
-              <td class="cell-hrms font-mono text-emerald"></td>
-              <td class="cell-vrms font-mono text-sky"></td>
-              <td class="cell-pdop font-mono"></td>
-              <td class="cell-status"></td>
-              <td class="cell-network"></td>
-              <td class="cell-method"></td>
-              <td class="cell-hr font-mono"></td>
-              <td class="cell-lat font-mono text-xs"></td>
-              <td class="cell-lon font-mono text-xs"></td>
-            </tr>
-          </template>
-
-          <template id="tmplMatchedRow">
-            <tr class="cadastre-matched-row cursor-pointer">
-              <td class="cell-pn font-bold text-white"></td>
-              <td class="cell-t1 text-sm font-mono"></td>
-              <td class="cell-t2 text-sm font-mono"></td>
-              <td class="cell-dt"></td>
-              <td class="cell-dy font-mono"></td>
-              <td class="cell-dx font-mono"></td>
-              <td class="cell-dh font-mono"></td>
-              <td class="cell-ds font-mono font-extrabold text-sm"></td>
-              <td class="cell-status"></td>
-              <td class="cell-e font-mono text-cyan font-bold"></td>
-              <td class="cell-n font-mono text-cyan font-bold"></td>
-              <td class="cell-h font-mono"></td>
-              <td class="cell-tg20-n td-tg20-n col-tg20" style="display:none"></td>
-              <td class="cell-tg20-h td-tg20-h col-tg20" style="display:none"></td>
-            </tr>
-          </template>
-
-          <template id="tmplUnmatchedRow">
-            <tr class="cadastre-unmatched-row bg-amber/5 cursor-pointer">
-              <td class="cell-pn font-bold text-white"></td>
-              <td class="cell-t1 text-sm font-mono"></td>
-              <td class="cell-t2 text-dim text-center">--</td>
-              <td class="cell-dt text-dim text-center">--</td>
-              <td class="cell-dy text-dim text-center">--</td>
-              <td class="cell-dx text-dim text-center">--</td>
-              <td class="cell-dh text-dim text-center">--</td>
-              <td class="cell-ds text-dim text-center">--</td>
-              <td class="cell-status"><span class="badge badge-amber" data-i18n="cadastre.badgeSingleWarn"></span></td>
-              <td class="cell-e font-mono text-amber"></td>
-              <td class="cell-n font-mono text-amber"></td>
-              <td class="cell-h font-mono"></td>
-              <td class="cell-tg20-n td-tg20-n col-tg20" style="display:none"></td>
-              <td class="cell-tg20-h td-tg20-h col-tg20" style="display:none"></td>
-            </tr>
-          </template>
-
-          <!-- SUBTAB 3: COORDINATE -->
-          <div id="subtab-coordinate" class="subtab-content">
-            <div class="data-panel">
-              <div class="card-header flex-wrap gap-8 border-b pb-8 mb-10">
-                <div class="card-title m-0"><i class="fa-solid fa-file-lines text-purple"></i><span data-i18n="cadastre.coordsExportTitle"></span></div>
-                <div class="d-flex gap-8 items-center flex-wrap">
-                  <label class="text-sm text-muted" data-i18n="ui.siralama"></label>
-                  <select id="selectCoordOrder" class="form-input form-select text-sm h-32">
-                    <option value="Pt,E,N,h" data-i18n="ui.noktanoSagaYYukari"></option>
-                    <option value="Pt,N,E,h" data-i18n="ui.noktanoYukariXSaga"></option>
-                    <option value="E,N,h,Pt" data-i18n="ui.sagaYYukariX"></option>
-                    <option value="CSV_Y_X_H" data-i18n="ui.noktanoSagaYYukari"></option>
-                  </select>
-                  <button class="btn btn-primary" id="btnCopyCoords"><i class="fa-solid fa-copy"></i> <span data-i18n="common.copy"></span></button>
-                  <button class="btn btn-secondary" id="btnDownloadCoordTxt"><i class="fa-solid fa-download"></i> <span data-i18n="cadastre.btnDownloadTxt"></span></button>
-                </div>
-              </div>
-              <textarea id="txtCoordOutput" class="code-editor-textarea" readonly></textarea>
-            </div>
-          </div>
-
-          <!-- SUBTAB 4: VIEW / HARÄ°TA -->
-          <div id="subtab-view" class="subtab-content">
-            <div class="card app-map-card p-0 overflow-hidden">
-              <div class="card-header p-14 border-b border-white/10 d-flex items-center justify-between flex-wrap gap-8">
-                <div class="card-title m-0">
-                  <i class="fa-solid fa-map-location-dot text-cyan"></i>
-                  <span id="titleCadastreMap" data-i18n="cadastre.mapTitle"></span>
-                  <span class="badge badge-cyan text-xs font-mono ml-6" id="badgeCadastreMapCrs" data-i18n="cadastre.badgeCrsDefault"></span>
-                  <span class="badge badge-secondary text-xs font-mono ml-4" id="badgeCadastreMapCount" data-i18n="ui.0Nokta"></span>
-                </div>
-                <div class="d-flex items-center gap-6 flex-wrap">
-                  <button type="button" class="btn btn-xs btn-secondary" id="btnCadastreResetView" title="" data-i18n-title="cadastre.btnResetView">
-                    <i class="fa-solid fa-earth-americas text-cyan"></i> <span data-i18n="cadastre.btnResetView"></span>
-                  </button>
-                  <button type="button" class="btn btn-xs btn-secondary" id="btnFitCadastreMap" title="" data-i18n-title="cadastre.btnFit">
-                    <i class="fa-solid fa-expand"></i> <span data-i18n="cadastre.btnFit"></span>
-                  </button>
-                  <button type="button" class="btn btn-xs btn-secondary active text-cyan" id="btnCadastreToggleLabels" title="" data-i18n-title="cadastre.btnLabels">
-                    <i class="fa-solid fa-tag"></i> <span data-i18n="cadastre.btnLabels"></span>
-                  </button>
-                  <button type="button" class="btn btn-xs btn-secondary" id="btnCadastreToggleRoute" title="" data-i18n-title="cadastre.btnRoute">
-                    <i class="fa-solid fa-route"></i> <span data-i18n="cadastre.btnRoute"></span>
-                  </button>
-                  <div class="btn-group ml-4" id="cadastreMapFilterGroup">
-                    <button type="button" class="btn btn-xs btn-secondary active" data-map-filter="ALL" id="filterCadastreAll" data-i18n="cadastre.filterAll"></button>
-                    <button type="button" class="btn btn-xs btn-secondary text-emerald" data-map-filter="DUAL_PASS" id="filterCadastreDualPass" data-i18n="cadastre.filterDualPass"></button>
-                    <button type="button" class="btn btn-xs btn-secondary text-rose" data-map-filter="DUAL_FAIL" id="filterCadastreDualFail" data-i18n="cadastre.filterDualFail"></button>
-                    <button type="button" class="btn btn-xs btn-secondary text-amber" data-map-filter="SINGLE" id="filterCadastreSingle" data-i18n="cadastre.filterSingle"></button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Full Height Panoramic Map Canvas (560px) + Floating Telemetry HUD -->
-              <div class="pos-rel w-100">
-                <div id="cadastreMapContainer" class="map-canvas app-map-container"></div>
-
-                <!-- Floating Luxury GIS Telemetry Panel (Corner Docked) -->
-                <div id="cadastreMapLiveHud" class="map-hud-badge">
-                  <div class="d-flex items-center gap-10">
-                    <div class="bento-icon-box">
-                      <i class="fa-solid fa-crosshairs text-cyan text-lg"></i>
-                    </div>
-                    <div class="d-flex flex-col">
-                      <span class="text-2xs uppercase tracking-wider text-dim font-bold" id="lblCadastreHudTitle" data-i18n="cadastre.hudTelemetryTitle"></span>
-                      <div class="d-flex items-baseline gap-6">
-                        <span id="cadastreHudPointName" class="text-lg font-mono font-extrabold text-cyan text-glow-cyan">--</span>
-                        <span id="cadastreHudStatusBadge" class="badge badge-secondary text-2xs" data-i18n="cadastre.hudNoSurvey"></span>
-                        <span id="cadastreHudDsVal" class="text-xs font-mono text-emerald font-bold"></span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="hud-divider"></div>
-
-                  <div class="d-flex flex-col gap-2 text-xs">
-                    <div class="d-flex items-center gap-8">
-                      <span class="text-dim" data-i18n="ui.sagaYukari"></span>
-                      <strong id="cadastreHudCoords" class="font-mono text-white">Y: -- | X: --</strong>
-                    </div>
-                    <div class="d-flex items-center gap-8">
-                      <span class="text-dim" data-i18n="ui.kotHHN"></span>
-                      <strong id="cadastreHudHeights" class="font-mono text-amber">H: -- | h: -- | N: --</strong>
-                    </div>
-                  </div>
-
-                  <div class="hud-divider d-none-mobile"></div>
-
-                  <div class="d-flex flex-col gap-2 text-xs d-none-mobile">
-                    <div class="d-flex items-center gap-8">
-                      <span class="text-dim" data-i18n="cadastre.hudQualityLabel"></span>
-                      <strong id="cadastreHudQuality" class="font-mono text-cyan">RMS: -- | PDOP: --</strong>
-                    </div>
-                    <div class="d-flex items-center gap-8">
-                      <span class="text-dim" data-i18n="cadastre.hudSatTimeLabel"></span>
-                      <strong id="cadastreHudTime" class="font-mono text-slate-300">SAT: -- | --:--:--</strong>
-                    </div>
-                  </div>
-
-                  <div class="hud-divider"></div>
-
-                  <div class="d-flex items-center gap-6">
-                    <button type="button" id="btnCadastreHudCopy"
-                      class="btn btn-secondary btn-sm text-xs py-4 px-10 text-cyan border-cyan font-bold"
-                      title="" data-i18n-title="cadastre.hudCopyTitle">
-                      <i class="fa-solid fa-copy"></i> <span data-i18n="cadastre.hudBtnCopy"></span>
-                    </button>
-                    <button type="button" id="btnCadastreHudFocus"
-                      class="btn btn-primary btn-sm text-xs py-4 px-10 font-bold"
-                      title="" data-i18n-title="cadastre.hudFocusTitle">
-                      <i class="fa-solid fa-magnifying-glass-location"></i> <span data-i18n="cadastre.hudBtnFocus"></span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Quick Export Toolbar -->
-              <div class="card export-bar">
-                <div class="d-flex justify-between items-center flex-wrap gap-8">
-                  <div class="export-tag">
-                    <i class="fa-solid fa-file-export text-emerald"></i>
-                    <span id="lblCadastreMapExport" data-i18n="cadastre.exportTitle"></span>
-                  </div>
-
-                  <div class="export-actions" id="cadastreMapExportButtons">
-                    <button type="button" class="btn btn-secondary btn-sm text-cyan" id="btnCadastreMapExportDxf" title="" data-i18n-title="cadastre.titleExportDxf">
-                      <i class="fa-solid fa-file-code text-cyan"></i> <span data-i18n="cadastre.btnExportDxf"></span>
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm" id="btnCadastreMapExportKml" title="" data-i18n-title="cadastre.titleExportKml">
-                      <i class="fa-solid fa-earth-americas text-emerald"></i> <span data-i18n="cadastre.btnExportKml"></span>
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm" id="btnCadastreMapExportNcn" title="" data-i18n-title="cadastre.titleExportNcn">
-                      <i class="fa-solid fa-hashtag text-cyan"></i> <span data-i18n="cadastre.btnExportNcn"></span>
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm" id="btnCadastreMapExportCsv" title="" data-i18n-title="cadastre.titleExportCsv">
-                      <i class="fa-solid fa-file-csv text-emerald"></i> <span data-i18n="cadastre.btnExportCsv"></span>
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm text-amber" id="btnCadastreMapExportPdf" title="" data-i18n-title="cadastre.titleExportPdf">
-                      <i class="fa-solid fa-file-pdf text-amber"></i> <span data-i18n="cadastre.btnExportPdf"></span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Status Bar -->
-          <div class="status-bar-footer">
-            <div><span class="text-cyan font-bold" data-i18n="cadastre.barCriterionLabel"></span> <span id="barCriterion" data-i18n="cadastre.statusBarFix"></span></div>
-            <div><span class="text-cyan font-bold" data-i18n="cadastre.barProjLabel"></span> <span id="barProj" data-i18n="cadastre.statusBarTm"></span></div>
-            <div><span class="text-cyan font-bold" data-i18n="cadastre.barGeoidLabel"></span> <span id="barGeoid">N=h-H=34.455m</span></div>
-            <div><span class="text-emerald font-semibold" data-i18n="cadastre.statusBarBrand"></span> | <span data-i18n="cadastre.barWebEdition"></span></div>
-          </div>
-
+    <!-- Header & Action Bar -->
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--geo-space-3);">
+      <div>
+        <div style="display: flex; align-items: center; gap: var(--geo-space-2);">
+          <h2 style="font-family: var(--geo-font-display); font-size: var(--geo-fs-xl); font-weight: 700; color: var(--geo-text-white);">
+            Kadastro RTK & Çift Okuma Denetim Stüdyosu
+          </h2>
+          <span class="geo-badge geo-badge-emerald">BÖHHBÜY Madde 28</span>
+          <span class="geo-badge geo-badge-cyan">TÜSAGA-Aktif</span>
         </div>
-      </section>
+        <p style="font-size: var(--geo-fs-xs); color: var(--geo-text-muted); margin-top: 2px;">
+          TÜSAGA-Aktif GNSS ham ölçüm dosyalarını (RW5, RAW, CSV, JXL) analiz edin, çift okuma tecviz farklarını ve resmi ölçü karnesini üretin.
+        </p>
+      </div>
+      <div style="display: flex; align-items: center; gap: var(--geo-space-2);">
+        <button id="btnPrintCadastre" class="geo-btn geo-btn-secondary geo-btn-sm">
+          <i class="fa-solid fa-print"></i> Yazdır / PDF
+        </button>
+        <button id="btnExportTg20RwReport" class="geo-btn geo-btn-primary geo-btn-sm">
+          <i class="fa-solid fa-file-pdf"></i> TG-20 PDF Raporu
+        </button>
+      </div>
+    </div>
+
+    <!-- Dropzone & Parameters Grid -->
+    <div class="geo-grid geo-grid-12">
+      
+      <!-- Upload Zone (8 cols) -->
+      <div class="geo-col-span-8">
+        <div class="geo-card" style="height: 100%;">
+          <div class="geo-card-header">
+            <span class="geo-card-title"><i class="fa-solid fa-file-arrow-up"></i> GNSS Ham Gözlem & RTK Dosyası</span>
+            <span id="brandDetectPill" class="geo-badge geo-badge-cyan">Otomatik Marka Algılama</span>
+          </div>
+          <div class="geo-card-body">
+            <label for="rw5FileInput" class="geo-dropzone" style="cursor: pointer; min-height: 180px;">
+              <input type="file" id="rw5FileInput" accept=".rw5,.raw,.csv,.txt,.jxl" style="display: none;" />
+              <div class="geo-dropzone-icon" style="background: rgba(16, 185, 129, 0.12); color: var(--geo-emerald); box-shadow: 0 0 20px var(--geo-emerald-glow);">
+                <i class="fa-solid fa-satellite"></i>
+              </div>
+              <div>
+                <div class="geo-dropzone-title">GNSS / RTK Ham Gözlem Dosyasını Seçin</div>
+                <div class="geo-dropzone-sub" style="margin-top: 4px;">Carlson (.RW5, .RAW), Leica / Trimble (.CSV, .TXT), Spectra / Trimble (.JXL)</div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tecviz & Filter Criteria (4 cols) -->
+      <div class="geo-col-span-4">
+        <div class="geo-card" style="height: 100%; justify-content: space-between;">
+          <div class="geo-card-header">
+            <span class="geo-card-title"><i class="fa-solid fa-ruler-combined"></i> Tecviz & Eşleme Kriteri</span>
+          </div>
+          <div class="geo-card-body">
+            <div class="geo-form-group">
+              <label class="geo-label" for="rw5Radius">Maksimum Eşleme Yarıçapı (m)</label>
+              <input type="number" id="rw5Radius" value="0.5" step="0.1" class="geo-input" />
+            </div>
+            <div class="geo-form-group">
+              <label class="geo-label" for="rw5Tolerance">Tecviz Sınırı (cm)</label>
+              <input type="number" id="rw5Tolerance" value="7" class="geo-input" />
+            </div>
+            <div class="geo-form-group">
+              <label class="geo-label" for="rw5MinTime">Minimum Zaman Farkı (dk)</label>
+              <input type="number" id="rw5MinTime" value="15" class="geo-input" />
+            </div>
+          </div>
+          <div class="geo-card-footer">
+            <button id="btnAnalyzeRw5" class="geo-btn geo-btn-primary" style="width: 100%;">
+              <i class="fa-solid fa-play"></i> Çift Okuma Analizini Başlat
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Subtabs Navigation -->
+    <div class="geo-subtabs">
+      <button class="geo-subtab-btn subtab-btn active" data-subtab="subtab-upload">
+        <i class="fa-solid fa-list-check"></i> Ölçüm Tablosu
+      </button>
+      <button class="geo-subtab-btn subtab-btn" data-subtab="subtab-matched">
+        <i class="fa-solid fa-check-double"></i> Resmi Çift Okuma & Tecviz Karnesi
+      </button>
+      <button class="geo-subtab-btn subtab-btn" data-subtab="subtab-view">
+        <i class="fa-solid fa-map-location-dot"></i> Parsel & Nokta Haritası
+      </button>
+      <button class="geo-subtab-btn subtab-btn" data-subtab="subtab-coordinate">
+        <i class="fa-solid fa-file-lines"></i> Koordinat Aktarımı
+      </button>
+    </div>
+
+    <!-- Subtab 1: Raw RTK Measurements Table -->
+    <div id="subtab-upload" class="subtab-content">
+      <div class="geo-card">
+        <div class="geo-card-header">
+          <span class="geo-card-title"><i class="fa-solid fa-table"></i> RTK Detaylı Ham GNSS Ölçüm Tablosu</span>
+          <div style="display: flex; gap: 6px;">
+            <button id="btnExportRtkCsv" class="geo-btn geo-btn-secondary geo-btn-sm"><i class="fa-solid fa-file-csv"></i> CSV</button>
+            <button id="btnExportDxf" class="geo-btn geo-btn-secondary geo-btn-sm"><i class="fa-solid fa-pen-ruler"></i> DXF</button>
+            <button id="btnExportNcn" class="geo-btn geo-btn-secondary geo-btn-sm"><i class="fa-solid fa-location-crosshairs"></i> NCN</button>
+          </div>
+        </div>
+        <div class="geo-table-wrap">
+          <table class="geo-table">
+            <thead>
+              <tr>
+                <th>Nokta Adı</th>
+                <th>Tarih / Saat</th>
+                <th>Sağa Değer (Y)</th>
+                <th>Yukarı Değer (X)</th>
+                <th>Elipsoit Yük. (h)</th>
+                <th>Ortometrik (H)</th>
+                <th>Epok</th>
+                <th>HRMS</th>
+                <th>VRMS</th>
+                <th>PDOP</th>
+                <th>Çözüm</th>
+              </tr>
+            </thead>
+            <tbody id="tableGpsFormatRtkBody">
+              <tr>
+                <td colspan="11" style="text-align: center; color: var(--geo-text-muted); padding: 24px;">
+                  Henüz GNSS/RTK gözlem dosyası yüklenmedi.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subtab 2: Dual Matched Verification Table -->
+    <div id="subtab-matched" class="subtab-content" style="display: none;">
+      <div class="geo-card">
+        <div class="geo-card-header">
+          <span class="geo-card-title"><i class="fa-solid fa-file-signature"></i> Resmi Çift Okuma & Tecviz Karnesi (BÖHHBÜY Madde 28)</span>
+        </div>
+        <div class="geo-table-wrap">
+          <table class="geo-table">
+            <thead>
+              <tr>
+                <th>Nokta No</th>
+                <th>1. Ölçü (Zaman)</th>
+                <th>2. Ölçü (Zaman)</th>
+                <th>Fark (dk)</th>
+                <th>dY (cm)</th>
+                <th>dX (cm)</th>
+                <th>dH (cm)</th>
+                <th>dS Konum (cm)</th>
+                <th>Tecviz Durumu</th>
+              </tr>
+            </thead>
+            <tbody id="tableRw5MatchedBody">
+              <tr>
+                <td colspan="9" style="text-align: center; color: var(--geo-text-muted); padding: 24px;">
+                  Çift okuma analizi için ham gözlem dosyası yükleyin.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subtab 3: Cadastre Map View -->
+    <div id="subtab-view" class="subtab-content" style="display: none;">
+      <div class="geo-card geo-card-map" style="height: 520px; position: relative;">
+        <div id="cadastreMap" style="width: 100%; height: 100%; background: #030611;"></div>
+        <div style="position: absolute; top: 12px; right: 12px; z-index: 1000;">
+          <button id="btnFitCadastreMap" class="geo-btn geo-btn-secondary geo-btn-sm">
+            <i class="fa-solid fa-expand"></i> Noktalara Odaklan
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subtab 4: Coordinate Output -->
+    <div id="subtab-coordinate" class="subtab-content" style="display: none;">
+      <div class="geo-card">
+        <div class="geo-card-header">
+          <span class="geo-card-title"><i class="fa-solid fa-file-lines"></i> Biçimlendirilmiş Koordinat Listesi</span>
+          <div style="display: flex; gap: 8px;">
+            <select id="selectCoordOrder" class="geo-select" style="width: auto; height: 32px; font-size: 12px;">
+              <option value="NO_Y_X_Z">NoktaNo, Y, X, Z (Netcad / Standart)</option>
+              <option value="NO_X_Y_Z">NoktaNo, X, Y, Z (AutoCAD / GIS)</option>
+            </select>
+            <button id="btnCopyCoords" class="geo-btn geo-btn-secondary geo-btn-sm"><i class="fa-solid fa-copy"></i> Kopyala</button>
+            <button id="btnDownloadCoordTxt" class="geo-btn geo-btn-primary geo-btn-sm"><i class="fa-solid fa-download"></i> İndir (.TXT)</button>
+          </div>
+        </div>
+        <div class="geo-card-body">
+          <textarea id="txtCoordOutput" class="geo-textarea geo-mono" style="min-height: 220px;" readonly placeholder="Koordinat listesi burada görüntülenecektir..."></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

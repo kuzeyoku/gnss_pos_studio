@@ -1,139 +1,108 @@
-  <!-- Sidebar -->
-  <aside class="sidebar" id="appSidebar">
-    <button id="btnMobileSidebarClose" class="mobile-sidebar-close" aria-label="" data-i18n-aria="sidebar.closeAria" type="button">
+<!-- ==========================================================================
+     NEXT-GEN STUDIO — OBSIDIAN GLASS DOCK / SIDEBAR
+     ========================================================================== -->
+<aside class="geo-sidebar sidebar" id="appSidebar">
+  <!-- Brand Header -->
+  <div class="geo-brand">
+    <a href="#home" class="geo-brand-logo">
+      <div class="geo-brand-icon">
+        <i class="fa-solid fa-satellite"></i>
+      </div>
+      <div class="geo-brand-text">
+        <span class="geo-brand-title">GNSS POS STUDIO</span>
+        <span class="geo-brand-sub">Geodetic Pro v3.0</span>
+      </div>
+    </a>
+    <button id="btnMobileSidebarClose" class="geo-toggle-btn d-lg-none" aria-label="Menüyü Kapat" type="button" style="display: none;">
       <i class="fa-solid fa-xmark"></i>
     </button>
-    <div class="brand">
-      <div class="brand-icon">
-        <i class="fa-solid fa-satellite-dish"></i>
-        <span class="brand-signal-pulse"></span>
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav class="geo-nav">
+    
+    <!-- Group 1: Genel Bakış -->
+    <div class="geo-nav-group">
+      <span class="geo-nav-header">Genel Bakış</span>
+      <div class="geo-nav-item nav-item active" data-tab="tab-home">
+        <div class="geo-nav-icon"><i class="fa-solid fa-house"></i></div>
+        <span class="geo-nav-label">Stüdyo Merkezi</span>
       </div>
-      <div class="brand-info">
-        <div class="brand-title-wrap">
-          <h2 data-i18n="navigation.tabDashboard.title"></h2>
-          <span class="badge badge-amber font-mono">BETA</span>
-        </div>
-        <span class="brand-subtitle"><span class="brand-live-dot"></span> <span data-i18n="sidebar.subTitle"></span></span>
+    </div>
+
+    <!-- Group 2: Veri & Dönüştürme -->
+    <div class="geo-nav-group">
+      <span class="geo-nav-header">Veri & Dönüşüm</span>
+      <div class="geo-nav-item nav-item" data-tab="tab-converter">
+        <div class="geo-nav-icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+        <span class="geo-nav-label">Format Dönüştürücü</span>
+        <span class="geo-nav-badge">CAD/CBS</span>
+      </div>
+      <div class="geo-nav-item nav-item" data-tab="tab-cadastre">
+        <div class="geo-nav-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+        <span class="geo-nav-label">Kadastro & RTK</span>
       </div>
     </div>
 
-    <div class="sidebar-nav-container">
-      <div class="nav-section-title" data-i18n="sidebar.secCore"></div>
-      <ul class="nav-menu">
-        <li class="nav-item active" data-tab="tab-home">
-          <i class="fa-solid fa-house"></i>
-          <span data-i18n="sidebar.tabHome"></span>
-        </li>
-        <li class="nav-item" data-tab="tab-cadastre">
-          <i class="fa-solid fa-table-cells"></i>
-          <span data-i18n="sidebar.tabRtk"></span>
-        </li>
-        <li class="nav-item" data-tab="tab-rinex-studio">
-          <i class="fa-solid fa-satellite"></i>
-          <span data-i18n="sidebar.tabRinex"></span>
-        </li>
-        <li class="nav-item" data-tab="tab-map">
-          <i class="fa-solid fa-map-location-dot"></i>
-          <span data-i18n="sidebar.tabMap"></span>
-        </li>
-        <li class="nav-item" data-tab="tab-converter">
-          <i class="fa-solid fa-arrows-rotate"></i>
-          <span data-i18n="sidebar.tabConverter"></span>
-          <span class="badge badge-cyan ml-auto" data-i18n="sidebar.badgeNew"></span>
-        </li>
-      </ul>
-
-      <div class="nav-section-title mt-8" data-i18n="sidebar.secGeodesy"></div>
-      <ul class="nav-menu">
-        <li class="nav-item" data-tab="tab-geodesy">
-          <i class="fa-solid fa-compass-drafting"></i>
-          <span data-i18n="sidebar.tabGeodesy"></span>
-        </li>
-        <li class="nav-item" data-tab="tab-tools">
-          <i class="fa-solid fa-calculator"></i>
-          <span data-i18n="sidebar.tabTools"></span>
-        </li>
-        <li class="nav-item" data-tab="tab-flight">
-          <i class="fa-solid fa-plane-up"></i>
-          <span data-i18n="sidebar.tabFlight"></span>
-        </li>
-        <li class="nav-item" data-tab="tab-tg20">
-          <i class="fa-solid fa-mountain-sun"></i>
-          <span data-i18n="sidebar.tabTg20"></span>
-        </li>
-      </ul>
-
-      <div class="nav-section-title mt-8" data-i18n="sidebar.secLegal"></div>
-      <ul class="nav-menu">
-        <li class="nav-item" data-tab="tab-guide">
-          <i class="fa-solid fa-book-bookmark"></i>
-          <span data-i18n="sidebar.tabGuide"></span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Pinned Bottom Sidebar Dock -->
-    <div class="sidebar-bottom-dock">
-      <!-- Mini Geodetic HUD Card -->
-      <div class="sidebar-geo-widget">
-        <div class="sidebar-geo-header">
-          <div class="d-flex items-center gap-6">
-            <i class="fa-solid fa-earth-europe text-cyan"></i>
-            <span class="sidebar-geo-title" data-i18n="sidebar.geoStandard"></span>
-          </div>
-          <span class="sidebar-geo-pulse" title="" data-i18n-title="sidebar.sysSync"></span>
-        </div>
-
-        <div class="sidebar-geo-body">
-          <div class="sidebar-geo-row">
-            <span class="sidebar-geo-label" data-i18n="sidebar.datumRef"></span>
-            <strong class="sidebar-geo-val text-white font-mono">ITRF-96 / GRS80</strong>
-          </div>
-          <div class="sidebar-geo-row">
-            <span class="sidebar-geo-label" data-i18n="sidebar.geoidModel"></span>
-            <strong class="sidebar-geo-val text-amber font-mono">HGM TG-20 (+N)</strong>
-          </div>
-          <div class="sidebar-geo-row">
-            <span class="sidebar-geo-label" data-i18n="sidebar.projection"></span>
-            <strong class="sidebar-geo-val text-cyan font-mono" data-i18n="ui.gaussKruger3"></strong>
-          </div>
-
-          <div class="sidebar-constellations">
-            <span class="sidebar-sat-pill badge-sat-gps" title="" data-i18n-title="sidebar.satGpsTitle">GPS</span>
-            <span class="sidebar-sat-pill badge-sat-glo" title="" data-i18n-title="sidebar.satGloTitle">GLO</span>
-            <span class="sidebar-sat-pill badge-sat-gal" title="" data-i18n-title="sidebar.satGalTitle">GAL</span>
-            <span class="sidebar-sat-pill badge-sat-bds" title="" data-i18n-title="sidebar.satBdsTitle">BDS</span>
-          </div>
-        </div>
+    <!-- Group 3: GNSS & Analiz -->
+    <div class="geo-nav-group">
+      <span class="geo-nav-header">GNSS & Analiz</span>
+      <div class="geo-nav-item nav-item" data-tab="tab-rinex-studio">
+        <div class="geo-nav-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+        <span class="geo-nav-label">RINEX Stüdyosu</span>
+        <span class="geo-nav-badge">PPK</span>
       </div>
-
-      <!-- Quick Shortcuts Card -->
-      <div class="sidebar-shortcuts-widget">
-        <div class="sidebar-shortcut-row" onclick="document.getElementById('inputHomeHeroFile')?.click()" title="" data-i18n-title="sidebar.quickUpload">
-          <div class="d-flex items-center gap-6">
-            <i class="fa-solid fa-folder-open text-cyan text-xs"></i>
-            <span data-i18n="sidebar.openFile"></span>
-          </div>
-          <kbd class="sidebar-kbd">Ctrl+O</kbd>
-        </div>
-        <div class="sidebar-shortcut-row" id="btnSidebarThemeShortcut" title="" data-i18n-title="sidebar.themeChange">
-          <div class="d-flex items-center gap-6">
-            <i class="fa-solid fa-circle-half-stroke text-amber text-xs"></i>
-            <span data-i18n="sidebar.themeChange"></span>
-          </div>
-          <kbd class="sidebar-kbd">Ctrl+D</kbd>
-        </div>
-      </div>
-
-      <!-- Sidebar Footer -->
-      <div class="sidebar-footer">
-        <div class="sidebar-footer-wrap">
-          <span class="d-flex items-center gap-6"><i class="fa-solid fa-shield-halved text-emerald"></i> <span data-i18n="sidebar.localClient"></span></span>
-          <button id="btnSidebarAbout" class="sidebar-about-trigger">
-            <i class="fa-solid fa-circle-info"></i> <span data-i18n="sidebar.aboutBtn"></span>
-          </button>
-        </div>
-        <div data-i18n="sidebar.privacyNotice"></div>
+      <div class="geo-nav-item nav-item" data-tab="tab-tg20">
+        <div class="geo-nav-icon"><i class="fa-solid fa-mountain"></i></div>
+        <span class="geo-nav-label">TG-20 Jeoid Modeli</span>
       </div>
     </div>
-  </aside>
+
+    <!-- Group 4: Jeodezi & Fotogrametri -->
+    <div class="geo-nav-group">
+      <span class="geo-nav-header">Mühendislik & İHA</span>
+      <div class="geo-nav-item nav-item" data-tab="tab-geodesy">
+        <div class="geo-nav-icon"><i class="fa-solid fa-calculator"></i></div>
+        <span class="geo-nav-label">Jeodezik Hesap</span>
+      </div>
+      <div class="geo-nav-item nav-item" data-tab="tab-flight">
+        <div class="geo-nav-icon"><i class="fa-solid fa-plane-up"></i></div>
+        <span class="geo-nav-label">İHA Uçuş Planı</span>
+      </div>
+    </div>
+
+    <!-- Group 5: Harita & Araçlar -->
+    <div class="geo-nav-group">
+      <span class="geo-nav-header">Harita & Araçlar</span>
+      <div class="geo-nav-item nav-item" data-tab="tab-map">
+        <div class="geo-nav-icon"><i class="fa-solid fa-map"></i></div>
+        <span class="geo-nav-label">Pafta & CBS Harita</span>
+      </div>
+      <div class="geo-nav-item nav-item" data-tab="tab-tools">
+        <div class="geo-nav-icon"><i class="fa-solid fa-ruler-combined"></i></div>
+        <span class="geo-nav-label">Ölçme Araçları</span>
+      </div>
+      <div class="geo-nav-item nav-item" data-tab="tab-guide">
+        <div class="geo-nav-icon"><i class="fa-solid fa-book-open"></i></div>
+        <span class="geo-nav-label">Rehber & Standartlar</span>
+      </div>
+    </div>
+
+  </nav>
+
+  <!-- Sidebar Footer Status & Actions -->
+  <div class="geo-sidebar-footer">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span class="geo-live-dot"></span>
+      <span style="font-size: var(--geo-fs-2xs); color: var(--geo-text-muted); font-family: var(--geo-font-mono);">WASM / Yerel</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 4px;">
+      <button id="btnSidebarAbout" class="geo-toggle-btn" title="Hakkında">
+        <i class="fa-solid fa-circle-info"></i>
+      </button>
+      <button id="btnSidebarCollapse" class="geo-toggle-btn" title="Menüyü Daralt/Genişlet">
+        <i class="fa-solid fa-angles-left"></i>
+      </button>
+    </div>
+  </div>
+</aside>

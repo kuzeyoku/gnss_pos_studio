@@ -1,26 +1,44 @@
-    <!-- Top Header (Universal Single-Row Desktop & Mobile) -->
-    <header class="top-header">
-      <div class="header-left-group">
-        <button type="button" id="btnMobileMenuToggle" class="mobile-nav-toggle d-none" aria-label="" title="" data-i18n-aria="header.openMenu" data-i18n-title="header.openMenu">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-        <div class="header-title">
-          <h1 id="pageTitle" data-i18n="navigation.tabDashboard.title"></h1>
-          <p id="pageSubtitle" data-i18n="navigation.tabDashboard.sub"></p>
-        </div>
-      </div>
-      <div class="header-actions">
-        <button class="btn btn-secondary btn-sm btn-icon" id="btnThemeToggle"
-          data-tooltip="" data-i18n-tooltip="header.themeToggle" title="" data-i18n-title="header.themeTitle">
-          <i class="fa-solid fa-moon text-cyan" id="themeIcon"></i>
-        </button>
-        <button class="btn btn-secondary btn-sm btn-icon" id="btnOpenAboutModal"
-          data-tooltip="" data-i18n-tooltip="header.aboutTooltip" title="" data-i18n-title="header.aboutTitle">
-          <i class="fa-solid fa-circle-info text-cyan"></i>
-        </button>
-        <div class="status-pill">
-          <span class="status-dot"></span>
-          <span id="brandDetectPill" data-i18n="header.statusReady"></span>
-        </div>
-      </div>
-    </header>
+<!-- ==========================================================================
+     NEXT-GEN STUDIO — TOP TELEMETRY & COMMAND BAR
+     ========================================================================== -->
+<header class="geo-topbar">
+  <div class="geo-topbar-left">
+    <button id="btnMobileMenuToggle" class="geo-toggle-btn d-lg-none" title="Menü">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="geo-breadcrumb">
+      <span class="geo-breadcrumb-root">Stüdyo</span>
+      <span class="geo-breadcrumb-sep">/</span>
+      <span class="geo-breadcrumb-active" id="pageTitle">Stüdyo Merkezi</span>
+    </div>
+    <span id="pageSubtitle" style="display: none;"></span>
+  </div>
+
+  <div class="geo-topbar-right">
+    <!-- CRS Selector Badge -->
+    <div class="geo-badge geo-badge-cyan" style="cursor: pointer;" title="Varsayılan Projeksiyon">
+      <i class="fa-solid fa-globe"></i> ITRF96 / TM30 (Epoch 2005.0)
+    </div>
+
+    <!-- Web Worker Live Telemetry Indicator -->
+    <div class="geo-telemetry-badge">
+      <span class="geo-live-dot"></span>
+      <span id="brandDetectPill">Worker Motoru Aktif</span>
+    </div>
+
+    <!-- Theme Toggle (Subtle Action) -->
+    <button class="geo-toggle-btn" id="btnThemeToggle" title="Tema">
+      <i class="fa-solid fa-moon" id="themeIcon"></i>
+    </button>
+
+    <!-- About Modal Trigger -->
+    <button class="geo-toggle-btn" id="btnOpenAboutModal" title="Proje Künyesi">
+      <i class="fa-solid fa-circle-info"></i>
+    </button>
+
+    <!-- Fullscreen Toggle -->
+    <button class="geo-toggle-btn" onclick="document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()" title="Tam Ekran">
+      <i class="fa-solid fa-expand"></i>
+    </button>
+  </div>
+</header>

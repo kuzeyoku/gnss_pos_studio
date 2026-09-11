@@ -2,8 +2,8 @@
       <section id="tab-geodesy" class="tool-tab">
 
         <!-- ================= CARD 1: SINGLE POINT INTERACTIVE CONVERTER ================= -->
-        <div class="card d-flex flex-col gap-14">
-          <div class="card-header mb-0 pb-4">
+        <div class="card">
+          <div class="card-header">
             <div class="card-title">
               <i class="fa-solid fa-compass-drafting text-cyan"></i>
               <span data-i18n="geodesy.tabSinglePoint"></span>
@@ -16,7 +16,7 @@
           <div class="geodesy-crs-grid">
             <!-- Source CRS -->
             <div>
-              <label class="label-form-section mb-4" data-i18n="geodesy.lblSourceCrs"></label>
+              <label class="label-form-section" data-i18n="geodesy.lblSourceCrs"></label>
               <select id="selSourceEpsg" class="form-select"></select>
             </div>
 
@@ -71,14 +71,14 @@
                 <div class="mt-1 d-flex flex-col gap-6">
                   <div class="text-xs text-dim d-flex justify-between items-center">
                     <span><span data-i18n="geodesy.lblFormatPrefix"></span>: <code>NoktaNo  X_ITRF  Y_ITRF  Z_ITRF  X_ED50  Y_ED50  Z_ED50</code> (<span data-i18n="geodesy.min3Points"></span>)</span>
-                    <button type="button" class="btn btn-secondary btn-sm text-xs py-2 px-6"
+                    <button type="button" class="btn btn-secondary btn-sm"
                       id="btnLoadBursaWolfSample" data-i18n="geodesy.btnSample4Points"></button>
                   </div>
                   <textarea id="txtBursaWolfCommonPoints" rows="3"
                     placeholder="P1  4123450.000  2654320.000  4098760.000  4123365.900  2654218.200  4098630.300&#10;P2  4125600.000  2651200.000  4100100.000  4125515.800  2651098.300  4099970.200&#10;P3  4121200.000  2658900.000  4095400.000  4121116.100  2658798.100  4095270.400"
                     class="batch-textarea min-h-70"></textarea>
                   <div class="d-flex justify-between items-center">
-                    <button type="button" class="btn btn-primary btn-sm py-4 px-10 text-xs" id="btnSolveBursaWolf">
+                    <button type="button" class="btn btn-primary btn-sm" id="btnSolveBursaWolf">
                       <i class="fa-solid fa-calculator"></i> <span data-i18n="geodesy.btnSolve7Param"></span>
                     </button>
                     <span id="lblBursaWolfM0" class="text-xs font-bold text-emerald font-mono"></span>
@@ -108,18 +108,18 @@
               </div>
 
               <div class="d-flex gap-6 flex-wrap">
-                <button class="btn btn-primary flex-1 py-8 px-12 text-xs font-bold" id="btnConvertCoord">
+                <button class="btn btn-primary flex-1" id="btnConvertCoord">
                   <i class="fa-solid fa-arrows-rotate"></i> <span data-i18n="geodesy.btnConvertPrecise"></span>
                 </button>
-                <button class="btn btn-secondary py-8 px-8 text-xs" id="btnCopySingleCoordResult"
+                <button class="btn btn-secondary btn-sm" id="btnCopySingleCoordResult"
                   title="" data-i18n-title="geodesy.titleCopyReport">
                   <i class="fa-solid fa-copy"></i> <span data-i18n="common.copy"></span>
                 </button>
-                <button class="btn btn-secondary btn-sm text-emerald py-8 px-8 text-xs" id="btnCopySingleTg20"
+                <button class="btn btn-outline-emerald btn-sm" id="btnCopySingleTg20"
                   title="" data-i18n-title="geodesy.titleCopyTg20">
                   <i class="fa-solid fa-clipboard-check"></i> <span data-i18n="geodesy.btnCopyTg20"></span>
                 </button>
-                <button class="btn btn-secondary btn-sm text-emerald py-8 px-8 text-xs" id="btnSendSingleToTg20"
+                <button class="btn btn-outline-emerald btn-sm" id="btnSendSingleToTg20"
                   title="" data-i18n-title="geodesy.titleSendTg20">
                   <i class="fa-solid fa-mountain-sun"></i> <span data-i18n="geodesy.btnSendTg20"></span>
                 </button>
@@ -134,17 +134,17 @@
         </div>
 
         <!-- ================= CARD 2: BATCH LIST & FILE TRANSFORMER ================= -->
-        <div class="card d-flex flex-col gap-12">
+        <div class="card">
 
           <!-- Card Header & Delimiter -->
-          <div class="card-header mb-0 pb-2">
+          <div class="card-header">
             <div class="card-title">
               <i class="fa-solid fa-table-list text-purple"></i>
               <span data-i18n="ui.2TopluListeDosya"></span>
             </div>
             <div class="d-flex items-center gap-6">
               <span class="text-xs font-bold text-dim uppercase" data-i18n="ui.ayirici"></span>
-              <select id="selBatchDelimiter" class="form-select w-auto py-2 px-8 text-xs">
+              <select id="selBatchDelimiter" class="form-select form-select-sm w-auto">
                 <option value="AUTO" selected data-i18n="ui.otomatikAlgila"></option>
                 <option value="SPACE" data-i18n="ui.boslukSpace"></option>
                 <option value="COMMA" data-i18n="ui.virgul"></option>
@@ -173,7 +173,7 @@
           <div class="geodesy-crs-grid">
             <!-- Batch Source CRS -->
             <div>
-              <label class="label-form-section mb-4" data-i18n="ui.girdiDosyasininKaynakProjeksiyonu"></label>
+              <label class="label-form-section" data-i18n="ui.girdiDosyasininKaynakProjeksiyonu"></label>
               <select id="selBatchSourceEpsg" class="form-select"></select>
             </div>
 
@@ -201,7 +201,7 @@
                 <span class="text-xs font-bold text-dim uppercase">
                   <span data-i18n="geodesy.coordListInput"></span>:
                 </span>
-                <label class="btn btn-secondary btn-sm m-0 cursor-pointer text-xs py-2 px-8 text-cyan">
+                <label class="btn btn-secondary btn-sm m-0 cursor-pointer text-cyan">
                   <i class="fa-solid fa-folder-open text-cyan"></i> <span data-i18n="geodesy.btnSelectFromFile"></span>
                   <input type="file" id="fileBatchInput" accept=".txt,.csv,.ncn,.dat,.xyz,.raw,.rw5" class="d-none" />
                 </label>
@@ -256,7 +256,7 @@
                 </div>
               </div>
 
-              <button class="btn btn-primary py-9 px-14 text-sm font-bold w-100" id="btnBatchTransform">
+              <button class="btn btn-primary btn-lg w-full" id="btnBatchTransform">
                 <i class="fa-solid fa-play"></i> <span data-i18n="geodesy.btnTransformAll"></span>
               </button>
             </div>
@@ -314,15 +314,15 @@
         </div>
 
         <!-- ================= CARD 3: LOCAL 2D HELMERT TRANSFORMATION ================= -->
-        <div class="card d-flex flex-col gap-14">
-          <div class="card-header mb-0 pb-4">
+        <div class="card">
+          <div class="card-header">
             <div class="card-title">
               <i class="fa-solid fa-shapes text-amber"></i>
               <span data-i18n="ui.3Lokal2bHelmert"></span>
             </div>
             <div class="d-flex gap-4">
-              <button type="button" class="btn btn-primary btn-sm text-xs py-3 px-8" id="btnTabHelmertDns" data-i18n="ui.netcadDnsDosyasi"></button>
-              <button type="button" class="btn btn-secondary btn-sm text-xs py-3 px-8" id="btnTabHelmertPoints" data-i18n="geodesy.tabCommonPoints"></button>
+              <button type="button" class="btn btn-primary btn-sm" id="btnTabHelmertDns" data-i18n="ui.netcadDnsDosyasi"></button>
+              <button type="button" class="btn btn-secondary btn-sm" id="btnTabHelmertPoints" data-i18n="geodesy.tabCommonPoints"></button>
             </div>
           </div>
 
@@ -362,7 +362,7 @@
                 <textarea id="txtHelmertDnsContent" rows="4"
                   placeholder="[NETCAD_DONUSUM]&#10;TIP=HELMERT2D&#10;A=0.99995377&#10;B=-0.00004665&#10;DY=236.5729&#10;DX=189.7714"
                   class="dns-textarea"></textarea>
-                <button class="btn btn-primary w-full py-8 px-12 text-sm font-bold" id="btnApplyDnsParams">
+                <button class="btn btn-primary w-full" id="btnApplyDnsParams">
                   <i class="fa-solid fa-check"></i> <span data-i18n="geodesy.btnApplyDns"></span>
                 </button>
               </div>
@@ -371,14 +371,14 @@
               <div id="paneHelmertPoints" class="d-none flex-col gap-8">
                 <div class="d-flex justify-between items-center">
                   <span class="text-xs text-dim font-mono" data-i18n="geodesy.helmertPointFormat"></span>
-                  <button type="button" class="btn btn-secondary btn-sm text-xs py-2 px-6" id="btnLoadHelmertSample">
+                  <button type="button" class="btn btn-secondary btn-sm" id="btnLoadHelmertSample">
                     <i class="fa-solid fa-flask"></i> <span data-i18n="geodesy.btnSampleLoad"></span>
                   </button>
                 </div>
                 <textarea id="txtHelmertCommonPoints" rows="5"
                   placeholder="P1  500120.000  4520100.000  500122.500  4520104.200&#10;P2  501240.000  4520150.000  501242.600  4520154.100&#10;P3  501260.000  4521200.000  501262.400  4521204.300&#10;P4  500150.000  4521180.000  500152.700  4521184.000"
                   class="dns-textarea"></textarea>
-                <button class="btn btn-primary w-full py-8 px-12 text-sm font-bold" id="btnSolveHelmert">
+                <button class="btn btn-primary w-full" id="btnSolveHelmert">
                   <i class="fa-solid fa-calculator"></i> <span data-i18n="geodesy.btnSolveHelmert"></span>
                 </button>
               </div>
@@ -392,7 +392,7 @@
                 placeholder="101  500500.000  4520500.000  125.400&#10;102  500650.000  4520750.000  128.200&#10;103  500800.000  4520900.000  131.050&#10;104  500950.000  4521050.000  133.800"
                 class="dns-textarea min-h-120"></textarea>
 
-              <button class="btn btn-primary w-full py-10 px-14 text-sm font-bold" id="btnTransformHelmertPoints">
+              <button class="btn btn-primary btn-lg w-full" id="btnTransformHelmertPoints">
                 <i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="geodesy.btnTransformPoints"></span>
               </button>
             </div>
@@ -406,7 +406,7 @@
                 <div class="d-flex items-center gap-8">
                   <i class="fa-solid fa-circle-check text-emerald"></i>
                   <strong id="lblHelmertStatusSource" class="font-bold text-main helmert-status-title" data-i18n="ui.aktifHelmert2dParametreleri"></strong>
-                  <span id="badgeHelmertM0" class="badge badge-purple font-mono">m0 = 0.00 cm</span>
+                  <span id="badgeHelmertM0" class="badge badge-purple">m0 = 0.00 cm</span>
                 </div>
               </div>
 

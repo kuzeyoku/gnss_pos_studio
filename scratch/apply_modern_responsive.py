@@ -1,4 +1,8 @@
-/* =========================================================================
+# Clean, modern, declarative responsive engine
+# Eliminates 350+ brute-force !important flags
+# Unifies grid collapses and mobile components
+
+responsive_css = '''/* =========================================================================
  * HARITA TOOLS GNSS WEB STUDIO — MODERN RESPONSIVE ENGINE
  * Zero-dependency client-side adaptive layout
  * Clean cascade · Mobile Drawer · Unified Grids · Touch Target Precision
@@ -228,7 +232,7 @@
     height: 28px;
     font-size: 11px;
     padding: 4px 10px;
-    border-radius: var(--radius-sm);
+    border-radius: 6px;
     white-space: nowrap;
     flex-shrink: 0;
   }
@@ -265,6 +269,7 @@
   .cadastre-controls-grid,
   .home-bento-grid,
   .home-trust-bar,
+  .geodesy-coords-grid,
   .geodesy-crs-grid {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -446,6 +451,10 @@
     display: flex;
   }
 
+  .map-status-hud {
+    display: none;
+  }
+
   .flight-solar-compass-widget {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -536,7 +545,7 @@
     left: 0;
     right: 0;
     z-index: 950;
-    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    border-radius: 12px 12px 0 0;
     padding: 8px 12px;
     background: var(--surface-deep-a96);
     backdrop-filter: blur(24px);
@@ -599,6 +608,10 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .header-brand-title {
+    display: none;
+  }
+
   .guide-hero-inner {
     flex-direction: column;
     align-items: flex-start;
@@ -610,3 +623,9 @@
     justify-content: flex-start;
   }
 }
+'''
+
+with open('web/css/responsive-theme.css', 'w', encoding='utf-8') as f:
+    f.write(responsive_css)
+
+print(f"responsive-theme.css modernized successfully! Lines: {len(responsive_css.splitlines())}")

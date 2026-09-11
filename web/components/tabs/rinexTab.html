@@ -1,448 +1,282 @@
-      <!-- ================= TAB 2: UNIFIED RINEX & GNSS WORKSTATION STUDIO ================= -->
-      <section id="tab-rinex-studio" class="tool-tab">
-        <div class="card d-flex flex-col gap-16">
+<!-- ==========================================================================
+     NEXT-GEN STUDIO — RINEX & GNSS OBSERVATION STUDIO
+     ========================================================================== -->
+<div id="tab-rinex-studio" class="tool-tab geo-tab-view">
+  <div style="display: flex; flex-direction: column; gap: var(--geo-space-5);">
 
-          <!-- Master Card Header -->
-          <div class="card-header flex-wrap gap-12 mb-0 pb-12">
-            <div class="card-title">
-              <i class="fa-solid fa-wand-magic-sparkles text-purple text-lg"></i>
-              <span data-i18n="rinex.headerTitle"></span>
-            </div>
-            <div class="d-flex gap-6 flex-wrap">
-              <span class="badge badge-cyan text-xs font-bold" data-i18n="rinex.badgeMultiStation"></span>
-              <span class="badge badge-purple text-xs font-bold" data-i18n="rinex.badgeFreqPrune"></span>
-              <span class="badge badge-emerald text-xs font-bold" data-i18n="rinex.badgeRinexVersions"></span>
-            </div>
+    <!-- Header & Action Bar -->
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--geo-space-3);">
+      <div>
+        <div style="display: flex; align-items: center; gap: var(--geo-space-2);">
+          <h2 style="font-family: var(--geo-font-display); font-size: var(--geo-fs-xl); font-weight: 700; color: var(--geo-text-white);">
+            RINEX & GNSS Kalite Analiz Stüdyosu
+          </h2>
+          <span class="geo-badge geo-badge-purple">RINEX 2 / 3 / 4</span>
+          <span class="geo-badge geo-badge-cyan">Multi-GNSS</span>
+        </div>
+        <p style="font-size: var(--geo-fs-xs); color: var(--geo-text-muted); margin-top: 2px;">
+          TÜSAGA-Aktif, CORS ve İHA ham GNSS gözlem dosyalarında SNR sinyal analizi, cycle-slip denetimi ve PPK bindirme kontrolü.
+        </p>
+      </div>
+      <div style="display: flex; align-items: center; gap: var(--geo-space-2);">
+        <label class="geo-btn geo-btn-primary geo-btn-sm" style="cursor: pointer;">
+          <i class="fa-solid fa-chart-line"></i> Tekil RINEX Kalite Testi
+          <input type="file" id="inputRinexQualityFile" accept=".o,.rnx,.obs,.*o,.*O,.crx" style="display: none;" />
+        </label>
+      </div>
+    </div>
+
+    <!-- Section 1: Multi-Station Dropzone & Slicing Configuration -->
+    <div class="geo-grid geo-grid-12">
+      
+      <!-- Dropzone (7 cols) -->
+      <div class="geo-col-span-8">
+        <div class="geo-card" style="height: 100%;">
+          <div class="geo-card-header">
+            <span class="geo-card-title"><i class="fa-solid fa-cloud-arrow-up"></i> Çoklu İstasyon & Günlük Birleştirici</span>
+            <span class="geo-badge geo-badge-emerald">Hatanaka (.CRX) Destekli</span>
           </div>
-
-          <!-- Bento Row 1: File Dropzone & Processing Configurations -->
-          <div class="grid-2col-rinex">
-
-            <!-- Dropzone Panel -->
-            <div class="dropzone-wrap">
-              <div class="dropzone" id="mergerDropzone">
-                <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
-                <div class="dropzone-title" data-i18n="rinex.dropzoneTitle"></div>
-                <div class="dropzone-desc" data-i18n="rinex.dropzoneDesc"></div>
-                <div class="dropzone-tags mt-12">
-                  <span class="dropzone-tag-pill">RINEX 2 / 3 / 4</span>
-                  <span class="dropzone-tag-pill">.OBS / .RNX</span>
-                  <span class="dropzone-tag-pill">.*O (GÃ¶zlem)</span>
-                  <span class="dropzone-tag-pill">.*N (Navigasyon)</span>
-                  <span class="dropzone-tag-pill">.CRX / .*D (Hatanaka)</span>
-                  <span class="dropzone-tag-pill">ZIP / GZ</span>
-                  <span class="dropzone-tag-pill">Ã‡oklu Dosya</span>
-                </div>
-                <input type="file" id="mergerFileInput" class="file-drop-input" multiple accept=".o,.rnx,.obs,.*o,.*O,.crx,.zip,.gz,.*n,.*N,.*d,.*D" />
-              </div>
-            </div>
-
-            <!-- Processing & Filtering Parameter Tile -->
-            <div class="config-panel d-flex flex-col gap-14">
-              <div class="card-title mb-0">
-                <i class="fa-solid fa-sliders text-purple"></i>
-                <span data-i18n="rinex.settingsTitle"></span>
-              </div>
-
-              <!-- Pruning / Deletion Notice Badge -->
-              <div class="alert alert-cyan">
-                <i class="fa-solid fa-circle-info text-cyan text-md flex-shrink-0"></i>
-                <span data-i18n="rinex.pruneNotice"></span>
-              </div>
-
-              <!-- Constellation Selector Toggles -->
-              <div>
-                <label class="label-form-section">
-                  <span data-i18n="rinex.detectedSats"></span> <span class="text-dim font-normal text-xs" data-i18n="ui.secimiKaldirarakAyiklayabilirsiniz"></span>:
-                </label>
-                <div id="containerConstellations" class="d-flex gap-6 flex-wrap">
-                  <span class="empty-scan-placeholder" data-i18n="ui.dosyaYuklendigindeIceriktekiUydu"></span>
-                </div>
-              </div>
-
-              <!-- Frequency Bands & Carrier Selector -->
-              <div>
-                <label class="label-form-section">
-                  <span data-i18n="rinex.detectedBands"></span> <span class="text-dim font-normal text-xs" data-i18n="ui.secimiKaldirarakAyiklayabilirsiniz"></span>:
-                </label>
-                <div id="containerBands" class="d-flex gap-6 flex-wrap">
-                  <span class="empty-scan-placeholder" data-i18n="ui.dosyadaMevcutOlanFrekans"></span>
-                </div>
-              </div>
-
-              <!-- Observable Types Selector -->
-              <div>
-                <label class="label-form-section">
-                  <span data-i18n="rinex.detectedObs"></span> <span class="text-dim font-normal text-xs" data-i18n="ui.secimiKaldirarakAyiklayabilirsiniz"></span>:
-                </label>
-                <div id="containerObsTypes" class="d-flex gap-6 flex-wrap">
-                  <span class="empty-scan-placeholder" data-i18n="rinex.obsTypesPlaceholder"></span>
-                </div>
-              </div>
-
-              <!-- Time Window & Slicing Control -->
-              <div id="timeCropPanel" class="time-crop-wrap">
-                <div class="d-flex justify-between items-center">
-                  <label class="label-form-section text-cyan d-flex items-center gap-6 m-0">
-                    <i class="fa-solid fa-clock-rotate-left"></i> <span data-i18n="rinex.lblTimeWindowCrop"></span>
-                  </label>
-                  <div class="d-flex items-center gap-8">
-                    <span id="lblTimeCropStatusText" class="text-sm font-semibold text-dim" data-i18n="rinex.filterDisabled"></span>
-                    <label class="switch-glass" title="" data-i18n-title="rinex.titleTimeCropSwitch">
-                      <input type="checkbox" id="chkEnableTimeCrop" />
-                      <span class="slider-glass"></span>
-                    </label>
-                  </div>
-                </div>
-
-                <!-- Inner Controls Container (Controlled by Switch) -->
-                <div id="timeCropControlsContainer" class="time-crop-disabled d-flex flex-col gap-8">
-                  <!-- Discovered Time Range Display -->
-                  <div class="time-crop-meta">
-                    <span>ğŸ“… <span data-i18n="rinex.lblDetectedDate"></span> <strong id="lblDetectedDate" class="text-pure">--</strong></span>
-                    <span>â±ï¸ <span data-i18n="rinex.lblDetectedTimeRange"></span> <strong id="lblDetectedTimeRange" class="text-cyan font-mono">--:--:-- -
-                        --:--:-- UTC</strong></span>
-                    <span>âŒ› <span data-i18n="rinex.lblDetectedDuration"></span> <strong id="lblDetectedDuration" class="text-purple">--</strong></span>
-                  </div>
-
-                  <!-- Time Inputs & Presets -->
-                  <div class="d-grid gap-8 items-end time-crop-presets-grid">
-                    <div>
-                      <span class="text-xs font-semibold text-dim d-block mb-2" data-i18n="rinex.lblCropStart"></span>
-                      <input type="time" id="inputCropStart" step="1" value="00:00:00" class="form-input form-input-sm font-mono" />
-                    </div>
-                    <div>
-                      <span class="text-xs font-semibold text-dim d-block mb-2" data-i18n="rinex.lblCropEnd"></span>
-                      <input type="time" id="inputCropEnd" step="1" value="23:59:59" class="form-input form-input-sm font-mono" />
-                    </div>
-                    <div class="d-flex gap-4 flex-wrap">
-                      <button type="button" class="btn btn-secondary text-sm"
-                        onclick="applyCropPreset('ALL')" data-i18n="common.all"></button>
-                      <button type="button" class="btn btn-secondary text-sm" onclick="applyCropPreset('FIRST_1H')" data-i18n="rinex.btnCrop1h"></button>
-                      <button type="button" class="btn btn-secondary text-sm" onclick="applyCropPreset('FIRST_2H')" data-i18n="rinex.btnCropFirst2h"></button>
-                      <button type="button" class="btn btn-secondary text-sm" onclick="applyCropPreset('LAST_2H')" data-i18n="rinex.btnCropLast2h"></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Output Version, Dynamic Format & Sampling Grid -->
-              <div class="grid-3">
-                <!-- 1. Version Selector -->
-                <div>
-                  <label class="label-form-section mb-4" data-i18n="rinex.lblTargetVersion"></label>
-                  <select id="selectTargetVersion" class="form-select form-select-sm">
-                    <optgroup label="" data-i18n-label="rinex.grpRinex2">
-                      <option value="RINEX_211" selected>RINEX 2.11 (TUSAGA / LGO / TBC)</option>
-                      <option value="RINEX_210">RINEX 2.10 (Klasik GPS / GLO)</option>
-                    </optgroup>
-                    <optgroup label="" data-i18n-label="rinex.grpMultiGnss">
-                      <option value="RINEX_302" data-i18n="ui.rinex302Multi"></option>
-                      <option value="RINEX_304" data-i18n="ui.rinex304Igs"></option>
-                      <option value="RINEX_300" data-i18n="ui.rinex300I"></option>
-                      <option value="RINEX_303" data-i18n="ui.rinex303Qzss"></option>
-                      <option value="RINEX_305">RINEX 3.05 (BDS-3 & Galileo HAS)</option>
-                      <option value="RINEX_400" data-i18n="ui.rinex400Yeni"></option>
-                    </optgroup>
-                  </select>
-                </div>
-
-                <!-- 2. Dynamic Output Format -->
-                <div>
-                  <label class="label-form-section mb-4 text-cyan" data-i18n="rinex.lblTargetFormat"></label>
-                  <select id="selectTargetFormat" class="form-select form-select-sm">
-                    <!-- Populated dynamically based on selected version -->
-                  </select>
-                </div>
-
-                <!-- 3. Decimation Step -->
-                <div>
-                  <label class="label-form-section mb-4 text-dim" data-i18n="rinex.lblDecimationStep"></label>
-                  <select id="selectDecimationStep" class="form-select form-select-sm font-mono">
-                    <option value="1" data-i18n="ui.1SaniyeTumu"></option>
-                    <option value="5" data-i18n="rinex.sec5"></option>
-                    <option value="10" data-i18n="rinex.sec10"></option>
-                    <option value="15" data-i18n="rinex.sec15"></option>
-                    <option value="30" data-i18n="rinex.sec30Cors"></option>
-                  </select>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Bento Row 2: Discovered Groups Table & Action Station -->
-          <div class="data-panel d-none" id="mergerResultCard">
-            <div class="d-flex justify-between items-center flex-wrap gap-8 border-b pb-8 mb-10">
-              <div class="card-title m-0">
-                <i class="fa-solid fa-circle-nodes text-cyan"></i>
-                <span data-i18n="rinex.secGroupsTitle"></span>
+          <div class="geo-card-body">
+            <div id="mergerDropzone" class="geo-dropzone" style="min-height: 220px;">
+              <input type="file" id="mergerFileInput" multiple accept=".o,.rnx,.obs,.*o,.*O,.crx,.zip,.gz,.*n,.*N,.*d,.*D" style="display: none;" />
+              <div class="geo-dropzone-icon" style="background: rgba(139, 92, 246, 0.12); color: var(--geo-purple); box-shadow: 0 0 20px var(--geo-purple-glow);">
+                <i class="fa-solid fa-satellite-dish"></i>
               </div>
               <div>
-                <button class="btn btn-primary btn-sm" id="btnMergeAll">
-                  <i class="fa-solid fa-bolt-lightning"></i> <span data-i18n="rinex.btnMergeAllZip"></span>
-                </button>
+                <div class="geo-dropzone-title">RINEX veya Navigasyon Dosyalarını Sürükleyin</div>
+                <div class="geo-dropzone-sub" style="margin-top: 4px;">.OBS, .RNX, .*O, .CRX, ZIP veya GZ dosyalarını tek seferde çoklu yükleyin</div>
               </div>
-            </div>
-
-            <div class="table-responsive">
-              <table id="tableGroups">
-                <thead>
-                  <tr>
-                    <th data-i18n="rinex.thGroupId"></th>
-                    <th data-i18n="rinex.thStation"></th>
-                    <th data-i18n="rinex.thYear"></th>
-                    <th data-i18n="rinex.thDoy"></th>
-                    <th data-i18n="rinex.thObs"></th>
-                    <th data-i18n="rinex.thGpsNav"></th>
-                    <th data-i18n="rinex.thGloNav"></th>
-                    <th data-i18n="rinex.thAction"></th>
-                  </tr>
-                </thead>
-                <tbody id="tableGroupsBody"></tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- Bento Row 3: Base - Rover PPK Pre-Flight Coverage & Overlap Inspector -->
-          <div class="data-panel">
-            <div class="card-header items-center pb-10 mb-14 border-bottom-glass">
-              <div class="card-title m-0">
-                <i class="fa-solid fa-tower-broadcast text-emerald"></i>
-                <span data-i18n="rinex.ppkTitle"></span>
-              </div>
-              <span class="badge badge-emerald" data-i18n="rinex.ppkBadge"></span>
-            </div>
-
-            <div class="grid-2">
-              <!-- Base Station RINEX -->
-              <div class="card p-14">
-                <label class="label-form-section text-cyan mb-6" data-i18n="rinex.lblBaseStation"></label>
-                <div class="dropzone dropzone-compact" id="ppkBaseDropzone">
-                  <i class="fa-solid fa-tower-broadcast dropzone-icon text-cyan"></i>
-                  <div id="txtPpkBaseFileName" class="dropzone-title text-sm m-0">
-                    <span data-i18n="rinex.lblBaseSelectOrDrag"></span>
-                  </div>
-                  <div class="dropzone-tags mt-4">
-                    <span class="dropzone-tag-pill">.O / .RNX</span>
-                    <span class="dropzone-tag-pill">.OBS</span>
-                    <span class="dropzone-tag-pill">.CRX</span>
-                    <span class="dropzone-tag-pill">ZIP / GZ</span>
-                  </div>
-                  <input type="file" id="inputPpkBaseFile" class="file-drop-input" accept=".o,.rnx,.obs,.*o,.*O,.crx,.zip,.gz" />
-                </div>
-              </div>
-
-              <!-- Rover Station RINEX -->
-              <div class="card p-14">
-                <label class="label-form-section text-emerald mb-6" data-i18n="rinex.lblRoverStation"></label>
-                <div class="dropzone dropzone-compact" id="ppkRoverDropzone">
-                  <i class="fa-solid fa-satellite dropzone-icon text-emerald"></i>
-                  <div id="txtPpkRoverFileName" class="dropzone-title text-sm m-0">
-                    <span data-i18n="rinex.lblRoverSelectOrDrag"></span>
-                  </div>
-                  <div class="dropzone-tags mt-4">
-                    <span class="dropzone-tag-pill">.O / .RNX</span>
-                    <span class="dropzone-tag-pill">.OBS</span>
-                    <span class="dropzone-tag-pill">.CRX</span>
-                    <span class="dropzone-tag-pill">ZIP / GZ</span>
-                  </div>
-                  <input type="file" id="inputPpkRoverFile" class="file-drop-input" accept=".o,.rnx,.obs,.*o,.*O,.crx,.zip,.gz" />
-                </div>
-              </div>
-            </div>
-
-            <!-- PPK Analysis Dashboard (Hidden until Base & Rover files are loaded) -->
-            <div id="ppkAnalysisResultWrapper" class="ppk-analysis-result-wrapper d-none flex-col gap-12 mt-16" style="display: none;">
-              <!-- Overall Status Banner -->
-              <div id="bannerPpkStatus" class="banner-ppk-status">
-                <div class="d-flex items-center gap-10">
-                  <i id="iconPpkStatus" class="fa-solid fa-circle-check text-xl"></i>
-                  <div>
-                    <strong id="titlePpkStatus" class="text-md d-block" data-i18n="rinex.titlePpkSuccess"></strong>
-                    <span id="descPpkStatus" class="text-sm text-dim" data-i18n="rinex.descPpkSuccess"></span>
-                  </div>
-                </div>
-                <span id="badgePpkOverlapPercent" class="badge text-sm px-12 py-4 font-extrabold" data-i18n="ui.100Kapsama"></span>
-              </div>
-
-              <!-- Stats Grid -->
-              <div class="kpi-grid-5">
-                <div class="kpi-card">
-                  <div class="kpi-icon icon-cyan">
-                    <i class="fa-solid fa-tower-broadcast"></i>
-                  </div>
-                  <div class="min-w-0">
-                    <div class="kpi-val font-mono text-cyan text-sm" id="statPpkBaseTime">--:-- - --:--</div>
-                    <div class="kpi-label" data-i18n="rinex.lblBaseSessionUtc"></div>
-                  </div>
-                </div>
-
-                <div class="kpi-card">
-                  <div class="kpi-icon icon-emerald">
-                    <i class="fa-solid fa-satellite"></i>
-                  </div>
-                  <div class="min-w-0">
-                    <div class="kpi-val font-mono text-emerald text-sm" id="statPpkRoverTime">--:-- - --:--</div>
-                    <div class="kpi-label" data-i18n="rinex.lblRoverSessionUtc"></div>
-                  </div>
-                </div>
-
-                <div class="kpi-card">
-                  <div class="kpi-icon icon-amber">
-                    <i class="fa-solid fa-clock"></i>
-                  </div>
-                  <div class="min-w-0">
-                    <div class="kpi-val font-mono text-amber text-sm" id="statPpkOverlapDuration">-- sa -- dk</div>
-                    <div class="kpi-label" data-i18n="rinex.lblOverlapDuration"></div>
-                  </div>
-                </div>
-
-                <div class="kpi-card">
-                  <div class="kpi-icon icon-purple">
-                    <i class="fa-solid fa-arrows-left-right"></i>
-                  </div>
-                  <div class="min-w-0">
-                    <div class="kpi-val font-mono text-purple text-sm" id="statPpkBaselineDist">-- km</div>
-                    <div class="kpi-label" data-i18n="rinex.lblApproxBaseline"></div>
-                  </div>
-                </div>
-
-                <div class="kpi-card">
-                  <div class="kpi-icon icon-blue">
-                    <i class="fa-solid fa-circle-nodes"></i>
-                  </div>
-                  <div class="min-w-0">
-                    <div class="kpi-val font-mono text-pure text-sm" id="statPpkCommonSystems">GPS + GLO</div>
-                    <div class="kpi-label" data-i18n="rinex.lblCommonSystems"></div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Visual Timeline Bar -->
-              <div class="card p-14">
-                <span class="text-xs font-bold text-dim d-block mb-10" data-i18n="rinex.lblVisualTimeline"></span>
-                <div class="d-flex flex-col gap-10">
-                  <!-- Base Timeline -->
-                  <div class="d-flex items-center gap-10">
-                    <span class="timeline-station-label text-cyan" data-i18n="rinex.lblBaseShort"></span>
-                    <div class="timeline-track-base">
-                      <div id="barPpkBase" class="timeline-bar-base"></div>
-                    </div>
-                  </div>
-                  <!-- Rover Timeline -->
-                  <div class="d-flex items-center gap-10">
-                    <span class="timeline-station-label text-emerald" data-i18n="rinex.lblRoverShort"></span>
-                    <div class="timeline-track-rover">
-                      <div id="barPpkRover" class="timeline-bar-rover"></div>
-                    </div>
-                  </div>
-                </div>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 6px;">
+                <span class="geo-badge geo-badge-sm">GPS</span>
+                <span class="geo-badge geo-badge-sm">GLONASS</span>
+                <span class="geo-badge geo-badge-sm">Galileo</span>
+                <span class="geo-badge geo-badge-sm">BeiDou</span>
+                <span class="geo-badge geo-badge-sm">QZSS</span>
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          <!-- Bento Row 4: RINEX Quality, Multi-Constellation Timeline & Satellites Chart -->
-          <div class="data-panel">
-            <div class="card-header items-center pb-10 mb-14 border-bottom-glass">
-              <div class="card-title m-0">
-                <i class="fa-solid fa-chart-line text-amber"></i>
-                <span data-i18n="rinex.qualityTitle"></span>
-              </div>
-              <span class="badge badge-amber" data-i18n="rinex.qualityBadge"></span>
+      <!-- Settings & Time Crop (4 cols) -->
+      <div class="geo-col-span-4">
+        <div class="geo-card" style="height: 100%; justify-content: space-between;">
+          <div class="geo-card-header">
+            <span class="geo-card-title"><i class="fa-solid fa-sliders"></i> Filtreleme & Sürüm</span>
+          </div>
+          <div class="geo-card-body">
+            <div class="geo-form-group">
+              <label class="geo-label" for="selectTargetVersion">Hedef RINEX Sürümü</label>
+              <select id="selectTargetVersion" class="geo-select">
+                <option value="RINEX_211" selected>RINEX 2.11 (TUSAGA / LGO / TBC)</option>
+                <option value="RINEX_210">RINEX 2.10 (Klasik GPS / GLO)</option>
+                <option value="RINEX_302">RINEX 3.02 (Multi-GNSS)</option>
+                <option value="RINEX_304">RINEX 3.04 (IGS Standart)</option>
+                <option value="RINEX_305">RINEX 3.05 (BDS-3 & Galileo HAS)</option>
+              </select>
             </div>
 
-            <div class="d-flex flex-col gap-12">
-              <!-- File Selector for Quality Inspector -->
-              <div class="quality-action-bar d-flex items-center justify-between flex-wrap gap-12">
-                <div class="d-flex items-center gap-10">
-                  <div class="kpi-icon icon-amber" style="width: 38px; height: 38px; font-size: 15px;">
-                    <i class="fa-solid fa-chart-simple"></i>
-                  </div>
-                  <div>
-                    <strong class="text-sm d-block text-pure" data-i18n="rinex.qualityPrompt"></strong>
-                    <span class="text-xs text-dim">.OBS, .RNX, .*O, .CRX (Hatanaka)</span>
-                  </div>
+            <div class="geo-form-group">
+              <label class="geo-label" for="selectTargetFormat">Hedef Çıktı Türü</label>
+              <select id="selectTargetFormat" class="geo-select">
+                <option value="OBS_ONLY">Yalnızca Gözlem (.obs)</option>
+                <option value="NAV_ONLY">Yalnızca Navigasyon (.nav)</option>
+                <option value="BOTH">Gözlem + Navigasyon Paketi</option>
+              </select>
+            </div>
+
+            <div class="geo-form-group">
+              <label class="geo-label" for="selectDecimationStep">Seyreltme / Örnekleme Aralığı</label>
+              <select id="selectDecimationStep" class="geo-select">
+                <option value="1">1 Saniye (Tümü)</option>
+                <option value="5">5 Saniye</option>
+                <option value="10">10 Saniye</option>
+                <option value="15">15 Saniye</option>
+                <option value="30">30 Saniye (CORS Standart)</option>
+              </select>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(5, 9, 20, 0.6); border: 1px solid var(--geo-border-subtle); border-radius: var(--geo-radius-md);">
+              <span style="font-size: var(--geo-fs-xs); color: var(--geo-text-secondary); font-weight: 600;">Zaman Penceresi Kırpma</span>
+              <input type="checkbox" id="chkEnableTimeCrop" style="cursor: pointer; width: 18px; height: 18px; accent-color: var(--geo-cyan);" />
+            </div>
+
+            <div id="timeCropControlsContainer" style="display: none; gap: 8px; flex-direction: column;">
+              <div class="geo-grid geo-grid-2">
+                <div class="geo-form-group">
+                  <label class="geo-label" for="inputCropStart">Başlangıç</label>
+                  <input type="time" id="inputCropStart" step="1" value="00:00:00" class="geo-input" />
                 </div>
-                <label class="btn btn-primary btn-sm m-0 cursor-pointer d-inline-flex items-center gap-6 text-sm py-6 px-14">
-                  <i class="fa-solid fa-satellite"></i> <span data-i18n="rinex.btnQualityAnalyze"></span>
-                  <input type="file" id="inputRinexQualityFile" accept=".o,.rnx,.obs,.*o,.*O,.crx" class="d-none" />
-                </label>
-              </div>
-
-              <!-- Quality Analysis Dashboard Results (Hidden initially) -->
-              <div id="rinexQualityDashboard" class="rinex-quality-dashboard d-none flex-col gap-12 mt-16" style="display: none;">
-                <!-- Stat Cards Bar -->
-                <div class="kpi-grid-5">
-                  <div class="kpi-card">
-                    <div class="kpi-icon icon-cyan">
-                      <i class="fa-solid fa-stopwatch"></i>
-                    </div>
-                    <div class="min-w-0">
-                      <div class="kpi-val text-cyan font-mono text-sm" id="statQualityEpochs">0 Epoch</div>
-                      <div class="kpi-label" data-i18n="rinex.statTotalEpochs"></div>
-                    </div>
-                  </div>
-
-                  <div class="kpi-card">
-                    <div class="kpi-icon icon-blue">
-                      <i class="fa-solid fa-wave-square"></i>
-                    </div>
-                    <div class="min-w-0">
-                      <div class="kpi-val text-pure font-mono" id="statQualityInterval">1 sn</div>
-                      <div class="kpi-label" data-i18n="rinex.statSamplingInterval"></div>
-                    </div>
-                  </div>
-
-                  <div class="kpi-card">
-                    <div class="kpi-icon icon-amber">
-                      <i class="fa-solid fa-satellite"></i>
-                    </div>
-                    <div class="min-w-0">
-                      <div class="kpi-val text-amber font-mono" id="statQualitySatCount">-- / --</div>
-                      <div class="kpi-label" data-i18n="rinex.statAvgMaxSat"></div>
-                    </div>
-                  </div>
-
-                  <div class="kpi-card">
-                    <div class="kpi-icon icon-emerald">
-                      <i class="fa-solid fa-globe"></i>
-                    </div>
-                    <div class="min-w-0">
-                      <div class="kpi-val text-emerald font-mono text-xs" id="statQualityConstellation">-- / -- / -- / --</div>
-                      <div class="kpi-label">GPS / GLO / GAL / BDS</div>
-                    </div>
-                  </div>
-
-                  <div class="kpi-card">
-                    <div class="kpi-icon icon-purple">
-                      <i class="fa-solid fa-award"></i>
-                    </div>
-                    <div class="min-w-0">
-                      <div class="kpi-val text-sky font-mono" id="statQualityScore" data-i18n="ui.95Mukemmel">%95</div>
-                      <div class="kpi-label" data-i18n="rinex.statScore"></div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Interactive Multi-Constellation Timeline Chart Canvas -->
-                <div class="timeline-chart-wrap">
-                  <!-- Legend -->
-                  <div class="timeline-header-flex">
-                    <span class="timeline-legend-title" data-i18n="rinex.timelineChartTitle"></span>
-                    <div class="timeline-legend-items">
-                      <span class="legend-item text-amber"><i class="fa-solid fa-circle legend-dot-8px"></i> <span data-i18n="common.total"></span></span>
-                      <span class="legend-item text-sky"><i class="fa-solid fa-circle legend-dot-8px"></i> GPS</span>
-                      <span class="legend-item text-rose"><i class="fa-solid fa-circle legend-dot-8px"></i> GLONASS</span>
-                      <span class="legend-item text-purple"><i class="fa-solid fa-circle legend-dot-8px"></i> Galileo</span>
-                      <span class="legend-item text-emerald"><i class="fa-solid fa-circle legend-dot-8px"></i> BeiDou</span>
-                    </div>
-                  </div>
-                  <canvas id="canvasRinexQualityChart" width="900" height="180" class="quality-chart-canvas"></canvas>
+                <div class="geo-form-group">
+                  <label class="geo-label" for="inputCropEnd">Bitiş</label>
+                  <input type="time" id="inputCropEnd" step="1" value="23:59:59" class="geo-input" />
                 </div>
               </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Filter selectors (Constellations, bands, obs types) -->
+    <div class="geo-card" style="padding: var(--geo-space-4);">
+      <div class="geo-grid geo-grid-3">
+        <div>
+          <span class="geo-label" style="margin-bottom: 6px;">Algılanan Uydular:</span>
+          <div id="containerConstellations" style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span style="font-size: var(--geo-fs-2xs); color: var(--geo-text-muted);">Dosya yüklendiğinde otomatik listelenir.</span>
+          </div>
+        </div>
+        <div>
+          <span class="geo-label" style="margin-bottom: 6px;">Frekans Bantları:</span>
+          <div id="containerBands" style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span style="font-size: var(--geo-fs-2xs); color: var(--geo-text-muted);">L1, L2, L5, E1, E5a, B1...</span>
+          </div>
+        </div>
+        <div>
+          <span class="geo-label" style="margin-bottom: 6px;">Gözlem Türleri:</span>
+          <div id="containerObsTypes" style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span style="font-size: var(--geo-fs-2xs); color: var(--geo-text-muted);">Pseudorange, Taşıyıcı Faz, Doppler, SNR...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discovered Groups Result Table -->
+    <div id="mergerResultCard" class="geo-card" style="display: none;">
+      <div class="geo-card-header">
+        <div style="display: flex; align-items: center; gap: var(--geo-space-2);">
+          <span class="geo-card-title"><i class="fa-solid fa-circle-nodes"></i> İstasyon & Günlük Grupları</span>
+        </div>
+        <button id="btnMergeAll" class="geo-btn geo-btn-primary geo-btn-sm">
+          <i class="fa-solid fa-bolt"></i> Tüm Grupları Birleştir & İndir (ZIP)
+        </button>
+      </div>
+      <div class="geo-table-wrap">
+        <table id="tableGroups" class="geo-table">
+          <thead>
+            <tr>
+              <th>Grup ID</th>
+              <th>İstasyon</th>
+              <th>Yıl</th>
+              <th>DOY (Yılın Günü)</th>
+              <th>Gözlem Dosyası</th>
+              <th>GPS Nav</th>
+              <th>GLO Nav</th>
+              <th>İşlem</th>
+            </tr>
+          </thead>
+          <tbody id="tableGroupsBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 2: PPK Base - Rover Overlap Inspector -->
+    <div class="geo-card">
+      <div class="geo-card-header">
+        <span class="geo-card-title"><i class="fa-solid fa-tower-broadcast"></i> İHA / Gezici PPK Bindirme & Eşzamanlılık Denetimi</span>
+        <span class="geo-badge geo-badge-cyan">PPK Baseline</span>
+      </div>
+      <div class="geo-card-body">
+        <div class="geo-grid geo-grid-2">
+          
+          <!-- Base Station File -->
+          <div class="geo-card" style="background: rgba(4, 8, 20, 0.5); padding: var(--geo-space-4);">
+            <span class="geo-label" style="color: var(--geo-cyan); margin-bottom: 6px;"><i class="fa-solid fa-tower-broadcast"></i> Sabit / Baz İstasyonu RINEX</span>
+            <div id="ppkBaseDropzone" class="geo-dropzone" style="padding: var(--geo-space-5) var(--geo-space-3);">
+              <input type="file" id="inputPpkBaseFile" accept=".o,.rnx,.obs,.*o,.*O,.crx,.zip,.gz" style="display: none;" />
+              <i class="fa-solid fa-tower-broadcast" style="font-size: 24px; color: var(--geo-cyan);"></i>
+              <div id="txtPpkBaseFileName" class="geo-dropzone-title" style="font-size: var(--geo-fs-sm);">Baz dosyasını seçin veya sürükleyin</div>
+              <div class="geo-dropzone-sub">.O, .RNX, .OBS, .CRX</div>
+            </div>
+          </div>
+
+          <!-- Rover Station File -->
+          <div class="geo-card" style="background: rgba(4, 8, 20, 0.5); padding: var(--geo-space-4);">
+            <span class="geo-label" style="color: var(--geo-emerald); margin-bottom: 6px;"><i class="fa-solid fa-satellite"></i> Gezici / İHA Rover RINEX</span>
+            <div id="ppkRoverDropzone" class="geo-dropzone" style="padding: var(--geo-space-5) var(--geo-space-3);">
+              <input type="file" id="inputPpkRoverFile" accept=".o,.rnx,.obs,.*o,.*O,.crx,.zip,.gz" style="display: none;" />
+              <i class="fa-solid fa-satellite" style="font-size: 24px; color: var(--geo-emerald);"></i>
+              <div id="txtPpkRoverFileName" class="geo-dropzone-title" style="font-size: var(--geo-fs-sm);">Gezici / Rover dosyasını seçin</div>
+              <div class="geo-dropzone-sub">İHA Drone Logu veya Gezici GNSS</div>
             </div>
           </div>
 
         </div>
-      </section>
+
+        <!-- PPK Analysis Result Box -->
+        <div id="ppkAnalysisResultWrapper" style="display: none; flex-direction: column; gap: var(--geo-space-3); margin-top: var(--geo-space-3);">
+          
+          <div id="bannerPpkStatus" class="geo-alert geo-alert-success">
+            <i id="iconPpkStatus" class="fa-solid fa-circle-check geo-alert-icon"></i>
+            <div style="flex: 1;">
+              <strong id="titlePpkStatus" style="font-size: var(--geo-fs-base); display: block;">PPK Oturumu Tam Uyumlu</strong>
+              <span id="descPpkStatus" style="font-size: var(--geo-fs-xs); color: var(--geo-text-secondary);">Baz ve gezici gözlem zamanları eksiksiz örtüşmektedir.</span>
+            </div>
+            <span id="badgePpkOverlapPercent" class="geo-badge geo-badge-emerald geo-badge-lg">%100 Kapsama</span>
+          </div>
+
+          <div class="geo-grid geo-grid-5">
+            <div class="geo-kpi geo-kpi-cyan">
+              <span class="geo-kpi-label">Baz Oturumu (UTC)</span>
+              <div class="geo-kpi-val" id="statPpkBaseTime" style="font-size: var(--geo-fs-sm);">--:-- - --:--</div>
+            </div>
+            <div class="geo-kpi geo-kpi-emerald">
+              <span class="geo-kpi-label">Gezici Oturumu (UTC)</span>
+              <div class="geo-kpi-val" id="statPpkRoverTime" style="font-size: var(--geo-fs-sm);">--:-- - --:--</div>
+            </div>
+            <div class="geo-kpi geo-kpi-amber">
+              <span class="geo-kpi-label">Örtüşen Süre</span>
+              <div class="geo-kpi-val" id="statPpkOverlapDuration" style="font-size: var(--geo-fs-sm);">-- sa -- dk</div>
+            </div>
+            <div class="geo-kpi geo-kpi-purple">
+              <span class="geo-kpi-label">Yaklaşık Baz Hattı</span>
+              <div class="geo-kpi-val" id="statPpkBaselineDist" style="font-size: var(--geo-fs-sm);">-- km</div>
+            </div>
+            <div class="geo-kpi">
+              <span class="geo-kpi-label">Ortak Takımyıldızlar</span>
+              <div class="geo-kpi-val" id="statPpkCommonSystems" style="font-size: var(--geo-fs-sm);">GPS + GLO</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Section 3: Single RINEX Quality Dashboard Canvas (Hidden until triggered) -->
+    <div id="rinexQualityDashboard" class="geo-card" style="display: none;">
+      <div class="geo-card-header">
+        <span class="geo-card-title"><i class="fa-solid fa-chart-simple"></i> RINEX Sinyal & Uydu Dağılım Grafiği</span>
+        <span id="statQualityScore" class="geo-badge geo-badge-cyan geo-badge-lg">%95 Mükemmel</span>
+      </div>
+      <div class="geo-card-body">
+        <div class="geo-grid geo-grid-4">
+          <div class="geo-kpi geo-kpi-cyan">
+            <span class="geo-kpi-label">Toplam Epok</span>
+            <div class="geo-kpi-val" id="statQualityEpochs">0</div>
+          </div>
+          <div class="geo-kpi">
+            <span class="geo-kpi-label">Örnekleme Aralığı</span>
+            <div class="geo-kpi-val" id="statQualityInterval">1 sn</div>
+          </div>
+          <div class="geo-kpi geo-kpi-amber">
+            <span class="geo-kpi-label">Ortalama / Maks Uydu</span>
+            <div class="geo-kpi-val" id="statQualitySatCount">-- / --</div>
+          </div>
+          <div class="geo-kpi geo-kpi-emerald">
+            <span class="geo-kpi-label">Takımyıldızlar (GPS/GLO/GAL/BDS)</span>
+            <div class="geo-kpi-val" id="statQualityConstellation" style="font-size: var(--geo-fs-sm);">-- / -- / -- / --</div>
+          </div>
+        </div>
+
+        <div style="background: rgba(3, 6, 17, 0.9); border: 1px solid var(--geo-border-subtle); border-radius: var(--geo-radius-md); padding: var(--geo-space-3); margin-top: var(--geo-space-2);">
+          <canvas id="canvasRinexQualityChart" width="900" height="200" style="width: 100%; height: 200px; display: block;"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

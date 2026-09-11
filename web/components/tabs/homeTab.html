@@ -1,230 +1,213 @@
-<!-- ================= TAB 0: PREMIUM HOMEPAGE DASHBOARD ================= -->
-<section id="tab-home" class="tool-tab active">
+<!-- ==========================================================================
+     NEXT-GEN STUDIO — HOME TAB (STUDIO HUB)
+     ========================================================================== -->
+<div id="tab-home" class="tool-tab geo-tab-view active">
+  <div style="display: flex; flex-direction: column; gap: var(--geo-space-6);">
 
-  <!-- Hero Welcome Banner -->
-  <div class="card home-hero-banner">
-    <div class="hero-content">
-      <div class="hero-pill">
-        <span class="hero-pill-dot"></span>
-        <span data-i18n="home.heroPill"></span>
+    <!-- Hero / Welcome Banner -->
+    <div class="geo-card geo-card-accent-cyan geo-stagger-1" style="background: radial-gradient(circle at 85% 20%, rgba(6, 182, 212, 0.15), transparent 45%), var(--geo-surface-card);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--geo-space-4);">
+        <div style="display: flex; flex-direction: column; gap: 6px; max-width: 680px;">
+          <div style="display: flex; align-items: center; gap: var(--geo-space-2);">
+            <span class="geo-badge geo-badge-cyan"><i class="fa-solid fa-satellite"></i> GNSS Web Studio v3.0</span>
+            <span class="geo-badge geo-badge-emerald"><span class="geo-live-dot"></span> BÖHHBÜY Uyumlu</span>
+          </div>
+          <h1 style="font-family: var(--geo-font-display); font-size: var(--geo-fs-2xl); font-weight: 700; color: var(--geo-text-white); margin-top: 4px;">
+            Jeodezi, Fotogrametri & GNSS Hesaplama Merkezi
+          </h1>
+          <p style="color: var(--geo-text-secondary); font-size: var(--geo-fs-base); line-height: 1.6;">
+            TÜSAGA-Aktif RTK kontrolü, HGM TG-20 jeoit modeli, RINEX gözlem kalite analizi ve İHA fotogrametrik uçuş planlamasını tarayıcınızda sıfır gecikmeyle, WebAssembly ve Web Worker motorlarıyla güvenle çalıştırın.
+          </p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: var(--geo-space-2);">
+          <button class="geo-btn geo-btn-primary geo-btn-lg" onclick="document.querySelector('[data-tab=\'tab-converter\']')?.click()">
+            <i class="fa-solid fa-arrow-right-arrow-left"></i> Hızlı Koordinat Dönüştür
+          </button>
+          <button class="geo-btn geo-btn-secondary" onclick="document.querySelector('[data-tab=\'tab-rinex-studio\']')?.click()">
+            <i class="fa-solid fa-chart-line"></i> RINEX Kalite Analizi
+          </button>
+        </div>
       </div>
-      <h2 class="hero-title" data-i18n="home.heroTitle"></h2>
-      <p class="hero-description" data-i18n="home.heroDesc"></p>
     </div>
 
-    <!-- Hero Universal Fast Dropzone -->
-    <div class="dropzone" id="homeHeroDropzone">
-      <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
-      <div class="dropzone-title" data-i18n="home.heroDropTitle"></div>
-      <div class="dropzone-desc" data-i18n="home.heroDropSub"></div>
-      <div class="dropzone-tags">
-        <span class="dropzone-tag-pill">RW5 / RAW</span>
-        <span class="dropzone-tag-pill">RINEX (.RNX/.OBS)</span>
-        <span class="dropzone-tag-pill">NCZ / DXF</span>
-        <span class="dropzone-tag-pill">KML / KMZ</span>
-        <span class="dropzone-tag-pill">GeoJSON</span>
-        <span class="dropzone-tag-pill">Netcad .DNS</span>
-        <span class="dropzone-tag-pill">TXT / CSV</span>
+    <!-- Live Telemetry / KPI Strip -->
+    <div class="geo-grid geo-grid-4 geo-stagger-2">
+      <div class="geo-kpi geo-kpi-cyan">
+        <div class="geo-kpi-header">
+          <span class="geo-kpi-label">Aktif Referans Elipsoidi</span>
+          <i class="fa-solid fa-globe geo-kpi-icon"></i>
+        </div>
+        <div class="geo-kpi-val">GRS80 / ITRF96</div>
+        <div class="geo-kpi-sub">Epoch 2005.0 • a=6378137.0m</div>
       </div>
-      <input type="file" id="inputHomeHeroFile" class="file-drop-input"
-        accept=".rw5,.raw,.csv,.txt,.jxl,.dat,.o,.rnx,.crx,.obs,.ncn,.dns,.kml,.kmz,.geojson,.json" />
+
+      <div class="geo-kpi geo-kpi-emerald">
+        <div class="geo-kpi-header">
+          <span class="geo-kpi-label">Türkiye Jeoid Modeli</span>
+          <i class="fa-solid fa-mountain geo-kpi-icon"></i>
+        </div>
+        <div class="geo-kpi-val">HGM TG-20</div>
+        <div class="geo-kpi-sub">Ortometrik Yükseklik Hassasiyeti ~1.8cm</div>
+      </div>
+
+      <div class="geo-kpi geo-kpi-amber">
+        <div class="geo-kpi-header">
+          <span class="geo-kpi-label">Desteklenen GNSS Formatları</span>
+          <i class="fa-solid fa-file-code geo-kpi-icon"></i>
+        </div>
+        <div class="geo-kpi-val">20+ Format</div>
+        <div class="geo-kpi-sub">RINEX 2/3, NCN, DXF, KML, GeoJSON</div>
+      </div>
+
+      <div class="geo-kpi geo-kpi-purple">
+        <div class="geo-kpi-header">
+          <span class="geo-kpi-label">Çalışma Modu & Güvenlik</span>
+          <i class="fa-solid fa-shield-halved geo-kpi-icon"></i>
+        </div>
+        <div class="geo-kpi-val">%100 İstemci / Yerel</div>
+        <div class="geo-kpi-sub">Verileriniz asla sunucuya iletilmez</div>
+      </div>
     </div>
+
+    <!-- Studio Bento Modules Grid -->
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--geo-space-3);">
+        <h2 style="font-family: var(--geo-font-display); font-size: var(--geo-fs-lg); font-weight: 600; color: var(--geo-text-white);">
+          <i class="fa-solid fa-cubes text-cyan" style="color: var(--geo-cyan); margin-right: 8px;"></i> Çalışma İstasyonu Modülleri
+        </h2>
+        <span style="font-size: var(--geo-fs-xs); color: var(--geo-text-muted);">Tüm mühendislik hesaplamaları çevrimdışı çalışır</span>
+      </div>
+
+      <div class="geo-grid geo-grid-3 geo-stagger-3">
+        
+        <!-- Module Card 1: Converter -->
+        <div class="geo-card" style="cursor: pointer;" onclick="document.querySelector('[data-tab=\'tab-converter\']')?.click()">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+            <div style="width: 44px; height: 44px; border-radius: var(--geo-radius-md); background: rgba(6, 182, 212, 0.12); color: var(--geo-cyan); display: flex; align-items: center; justify-content: center; font-size: 20px;">
+              <i class="fa-solid fa-arrow-right-arrow-left"></i>
+            </div>
+            <span class="geo-badge geo-badge-cyan">Dönüştürücü</span>
+          </div>
+          <div>
+            <h3 style="font-family: var(--geo-font-display); font-size: var(--geo-fs-md); font-weight: 600; color: var(--geo-text-white);">
+              Evrensel Format & Koordinat Dönüştürücü
+            </h3>
+            <p class="geo-card-desc" style="margin-top: 6px;">
+              NCN, DXF, KML, GeoJSON, CSV ve WKT dosyalarını çift yönlü dönüştürün; ITRF96, ED50 ve WGS84 projeksiyonlarını eşleyin.
+            </p>
+          </div>
+          <div class="geo-card-footer">
+            <span style="font-size: var(--geo-fs-xs); color: var(--geo-cyan); font-weight: 600;">Modüle Git <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- Module Card 2: RINEX Studio -->
+        <div class="geo-card" style="cursor: pointer;" onclick="document.querySelector('[data-tab=\'tab-rinex-studio\']')?.click()">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+            <div style="width: 44px; height: 44px; border-radius: var(--geo-radius-md); background: rgba(139, 92, 246, 0.12); color: var(--geo-purple); display: flex; align-items: center; justify-content: center; font-size: 20px;">
+              <i class="fa-solid fa-satellite-dish"></i>
+            </div>
+            <span class="geo-badge geo-badge-purple">GNSS Analiz</span>
+          </div>
+          <div>
+            <h3 style="font-family: var(--geo-font-display); font-size: var(--geo-fs-md); font-weight: 600; color: var(--geo-text-white);">
+              RINEX Kalite & Gökyüzü Stüdyosu
+            </h3>
+            <p class="geo-card-desc" style="margin-top: 6px;">
+              RINEX 2.xx ve 3.xx gözlem dosyalarında SNR sinyal gücü, çevrim kayması (cycle slip), çok yolluluk (multipath) ve Skyplot analizi.
+            </p>
+          </div>
+          <div class="geo-card-footer">
+            <span style="font-size: var(--geo-fs-xs); color: var(--geo-purple); font-weight: 600;">Modüle Git <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- Module Card 3: Cadastre & RTK -->
+        <div class="geo-card" style="cursor: pointer;" onclick="document.querySelector('[data-tab=\'tab-cadastre\']')?.click()">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+            <div style="width: 44px; height: 44px; border-radius: var(--geo-radius-md); background: rgba(16, 185, 129, 0.12); color: var(--geo-emerald); display: flex; align-items: center; justify-content: center; font-size: 20px;">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <span class="geo-badge geo-badge-emerald">TKGM / Kadastro</span>
+          </div>
+          <div>
+            <h3 style="font-family: var(--geo-font-display); font-size: var(--geo-fs-md); font-weight: 600; color: var(--geo-text-white);">
+              Kadastro RTK & Parsel Analizi
+            </h3>
+            <p class="geo-card-desc" style="margin-top: 6px;">
+              TÜSAGA-Aktif çift okuma kontrolü, BÖHHBÜY tecviz sınırları ve TKGM Parsel Sorgulama servis entegrasyonu.
+            </p>
+          </div>
+          <div class="geo-card-footer">
+            <span style="font-size: var(--geo-fs-xs); color: var(--geo-emerald); font-weight: 600;">Modüle Git <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- Module Card 4: TG-20 Geoid -->
+        <div class="geo-card" style="cursor: pointer;" onclick="document.querySelector('[data-tab=\'tab-tg20\']')?.click()">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+            <div style="width: 44px; height: 44px; border-radius: var(--geo-radius-md); background: rgba(245, 158, 11, 0.12); color: var(--geo-amber); display: flex; align-items: center; justify-content: center; font-size: 20px;">
+              <i class="fa-solid fa-mountain"></i>
+            </div>
+            <span class="geo-badge geo-badge-amber">HGM Jeoit</span>
+          </div>
+          <div>
+            <h3 style="font-family: var(--geo-font-display); font-size: var(--geo-fs-md); font-weight: 600; color: var(--geo-text-white);">
+              HGM TG-20 Jeoit Enterpolasyonu
+            </h3>
+            <p class="geo-card-desc" style="margin-top: 6px;">
+              Harita Genel Müdürlüğü TG-20 Türkiye Jeoit Modeli ile elipsoidal yüksekliklerden (h) ortometrik yükseklik (H) enterpolasyonu.
+            </p>
+          </div>
+          <div class="geo-card-footer">
+            <span style="font-size: var(--geo-fs-xs); color: var(--geo-amber); font-weight: 600;">Modüle Git <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- Module Card 5: Geodesy -->
+        <div class="geo-card" style="cursor: pointer;" onclick="document.querySelector('[data-tab=\'tab-geodesy\']')?.click()">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+            <div style="width: 44px; height: 44px; border-radius: var(--geo-radius-md); background: rgba(99, 102, 241, 0.12); color: var(--geo-indigo); display: flex; align-items: center; justify-content: center; font-size: 20px;">
+              <i class="fa-solid fa-calculator"></i>
+            </div>
+            <span class="geo-badge geo-badge-purple">Jeodezi</span>
+          </div>
+          <div>
+            <h3 style="font-family: var(--geo-font-display); font-size: var(--geo-fs-md); font-weight: 600; color: var(--geo-text-white);">
+              Jeodezik Hesaplama & Helmert Dönüşümü
+            </h3>
+            <p class="geo-card-desc" style="margin-top: 6px;">
+              1. ve 2. Temel Jeodezik ödev (Vincenty & Karney), 7 Parametreli 3B Helmert datum dönüşümü ve parametre kestirimi.
+            </p>
+          </div>
+          <div class="geo-card-footer">
+            <span style="font-size: var(--geo-fs-xs); color: var(--geo-indigo); font-weight: 600;">Modüle Git <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- Module Card 6: UAV Flight Studio -->
+        <div class="geo-card" style="cursor: pointer;" onclick="document.querySelector('[data-tab=\'tab-flight\']')?.click()">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+            <div style="width: 44px; height: 44px; border-radius: var(--geo-radius-md); background: rgba(56, 189, 248, 0.12); color: var(--geo-sky); display: flex; align-items: center; justify-content: center; font-size: 20px;">
+              <i class="fa-solid fa-plane-up"></i>
+            </div>
+            <span class="geo-badge geo-badge-sky">İHA & Uçuş</span>
+          </div>
+          <div>
+            <h3 style="font-family: var(--geo-font-display); font-size: var(--geo-fs-md); font-weight: 600; color: var(--geo-text-white);">
+              İHA Fotogrametri & Uçuş Planlama
+            </h3>
+            <p class="geo-card-desc" style="margin-top: 6px;">
+              GSD zemin örnekleme mesafesi, boyuna/enine bindirme oranları, uçuş yüksekliği, batarya hesabı ve KML/Waypoints aktarımı.
+            </p>
+          </div>
+          <div class="geo-card-footer">
+            <span style="font-size: var(--geo-fs-xs); color: var(--geo-sky); font-weight: 600;">Modüle Git <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
-
-  <!-- Bento Grid of Tool Modules -->
-  <div class="home-bento-grid">
-
-    <!-- Bento Card 1: RTK & Ham Data -->
-    <div class="card bento-card" data-launch-tab="tab-cadastre">
-      <div class="card-header">
-        <div class="bento-icon-box icon-cyan">
-          <i class="fa-solid fa-table-cells"></i>
-        </div>
-
-        <span class="badge badge-cyan" data-i18n="home.rtkBadge"></span>
-      </div>
-      <h3 class="bento-title" data-i18n="home.rtkTitle"></h3>
-      <p class="bento-desc" data-i18n="home.rtkDesc"></p>
-      <div class="bento-features">
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.rtkFeat1"></span></span>
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.rtkFeat2"></span></span>
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.rtkFeat3"></span></span>
-      </div>
-      <div class="bento-footer">
-        <button type="button" class="bento-action-link"><span data-i18n="home.openModule"></span> <i
-            class="fa-solid fa-arrow-right"></i></button>
-      </div>
-    </div>
-
-    <!-- Bento Card 2: İHA Uçuş Planlama & Akıllı YKN -->
-    <div class="card bento-card" data-launch-tab="tab-flight">
-      <div class="card-header">
-        <div class="bento-icon-box icon-cyan">
-          <i class="fa-solid fa-plane-up"></i>
-        </div>
-        <span class="badge badge-cyan" data-i18n="home.flightBadge"></span>
-      </div>
-      <h3 class="bento-title" data-i18n="home.flightTitle"></h3>
-      <p class="bento-desc" data-i18n="home.flightDesc"></p>
-      <div class="bento-features">
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.flightFeat1"></span></span>
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.flightFeat2"></span></span>
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.flightFeat3"></span></span>
-      </div>
-      <div class="bento-footer">
-        <button type="button" class="bento-action-link"><span data-i18n="home.openModule"></span> <i
-            class="fa-solid fa-arrow-right"></i></button>
-      </div>
-    </div>
-
-    <!-- Bento Card 2: RINEX Düzenleyici -->
-    <div class="card bento-card" data-launch-tab="tab-rinex-studio">
-      <div class="card-header">
-        <div class="bento-icon-box icon-blue">
-          <i class="fa-solid fa-satellite"></i>
-        </div>
-        <span class="badge badge-blue" data-i18n="home.rinexBadge"></span>
-      </div>
-      <h3 class="bento-title" data-i18n="home.rinexTitle"></h3>
-      <p class="bento-desc" data-i18n="home.rinexDesc"></p>
-      <div class="bento-features">
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.rinexFeat1"></span></span>
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.rinexFeat2"></span></span>
-      </div>
-      <div class="bento-footer">
-        <button type="button" class="bento-action-link"><span data-i18n="home.openModule"></span> <i
-            class="fa-solid fa-arrow-right"></i></button>
-      </div>
-    </div>
-
-    <!-- Bento Card 3: Pafta İndeksi & Harita -->
-    <div class="card bento-card" data-launch-tab="tab-map">
-      <div class="card-header">
-        <div class="bento-icon-box icon-purple">
-          <i class="fa-solid fa-map-location-dot"></i>
-        </div>
-        <span class="badge badge-purple" data-i18n="home.mapBadge"></span>
-      </div>
-      <h3 class="bento-title" data-i18n="home.mapTitle"></h3>
-      <p class="bento-desc" data-i18n="home.mapDesc"></p>
-      <div class="bento-features">
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.mapFeat1"></span></span>
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.mapFeat2"></span></span>
-      </div>
-      <div class="bento-footer">
-        <button type="button" class="bento-action-link"><span data-i18n="home.openModule"></span> <i
-            class="fa-solid fa-arrow-right"></i></button>
-      </div>
-    </div>
-
-    <!-- Bento Card 4: Koordinat Dönüşümü & Helmert 2D -->
-    <div class="card bento-card" data-launch-tab="tab-geodesy">
-      <div class="card-header">
-        <div class="bento-icon-box icon-emerald">
-          <i class="fa-solid fa-compass-drafting"></i>
-        </div>
-        <span class="badge badge-emerald" data-i18n="home.geodesyBadge"></span>
-      </div>
-      <h3 class="bento-title" data-i18n="home.geodesyTitle"></h3>
-      <p class="bento-desc" data-i18n="home.geodesyDesc"></p>
-      <div class="bento-features">
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.geodesyFeat1"></span></span>
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.geodesyFeat2"></span></span>
-      </div>
-      <div class="bento-footer">
-        <button type="button" class="bento-action-link"><span data-i18n="home.openModule"></span> <i
-            class="fa-solid fa-arrow-right"></i></button>
-      </div>
-    </div>
-
-    <!-- Bento Card 5: Jeodezik Hesaplama Araçları -->
-    <div class="card bento-card" data-launch-tab="tab-tools">
-      <div class="card-header">
-        <div class="bento-icon-box icon-cyan">
-          <i class="fa-solid fa-calculator"></i>
-        </div>
-        <span class="badge badge-cyan" data-i18n="home.toolsBadge"></span>
-      </div>
-      <h3 class="bento-title" data-i18n="home.toolsTitle"></h3>
-      <p class="bento-desc" data-i18n="home.toolsDesc"></p>
-      <div class="bento-features">
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.toolsFeat1"></span></span>
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.toolsFeat2"></span></span>
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.toolsFeat3"></span></span>
-      </div>
-      <div class="bento-footer">
-        <button type="button" class="bento-action-link"><span data-i18n="home.openModule"></span> <i
-            class="fa-solid fa-arrow-right"></i></button>
-      </div>
-    </div>
-
-    <!-- Bento Card 6: TG-20 Jeoit Kot İndirgeme -->
-    <div class="card bento-card" data-launch-tab="tab-tg20">
-      <div class="card-header">
-        <div class="bento-icon-box icon-amber">
-          <i class="fa-solid fa-mountain-sun"></i>
-        </div>
-        <span class="badge badge-amber" data-i18n="home.tg20Badge"></span>
-      </div>
-      <h3 class="bento-title" data-i18n="home.tg20Title"></h3>
-      <p class="bento-desc" data-i18n="home.tg20Desc"></p>
-      <div class="bento-features">
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.tg20Feat1"></span></span>
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.tg20Feat2"></span></span>
-      </div>
-      <div class="bento-footer">
-        <button type="button" class="bento-action-link"><span data-i18n="home.openModule"></span> <i
-            class="fa-solid fa-arrow-right"></i></button>
-      </div>
-    </div>
-
-    <!-- Bento Card 7: Evrensel Format Dönüştürücü -->
-    <div class="card bento-card" data-launch-tab="tab-converter">
-      <div class="card-header">
-        <div class="bento-icon-box icon-cyan">
-          <i class="fa-solid fa-arrows-rotate"></i>
-        </div>
-        <span class="badge badge-cyan" data-i18n="home.converterBadge"></span>
-      </div>
-      <h3 class="bento-title" data-i18n="home.converterTitle"></h3>
-      <p class="bento-desc" data-i18n="home.converterDesc"></p>
-      <div class="bento-features">
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.converterFeat1"></span></span>
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.converterFeat2"></span></span>
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.converterFeat3"></span></span>
-        <span><i class="fa-solid fa-check"></i> <span data-i18n="home.converterFeat4"></span></span>
-      </div>
-      <div class="bento-footer">
-        <button type="button" class="bento-action-link"><span data-i18n="home.openModule"></span> <i
-            class="fa-solid fa-arrow-right"></i></button>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Trust & Technical Feature Badges Bar -->
-  <div class="home-trust-bar">
-    <div class="trust-item">
-      <i class="fa-solid fa-lock trust-icon"></i>
-      <div>
-        <strong data-i18n="home.trust1Title"></strong>
-        <span data-i18n="home.trust1Desc"></span>
-      </div>
-    </div>
-    <div class="trust-item">
-      <i class="fa-solid fa-bolt trust-icon"></i>
-      <div>
-        <strong data-i18n="home.trust2Title"></strong>
-        <span data-i18n="home.trust2Desc"></span>
-      </div>
-    </div>
-    <div class="trust-item">
-      <i class="fa-solid fa-file-shield trust-icon"></i>
-      <div>
-        <strong data-i18n="home.trust3Title"></strong>
-        <span data-i18n="home.trust3Desc"></span>
-      </div>
-    </div>
-  </div>
-
-</section>
+</div>

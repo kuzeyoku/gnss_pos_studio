@@ -1,31 +1,42 @@
-    <!-- ================= PERMANENT STICKY CYBERNETIC LIVE CONSOLE DOCK ================= -->
-    <div id="cyberConsoleDock" class="console-dock">
-      <div class="d-flex justify-between items-center">
-        <div class="d-flex items-center gap-8 font-display text-base font-bold text-white">
-          <span class="dock-indicator-dot"></span>
-          <span data-i18n="ui.siStemISlem"></span>
-          <span id="dockSummaryText" class="text-sm font-semibold text-dim font-mono"></span>
-        </div>
-        <div class="d-flex items-center gap-6">
-          <button class="console-dock-trigger" id="btnConsoleToggle" type="button" title="" data-i18n-title="console.toggle">
-            <i class="fa-solid fa-chevron-down text-xs" id="iconConsoleToggle"></i>
-          </button>
-          <button class="console-dock-trigger console-dock-danger" id="btnClearConsoleLog" type="button"
-            title="" data-i18n-title="console.clear">
-            <i class="fa-solid fa-trash-can text-xs"></i>
-          </button>
-        </div>
-      </div>
-
-      <div class="progress-container mb-2">
-        <div class="d-flex justify-between text-xs text-dim font-mono mb-2">
-          <span id="progressLabel" data-i18n="common.systemReady"></span>
-          <span id="progressPercent">0%</span>
-        </div>
-        <div class="progress-bar-bg">
-          <div class="progress-bar-fill" id="progressBarFill"></div>
-        </div>
-      </div>
-
-      <div class="console-terminal" id="globalConsoleLog" data-i18n="ui.siStemHaritaTools"></div>
+<!-- ==========================================================================
+     NEXT-GEN STUDIO — OBSIDIAN GLASS CONSOLE & TELEMETRY DOCK
+     ========================================================================== -->
+<div id="cyberConsoleDock" class="geo-console-dock">
+  <div class="geo-console-header">
+    <div class="geo-console-status">
+      <span class="geo-live-dot"></span>
+      <span style="font-family: var(--geo-font-display); font-weight: 600; font-size: var(--geo-fs-xs); color: var(--geo-text-white); letter-spacing: 0.04em;">
+        SİSTEM VE MOTOR TELEMETRİSİ
+      </span>
+      <span id="dockSummaryText" class="geo-badge geo-badge-cyan" style="font-size: 10px; padding: 2px 8px;">
+        Hazır
+      </span>
     </div>
+
+    <!-- Progress Indicator Strip -->
+    <div class="geo-console-progress-wrap">
+      <div style="display: flex; justify-content: space-between; font-family: var(--geo-font-mono); font-size: 11px; color: var(--geo-text-muted); margin-bottom: 4px;">
+        <span id="progressLabel">Sistem Hazır</span>
+        <span id="progressPercent" style="color: var(--geo-cyan); font-weight: 600;">0%</span>
+      </div>
+      <div class="geo-console-progress-track">
+        <div class="geo-console-progress-fill" id="progressBarFill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Action Triggers -->
+    <div class="geo-console-actions">
+      <button class="geo-console-btn" id="btnConsoleToggle" type="button" title="Konsolu Göster/Gizle">
+        <i class="fa-solid fa-chevron-down" id="iconConsoleToggle"></i>
+      </button>
+      <button class="geo-console-btn geo-console-btn-danger" id="btnClearConsoleLog" type="button" title="Günlüğü Temizle">
+        <i class="fa-solid fa-trash-can"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Terminal Output Drawer -->
+  <div class="geo-console-body" id="globalConsoleLog">
+    <div style="color: var(--geo-cyan);">[SYSTEM] GNSS Pos Studio v3.0 WebAssembly & Worker motoru hazır.</div>
+  </div>
+</div>
