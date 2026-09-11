@@ -1,6 +1,6 @@
 /* =========================================================================
  * GNSS POS STUDIO - CONSOLIDATED CORE DESIGN SYSTEM (core.css)
- * Otomatik Derleme Tarihi: 11.09.2026 14:46:35
+ * Otomatik Derleme Tarihi: 11.09.2026 14:51:10
  * Modüler CSS kaynaklarından otomatik derlenmiştir.
  * ========================================================================= */
 
@@ -996,12 +996,7 @@ body {
 .form-input:focus,
 .form-select:focus,
 .pafta-search-input:focus,
-.guide-search-input:focus {
-  outline: none;
-  border-color: var(--cyan-400);
-  background: #050b1a;
-  box-shadow: 0 0 0 2px var(--cyan-a20), 0 0 14px var(--cyan-a35), inset 0 2px 4px rgba(0, 0, 0, 0.4);
-}
+
 
 .form-input[type="number"] {
   font-family: var(--font-mono);
@@ -1929,12 +1924,7 @@ tbody tr:hover { background: rgba(var(--cyan-rgb), 0.09); }
 }
 
 .export-actions,
-.pafta-search-wrapper {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-}
+
 
 /* ==========================================================================
    CANONICAL SHARED CHIPS & TABLE HELPERS
@@ -1962,13 +1952,7 @@ tbody tr:hover { background: rgba(var(--cyan-rgb), 0.09); }
 }
 
 .table-toolbar,
-.timeline-header-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
+
 
 .table-toolbar {
   margin-bottom: 10px;
@@ -2369,15 +2353,7 @@ tbody tr:hover { background: rgba(var(--cyan-rgb), 0.09); }
 .card[class*="card-accent-"] .card-body { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; gap: 10px; }
 .card[class*="card-accent-"] .flight-summary-wrap { margin-top: auto; }
 .flight-slider-container,
-.flight-heading-wrap {
-  background: var(--surface-deep-a55);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-sm);
-  padding: 10px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+
 .flight-slider-header { display: flex; justify-content: space-between; align-items: center; font-size: 11px; }
 .flight-slider-labels { display: flex; justify-content: space-between; font-size: 9.5px; color: var(--text-dim); padding: 0 2px; }
 .flight-slider, input[type="range"].flight-slider { width: 100%; height: 6px; margin: 6px 0; border-radius: 4px; background: rgba(255, 255, 255, 0.15); outline: none; accent-color: var(--cyan-400); cursor: pointer; display: block; }
@@ -3704,17 +3680,7 @@ body.report-body {
   }
 
   .flight-solar-compass-widget,
-  .map-hud-badge {
-    position: static !important;
-    width: 100% !important;
-    margin-top: 0 !important;
-    border-radius: 0 0 var(--radius-sm) var(--radius-sm) !important;
-    border: none !important;
-    border-top: 1px solid var(--border-glass) !important;
-    background: rgba(var(--surface-side-rgb), 0.95) !important;
-    padding: 8px 10px !important;
-    box-shadow: none !important;
-  }
+  
 
   .flight-solar-compass-widget {
     display: grid !important;

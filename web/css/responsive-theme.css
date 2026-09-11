@@ -408,17 +408,7 @@
   }
 
   .flight-solar-compass-widget,
-  .map-hud-badge {
-    position: static !important;
-    width: 100% !important;
-    margin-top: 0 !important;
-    border-radius: 0 0 var(--radius-sm) var(--radius-sm) !important;
-    border: none !important;
-    border-top: 1px solid var(--border-glass) !important;
-    background: rgba(var(--surface-side-rgb), 0.95) !important;
-    padding: 8px 10px !important;
-    box-shadow: none !important;
-  }
+  
 
   .flight-solar-compass-widget {
     display: grid !important;
